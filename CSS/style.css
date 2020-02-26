@@ -1,0 +1,36 @@
+*{
+    font-family: "Arial";
+    
+}
+
+body{
+
+    
+}
+h3{
+    font-size: 18pt;
+}
+/*____ Inicio_____  */
+header{
+    background-color: yellow;
+
+}
+
+/* _____fim____ */
+
+
+/*___ Inicio___ */
+
+#container{
+ 
+
+}
+button{
+    background-color: yellow;
+    border-radius: 5px;
+    border: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ___fim___ */

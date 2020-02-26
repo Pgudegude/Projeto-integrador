@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PT-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -8,29 +8,130 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 
 <body>
-
-    <h2> Identificação</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <h3> Dados pessoais</h3>
+    <header class="col-lg-12 cabecalho bg-yellow text-black ">
+        <div class="row">
+            <div class="col-md-2 mt-2">
+                <img src="Imagem/logo2.png" title="Logo" alt="Logo" width="50vw">
+            </div>
+            <h1 class="col-md-8 text-center mt-4"> O melhor da sua infância está aqui
+            </h1>
+            
+            <Div class="col-md-1 mt-2">
+                <a href=" carrinho.html ">
+                    <img src="Imagem/supermarket.png" alt=" Carrinho " title=" Ir para o carrinho " width=" 40vw ">
+                </a>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h3>Dados de acesso ao gudegude.com.br</h3>
-        </div>
-        <p>nome completo</p>
+    </header>
 
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
+
+    <main id="container">
+
+        <form class="row mt-5 p-4">
+            <div class="col-md-6 ">
+                <header class="bg-yellow p-2">
+                    <h3> Dados pessoais</h3>
+                </header>
+                <div>
+                    <div class="p-2">
+                        <div class="form-group">
+                            <label for="nomeUsuario">Nome completo: *</label>
+                            <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
+                                placeholder="Digite o nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpfUsuario">CPF: *</label>
+                            <input class="form-control" type="tel" id="cpfUsuario" name="cpfUsuario" placeholder="CPF"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telUsuario">Telefone:*</label>
+                            <input class="form-control" type="tel" id="telUsuario" name="telUsuario"
+                                placeholder="DD-XXXXXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nascimentoUsuario">Data de Nascimento: *</label>
+                            <input class="form-control" type="date" id="nascimentoUsuario" name="nascimentoUsuario"
+                                placeholder="Data de nascimento" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Gênero:* </label>
+                            <br>
+                            <input type="radio" name="genero"> Masculino&emsp;
+
+                            <input type="radio" name="genero"> Feminino&emsp;
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <header class="bg-yellow p-2">
+                    <h3>Dados de acesso ao gudegude.com.br</h3>
+                </header>
+                <div class="p-2">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> E-mail:* </label>
+                        <input type="email" class="form-control" id="emailUsuario" 
+                        placeholder="Digite seu e-mail " required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> Confirmar e-mail:* </label>
+                        <input type="email" class="form-control" id="confirmarEmail"
+                         placeholder=" Confirme seu e-mail " required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> Senha*: </label>
+                        <input type="password" class="form-control" id="senha" width=""
+                            placeholder=" Digite sua senha " required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> Confirma senha*: </label>
+                        <input type="password" class="form-control" id="confirmasenha"
+                        placeholder="Confirme sua senha " required>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="" type="button" data-toggle="modal"
+                            data-target="#cadastroFinalizada"required>
+                            Cadastrar</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <div id="cadastroFinalizada" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastro realizado com sucesso.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seja bem vindo !</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  data-dismiss="modal">Continuar comprando</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ir ao carrinho</button>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
 
 
 
@@ -41,13 +142,13 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        </script>
 
 
     <script src="JS/main.js">
