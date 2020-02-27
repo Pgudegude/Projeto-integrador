@@ -5,7 +5,6 @@ body{
 }
 #selector{
     background: yellow;
-   
 }
 
 #carrinho{
@@ -19,8 +18,20 @@ margin-top: 15px;
 }
 #bordao{
     margin-top: 10px;
+    
+}
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: linear-gradient(purple,cyan); */
+    
 }
 /* ----Header end index----- */
 /* ---- footer begin  */
-
+footer{
+    background: yellow;
+    
+}
 /* footer end */
