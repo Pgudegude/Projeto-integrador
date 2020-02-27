@@ -1,0 +1,49 @@
+#cabecalho{
+    
+    background-color: rgb(247, 247, 132);
+    color: black;
+
+}
+
+#estruralogin{
+
+    width:400px; 
+    height:500px; 
+    background: rgb(250, 227, 124);
+    opacity:inherit;
+    left:50%;
+    top:50%;
+    margin-left:-200px; 
+    margin-top:-70px;
+    position:absolute;
+}
+.login{
+
+    width: 350px;
+    text-align: center;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 18px;
+    
+    
+}
+.button2{
+   
+    text-align: center;
+    padding: 10px 15px;
+    
+
+}
+
+.box {
+  width: 100px;
+  margin: 10px;
+  position: relative;
+  text-align: center;
+}
+.esqueceu{
+    width: 350px;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 18px;
+}
