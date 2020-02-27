@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header class="cabecalho">
+    <header class="cabecalho container-fluid">
         <div class="row">
             <div class="col-md-2 mt-2">
                 <img src="Imagens/logo.png" title="Logo" alt="Logo" width="50vw"></div>
@@ -25,46 +25,70 @@
         </div>
     </header>
     <main>
-        <form method="POST"> 
-    
-            <p> 
-            Nome:<br/> 
-            <input type="text" size="150" name="nome" placeholder="coloque seu nome completo"> 
-            </p>   
-            
-            <p>
-            E-mail:<br/> 
-            <input type="text" size="30" name="email" placeholder="seuemail@seuemail.com"> 
-            </p>   
-            <p>
-                Assunto:<br/>
-                <input type="text" size="30" name="Assunto" placeholder="Informe o assunto"> 
-            </p>
-            <p> 
-            Comentários:<br/> 
-            <input type="text" size="500" name="Comentarios"> 
-            </p>   
-            
-            <p> 
-            <input type="submit" name="BTEnvia" value="Enviar"> 
-            <input type="reset" name="BTApaga" value="Apagar"> </p> 
+        <div class="container">
+            <form method="get" class="form-row">
+                <div class="col-12 form-group">
+                    <label for="nome" class="pl-3"> Nome:</label>
+                    <input class=" form-control" type="text" name="nome" id="nome"
+                        placeholder="coloque seu nome completo" required>
+                </div>
+                <div class="col-12 form-group">
+                    <label for="email" class="pl-3"> E-mail:</label>
+                    <input class=" form-control" id="email" type="text" name="email" placeholder="seuemail@seuemail.com"
+                        required>
+                </div>
+                <div class="col-12 form-group">
+                    <label for="assunto " class="pl-3"> Assunto:</label>
+                    <select class="form-control" name="assunto" id="assunto">
+                        <option value="nd" selected disabled>Selecione uma opção</option>
+
+                        <option value="dv">duvidas</option>
+
+                        <option value="su">sugestões</option>
+
+                        <option value="re">reclamações</option>
+
+                        <option value="el">elogios</option>
+
+                    </select>
+                </div>
+                <div class="col-12 form-group">
+                    <label for="comentarios">
+                        Comentários:</label>
+                    <textarea class="form-control" id="”mensagem”" name=”mensagem” required> </textarea>
+                </div>
+                <div class="col-12 ">
+                    <input class="form-control" type="submit" name="BTEnvia" value="Enviar">
+                </div>
             </form>
-            
+        </div>
     </main>
     <footer>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="contato.html">Fale conosco</a>
-            </div>
-            <div class="col-md-4">
-                <a> Nossa história</a>
-            </div>
-            <div class="col-md-4">
-                Social
-                <a>Instagram</a>
-            </div>
-        </div>
+        <div class="container p-4 mt-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        CONTATO
+                    </div>
+                    <a href="contato.html">Fale conosco</a>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <div>INSTITUCIONAL</div>
+                        <a href="contato.html"> Nossa história</a>
+                    </div>
 
+                </div>
+                <div class="col-md-4">
+                    <div>SOCIAL</div>
+                    <a href="https://www.instagram.com/pgudegude/?hl=pt-br"><img src="Imagens/instagram.png"
+                            width="20px"> Instagram</a>
+                </div>
+            </div>
+           
+            <div class="text-center"> Todos os direitos reservados</div>
+        </div>
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

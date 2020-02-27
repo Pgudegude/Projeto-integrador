@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -13,22 +13,23 @@
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2 mt-2">
-                    <img src="Imagens/logo.png" title="Logo" alt="Logo" width="50vw"></div>
-                <h1 class="col-md-8 text-center mt-4"> O melhor da sua infância está aqui</h1>
-                <div class="col-md-1 mt-2"> <a href="login.html"><img src="Imagens/login.png" alt="login" title="login"
-                            width="40vw"> </a></div>
-                <div class="col-md-1 mt-2"> <a href="carrinho.html"><img src="Imagens/carrinho.png" alt="Carrinho"
-                            title="Ir para o carrinho" width="40vw"> </a></div>
+    <header class="cabecalho container-fluid">
+        <div class="row">
+            <div class="col-md-2 mt-2">
+                <img src="Imagens/logo.png" title="Logo" alt="Logo" width="50vw">
+            </div>
+            <h1 class="col-md-8 text-center mt-4"> O melhor da sua infância está aqui</h1>
+            <div class="col-md-1 mt-2"> <a href="login.html"><img src="Imagens/login.png" alt="login" title="login"
+                        width="40vw"> </a>
+            </div>
+            <div class="col-md-1 mt-2"> <a href="carrinho.html"><img src="Imagens/carrinho.png" alt="Carrinho"
+                        title="Ir para o carrinho" width="40vw"> </a>
             </div>
         </div>
     </header>
     <main class="container-fluid main-content">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
                 <div id="promocoes" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#promocoes" data-slide-to="0" class="active"></li>
@@ -71,36 +72,51 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <a> <img src="Imagens/bola metalica.jpg" width="100%"></a>
-                <h3> Conheça nossa linha metálica</h3>
-            </div>
-            <div class="col-md-4">
-                <a> <img src="Imagens/bola madeira.jpg" width="100%"></a>
-                <h3> Conheça nossa linha de madeira</h3>
-            </div>
-            <div class="col-md-4">
-                <a> <img src="Imagens/bolaImportada.jpg" width="100%"></a>
-                <h3> Conheça nossa linha Importada</h3>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <a> <img src="Imagens/bola metalica.jpg" width="100%"></a>
+                    <h3> Conheça nossa linha metálica</h3>
+                </div>
+                <div class="col-md-4">
+                    <a> <img src="Imagens/bola madeira.jpg" width="100%"></a>
+                    <h3> Conheça nossa linha de madeira</h3>
+                </div>
+                <div class="col-md-4">
+                    <a> <img src="Imagens/bolaImportada.jpg" width="100%"></a>
+                    <h3> Conheça nossa linha Importada</h3>
+                </div>
             </div>
         </div>
     </main>
-    <footer class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-            <a href="contato.html">Fale conosco</a>
-            </div>
-            <div class="col-md-4">
-                <a> Nossa história</a>
-            </div>
-            <div class="col-md-4">
-                Social
-                <a>Instagram</a>
-            </div>
-        </div>
-     </footer>
+    <footer>
+        <div class="container p-4 mt-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        CONTATO
+                    </div>
+                    <a href="contato.html">Fale conosco</a>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <div>INSTITUCIONAL</div>
+                        <a href="contato.html"> Nossa história</a>
+                    </div>
 
+                </div>
+                <div class="col-md-4">
+                    <div>SOCIAL</div>
+                    <a href="https://www.instagram.com/pgudegude/?hl=pt-br"><img src="Imagens/instagram.png"
+                            width="20px"> Instagram</a>
+                </div>
+            </div>
+           
+            <div class="text-center"> Todos os direitos reservados</div>
+        </div>
+        </div>
+    </footer>
+    
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -110,6 +126,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+                    
 </body>
 
 </html>
