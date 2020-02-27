@@ -6,20 +6,29 @@ footer{
     background-color: yellow;
     
 }
-body{
-    font-family: Arial, Helvetica, sans-serif;
-
-}
-
 main.main-content {
     padding: 0;
 }
-div{
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
 a{
     color: black;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+     overflow-x: hidden; 
+}
+#selector{
+    background: yellow;
+   
+}
+#carrinho{
+margin-top: 15px;
+}
+#login{
+    margin-top: 15px;
+}
+#login::after{
+    content: "Faça seu login aqui!";
+}
+#bordao{
+    margin-top: 10px;
 }
