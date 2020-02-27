@@ -4,11 +4,13 @@
 }
 
 body{
-
+overflow-x: hidden;
     
 }
 h3{
     font-size: 18pt;
+    padding: 5px;
+    
 }
 /*____ Inicio_____  */
 header{
