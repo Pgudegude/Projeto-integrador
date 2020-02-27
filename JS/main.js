@@ -1,8 +1,11 @@
 let incluirCarrinho = document.getElementById("btnIncluir");
 
+
 incluirCarrinho.addEventListener('click',()=>{
     alert("funciona")
 })
+
+
 // function TestaCPF(strCPF) {
 //     let Soma;
 //     let Resto;

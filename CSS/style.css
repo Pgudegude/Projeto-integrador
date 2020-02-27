@@ -5,16 +5,12 @@ body{
 }
 #selector{
     background: yellow;
-    
+   
 }
-#logo{
-    margin-left: 5px;
+
+#carrinho{
+margin-top: 15px;
 }
-/* #carrinho{
-position: relative;
-left: 85%;
-margin-top: -65px;
-} */
 #login{
     margin-top: 15px;
 }
