@@ -1,12 +1,25 @@
-/* ----Header begin index----- */
+    header{
+        background-color: yellow;
+        
+    }
+footer{
+    background-color: yellow;
+    
+}
+main.main-content {
+    padding: 0;
+}
+a{
+    color: black;
+}
 body{
     font-family: Arial, Helvetica, sans-serif;
-    /* overflow: hidden; */
+     overflow-x: hidden; 
 }
 #selector{
     background: yellow;
+   
 }
-
 #carrinho{
 margin-top: 15px;
 }
