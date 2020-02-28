@@ -1,37 +1,53 @@
 /* ----Header begin index----- */
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     /* overflow: hidden; */
 }
-#selector{
+
+#selector {
     background: yellow;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    width: 100vw;
 }
 
-#carrinho{
-margin-top: 15px;
-}
-#login{
+#carrinho {
     margin-top: 15px;
 }
-#login::after{
+
+#login {
+    margin-top: 15px;
+}
+
+#login::after {
     content: "Faça seu login aqui!";
 }
-#bordao{
+
+#bordao {
     margin-top: 10px;
-    
+
 }
-nav{
+
+nav {
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* background: linear-gradient(purple,cyan); */
-    
+
 }
+
 /* ----Header end index----- */
-/* ---- footer begin  */
-footer{
-    background: yellow;
-    
+main {
+    margin-top: 85px;
 }
+
+
+/* ---- footer begin  */
+footer {
+    background: yellow;
+    bottom: 0;
+}
+
 /* footer end */
