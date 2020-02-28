@@ -10,7 +10,6 @@
     width:400px; 
     height:500px; 
     background: rgb(250, 227, 124);
-    opacity:inherit;
     left:50%;
     top:50%;
     margin-left:-200px; 
@@ -41,9 +40,57 @@
   position: relative;
   text-align: center;
 }
-.esqueceu{
-    width: 350px;
+.form-control {
+    width:70%;
     padding: 15px 20px;
     border-radius: 6px;
     font-size: 18px;
-}
+    
+  }
+
+  #pass{
+    width: 70%;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 18px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 4px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+  .modal {
+    display: none;
+    position:fixed;
+    left: 400px;
+    top: 100px;
+    width: 40%;
+    height: 70%; 
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(3, 3, 3, 0.712);
+    padding-top:80px;
+    color: #ccc;
+  }
+  
+  
+  .modal-content {
+    background-color: #030303be;
+    margin: 5% auto 15% auto; 
+    border: 1px solid#030303;
+    width: 80%; 
+  }
+
+  
+  
