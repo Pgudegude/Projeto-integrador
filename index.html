@@ -20,14 +20,20 @@
                     <a href="#"><img src="Imagens/LOGO GUDE GUDE.jpg" alt="Logo" title="GudeGude" height="75"
                             width="75"></a>
                 </div>
-                <div id="bordao" class="col-lg-8 text-center">
+                <div id="bordao" class="col-lg-7 text-center">
                     <h1><strong>O melhor da sua infância está aqui!</strong></h1>
                 </div>
-                <div id="login" class="col-lg-2 text-left">
+                <div id="login" class="col-lg-3 text-left">
+                    <!-- <button type="button" class="btn" data-toggle="modal" data-target="#log">
+                        <img src="Imagens/login.png" alt="login" title="login">
+                    </button> -->
                     <a href="#"><img src="Imagens/login.png" alt="login" title="login"></a>
                 </div>
                 <div id="carrinho" class="col-lg-1">
-                    <a class="navbar-brand" href="#"><img src="Imagens/carrinho.png" alt="carrinho" title="carrinho"></a>
+                    <button type="button" class="btn" data-toggle="modal" data-target="#pedido">
+                        <img src="Imagens/carrinho.png" alt="carrinho" title="carrinho">
+                    </button>
+                    <!-- <a class="navbar-brand" href="#"><img src="Imagens/carrinho.png" alt="carrinho" title="carrinho"></a> -->
                 </div>
             </div>
         </div>
@@ -43,8 +49,8 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="produtosLista.html"> <img class="d-block" src="Imagens/bolasDeLeite.jpg" width="100%"
-                                    alt="Bolas de gude de leite"></a>
+                            <a href="produtosLista.html"> <img class="d-block" src="Imagens/bolasDeLeite.jpg"
+                                    width="100%" alt="Bolas de gude de leite"></a>
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>Ir para página de produtos</h2>
                                 <p> Veja todos os nossos produtos</p>
@@ -116,12 +122,12 @@
                             width="20px"> Instagram</a>
                 </div>
             </div>
-           
+
             <div class="text-center"> Todos os direitos reservados</div>
         </div>
         </div>
     </footer>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -131,7 +137,30 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-                    
+
+
+
+    <div class="modal fade" id="pedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">carrinho</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   Bolinhas QTD
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Continuar comprando</button>
+                    <button type="button" class="btn btn-outline-secondary">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
 </body>
 
 </html>
