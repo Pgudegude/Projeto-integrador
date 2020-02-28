@@ -1,9 +1,22 @@
 var modal = document.getElementById('id01');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+var overlay = document.getElementById('overlay');
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+abrirPopup = () => {
+  modal.style.display = "block";
+  overlay.style.display = "block";
 }
+
+fecharPopup = () => {
+  modal.style.display = "none";
+  overlay.style.display = "none";
+}
+
+let esqueceu = document.getElementById('btnSenha');
 
 
 var password = document.getElementById("password")
