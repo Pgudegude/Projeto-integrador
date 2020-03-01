@@ -1,9 +1,16 @@
 let incluirCarrinho = document.getElementById("btnIncluir");
+let carrinho = document.getElementById('carrinho');
+
+incluirCarrinho.addEventListener('click', () => {
+    let elemento = carrinho.children[0].children[1].textContent;
+
+    let recebe = `<span id="contador" class="badge badge-dark rounded-circle">${elemento++}</span>`
 
 
-incluirCarrinho.addEventListener('click',()=>{
-    alert("funciona")
+
 })
+
+
 
 
 // function TestaCPF(strCPF) {
