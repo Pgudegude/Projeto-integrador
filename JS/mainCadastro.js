@@ -4,7 +4,14 @@ let inputEmail= document.getElementById("emailUsuario")
 let inputConfirmaremail= document.getElementById("confirmarEmail")
 let inputSenha= document.getElementById("senha")
 let inputConfirmarSenha= document.getElementById("confirmasenha")
-
+let inputCep= document.getElementById("cepUsuario")
+let inputBairro= document.getElementById("bairroUsuario")
+let  inputEstado = document.getElementById("estadoUsuario")
+let  inputEndereco = document.getElementById("endUsuario")
+let inputCidade = document.getElementById("cidUsuario")
+let config = {
+    method: "get"
+    }
 
 
 inputCPF.addEventListener("keyup",(event)=>{  
@@ -40,4 +47,30 @@ inputConfirmarSenha.addEventListener("keyup",(se)=>{
     }
 })
 
+inputCep.addEventListener('keyup',(e)=>{
+    if(isNaN(inputCep.value)) {  
+        inputCep.value = inputCep.value.substring(0, (inputCep.value.length -1))
+         console.log(inputCep.value)
+ }
+ if(inputCep.value.length>=8) {  
+    inputCep.value = inputCep.value.substring(0,8)
+      buscarCep(inputCep.value)
+ }
+ })
 
+function buscarCep(cep){
+    fetch(`http://viacep.com.br/ws/${cep}/json/unicode/`)
+    .then(response =>response.json())
+    .then(dados=>{
+        if(dados.erro){
+            return inputCep.setAttribute("class","form-controlis-invalid")
+        }
+        else{
+        inputCep.setAttribute("class","form-control is-valid")
+        inputBairro.value = dados.bairro
+        inputCidade.value = dados.localidade
+        inputEndereco.value = dados.logradouro
+        
+    }})
+    
+}
