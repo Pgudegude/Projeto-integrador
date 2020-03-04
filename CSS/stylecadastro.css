@@ -14,7 +14,7 @@ h3{
 }
 /*____ Inicio_____  */
 header{
-    background-color: yellow;
+    background-color:#a7e0d7;
 
 }
 
@@ -28,14 +28,18 @@ header{
 
 }
 button{
-    background-color: yellow;
+    background-color: #a7e0d7;
     border-radius: 5px;
     border: 0px;
     padding: 10px;
     text-align: center;
+    margin-top: 30px;
+    width: 250px;
+    font-size: 14pt;
 }
 #selector{
-    background: yellow;
+    background: #a7e0d7;
+    
 }
 
 #carrinho{
@@ -62,7 +66,7 @@ nav{
 /* ----Header end index----- */
 /* ---- footer begin  */
 footer{
-    background: yellow;
+    background: #a7e0d7;
     
 }
 
