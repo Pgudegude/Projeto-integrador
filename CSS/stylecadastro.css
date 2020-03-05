@@ -14,7 +14,7 @@ h3{
 }
 /*____ Inicio_____  */
 header{
-    background-color: yellow;
+    background-color:#a7e0d7;
 
 }
 
@@ -28,11 +28,46 @@ header{
 
 }
 button{
-    background-color: yellow;
+    background-color: #a7e0d7;
     border-radius: 5px;
     border: 0px;
     padding: 10px;
     text-align: center;
+    margin-top: 30px;
+    width: 250px;
+    font-size: 14pt;
+}
+#selector{
+    background: #a7e0d7;
+    
+}
+
+#carrinho{
+margin-top: 15px;
+}
+#login{
+    margin-top: 15px;
+}
+#login::after{
+    content: "Faça seu login aqui!";
+}
+#bordao{
+    margin-top: 10px;
+    
+}
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: linear-gradient(purple,cyan); */
+    
+}
+/* ----Header end index----- */
+/* ---- footer begin  */
+footer{
+    background: #a7e0d7;
+    
 }
 
 /* ___fim___ */
