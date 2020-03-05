@@ -20,8 +20,6 @@ function validatePassword() {
 
     } else {
         confirm_password.setCustomValidity('');
-
-
     }
 }
 
