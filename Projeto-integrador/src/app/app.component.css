@@ -1,0 +1,32 @@
+header{
+    background-color: #A7E0D7;
+    
+}
+footer{
+background-color: #A7E0D7;
+display: block;
+position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#selector{
+    background: #A7E0D7;
+   
+}
+#carrinho{
+margin-top: 15px;
+}
+#login{
+    margin-top: 15px;
+}
+#login::after{
+    content: "Faça seu login aqui!";
+}
+#bordao{
+    margin-top: 10px;
+}
+body{
+    background-color: rgb(238, 238, 238)
+}
