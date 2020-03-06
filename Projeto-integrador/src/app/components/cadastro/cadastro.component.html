@@ -1,0 +1,133 @@
+<main id="container">
+
+    <form class="row mt-5 p-4">
+        <div class="col-md-6 ">
+            <header class="bg-yellow p-2">
+                <h3> Dados pessoais</h3>
+            </header>
+            <div>
+                <div class="p-2">
+                    <div class="form-group p-2">
+                        <label for="nomeUsuario">Nome completo: *</label>
+                        <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
+                            placeholder="Digite o nome completo" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="cpfUsuario">CPF: *</label>
+                        <input class="form-control" type="tel" id="cpfUsuario" name="cpfUsuario" placeholder="CPF"
+                            required>
+                    </div>
+                    <div class="form-group row p-2">
+                        <div class="form-group col-md-6">
+                            <label for="nascimentoUsuario">Data de Nascimento: *</label>
+                            <input class="form-control" type="date" id="nascimentoUsuario" name="nascimentoUsuario"
+                                placeholder="Data de nascimento" required>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="genero">Gênero:* </label>
+                            <br>
+                            <input type="radio" name="genero"> Masculino&emsp;
+
+                            <input type="radio" name="genero"> Feminino&emsp;
+                        </div>
+
+                    </div>
+                    <div class="form-group row p-2">
+                        <div class="col-md-6">
+                            <label for="telUsuario">Telefone:*&emsp;</label>
+                            <input class="form-control" type="tel" id="telUsuario" name="telUsuario"
+                                placeholder="DD-XXXXXXXXX" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cepUsuario">CEP: *</label>
+                            <input class="form-control" type="tel" id="cepUsuario" name="cepUsuario"
+                                placeholder="CEP" required>
+                        </div>
+                    </div>
+                    <div class="form-group row p-2">
+                        <div class="col-md-6">
+                        <label for="endUsuario">Endereço: *</label>
+                        <input class="form-control" type="text" id="endUsuario" name="endUsuario"
+                            placeholder="Digite seu endereço" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cidUsuario">Cidade: *</label>
+                            <input class="form-control" type="text" id="cidUsuario" name="cidadeUsuario"
+                                placeholder="Digite seu Cidade" required>
+                            </div>
+                    </div>
+
+                    <div class="form-group row p-2">
+                        <div class="col-md-5">
+                            <label for="bairroUsuario">Bairro: *</label>
+                            <input class="form-control" type="text" id="bairroUsuario" name="bairroUsuario"
+                                placeholder="Bairro" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="compleUsuario">Complemento: *</label>
+                            <input class="form-control" type="text" id="compleUsuario" name="compleUsuario"
+                                placeholder="Ex: casa 4">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="estadoUsuarioCity">Estado:*</label>
+                            <select class="form-control" id="estadoUsuario">
+                                <option value="" disabled selected>
+                                    Estado
+                                </option>
+                              
+                            </select>
+
+                        </div>  
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <header class="bg-yellow p-2">
+                <h3>Dados de acesso ao gudegude.com.br</h3>
+            </header>
+            <div class="p-2">
+                <div class="form-group p-2">
+                    <label for="exampleFormControlInput1"> E-mail:* </label>
+                    <input type="email" class="form-control" id="emailUsuario" placeholder="Digite seu e-mail "
+                        required>
+                </div>
+
+                <div class="form-group p-2">
+                    <label for="exampleFormControlInput1"> Confirmar e-mail:* </label>
+                    <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
+                        required>
+                </div>
+
+
+                <div class="form-group p-2">
+                    <label for="exampleFormControlInput1"> Senha*: </label>
+                    <input type="password" class="form-control" id="senha" width="" placeholder=" Digite sua senha "
+                        required>
+                </div>
+
+
+                <div class="form-group p-2">
+                    <label for="exampleFormControlInput1"> Confirma senha*: </label>
+                    <input type="password" class="form-control" id="confirmasenha" placeholder="Confirme sua senha "
+                        required>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="" type="button" data-toggle="modal" data-target="#cadastroFinalizada" required>
+                        Cadastrar</button>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</main>
