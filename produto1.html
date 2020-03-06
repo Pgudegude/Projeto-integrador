@@ -8,7 +8,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
     <title>GudeGude</title>
-    <link rel="icon" type="image/jpg" href="Imagem/LOGO GUDE GUDE.jpg" />
+    <link rel="icon" type="image/jpg" href="Imagem/GG.png" />
 </head>
 
 <body>
@@ -16,8 +16,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="logo" class="col-lg-1 text-left">
-                    <a href="#"><img src="Imagem/LOGO GUDE GUDE.jpg" alt="Logo" title="GudeGude" height="75"
-                            width="75"></a>
+                    <a href="#"><img src="Imagem/GG.png" alt="Logo" title="GudeGude" height="75" width="75"></a>
                 </div>
                 <div id="bordao" class="col-lg-8 text-center">
                     <h1><strong>O melhor da sua infância está aqui!</strong></h1>
@@ -25,10 +24,11 @@
                 <div id="login" class="col-lg-2">
                     <a href="#"><img src="Imagem/login.png" alt="login" title="login"></a>
                 </div>
-                <div id="carrinho" class="col-lg-1 text-center">
+                <div class="col-lg-1 text-center">
                     <a class="navbar-brand" href="#">
-                        <img src="Imagem/carrinho.png" alt="carrinho" title="carrinho"> 
-                        <span id="contador" class="badge badge-dark rounded-circle">0</span></a>
+                        <img src="Imagem/carrinho.png" alt="carrinho" title="carrinho">
+                        <div id="count-items" class="badge badge-dark rounded-circle">0</div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -90,20 +90,22 @@
                             </div>
                             <div class="col-6">
                                 <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                                <input type="radio" value= "20.0" name="frete" id="freteNormal">
+                                <input type="radio" value="20.0" name="frete" id="freteNormal">
                             </div>
                         </div>
                         <hr>
-                        <button id="btnIncluir" type="button" class="btn btn-success btn-lg btn-block">Incluir no
+                        <button id="btnIncluir" onclick="addToCart()" type="button"
+                            class="btn btn-success btn-lg btn-block">Incluir no
                             Carrinho</button>
                     </div>
                 </div>
             </div>
         </div>
+        
 
     </main>
 
-    <footer>
+    <footer class="fot">
         <div class="container p-4">
             <div class="row">
                 <div class="col-md-4">
