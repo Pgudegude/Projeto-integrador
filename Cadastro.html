@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/stylecadastro.css">
-    
+
     <title>Cadastro</title>
 </head>
 
@@ -27,7 +27,8 @@
                     <a href="#"><img src="Imagem/user (1).png" alt="login" title="login"></a>
                 </div>
                 <div id="carrinho" class="col-lg-1 text-center">
-                    <a class="navbar-brand" href="#"><img src="Imagem/supermarket (1).png" alt="carrinho" title="carrinho"></a>
+                    <a class="navbar-brand" href="#"><img src="Imagem/supermarket (1).png" alt="carrinho"
+                            title="carrinho"></a>
                 </div>
             </div>
         </div>
@@ -42,44 +43,86 @@
                 </header>
                 <div>
                     <div class="p-2">
-                        <div class="form-group">
+                        <div class="form-group p-2">
                             <label for="nomeUsuario">Nome completo: *</label>
                             <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
                                 placeholder="Digite o nome completo" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group p-2">
                             <label for="cpfUsuario">CPF: *</label>
                             <input class="form-control" type="tel" id="cpfUsuario" name="cpfUsuario" placeholder="CPF"
                                 required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row p-2">
+                            <div class="form-group col-md-6">
+                                <label for="nascimentoUsuario">Data de Nascimento: *</label>
+                                <input class="form-control" type="date" id="nascimentoUsuario" name="nascimentoUsuario"
+                                    placeholder="Data de nascimento" required>
+    
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="genero">Gênero:* </label>
+                                <br>
+                                <input type="radio" name="genero"> Masculino&emsp;
+    
+                                <input type="radio" name="genero"> Feminino&emsp;
+                            </div>
+
+                        </div>
+                        <div class="form-group row p-2">
+                            <div class="col-md-6">
+                                <label for="telUsuario">Telefone:*&emsp;</label>
+                                <input class="form-control" type="tel" id="telUsuario" name="telUsuario"
+                                    placeholder="DD-XXXXXXXXX" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cepUsuario">CEP: *</label>
+                                <input class="form-control" type="tel" id="cepUsuario" name="cepUsuario"
+                                    placeholder="CEP" required>
+                            </div>
+                        </div>
+                        <div class="form-group row p-2">
+                            <div class="col-md-6">
                             <label for="endUsuario">Endereço: *</label>
-                            <input class="form-control" type="text" id="endUsuario" name="endUsuario" placeholder="Digite seu endereço"
-                                required>
+                            <input class="form-control" type="text" id="endUsuario" name="endUsuario"
+                                placeholder="Digite seu endereço" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cidUsuario">Cidade: *</label>
+                                <input class="form-control" type="text" id="cidUsuario" name="cidadeUsuario"
+                                    placeholder="Digite seu Cidade" required>
+                                </div>
                         </div>
-                        <div class="form-group">
-                            <label for="compleUsuario">Complemento: *</label>
-                            <input class="form-control" type="text" id="compleUsuario" name="compleUsuario" placeholder="Ex: casa 4"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telUsuario">Telefone:*</label>
-                            <input class="form-control" type="tel" id="telUsuario" name="telUsuario"
-                                placeholder="DD-XXXXXXXXX" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nascimentoUsuario">Data de Nascimento: *</label>
-                            <input class="form-control" type="date" id="nascimentoUsuario" name="nascimentoUsuario"
-                                placeholder="Data de nascimento" required>
+
+                        <div class="form-group row p-2">
+                            <div class="col-md-5">
+                                <label for="bairroUsuario">Bairro: *</label>
+                                <input class="form-control" type="text" id="bairroUsuario" name="bairroUsuario"
+                                    placeholder="Bairro" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="compleUsuario">Complemento: *</label>
+                                <input class="form-control" type="text" id="compleUsuario" name="compleUsuario"
+                                    placeholder="Ex: casa 4">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="estadoUsuarioCity">Estado:*</label>
+                                <select class="form-control" id="estadoUsuario">
+                                    <option value="" disabled selected>
+                                        Estado
+                                    </option>
+                                  
+                                </select>
+    
+                            </div>  
+
+
+
 
                         </div>
-                        <div class="form-group">
-                            <label for="genero">Gênero:* </label>
-                            <br>
-                            <input type="radio" name="genero"> Masculino&emsp;
 
-                            <input type="radio" name="genero"> Feminino&emsp;
-                        </div>
 
                     </div>
                 </div>
@@ -89,34 +132,33 @@
                     <h3>Dados de acesso ao gudegude.com.br</h3>
                 </header>
                 <div class="p-2">
-                    <div class="form-group">
+                    <div class="form-group p-2">
                         <label for="exampleFormControlInput1"> E-mail:* </label>
-                        <input type="email" class="form-control" id="emailUsuario" 
-                        placeholder="Digite seu e-mail " required>
+                        <input type="email" class="form-control" id="emailUsuario" placeholder="Digite seu e-mail "
+                            required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group p-2">
                         <label for="exampleFormControlInput1"> Confirmar e-mail:* </label>
-                        <input type="email" class="form-control" id="confirmarEmail"
-                         placeholder=" Confirme seu e-mail " required>
+                        <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
+                            required>
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group p-2">
                         <label for="exampleFormControlInput1"> Senha*: </label>
-                        <input type="password" class="form-control" id="senha" width=""
-                            placeholder=" Digite sua senha " required>
+                        <input type="password" class="form-control" id="senha" width="" placeholder=" Digite sua senha "
+                            required>
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group p-2">
                         <label for="exampleFormControlInput1"> Confirma senha*: </label>
-                        <input type="password" class="form-control" id="confirmasenha"
-                        placeholder="Confirme sua senha " required>
+                        <input type="password" class="form-control" id="confirmasenha" placeholder="Confirme sua senha "
+                            required>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="" type="button" data-toggle="modal"
-                            data-target="#cadastroFinalizada"required>
+                        <button class="" type="button" data-toggle="modal" data-target="#cadastroFinalizada" required>
                             Cadastrar</button>
 
                     </div>
@@ -129,34 +171,35 @@
         <div class="container p-4 mt-2">
             <div class="row">
                 <div class="col-md-4">
-                    <div id >
+                    <div id>
                         CONTATO
-                    </div >
+                    </div>
                     <a id="foot" href="contato.html">Fale conosco</a>
                 </div>
                 <div class="col-md-4">
                     <div>
                         <div>INSTITUCIONAL</div>
-                        <a id="foot"  href="contato.html"> Nossa história</a>
+                        <a id="foot" href="contato.html"> Nossa história</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div>
                         <div>SOCIAL</div>
                         <div>
-                            <a  id="foot" href="https://www.instagram.com/pgudegude/?hl=pt-br"><img src="Imagem/instagram.png" width="20px"
-                                title="instagram" alt="instagram"> Instagram</a>
+                            <a id="foot" href="https://www.instagram.com/pgudegude/?hl=pt-br"><img
+                                    src="Imagem/instagram.png" width="20px" title="instagram" alt="instagram">
+                                Instagram</a>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
             <div class="text-center"> Todos os direitos reservados</div>
         </div>
         </div>
     </footer>
-  
+
 
     <div id="cadastroFinalizada" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -171,13 +214,14 @@
                     <p>Seja bem vindo !</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button"  data-dismiss="modal">Continuar comprando</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ir ao carrinho</button>
+                    <button type="button" data-dismiss="modal">Continuar comprando</button>
+                    
 
                 </div>
             </div>
         </div>
     </div>
+    
 
 
 
@@ -188,13 +232,13 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
+    </script>
 
 
     <script src="JS/mainCadastro.js"></script>
