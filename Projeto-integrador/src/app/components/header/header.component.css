@@ -1,0 +1,7 @@
+#selector{
+    background: #A7E0D7;
+    width: 100vw;
+}
+#login::after{
+    content: 'Faça seu login aqui!';
+}

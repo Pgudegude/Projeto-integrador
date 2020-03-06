@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+
+  // cont: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  // countItems(){
+  //   this.cont ++;
+    
+  // }
 
 }
