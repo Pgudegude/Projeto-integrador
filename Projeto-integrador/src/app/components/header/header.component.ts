@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdutoComponent } from "../produto/produto.component";
 
 @Component({
   selector: 'app-header',
@@ -6,18 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-
-  // cont: number = 0;
+  cont: number = 0;
+  
+  countItems(){
+    this.cont ++;
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // countItems(){
-  //   this.cont ++;
     
-  // }
-
 }

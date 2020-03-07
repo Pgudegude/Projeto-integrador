@@ -13,7 +13,7 @@
             </div>
             <div id="carrinho" class="col-lg-1 text-center mt-2">
                 <a class="navbar-brand" href="#"><img src="../../../assets/Imagem/carrinho.png" alt="carrinho" title="carrinho">
-                    <div id="count-items"  class="badge badge-dark rounded-circle"></div>
+                <div id="count-items" (click)="countItems()" class="badge badge-dark rounded-circle">{{cont}}</div>
                 </a>
             </div>
         </div>
