@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { Cliente } from "../cliente/Cliente";
+
 import { Validacoes } from '../validar/validacoes';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Cep } from '../cep/cep/cep';
+import{Cliente} from "../cliente/Cliente"
+import { from } from 'rxjs';
+
 
 
 @Component({
@@ -19,26 +22,11 @@ export class CadastroComponent implements OnInit {
     }
     
    
-    assunto:any[];
+  
     ngOnInit(): void {
-      this.criarCadastro(new Cliente(
-        Cliente.nomeCompleto=this.formUsuario.value.nomeCompleto,
-        cliente.cpf=this.formUsuario.value.cpf,
-        cliente.dataDeNascimento=this.formUsuario.value.dataDeNascimento,
-        cliente.genero=this.formUsuario.value.genero,
-        cliente.telefone=this.formUsuario.value.telefone,
-        cliente.cep=this.formUsuario.value.cep,
-        cliente.endereco=this.formUsuario.value.endereco,
-        cliente.cidade=this.formUsuario.value.cidade,
-        cliente.bairro=this.formUsuario.value.bairro,
-        cliente.complemento=this.formUsuario.value.complemento,
-        cliente.estado=this.formUsuario.value.estado,
-        cliete.email=this.formUsuario.value.email,
-        cliente.confirmaEmail=this.formUsuario.value.conferirEmail,
-        clliente.senha=this.formUsuario.value.senha,
-        cliente.conferirSenha=this.formUsuario.value.conferirSenha
-      ))
-    }
+      this.criarCadastro(new Cliente());
+}
+    
   
     enviarDados() {
       console.log(this.formUsuario.value);
@@ -48,7 +36,7 @@ export class CadastroComponent implements OnInit {
   
     
   
-    criarCadastro(cliente : Cliente){
+    criarCadastro( cliente : Cliente){
       this.formUsuario=this.formBuilder.group({
         nomeCompleto: [
           '',cliente.nomeCompleto,
@@ -136,6 +124,12 @@ export class CadastroComponent implements OnInit {
       })
     }
 
+    onSubmit(){
+      console.log(this.formUsuario.value)
+      this.criarCadastro(new Cliente()) ;
+
+     
+    }
   }
 
 
