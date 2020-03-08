@@ -4,3 +4,7 @@ h2{
 select{
     cursor: pointer;
 }
+.org{
+    display: flex;
+    justify-content: space-between;
+}

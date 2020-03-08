@@ -16,19 +16,21 @@
                 </div>
                 <div class="col-md-1">
                     <h6>Qtd:</h6>
-                    <select name="quantidade" id="quantidade" style="width: 999">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <small class="text-muted"><a href="#">Remover</a></small>
+                    <form [formGroup]="formularioQuantidade">
+                        <select  (change)="mostrandoQuantidade()"   (change)="calcularTotal()" formControlName='quantidade'  style="width: 99">
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
+                        </select>
+                        <small class="text-muted"><a href="#">Remover</a></small>
+                    </form>
                 </div>
                 <div class="col-md-3 text-center">
                     Preço:
@@ -37,16 +39,16 @@
             </div>
             <hr>
         </div>
-        
+
         <div class="col-md-4">
             <div class="card-header">
                 <h5 class="card-title">resumo do pedido</h5>
                 <div class="row text-muted org">
                     <div class="col-md-6">
-                        <p>1 produto(s)</p>
+                        <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6">
-                        <span>R$ 46,32</span>
+                        <span>{{preco}}</span>
                     </div>
                 </div>
                 <div class="row text-muted org">
@@ -54,28 +56,31 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6">
-                        <span>-</span>
+                        <span>R$ {{rapido}}{{normal}}</span>
                     </div>
                 </div>
                 <hr>
                 <h5>total</h5>
                 <div class="text-right">
-                    <span class="text-muted">R$ 46,32 em até 3x ou</span>
-                    <h5>R$ 40,00 em 1x no cartão</h5>
+                    <span class="text-muted">{{total}} em até 3x ou</span>
+                    <h5>{{total}} em 1x no cartão</h5>
                 </div>
                 <hr>
-                <button type="button" class="btn btn-success btn-block "><img src="../../../assets/Imagem/buy.png" alt=""> continuar</button>
+                <button type="button" class="btn btn-success btn-block "><img src="../../../assets/Imagem/buy.png"
+                        alt=""> continuar</button>
             </div>
-            <div class="form-group row mt-2 text-center">
-                <div class="col-6">
-                    <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                    <input type="radio" name="frete" value="50.0" id="freteRapido">
+            <form>
+                <div class="form-group row mt-2 text-center">
+                    <div class="col-6">
+                        <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
+                        <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
+                    </div>
+                    <div id="col-6">
+                        <label for="freteNormal">Frete normal <br> R$ 20,00</label>
+                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
+                    </div>
                 </div>
-                <div class="col-6">
-                    <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                    <input type="radio" value="20.0" name="frete" id="freteNormal">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
