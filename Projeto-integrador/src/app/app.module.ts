@@ -1,32 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-<<<<<<< HEAD
-import { CadastroComponent } from './components/cadastro/cadastro.component';
-=======
+import { NgModule } from "@angular/core";
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { ContatoComponent } from './components/contato/contato.component';
->>>>>>> 676f5fa43d16da1e8914f3d6fdaa609ea0c917aa
+import { AppComponent } from './app.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { CepComponent } from './components/cep/cep.component';
+import {CepService} from "./cep.service";
+import { from } from 'rxjs';
+import { HttpClientModule }    from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    CadastroComponent
-=======
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    ContatoComponent
->>>>>>> 676f5fa43d16da1e8914f3d6fdaa609ea0c917aa
+    CadastroComponent,
+    CepComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
