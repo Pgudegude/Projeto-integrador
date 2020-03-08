@@ -1,1 +1,37 @@
-<p>contato works!</p>
+<div class="container">
+    <form method="get" class="form-row"[formGroup]="formularioDeContato" (ngSubmit)="enviarDados()">
+        <div class="col-12 form-group">
+            <label for="nome" class="pl-3"> Nome:</label>
+            <input class=" form-control" type="text" name="nome" id="nome"
+                placeholder="coloque seu nome completo" formControlName="nome" required>
+        </div>
+        <div class="col-12 form-group">
+            <label for="email" class="pl-3"> E-mail:</label>
+            <input class=" form-control" id="email" type="text" name="email" placeholder="seuemail@seuemail.com" formControlName="email"
+                required>
+        </div>
+        <div class="col-12 form-group">
+            <label for="assunto " class="pl-3"> Assunto:</label>
+            <select (check)="assunto"class="form-control" name="assunto" id="assunto" formControlName="assunto">
+                <option value="nd" selected disabled>Selecione uma opção</option>
+
+                <option value="duvidas">Duvida</option>
+
+                <option value="sugestão">Sugestão</option>
+
+                <option value="reclamação">Reclamação</option>
+
+                <option value="elogio">Elogio</option>
+
+            </select>
+        </div>
+        <div class="col-12 form-group">
+            <label class="pl-3" for="comentarios">
+                Comentários:</label>
+            <textarea class="form-control" id="”mensagem”" name=”mensagem” required formControlName="comentario"> </textarea>
+        </div>
+        <div class="col-12 ">
+            <button class="form-control" name="BTEnvia"  [disabled]="!formularioDeContato.valid" value="enviarDados">Enviar</button>
+        </div>
+    </form>
+</div>

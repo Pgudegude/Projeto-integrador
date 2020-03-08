@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
 
+
 const routes: Routes = [
     {
       path: "",
