@@ -8,12 +8,15 @@ import {HeaderComponent} from '../header/header.component'
 })
 
 export class ProdutoComponent implements OnInit {
+  cont: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
   }
   
-  
+  countItems(){
+    this.cont ++;
+  }
 
 }

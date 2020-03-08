@@ -1,18 +1,16 @@
+<nav class="navbar navbar-light bg-light">
+    <div id="menu" class="col-md-12 p-2">
+        <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Home</button></a>
+        <a [routerLink]="['/listaProduto']"><button type="button" class="btn btn-outline-secondary p-1">Produtos</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Carrinho</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Cadastro</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Contato</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Sobre</button></a>
+    </div>
+</nav>
 <div class="container">
-    <div class="row mt-2">
-        <div class="col-md-3 text-center">
-            <a><button type="button" class="btn btn-outline-secondary">Home</button></a>
-        </div>
-        <div class="col-md-3 text-center">
-            <a><button type="button" class="btn btn-outline-secondary">Produtos</button></a>
-        </div>
-        <div class="col-md-3 text-center">
-            <a><button type="button" class="btn btn-outline-secondary">Contato</button></a>
-        </div>
-        <div class="col-md-3 text-center">
-            <a><button type="button" class="btn btn-outline-secondary">Sobre</button></a>
-        </div>
-        <div class="row mt-2 ml-2">
+    <div class="row">
+        <div class="row ml-2">
             <div class="col-md-9">
                 <div class="card mb-3">
                     <div class="row no-gutters">
@@ -50,7 +48,6 @@
                         <input type="radio" name="frete" value="50.0" id="freteRapido">
                     </div>
                     <div class="col-6">
-
                         <label for="freteNormal">Frete normal <br> R$ 20,00</label>
                         <input type="radio" value="20.0" name="frete" id="freteNormal">
                     </div>
@@ -63,5 +60,3 @@
         </div>
     </div>
 </div>
-<app-footer class="fot"></app-footer>
-<!-- (click)="countItems()" -->

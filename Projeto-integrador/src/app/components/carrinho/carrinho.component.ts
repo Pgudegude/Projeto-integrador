@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup } from "@angular/forms";
 
 @Component({
@@ -25,7 +25,6 @@ export class CarrinhoComponent implements OnInit {
     }else{
       this.rapido = "50,00"
       this.total = ((quant * 46.32)  + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-      
     }
   }
   
@@ -46,8 +45,6 @@ export class CarrinhoComponent implements OnInit {
     let quant = this.formularioQuantidade.value.quantidade
     if(this.total != ""){
     this.total = this.preco = (46.32 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-  }else{
-    this.preco = (46.32 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
   }
   }
 
