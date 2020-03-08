@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { SobreComponent } from './components/sobre/sobre.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     FooterComponent,
     HomeComponent,
     ContatoComponent,
+    SobreComponent,
   ],
   imports: [
     BrowserModule,
