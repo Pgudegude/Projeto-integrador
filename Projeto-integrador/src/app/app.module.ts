@@ -13,6 +13,10 @@ import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { SobreComponent } from './components/sobre/sobre.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
+
+
 
 @NgModule({
   declarations: [
@@ -25,13 +29,18 @@ import { MenuComponent } from './components/menu/menu.component';
     ListaProdutosComponent,
     CarrinhoComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    SobreComponent,
+    CadastroComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
