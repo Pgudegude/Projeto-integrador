@@ -14,7 +14,7 @@ export class CarrinhoComponent implements OnInit {
   total: any = "R$ 46,32";
   qtd: any;   
   formularioQuantidade: FormGroup;
-  // @ViewChild('qtd') qtd: HTMLSelectElement;
+
   
   freteR = () => {
     let quant = this.formularioQuantidade.value.quantidade
@@ -31,7 +31,7 @@ export class CarrinhoComponent implements OnInit {
   
   freteN = () => {
     let quant = this.formularioQuantidade.value.quantidade
-    if(this.rapido == "50,00"){
+    if(this.rapido === "50,00"){
       this.rapido = ""
       this.normal = "20,00"
       this.total = ((quant * 46.32)  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
@@ -63,14 +63,8 @@ export class CarrinhoComponent implements OnInit {
   }
   
   mostrandoQuantidade(){
-    // console.log(document.getElementById('qtd').children[i].textContent);
     this.qtd = (this.formularioQuantidade.value.quantidade)    
-    console.log();
-    
   }
-  
-  
-
 
 
 
