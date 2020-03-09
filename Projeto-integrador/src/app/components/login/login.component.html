@@ -1,22 +1,11 @@
 <main>
-    <nav class="navbar navbar-light bg-light">
-        <div id="menu" class="col-md-12 p-2">
-            <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Home</button></a>
-            <a [routerLink]="['/listaProduto']"><button type="button"
-                    class="btn btn-outline-secondary p-1">Produtos</button></a>
-            <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Carrinho</button></a>
-            <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Cadastro</button></a>
-            <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Contato</button></a>
-            <a href="#"><button type="button" class="btn btn-outline-secondary p-1">Sobre</button></a>
-        </div>
-    </nav>
     <div class="container">
         <div id="row" class="row">
             <div class="col-md-6">
                 <div class="card-header mt-5">
                     <div id="cad">
                         <h5>Você já possui cadastro?</h5>
-                        <a href="#"><button type="button" class="btn btn-outline-info">Cadastre-se</button></a>
+                        <a href="#"><button type="button" class="btn btn-info">Cadastre-se</button></a>
                     </div>
                     <hr>
                     <form class="form-row"[formGroup]="formularioLogin" (ngSubmit)="logar()">

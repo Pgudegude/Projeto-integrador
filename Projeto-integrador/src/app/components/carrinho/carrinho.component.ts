@@ -20,26 +20,28 @@ export class CarrinhoComponent implements OnInit {
   
   freteR = () => {
     let quant = this.formularioQuantidade.value.quantidade
+    this.total = ((75.42 * quant )-(29.10 * quant))
     if(this.normal === "20,00"){
       this.normal = ""
       this.rapido = "50,00"
-      this.total = ((quant * 46.32) + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = (this.total + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }else{
       this.rapido = "50,00"
-      this.total = ((quant * 46.32)  + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = (this.total  + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
   
   
   freteN = () => {
     let quant = this.formularioQuantidade.value.quantidade
+    this.total = ((75.42 * quant )-(29.10 * quant))
     if(this.rapido === "50,00"){
       this.rapido = ""
       this.normal = "20,00"
-      this.total = ((quant * 46.32)  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = (this.total  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }else{
       this.normal = "20,00"
-      this.total = ((quant * 46.32)  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = (this.total  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
 
