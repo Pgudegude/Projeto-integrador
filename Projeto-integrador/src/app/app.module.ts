@@ -9,6 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { SobreComponent } from './components/sobre/sobre.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { SobreComponent } from './components/sobre/sobre.component';
     HomeComponent,
     ContatoComponent,
     SobreComponent,
+    CadastroComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

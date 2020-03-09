@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { SobreComponent} from './components/sobre/sobre.component'
-
+import {CadastroComponent} from './components/cadastro/cadastro.component'
 
 const routes: Routes = [
     {
@@ -17,6 +17,10 @@ const routes: Routes = [
     {
       path: "sobre",
       component:SobreComponent
+    },
+    {
+      path:"cadastro",
+      component:CadastroComponent
     }
 
   ];
