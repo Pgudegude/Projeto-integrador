@@ -1,0 +1,49 @@
+#row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+#cad{
+    display: flex;
+    justify-content: space-between;
+}
+
+#esqueci:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.card-header{
+    margin-right: 20px;
+    box-shadow: 0px 1px 0px 1px #bbb8b8;
+}
+
+#menu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-control{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.modal {
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; 
+    border: 1px solid #888;
+    width: 35%; 
+} 
