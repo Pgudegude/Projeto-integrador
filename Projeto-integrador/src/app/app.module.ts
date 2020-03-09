@@ -10,6 +10,8 @@ import { ContatoComponent } from './components/contato/contato.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { ModalModule } from 'ngx-bootstrap/modal'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 
@@ -29,9 +31,12 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ModalModule,
+    BsDropdownModule
 
   ],
+  exports: [BsDropdownModule,  ModalModule], 
   providers: [],
   bootstrap: [AppComponent]
 })
