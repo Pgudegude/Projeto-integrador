@@ -19,20 +19,22 @@
                         <a href="#"><button type="button" class="btn btn-outline-info">Cadastre-se</button></a>
                     </div>
                     <hr>
-                    <form class="form-row">
-                        <div class="col-md-12 formGroup">
+                    <form class="form-row"[formGroup]="formularioLogin" (ngSubmit)="logar()">
+                        <div class="col-md-12 formGroup" >
                             <label for="email" class="pl-3"><strong>Email:</strong></label>
                             <input class="form-control" type="text" name="email" id="email" required
-                                placeholder="exemplo@exemplo.com">
+                                placeholder="exemplo@exemplo.com" formControlName = "email">
                         </div>
                         <div class="col-md-12 formGroup mt-3">
                             <label for="senha" class="pl-3"><strong>Senha:</strong></label>
                             <input class="form-control" type="password" name="senha" id="senha" required
-                                placeholder="digite sua senha">
-                            <small id="esqueci" class="text-muted pl-3">Esqueci minha senha</small>
+                                placeholder="digite sua senha" formControlName="senha">
+                            <small  id="esqueci" class="text-muted pl-3"><a  data-toggle="modal" 
+                                data-target="#modalEsqueci">Esqueci minha senha</a></small>
+
                         </div>
                         <div id="entrar" class="col-md-12 mt-3">
-                            <button type="button" data-toggle="modal" data-target="#modalEsqueci"
+                            <button 
                                 class="btn btn-info btn-block">Entrar</button>
                         </div>
                     </form>

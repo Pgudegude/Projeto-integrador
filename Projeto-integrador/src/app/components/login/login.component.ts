@@ -11,9 +11,23 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 
 
-constructor() { }
+constructor(private fb: FormBuilder) { }
 
-ngOnInit(): void {
+logar(){
+  alert ("Você está logado")
 }
 
+ngOnInit(): void {
+  this.criarFormularioDeLogin()
+}
+
+criarFormularioDeLogin(){
+  this.formularioLogin = this.fb.group(
+    {
+      email:[''], 
+      senha:['']
+    }
+  )
+
+}
 }
