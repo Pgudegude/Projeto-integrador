@@ -8,11 +8,13 @@ import { FormBuilder,FormGroup } from "@angular/forms";
 })
 export class CarrinhoComponent implements OnInit {
   
+  desconto: any = "R$ 29,10"
   rapido: any ;
   normal: any ;
-  preco: any = "R$ 46,32";
+  preco: any = "R$ 75,42";
   total: any = "R$ 46,32";
   qtd: any;   
+  totalDesconto: any;
   formularioQuantidade: FormGroup;
 
   
@@ -44,7 +46,9 @@ export class CarrinhoComponent implements OnInit {
   calcularTotal(){
     let quant = this.formularioQuantidade.value.quantidade
     if(this.total != ""){
-    this.total = this.preco = (46.32 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+    this.total = this.preco = (75.42 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+    this.desconto = (29.10 * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+    this.totalDesconto = ((75.42 * quant )-(29.10 * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
   }
   }
 
