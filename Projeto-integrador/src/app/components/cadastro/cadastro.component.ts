@@ -4,7 +4,7 @@ import { Validacoes } from '../validar/validacoes';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Cep } from '../cep/cep/cep';
 import{Cliente} from "../cliente/Cliente"
-import { from } from 'rxjs';
+
 
 
 
