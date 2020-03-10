@@ -1,7 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
+import { ListaProdutosComponent  } from "./components/lista-produtos/lista-produtos.component";
+import { ProdutoComponent } from './components/produto/produto.component';
+import { CarrinhoComponent } from "./components/carrinho/carrinho.component";
+import {LoginComponent} from './components/login/login.component'
 import { SobreComponent} from './components/sobre/sobre.component'
 import {CadastroComponent} from './components/cadastro/cadastro.component'
 
@@ -13,6 +17,20 @@ const routes: Routes = [
     {
       path: "contato",
       component: ContatoComponent
+    },{
+      path: "listaProduto",
+      component: ListaProdutosComponent
+    },
+    {
+      path: "produto",
+      component: ProdutoComponent
+    },
+    {
+      path: "carrinho",
+      component: CarrinhoComponent
+    },{
+      path:"login",
+      component:LoginComponent
     },
     {
       path: "sobre",
@@ -22,8 +40,8 @@ const routes: Routes = [
       path:"cadastro",
       component:CadastroComponent
     }
-
   ];
+  
   @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

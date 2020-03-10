@@ -1,19 +1,19 @@
-  <header id="selector">
+<header id="selector">
     <div class="container-fluid">
         <div class="row text-center">
             <div id="logo" class="col-lg-2 text-left">
-                <a href="#"><img src="../../../assets/Imagem/LOG.png" alt="Logo" title="GudeGude" 
+                <a routerLink="home"><img src="../../../assets/Imagem/LOG.png" alt="Logo" title="GudeGude" 
                         width="100%"></a>
             </div>
             <div id="bordao" class="col-lg-7 text-center mt-1">
                 <h1><strong>O melhor da sua infância está aqui!</strong></h1>
             </div>
             <div id="login" class="col-lg-2 mt-3">
-                <a routerLink="home"><img src="../../../assets/Imagem/login.png" alt="login" title="login"></a>
+                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login"></a>
             </div>
             <div id="carrinho" class="col-lg-1 text-center mt-2">
                 <a class="navbar-brand" href="#"><img src="../../../assets/Imagem/carrinho.png" alt="carrinho" title="carrinho">
-                    <!-- <div id="count-items" (click)='countItems()' class="badge badge-dark rounded-circle">{{cont}}</div> -->
+                <div id="count-items" (click)="countItems()" class="badge badge-dark rounded-circle">{{cont}}</div>
                 </a>
             </div>
         </div>
