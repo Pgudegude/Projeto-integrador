@@ -1,7 +1,6 @@
-
 <main id="container">
 
-    <form method="POST" class="form-row mt-5 p-4"[formGroup]="formularioDeCadastro" (ngSubmit)="enviarCadastro()">
+    <form method="POST" class="form-row mt-5 p-4" [formGroup]="formularioDeCadastro" (ngSubmit)="enviarCadastro()">
         <div class="col-md-6 ">
             <header class="header-cadastro-formulario p-2">
                 <h3> Dados pessoais</h3>
@@ -15,28 +14,28 @@
                     </div>
                     <div class="form-group">
                         <label for="cpfUsuario">CPF: *</label>
-                        <input class="form-control" type="tel" id="cpfUsuario" name="cpfUsuario" formControlName="cpfUsuario" placeholder="CPF"
-                            required>
+                        <input class="form-control" type="tel" id="cpfUsuario" name="cpfUsuario"
+                            formControlName="cpfUsuario" placeholder="CPF" required>
                     </div>
                     <div class="form-group">
                         <label for="endUsuario">Endereço: *</label>
-                        <input class="form-control" type="text" id="endUsuario" name="endUsuario" formControlName="endUsuario" placeholder="Digite seu endereço"
-                            required>
+                        <input class="form-control" type="text" id="endUsuario" name="endUsuario"
+                            formControlName="endUsuario" placeholder="Digite seu endereço" required>
                     </div>
                     <div class="form-group">
                         <label for="compleUsuario">Complemento: *</label>
-                        <input class="form-control" type="text" id="compleUsuario" name="compleUsuario" formControlName="compleUsuario" placeholder="Ex: casa 4"
-                            >
+                        <input class="form-control" type="text" id="compleUsuario" name="compleUsuario"
+                            formControlName="compleUsuario" placeholder="Ex: casa 4">
                     </div>
                     <div class="form-group">
                         <label for="telUsuario">Telefone:*</label>
-                        <input class="form-control" type="tel" id="telUsuario" formControlName="telUsuario" name="telUsuario"
-                            placeholder="DD-XXXXXXXXX" required>
+                        <input class="form-control" type="tel" id="telUsuario" formControlName="telUsuario"
+                            name="telUsuario" placeholder="DD-XXXXXXXXX" required>
                     </div>
                     <div class="form-group">
                         <label for="nascimentoUsuario">Data de Nascimento: *</label>
-                        <input class="form-control" type="date" id="nascimentoUsuario" formControlName="nascimentoUsuario"name="nascimentoUsuario"
-                         required>
+                        <input class="form-control" type="date" id="nascimentoUsuario"
+                            formControlName="nascimentoUsuario" name="nascimentoUsuario" required >
 
                     </div>
 
@@ -51,30 +50,31 @@
                 <div class="form-group">
                     <label for="exampleFormControlInput1"> E-mail:* </label>
                     <input type="email" class="form-control" id="emailUsuario" formControlName="emailUsuario"
-                    placeholder="Digite seu e-mail " required>
+                        placeholder="Digite seu e-mail " required>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1"> Confirmar e-mail:* </label>
-                    <input type="email" class="form-control" id="confirmarEmail"
-                     placeholder=" Confirme seu e-mail " formControlName="confirmarEmail"required>
+                    <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
+                        formControlName="confirmarEmail" required>
                 </div>
 
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1"> Senha*: </label>
-                    <input type="password" class="form-control" id="senha" width=""
-                        placeholder=" Digite sua senha " formControlName="senha"required>
+                    <input type="password" class="form-control" id="senha" width="" placeholder=" Digite sua senha "
+                        formControlName="senha" required>
                 </div>
 
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1"> Confirma senha*: </label>
                     <input type="password" class="form-control" id="confirmasenha" formControlName="confirmasenha"
-                    placeholder="Confirme sua senha " required>
+                        placeholder="Confirme sua senha " required>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="form-control" name="BTEnvia"  [disabled]="!formularioDeCadastro.valid" value="enviarDados">Cadastrar</button>
+                    <button class="form-control" name="BTEnvia" [disabled]="!formularioDeCadastro.valid"
+                        value="enviarDados">Cadastrar</button>
                 </div>
             </div>
         </div>

@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -32,6 +33,7 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     MenuComponent,
     SobreComponent,
     CadastroComponent,
+    CheckoutComponent,
     
     
   ],

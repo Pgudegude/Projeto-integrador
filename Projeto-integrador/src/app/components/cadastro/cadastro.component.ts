@@ -8,7 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+
   formularioDeCadastro:FormGroup;
+  
   constructor(private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {

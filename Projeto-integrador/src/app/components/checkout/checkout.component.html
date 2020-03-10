@@ -1,0 +1,194 @@
+<main class="container">
+    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarCheckout()">
+        <div class="col-md-4">
+            <header class="p-2 text-center">
+                Dados Pessoais
+            </header>
+            <div class="p-2">
+                <div class="form-group">
+                    <label for="nomeUsuario">Nome Completo: *</label>
+                    <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
+                        placeholder="Digite seu nome completo" required formControlName="nomeUsuario">
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input class="form-control" maxlength="11" type="text" id="cpf" name="cpf"
+                        placeholder="000.000.000-00" required formControlName="cpf">
+                </div>
+                <div class="form-group">
+                    <label for="telUsuario">Telefone:</label>
+                    <input class="form-control" type="tel" name="telUsuario" maxlength="11" id="telUsuario"
+                        placeholder="DD-XXXXXXXXX" required formControlName="telUsuario">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" name="email" id="email" placeholder="exemplo@exemplo.com"
+                        required formControlName="email">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="senha">Digite sua Senha:</label>
+                            <input class="form-control" type="password"  name="senha" id="senha"
+                                placeholder="Digite sua senha" required formControlName="senha">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="confirmaSenha">Comfirme sua Senha:</label>
+                            <input class="form-control" type="password"  name="confirmaSenha" id="confirmaSenha"
+                                placeholder="Confimar senha" required formControlName="confirmaSenha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <header class="p-2 text-center">
+                Entrega
+            </header>
+            <div class="p-2">
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input class="form-control" maxlength="8" type="text" name="cep" id="cep"
+                        placeholder="Digite seu CEP" required formControlName="cep">
+                </div>
+                <div class="form-group">
+                    <label for="endEnterga">Endereço:</label>
+                    <input class="form-control" type="text" name="endEnterga" id="endEnterga"
+                        placeholder="Digite seu Endereço" required formControlName="endEnterga">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numero">Numero:</label>
+                            <input class="form-control" type="text" name="numero" id="numero"
+                                placeholder="Número da residência" title="Número da residência"  required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            <input class="form-control" type="text" name="complemento" id="complemento"
+                                placeholder="Ex:. escola, apto , bloco ,mercado etc.."
+                                title="Ex:. escola, apto , bloco ,mercado etc..">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
+                        required>
+                </div>
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input class="form-control" type="text" name="cidade" id="cidade"
+                            placeholder="Digite sua cidade" required>
+                    </div>
+                    <div class=" col-6 form-group">
+                        <label for="estado">Estado:</label>
+                        <select id='estado' name="estado" class="form-control">
+                            <option value="" disabled selected>Estado</option>
+                            <option value="SP">SP</option>
+                            <option value="RJ">RJ</option>
+                            <option value="MG">MG</option>
+                            <option value="BA">BA</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <header class="p-2 text-center">
+                Pagamento
+            </header>
+            <div class="p-2">
+                <div class="form-group">
+                    <label for="numeroCartao">Numero do cartão:</label>
+                    <input class="form-control" maxlength="16" type="text" name="numeroCartao" id="numeroCartao"
+                        placeholder="0000 0000 0000 0000" required>
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group">
+                        <label for="dataValidade">Data de validade:</label>
+                        <input class="form-control" type="month" name="dataValidade" id="dataValidade"
+                            placeholder="MM/AA" required>
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="codigoSeguranca">CVV:</label>
+                        <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
+                            id="codigoSeguranca" placeholder="CVV" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nomeTitular">Nome titular:</label>
+                    <input class="form-control" type="text" name="nomeTitular" id="nomeTitular"
+                        placeholder="Nome Titular" required>
+                </div>
+                <div class="form-group">
+                    <label for="cpfTitular">CPF titular:</label>
+                    <input class="form-control" type="text" maxlength="11" id="cpfTitular" name="cpfTitular"
+                        placeholder="000.000.000-00" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" data-toggle="modal" data-target="#compraFinalizada"
+                        class="btn btn-success btn-block">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+<!-- modal -->
+<div class="modal fade" id="compraFinalizada" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Resumo do pedido </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">qtde</th>
+                            <th scope="col">preço unit</th>
+                            <th scope="col">total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><img src="../../../assets/Imagem/bola diamante.png" alt="bola diamante" title="bola diamante" width="30" height="30"></td>
+                            <td>2</td>
+                            <td>R$ 50,00</td>
+                            <td>R$ 85,36</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><img src="../../../assets/Imagem/bola metalica.jpg" alt="metalica" title="metalica" width="30" height="30"></td>
+                            <td>1</td>
+                            <td>R$ 23,63</td>
+                            <td>R$ 23,63</td>
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <th scope="col">Total</th>
+                        <th scope="col">produto(s)</th>
+                        <th scope="col">3</th>
+                        <th scope="col">valor</th>
+                        <th scope="col">R$ 108,99</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-success">Comfirma</button>
+            </div>
+        </div>
+    </div>
+</div>

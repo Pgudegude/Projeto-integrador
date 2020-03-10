@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HeaderComponent} from '../header/header.component'
+
 
 @Component({
   selector: 'app-produto',
@@ -8,7 +8,6 @@ import {HeaderComponent} from '../header/header.component'
 })
 
 export class ProdutoComponent implements OnInit {
-  cont: number = 0;
 
   constructor() { }
 
@@ -16,7 +15,7 @@ export class ProdutoComponent implements OnInit {
   }
   
   countItems(){
-    this.cont ++;
+    
   }
 
 }
