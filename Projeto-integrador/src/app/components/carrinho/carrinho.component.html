@@ -17,17 +17,18 @@
                 <div class="col-md-1">
                     <h6>Qtd:</h6>
                     <form [formGroup]="formularioQuantidade">
-                        <select  (change)="mostrandoQuantidade()"   (change)="calcularTotal()" formControlName='quantidade'  style="width: 99">
-                            <option value = "1">1</option>
-                            <option value = "2">2</option>
-                            <option value = "3">3</option>
-                            <option value = "4">4</option>
-                            <option value = "5">5</option>
-                            <option value = "6">6</option>
-                            <option value = "7">7</option>
-                            <option value = "8">8</option>
-                            <option value = "9">9</option>
-                            <option value = "10">10</option>
+                        <select (change)="mostrandoQuantidade()" (change)="calcularTotal()" formControlName='quantidade'
+                            style="width: 99">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
                         </select>
                         <small class="text-muted"><a href="#">Remover</a></small>
                     </form>
@@ -74,19 +75,19 @@
                     <h5>{{totalDesconto}} em 1x no cartão</h5>
                 </div>
                 <hr>
-                <button type="button" class="btn btn-success btn-block "><img src="../../../assets/Imagem/buy.png"
-                        alt=""> continuar</button>
+                <a routerLink="checkout"><button type="button" class="btn btn-success btn-block "><img
+                            src="../../../assets/Imagem/buy.png" alt=""> continuar</button></a>
             </div>
-                <div class="form-group row mt-2 text-center">
-                    <div class="col-6">
-                        <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                        <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
-                    </div>
-                    <div id="col-6">
-                        <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
-                    </div>
+            <div class="form-group row mt-2 text-center">
+                <div class="col-6">
+                    <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
+                    <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
                 </div>
+                <div id="col-6">
+                    <label for="freteNormal">Frete normal <br> R$ 20,00</label>
+                    <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
+                </div>
+            </div>
         </div>
     </div>
 </div>

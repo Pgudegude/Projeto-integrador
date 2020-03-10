@@ -14,7 +14,8 @@ const routes: Routes = [
 
   {
     path: "",
-    component: CheckoutComponent
+    redirectTo: "/home",
+    pathMatch: "full"
   },
   {
     path: "home",
@@ -45,6 +46,15 @@ const routes: Routes = [
   {
     path: "cadastro",
     component: CadastroComponent
+  },
+  {
+    path: "checkout",
+    component: CheckoutComponent
+  },
+  {
+path: "**",
+redirectTo: "/home",
+pathMatch: "full"
   }
 ];
 

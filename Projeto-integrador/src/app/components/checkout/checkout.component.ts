@@ -18,31 +18,20 @@ export class CheckoutComponent implements OnInit {
 
   enviarCheckout() {
     const dadosFormulario = this.formularioCheckout.value;
-    dadosFormulario.nomeUsuario,
-      dadosFormulario.cpf,
       dadosFormulario.cep,
       dadosFormulario.endEntrega,
       dadosFormulario.complemento,
       dadosFormulario.telUsuario,
-      dadosFormulario.nascimentoUsuario,
-      dadosFormulario.email,
-      dadosFormulario.senha,
-      dadosFormulario.confirmaSenha
-
+      dadosFormulario.nascimentoUsuario
   }
 
   criarFormularioCheckout() {
     this.formularioCheckout = this.fb.group({
-      nomeUsuario: [],
-      cpfUsuario: [],
-      cepUsuario: [],
-      compleUsuario: [],
+      cpf: [],
+      cep: [],
+      complemento: [],
       telUsuario: [],
-      nascimentoUsuario: [],
-      emailUsuario: [],
-      confirmarEmail: [],
-      senha: [],
-      confirmasenha: []
+      nascimentoUsuario: []
     })
   }
 
