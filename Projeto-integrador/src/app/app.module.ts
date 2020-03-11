@@ -17,7 +17,8 @@ import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import { CarrosselComponent } from './components/carrossel/carrossel.component';
+import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     MenuComponent,
     SobreComponent,
     CadastroComponent,
+    CarrosselComponent,
     
     
   ],
@@ -43,7 +45,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
-    BsDropdownModule
+    BsDropdownModule,
+    CarouselModule,
+    WavesModule,
+    ButtonsModule
+
 
   ],
   exports: [BsDropdownModule,  ModalModule], 
