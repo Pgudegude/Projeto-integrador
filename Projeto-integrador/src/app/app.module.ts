@@ -19,7 +19,7 @@ import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarrosselComponent } from './components/carrossel/carrossel.component';
 import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -48,8 +48,8 @@ import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md
     BsDropdownModule,
     CarouselModule,
     WavesModule,
-    ButtonsModule
-
+    ButtonsModule, 
+    NgbModule
 
   ],
   exports: [BsDropdownModule,  ModalModule], 
