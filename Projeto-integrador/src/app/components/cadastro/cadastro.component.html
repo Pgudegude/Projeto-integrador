@@ -1,4 +1,5 @@
 <main id="container">
+
 <app-endereco></app-endereco>
   <form method="POST" class="form-row mt-5 p-4" [formGroup]="formCadastro" (ngSubmit)="enviarCadastro()">
     <div class="col-md-6 ">
@@ -100,9 +101,6 @@
 
             </div>
 
-
-
-
           </div>
 
         </div>
@@ -113,6 +111,7 @@
         <h3>Dados de acesso ao gudegude.com.br</h3>
       </header>
       <div class="p-2">
+
         <div clasnps="form-group">
           <label for="emailUsuario"> E-mail:* </label>
           <input type="email" class="form-control" id="emailUsuario" formControlName="email"
@@ -144,10 +143,12 @@
           <div class="d-flex justify-content-end">
             <button class="form-control" name="BTEnvia" 
              value="enviarDados">Cadastrar</button>
+
         </div>
         </div>
       </div>
     </div>
+
 
   </form>
 </main>

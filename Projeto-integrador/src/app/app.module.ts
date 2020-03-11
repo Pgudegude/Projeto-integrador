@@ -36,7 +36,8 @@ import { NgxViacepModule } from '@brunoc/ngx-viacep';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxViacepModule
+    NgxViacepModule,
+    FormsModule
 
   ],
   providers: [],

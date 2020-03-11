@@ -138,10 +138,55 @@ export class CadastroComponent implements OnInit {
   }
 
   
+  //os gets irao mostrar a informação para o usuario
+  get nomeCompleto() {
+    return this.formCadastro.get('nomeCompleto');
+  }
+  get cpf() {
+    return this.formCadastro.get('cpf');
+  }
 
+  get dataDeNascimento() {
+    return this.formCadastro.get('dataDeNascimento');
+  }
+  get telefone () {
+    return this.formCadastro.get('telefone');
+  }
+  get cep() {
+    return this.formCadastro.get('cep');
+  }
+  get endereco() {
+    return this.formCadastro.get('endereco');
+  }
 
-}
+  get cidade() {
+    return this.formCadastro.get('cidade');
+  }
 
+  get bairro() {
+    return this.formCadastro.get('bairro');
+  }
+  get complemento() {
+    return this.formCadastro.get('complemento');
+  }
 
+  get estado() {
+    return this.formCadastro.get('estado');
+  }
+
+  get email() {
+    return this.formCadastro.get('email');
+  }
+  get confirmaEmail() {
+    return this.formCadastro.get('email');
+  }
+
+  get senha() {
+    return this.formCadastro.get('senha');
+  }
   
+  get confirmaSenha() {
+    return this.formCadastro.get('confirmaSenha');
+  }
+}
 
