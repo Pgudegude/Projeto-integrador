@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { Produtos } from '../models/produtos';
 
 
 @Component({
@@ -9,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProdutoComponent implements OnInit {
 
+  cont: number = 0;
+  @Output() contadorProduto = new EventEmitter() 
+
+  @Input() item:Produtos;
+  
+  increment (){
+    console.log(this.contadorProduto.emit(this.cont++));
+  }
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
   }
   
   countItems(){

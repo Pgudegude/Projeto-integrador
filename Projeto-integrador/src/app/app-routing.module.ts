@@ -25,11 +25,11 @@ const routes: Routes = [
     path: "contato",
     component: ContatoComponent
   }, {
-    path: "listaProduto",
+    path: "home/listaProduto",
     component: ListaProdutosComponent
   },
   {
-    path: "produto",
+    path: "home/listaProduto/produto",
     component: ProdutoComponent
   },
   {
@@ -44,11 +44,11 @@ const routes: Routes = [
     component: SobreComponent
   },
   {
-    path: "cadastro",
+    path: "login/cadastro",
     component: CadastroComponent
   },
   {
-    path: "checkout",
+    path: "carrinho/checkout",
     component: CheckoutComponent
   },
   {

@@ -1,9 +1,12 @@
+
+
 <app-menu></app-menu>
 <main>
+    <app-produto *ngFor="let item of items" [item]=item></app-produto>
     <div class="container-fluid">
         <div id="cardCentro" class="row">
             <div class="col-md-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/palhaço.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/palhaço.png" alt="Card image cap"
                         title="Bola Palhaço"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Palhaço</h5>
@@ -12,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/palhacinho.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/palhacinho.png" alt="Card image cap"
                         alt="Bola Palhacinho" title="Bola Palhacinho"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Palhacinho</h5>
@@ -21,7 +24,7 @@
                 </div>
             </div>
             <div class="col-md-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/psicodelica.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/psicodelica.png" alt="Card image cap"
                         title="Bola Psicodelica"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Psicodelica</h5>
@@ -30,7 +33,7 @@
                 </div>
             </div>
             <div class="col-md-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/espiral.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/espiral.png" alt="Card image cap"
                         title="Bola Espiral"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Espiral</h5>
@@ -39,7 +42,7 @@
                 </div>
             </div>
             <div class="col-md-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/bola universo2.png"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/bola universo2.png"
                         alt="Card image cap" title="Bola Universo"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Universo</h5>
@@ -50,7 +53,7 @@
         </div>
         <div id="cardCentro" class="row">
             <div class="col-md-2 mt-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/bola madeira.jpg" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/bola madeira.jpg" alt="Card image cap"
                         title="Bola Madeira"></a>
                 <div class="card-body">
                     <h5 class="card-title">Bola Madeira</h5>
@@ -59,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-2 mt-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/produtosaquinho.png"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/produtosaquinho.png"
                         alt="Card image cap" title="Olho tubarão - Tamanho unico"></a>
                 <div class="card-body">
                     <h5 class="card-title">Olho tubarão - Tamanho unico</h5>
@@ -68,7 +71,7 @@
                 </div>
             </div>
             <div class="col-md-2 mt-2 card p-2">
-                <a href=""><img class="card-img-top" src="../../../assets/Imagem/produtosaquinho1.png"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/produtosaquinho1.png"
                         alt="Card image cap" title="Olho abelha - Tamanho unico"></a>
                 <div class="card-body">
                     <h5 class="card-title">Olho abelha - Tamanho unico</h5>
@@ -77,7 +80,7 @@
                 </div>
             </div>
             <div class="col-md-2 mt-2 card p-2">
-                <a href="#"><img class="card-img-top" src="../../../assets/Imagem/saquinho2.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/saquinho2.png" alt="Card image cap"
                         title="Olho galo - Tamanho unico"></a>
                 <div class="card-body">
                     <h5 class="card-title">Olho galo - Tamanho unico</h5>
@@ -86,7 +89,7 @@
                 </div>
             </div>
             <div class="col-md-2 mt-2 card p-2">
-                <a href="#"><img class="card-img-top" src="../../../assets/Imagem/saquinho3.png" alt="Card image cap"
+                <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/saquinho3.png" alt="Card image cap"
                         title="Olho tartaruga - Tamanho unico"></a>
                 <div class="card-body">
                     <h5 class="card-title">Olho tartaruga - Tamanho unico</h5>

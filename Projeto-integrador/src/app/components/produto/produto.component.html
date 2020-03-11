@@ -11,27 +11,17 @@
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <h5 class="card-title">Bola Universo - Tamanho unico</h5>
-                                <small class="text-muted">Cod:. 1</small>
-                                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    Totam
-                                    ipsa, aperiam quod ipsum perspiciatis iusto accusantium saepe deleniti
-                                    dolores
-                                    perferendis distinctio corrupti deserunt tempore molestiae recusandae sit
-                                    alias iste
-                                    provident. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi
-                                    ut
-                                    sint, maxime minus dolorum, eaque quisquam, ducimus hic cupiditate magnam
-                                    facere eum
-                                    consequuntur mollitia sapiente veritatis recusandae praesentium ea qui!</p>
+                                <h5 class="card-title">{{item.nome}}</h5>
+                                <small class="text-muted">{{item.id}}</small>
+                                <p class="card-text">{{item.desc}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <p><s>De: R$ 77,26</s></p><br>
-                <h4>Por: R$64,23</h4>
+                <p><s>{{item.preco}}</s></p><br>
+                <h4>{{item.preco}}</h4>
                 <hr>
                 <label for="frete">Forma de Envio:</label>
                 <div class="form-group row">
@@ -46,7 +36,7 @@
                 </div>
                 <hr>
                 <button type="button"
-                    class="btn btn-success btn-lg btn-block">Incluir no
+                    class="btn btn-success btn-lg btn-block" (click)="increment()" >Incluir no
                     Carrinho</button>
             </div>
         </div>

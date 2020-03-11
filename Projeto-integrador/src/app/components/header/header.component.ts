@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoComponent } from "../produto/produto.component";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +6,9 @@ import { ProdutoComponent } from "../produto/produto.component";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  cont: number = 0;
-  
-  countItems(){
-    this.cont ++;
+
+  recebendoContagem(respostaFilho) {
+    console.log('Foi emitido o evento e chegou no pai >>>> ', respostaFilho);
   }
 
   constructor() { }
