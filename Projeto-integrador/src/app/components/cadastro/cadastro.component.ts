@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validacoes } from '../validar/Validacoes';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,52 +15,28 @@ export class CadastroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private http:HttpClient,
-    private cepService: CepService
-    
+      
     ) { }
-
-    consultaCEP() {
-      const cep =this.formCadastro.get('endereco.cep').value;
-      if(cep != null && cep !=''){
-        this.cepService.consultaCEP(cep)
-        .subscribe(dados =>this.p);
-      }
-  
-     
-  
-      // Verifica se campo cep possui valor informado.
-      if (cep !== '') {
-        // Expressão regular para validar o CEP.
-        const validacep = /^[0-9]{8}$/;
-  
-        // Valida o formato do CEP.
-        if (validacep.test(cep)) {
-          return this.http.get(`//viacep.com.br/ws/${cep}/json`);
-        }
-      }
-  
-      return of({});
-    }
-  }
-  
 
   ngOnInit(): void {
     this.criarCadastro();
   }
   enviarCadastro() {
     const dadosFormulario = this.formCadastro.value;
-    dadosFormulario.nomeUsuario,
-      dadosFormulario.cpfUsuario,
-      dadosFormulario.endUsuario,
-      dadosFormulario.compleUsuario,
-      dadosFormulario.telUsuario,
-      dadosFormulario.nascimentoUsuario,
-      dadosFormulario.emailUsuario,
-      dadosFormulario.confirmarEmail,
-      dadosFormulario.senha,
-      dadosFormulario.confirmasenha
-
-      ;
+    dadosFormulario.nomeCompleto,
+    dadosFormulario.cpf,
+    dadosFormulario.dataDeNascimento,
+    dadosFormulario.telefone,
+    dadosFormulario.cep,
+    dadosFormulario.logradouro,
+    dadosFormulario.cidade,
+    dadosFormulario.bairro,
+    dadosFormulario.complemento,
+    dadosFormulario.estado,
+    dadosFormulario.email,
+    dadosFormulario.confirmaEmail,
+    dadosFormulario.senha,
+    dadosFormulario.confirmaSenha 
 
     alert(`O usuário ${dadosFormulario.nomeUsuario}foi cadastrado com sucesso. \n Dados: ${JSON.stringify(dadosFormulario)}`);
     console.log(dadosFormulario)
@@ -88,10 +65,7 @@ export class CadastroComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-      genero: ["",
-        Validators.compose([
-          Validators.required
-        ])],
+   
 
       telefone: ["",
         Validators.compose([
@@ -105,7 +79,7 @@ export class CadastroComponent implements OnInit {
           Validators.max(8)
         ])],
 
-      endereco: ["",
+      logradouro: ["",
         Validators.compose([
           Validators.required,
         ])],
@@ -163,6 +137,10 @@ export class CadastroComponent implements OnInit {
     })
   }
 
+  
+
+
+}
 
 
   

@@ -1,42 +1,47 @@
 <main id="container">
-
+<app-endereco></app-endereco>
   <form method="POST" class="form-row mt-5 p-4" [formGroup]="formCadastro" (ngSubmit)="enviarCadastro()">
     <div class="col-md-6 ">
       <header class="header-cadastro-formulario p-2">
         <h3> Dados pessoais</h3>
       </header>
-      <div>
+      <div >
         <div class="p-2">
           <div class="form-group">
             <label for="nomeUsuario">Nome completo: *</label>
-            <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
-              placeholder="Digite o nome completo" required formControlName="nomeUsuario">
+            <input class="form-control" type="text" id="nomeUsuario" name="nomeCompleto"
+              placeholder="Digite o nome completo" required formControlName="nomeCompleto">
+
+              
 
           </div>
           <div class="form-group">
             <label for="cpfUsuario">CPF: *</label>
-            <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpfUsuario"
-              formControlName="cpfUsuario" placeholder="000.000.000-00">
+            <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf"
+              formControlName="cpf" placeholder="000.000.000-00">
 
           </div>
           <div class="form-group">
             <label for="nascimentoUsuario">Data de Nascimento: *</label>
-            <input class="form-control " type="date" id="nascimentoUsuario" formControlName="nascimentoUsuario"
-              name="nascimentoUsuario">
+            <input class="form-control " type="date" id="nascimentoUsuario" 
+            formControlName="dataDeNascimento"name="dataDeNascimento">
+              
 
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="telUsuario">Telefone:*&emsp;</label>
-              <input class="form-control phone-mask" type="tel" id="telUsuario" formControlName="telUsuario"
-                placeholder="(00) 0000-0000">
+              <input class="form-control phone-mask" type="tel" id="telUsuario"
+              name="telefone" formControlName="telefone"placeholder="(00) 0000-0000">
+                
 
 
             </div>
             <div class="col-md-6">
               <label for="cepUsuario">CEP: *</label>
-              <input class="form-control cep-mask" type="tel" id="cepUsuario" formControlName="cepUsuario"
-                placeholder="00000-000">
+              <input class="form-control cep-mask" type="tel" id="cepUsuario" 
+              formControlName="cep" name="cep" placeholder="00000-000">
+                
 
             </div>
 
@@ -49,43 +54,38 @@
 
             <div class="col-md-6">
               <label for="endUsuario">Endereço: *</label>
-              <input class="form-control" type="text" id="endUsuario" name="endUsuario" formControlName="endUsuario"
-                placeholder="Digite seu endereço">
+              <input class="form-control" type="text" id="endUsuario" 
+              name="endereco" formControlName="endereco"placeholder="Digite seu endereço">
+                
             </div>
 
             <div class="col-md-6">
               <label for="cidUsuario">Cidade: *</label>
-              <input class="form-control" type="text" id="cidUsuario" name="cidadeUsuario"
-                placeholder="Digite seu Cidade" formControlName="cidadeUsuario">
+              <input class="form-control" type="text" id="cidUsuario" name="cidade"
+                placeholder="Digite seu Cidade" formControlName="cidade">
             </div>
 
           </div>
 
           <div class="form-group row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for="bairroUsuario">Bairro: *</label>
-              <input class="form-control" type="text" id="bairroUsuario" name="bairroUsuario" placeholder="Bairro"
-                formControlName="bairroUsuario">
+              <input class="form-control" type="text" id="bairroUsuario" name="bairro" placeholder="Bairro"
+                formControlName="bairro">
 
             </div>
 
-            <div class="col-md-3">
-              <label for="bairroUsuario">N°: *</label>
-              <input class="form-control" type="text" id="numUsuario" name="numUsuario" placeholder="Ex: 12"
-                formControlName="numUsuario">
+         
 
-
-            </div>
-
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for="compleUsuario">Complemento: *</label>
-              <input class="form-control" type="text" id="compleUsuario" name="compleUsuario" placeholder="Ex: casa 4"
-                formControlName="compleUsuario">
+              <input class="form-control" type="text" id="compleUsuario" name="complemento" placeholder="Ex: casa 4"
+                formControlName="complemento">
 
             </div>
-            <div class="col-md-3">
-              <label for="estadoUsuarioCity">Estado:*</label>
-              <select class="form-control" id="estadoUsuario" formControlName="estadoUsuario">
+            <div class="col-md-4">
+              <label for="estado">Estado:*</label>
+              <select class="form-control" id="estadoUsuario" formControlName="estado">
                 <option value="" disabled selected>
                   Estado
 
@@ -115,34 +115,36 @@
       <div class="p-2">
         <div clasnps="form-group">
           <label for="emailUsuario"> E-mail:* </label>
-          <input type="email" class="form-control" id="emailUsuario" formControlName="emailUsuario"
-           name="emailUsuario" placeholder="Digite seu e-mail ">
+          <input type="email" class="form-control" id="emailUsuario" formControlName="email"
+           name="email" placeholder="Digite seu e-mail ">
         </div>
 
         <div class="form-group">
           <label for="confirmarEmail"> Confirmar e-mail:* </label>
           <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
-            name="confirmarEmail"formControlName="confirmarEmail">
+            name="confirmaEmail"formControlName="confirmaEmail">
         </div>
 
 
         <div class="form-group">
           <label for="exampleFormControlInput1"> Senha*: </label>
-          <input type="password" class="form-control" id="senha" placeholder=" Digite sua senha "
-            formControlName="senha">
+          <input type="password" class="form-control" id="senha"
+           placeholder=" Digite sua senha "name="senha"formControlName="senha">
+            
         </div>
 
 
         <div class="form-group">
           <label for="exampleFormControlInput1"> Confirma senha*: </label>
-          <input type="password" class="form-control" id="confirmasenha" formControlName="confirmasenha"
-            placeholder="Confirme sua senha ">
+          <input type="password" class="form-control" id="confirmasenha"
+           formControlName="confirmaSenha" name="confirmaSenha"placeholder="Confirme sua senha ">
+            
         </div>
         <div class="d-flex justify-content-end">
-          <button id="botao" class="form-control" name="botao" [disabled]="!formCadastro.valid"
-          value="enviarDados">
-            Cadastrar
-          </button>
+          <div class="d-flex justify-content-end">
+            <button class="form-control" name="BTEnvia" 
+             value="enviarDados">Cadastrar</button>
+        </div>
         </div>
       </div>
     </div>

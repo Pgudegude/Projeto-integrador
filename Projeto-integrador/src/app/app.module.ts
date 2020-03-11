@@ -10,6 +10,10 @@ import { ContatoComponent } from './components/contato/contato.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import{HttpClientModule} from "@angular/common/http"
+import { from } from 'rxjs';
+import { EnderecoComponent } from './components/endereco/endereco.component';
+import { NgxViacepModule } from '@brunoc/ngx-viacep';
 
 
 
@@ -22,6 +26,7 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     ContatoComponent,
     SobreComponent,
     CadastroComponent,
+    EnderecoComponent
     
     
   ],
@@ -29,7 +34,9 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    NgxViacepModule
 
   ],
   providers: [],
