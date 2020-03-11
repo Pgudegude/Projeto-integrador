@@ -7,25 +7,32 @@ import { Cep } from './components/cep/cep/cep';
 })
 export class CepService {
 
-  constructor(private http:HttpClient) { }
-  buscar(cep:string){
-    this.http.get(`viacep.com.br/ws/${cep}/json/`)
-      .toPromise()
-      .then(response=>{
-        this.converteResposta(response.json());
+  constructor(
+    private http: HttpClient,
+    private cepService: CepService
+    ){}
+
+  consultaCEP(cep: string) {
+    
+
+    // Nova variável "cep" somente com dígitos.
+    cep = cep.replace(/\D/g, '');
+
+    // Verifica se campo cep possui valor informado.
+    if (cep !== '') {
+      // Expressão regular para validar o CEP.
+      const validacep = /^[0-9]{8}$/;
+
+      // Valida o formato do CEP.
+      if (validacep.test(cep)) {
+        return this.http.get(`//viacep.com.br/ws/${cep}/json`);
       }
-       
-      )}
- 
-      private converteResposta (cepResposta):Cep{
-        let cep = new Cep();
-        cep.cep=cepResposta.cep;
-        cep.endereco=cepResposta.endereco;
-        cep.bairro=cepResposta.bairro;
-        cep.cidade=cepResposta.cidade;
-        cep.estado=cepResposta.uf;
-        return cep;
-      }
+    }
+
+    return of({});
+  }
+}
+  
 
   }
 

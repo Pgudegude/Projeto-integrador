@@ -1,135 +1,151 @@
-<form method="post"class="form-row" [formGroup]="formUsuario.value" (ngSubmit)="enviarDados()">
-    <div class="row mt-5 p-4">
+<main id="container">
 
-        <div class="col-md-6 p-2">
-            <header class="bg-yellow p-2">
-                <h3> Dados pessoais</h3>
-            </header>
-            <div>
-                <div class="p-2">
-                    <div class="form-group p-2">
-                        <label for="nomeUsuario">Nome completo: *</label>
-                        <input class="form-control" type="text" id="nomeUsuario" formControlName="nomeUsuario"
-                            placeholder="Digite o nome completo" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="cpfUsuario">CPF: *</label>
-                        <input class="form-control" type="tel" id="cpfUsuario" formControlName="cpfUsuario"
-                            placeholder="CPF" required>
-                    </div>
-                    <div class="form-group row p-2">
-                        <div class="form-group col-md-6">
-                            <label for="nascimentoUsuario">Data de Nascimento: *</label>
-                            <input class="form-control" type="date" id="nascimentoUsuario"
-                                formControlName="nascimentoUsuario" placeholder="Data de nascimento" required>
+  <form method="POST" class="form-row mt-5 p-4" [formGroup]="formCadastro" (ngSubmit)="enviarCadastro()">
+    <div class="col-md-6 ">
+      <header class="header-cadastro-formulario p-2">
+        <h3> Dados pessoais</h3>
+      </header>
+      <div>
+        <div class="p-2">
+          <div class="form-group">
+            <label for="nomeUsuario">Nome completo: *</label>
+            <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
+              placeholder="Digite o nome completo" required formControlName="nomeUsuario">
 
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="genero">Gênero:* </label>
-                            <br>
-                            <input type="radio" [value]="1"> Masculino&emsp;
+          </div>
+          <div class="form-group">
+            <label for="cpfUsuario">CPF: *</label>
+            <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpfUsuario"
+              formControlName="cpfUsuario" placeholder="000.000.000-00">
 
-                            <input type="radio" [value]="2"> Feminino&emsp;
-                        </div>
+          </div>
+          <div class="form-group">
+            <label for="nascimentoUsuario">Data de Nascimento: *</label>
+            <input class="form-control " type="date" id="nascimentoUsuario" formControlName="nascimentoUsuario"
+              name="nascimentoUsuario">
 
-                    </div>
-                    <div class="form-group row p-2">
-                        <div class="col-md-6">
-                            <label for="telUsuario">Telefone:*&emsp;</label>
-                            <input class="form-control" type="tel" id="telUsuario" formControlName="telUsuario"
-                                placeholder="DD-XXXXXXXXX">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="cepUsuario">CEP: *</label>
-                            <input class="form-control" type="tel" id="cepUsuario" formControlName="cepUsuario"
-                                placeholder="CEP">
-                        </div>
-                    </div>
-                    <div class="form-group row p-2">
-                        <div class="col-md-6">
-                            <label for="endUsuario">Endereço: *</label>
-                            <input class="form-control" type="text" id="endUsuario" formControlName="endUsuario"
-                                placeholder="Digite seu endereço">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="cidUsuario">Cidade: *</label>
-                            <input class="form-control" type="text" id="cidUsuario" formControlName="cidadeUsuario"
-                                placeholder="Digite seu Cidade">
-                        </div>
-                    </div>
-
-                    <div class="form-group row p-2">
-                        <div class="col-md-5">
-                            <label for="bairroUsuario">Bairro: *</label>
-                            <input class="form-control" type="text" id="bairroUsuario" formControlName="bairroUsuario"
-                                placeholder="Bairro">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="compleUsuario">Complemento: *</label>
-                            <input class="form-control" type="text" id="compleUsuario" formControlName="compleUsuario"
-                                placeholder="Ex: casa 4">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="estadoUsuarioCity">Estado:*</label>
-                            <select class="form-control" id="estadoUsuario">
-                                <option value="" disabled selected>
-                                    Estado
-                                </option>
-
-                            </select>
-
-                        </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="telUsuario">Telefone:*&emsp;</label>
+              <input class="form-control phone-mask" type="tel" id="telUsuario" formControlName="telUsuario"
+                placeholder="(00) 0000-0000">
 
 
-
-
-                    </div>
-
-
-                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <header class="bg-yellow p-2">
-                <h3>Dados de acesso ao gudegude.com.br</h3>
-            </header>
-            <div class="p-2">
-                <div class="form-group p-2">
-                    <label for="exampleFormControlInput1"> E-mail:* </label>
-                    <input type="email" class="form-control" id="emailUsuario" formControlName="email"
-                        placeholder="Digite seu e-mail ">
-                </div>
+            <div class="col-md-6">
+              <label for="cepUsuario">CEP: *</label>
+              <input class="form-control cep-mask" type="tel" id="cepUsuario" formControlName="cepUsuario"
+                placeholder="00000-000">
 
-                <div class="form-group p-2">
-                    <label for="exampleFormControlInput1"> Confirmar e-mail:* </label>
-                    <input type="email" class="form-control" id="confirmarEmail" formControlName="confirmarEmail"
-                        placeholder=" Confirme seu e-mail ">
-
-                </div>
-
-
-                <div class="form-group p-2">
-                    <label for="exampleFormControlInput1"> Senha*: </label>
-                    <input type="password" class="form-control" id="senha" formControlName="senha"
-                        placeholder=" Digite sua senha ">
-
-                </div>
-
-
-                <div class="form-group p-2">
-                    <label for="exampleFormControlInput1"> Confirma senha*: </label>
-                    <input type="password" class="form-control" id="confirmasenha" formControlName="confirmaSenha"
-                        placeholder="Confirme sua senha ">
-
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button class="" type="button" data-toggle="modal" data-target="#cadastroFinalizada">
-                        Cadastrar</button>
-
-                </div>
             </div>
+
+
+          </div>
+
+          <div class="form-group row  ">
+
+
+
+            <div class="col-md-6">
+              <label for="endUsuario">Endereço: *</label>
+              <input class="form-control" type="text" id="endUsuario" name="endUsuario" formControlName="endUsuario"
+                placeholder="Digite seu endereço">
+            </div>
+
+            <div class="col-md-6">
+              <label for="cidUsuario">Cidade: *</label>
+              <input class="form-control" type="text" id="cidUsuario" name="cidadeUsuario"
+                placeholder="Digite seu Cidade" formControlName="cidadeUsuario">
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="bairroUsuario">Bairro: *</label>
+              <input class="form-control" type="text" id="bairroUsuario" name="bairroUsuario" placeholder="Bairro"
+                formControlName="bairroUsuario">
+
+            </div>
+
+            <div class="col-md-3">
+              <label for="bairroUsuario">N°: *</label>
+              <input class="form-control" type="text" id="numUsuario" name="numUsuario" placeholder="Ex: 12"
+                formControlName="numUsuario">
+
+
+            </div>
+
+            <div class="col-md-3">
+              <label for="compleUsuario">Complemento: *</label>
+              <input class="form-control" type="text" id="compleUsuario" name="compleUsuario" placeholder="Ex: casa 4"
+                formControlName="compleUsuario">
+
+            </div>
+            <div class="col-md-3">
+              <label for="estadoUsuarioCity">Estado:*</label>
+              <select class="form-control" id="estadoUsuario" formControlName="estadoUsuario">
+                <option value="" disabled selected>
+                  Estado
+
+                </option>
+                <option value="SP">SP</option>
+                <option value="SP">RJ</option>
+                <option value="SP">ES</option>
+                <option value="SP">BA</option>
+                <option value="SP">SP</option>
+
+              </select>
+
+            </div>
+
+
+
+
+          </div>
+
         </div>
+      </div>
     </div>
-</form>
+    <div class="col-md-6">
+      <header class="header-cadastro-formulario p-2">
+        <h3>Dados de acesso ao gudegude.com.br</h3>
+      </header>
+      <div class="p-2">
+        <div clasnps="form-group">
+          <label for="emailUsuario"> E-mail:* </label>
+          <input type="email" class="form-control" id="emailUsuario" formControlName="emailUsuario"
+           name="emailUsuario" placeholder="Digite seu e-mail ">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarEmail"> Confirmar e-mail:* </label>
+          <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
+            name="confirmarEmail"formControlName="confirmarEmail">
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlInput1"> Senha*: </label>
+          <input type="password" class="form-control" id="senha" placeholder=" Digite sua senha "
+            formControlName="senha">
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlInput1"> Confirma senha*: </label>
+          <input type="password" class="form-control" id="confirmasenha" formControlName="confirmasenha"
+            placeholder="Confirme sua senha ">
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="botao" class="form-control" name="botao" [disabled]="!formCadastro.valid"
+          value="enviarDados">
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</main>

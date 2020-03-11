@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-
-import { Validacoes } from '../validar/validacoes';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Cep } from '../cep/cep/cep';
-import{Cliente} from "../cliente/Cliente"
-import { from } from 'rxjs';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validacoes } from '../validar/Validacoes';
 
 
 @Component({
@@ -15,128 +10,160 @@ import { from } from 'rxjs';
 })
 export class CadastroComponent implements OnInit {
   
-  
-    formUsuario:FormGroup;
-    constructor(private formBuilder: FormBuilder) {
-  
-    }
-    
-   
-  
-    ngOnInit(): void {
-      this.criarCadastro(new Cliente());
-}
-    
-  
-    enviarDados() {
-      console.log(this.formUsuario.value);
-      
-      
-    }
-  
-    
-  
-    criarCadastro( cliente : Cliente){
-      this.formUsuario=this.formBuilder.group({
-        nomeCompleto: [
-          '',cliente.nomeCompleto,
-          Validators.compose([
-            Validators.required, // coloquei como obrigatorio
-            Validators.maxLength(100) // limitei o maximo de caractere 
-  
-          ])],
-        cpf: ["",cliente.cpf,
-          Validators.compose([
-            Validators.required,
-            Validators.maxLength(11),
-            Validacoes.ValidaCpf
-  
-          ])],
-  
-        dataDeNascimento: [" ",cliente.dataDeNascimento,
-          Validators.compose([
-            Validators.required
-          ])],
-        genero: [" ",cliente.genero,
-          Validators.compose([
-            Validators.required
-          ])],
-  
-        telefone: [" ",cliente.telefone,
-          Validators.compose([
-            Validators.required,
-            Validators.max(10)
-          ])],
-  
-        cep: [" ",cliente.cep,
-          Validators.compose([
-            Validators.required,
-            Validators.max(8)
-          ])],
-  
-        endereco: [" ",cliente.endereco,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        cidade: [" ",cliente.cidade,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        bairro: [" ",cliente.bairro,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        complemento: [" ",cliente.complemento,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        estado: [" ",cliente.estado,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        email: [" ", cliente.email,
-          Validators.compose([
-            Validators.email,
-          ])],
-  
-        confirmaEmail: [" ",cliente.confirmaEmail,
-          Validators.compose([
-            Validators.email,
-          ])],
-        conferirEmail: Validacoes.conferirEmail,
-  
-        senha: [" ", cliente.senha,
-          Validators.compose([
-            Validators.required,
-          ])],
-  
-        confirmaSenha: [" ",cliente.confirmaSenha,
-          Validators.compose([
-            Validators.required,
-          ])],
-        conferirSenha: Validacoes.conferirSenha
-  
-      })
-    }
+  formCadastro: FormGroup;
 
-    onSubmit(){
-      console.log(this.formUsuario.value)
-      this.criarCadastro(new Cliente()) ;
+  constructor(private formBuilder: FormBuilder,
+    private http:HttpClient,
+    private cepService: CepService
+    
+    ) { }
 
+    consultaCEP() {
+      const cep =this.formCadastro.get('endereco.cep').value;
+      if(cep != null && cep !=''){
+        this.cepService.consultaCEP(cep)
+        .subscribe(dados =>this.p);
+      }
+  
      
+  
+      // Verifica se campo cep possui valor informado.
+      if (cep !== '') {
+        // Expressão regular para validar o CEP.
+        const validacep = /^[0-9]{8}$/;
+  
+        // Valida o formato do CEP.
+        if (validacep.test(cep)) {
+          return this.http.get(`//viacep.com.br/ws/${cep}/json`);
+        }
+      }
+  
+      return of({});
     }
+  }
+  
+
+  ngOnInit(): void {
+    this.criarCadastro();
+  }
+  enviarCadastro() {
+    const dadosFormulario = this.formCadastro.value;
+    dadosFormulario.nomeUsuario,
+      dadosFormulario.cpfUsuario,
+      dadosFormulario.endUsuario,
+      dadosFormulario.compleUsuario,
+      dadosFormulario.telUsuario,
+      dadosFormulario.nascimentoUsuario,
+      dadosFormulario.emailUsuario,
+      dadosFormulario.confirmarEmail,
+      dadosFormulario.senha,
+      dadosFormulario.confirmasenha
+
+      ;
+
+    alert(`O usuário ${dadosFormulario.nomeUsuario}foi cadastrado com sucesso. \n Dados: ${JSON.stringify(dadosFormulario)}`);
+    console.log(dadosFormulario)
+    this.formCadastro.reset();
+
+  }
+  criarCadastro() {
+    this.formCadastro = this.formBuilder.group({
+
+      nomeCompleto: [
+        '',
+        Validators.compose([
+          Validators.required, // coloquei como obrigatorio
+          Validators.maxLength(100) // limitei o maximo de caractere 
+
+        ])],
+      cpf: ["",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(11),
+          Validacoes.ValidaCpf
+
+        ])],
+
+      dataDeNascimento: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      genero: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+
+      telefone: ["",
+        Validators.compose([
+          Validators.required,
+          Validators.max(10)
+        ])],
+
+      cep: ["",
+        Validators.compose([
+          Validators.required,
+          Validators.max(8)
+        ])],
+
+      endereco: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+
+      cidade: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+
+      bairro: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+
+      complemento: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+
+      estado: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+        // numero: ["",
+        // Validators.compose([
+        //   Validators.required,
+        // ])],
+
+      email: ["", 
+        Validators.compose([
+          Validators.email,
+        ])],
+
+      confirmaEmail: ["",
+        Validators.compose([
+          Validators.email,
+        ])],
+      conferirEmail: Validacoes.conferirEmail,
+
+      senha: ["", 
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(12)
+        ])],
+
+      confirmaSenha: ["",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(12)
+        ])],
+      conferirSenha: Validacoes.conferirSenha
+
+    })
   }
 
 
 
-
-
-
-
-
+  
 
