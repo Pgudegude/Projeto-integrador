@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder,FormGroup } from "@angular/forms";
+import { Produtos } from '../models/produtos';
 
 @Component({
   selector: 'app-carrinho',
@@ -15,7 +16,12 @@ export class CarrinhoComponent implements OnInit {
   total: any = "R$ 46,32";
   qtd: any;   
   totalDesconto: any;
+  
   formularioQuantidade: FormGroup;
+
+  public produtos: Produtos[] = [];
+
+  @Input() items:Produtos;
 
   
   freteR = () => {
@@ -71,7 +77,5 @@ export class CarrinhoComponent implements OnInit {
   mostrandoQuantidade(){
     this.qtd = (this.formularioQuantidade.value.quantidade)    
   }
-
-
 
 }

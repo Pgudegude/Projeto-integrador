@@ -2,46 +2,48 @@
     <h2>meu carrinho</h2>
     <hr>
     <div class="row mt-2">
-        <div class="col-8">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="../../../assets/Imagem/psicodelica.png" class="card-img" alt="Bola Universo"
-                        title="Bola Universo">
+        <!-- <!-- <app-lista-produtos *ngFor="let item of items" [item]=item></app-lista-produtos>    --> -->
+        <div class="col-md-8">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="../../../assets/Imagem/psicodelica.png" class="card-img" alt="Bola Universo"
+                            title="Bola Universo">
+                    </div>
+                    <div class="col-md-5">
+                        <h6>Produto:</h6>
+                        <h6><strong>Bola psicodelica de Mike Gong</strong></h6>
+                        <small><strong>Material:</strong> Vidro maciço</small><br>
+                        <small><strong>Diâmetro: </strong>63mm</small>
+                    </div>
+                    <div class="col-md-1">
+                        <h6>Qtd:</h6>
+                        <form [formGroup]="formularioQuantidade">
+                            <select (change)="mostrandoQuantidade()" (change)="calcularTotal()"
+                                formControlName='quantidade' style="width: 99">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <small class="text-muted"><a id="remove">Remover</a></small>
+                        </form>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        Preço unitário:
+                        <p><strong>R$ 75,42</strong></p>
+                    </div>
                 </div>
-                <div class="col-md-5">
-                    <h6>Produto:</h6>
-                    <h6><strong>Bola psicodelica de Mike Gong</strong></h6>
-                    <small><strong>Material:</strong> Vidro maciço</small><br>
-                    <small><strong>Diâmetro: </strong>63mm</small>
-                </div>
-                <div class="col-md-1">
-                    <h6>Qtd:</h6>
-                    <form [formGroup]="formularioQuantidade">
-                        <select (change)="mostrandoQuantidade()" (change)="calcularTotal()" formControlName='quantidade'
-                            style="width: 99">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                        <small class="text-muted"><a href="#">Remover</a></small>
-                    </form>
-                </div>
-                <div class="col-md-3 text-center">
-                    Preço unitário:
-                    <p><strong>R$ 75,42</strong></p>
-                </div>
+                <hr>
             </div>
-            <hr>
-        </div>
 
-        <div class="col-md-4">
+        <div id="cart" class="col-md-4">
             <div class="card-header">
                 <h5 class="card-title">resumo do pedido</h5>
                 <div class="row text-muted org">
@@ -68,6 +70,16 @@
                         <span>R$ {{rapido}}{{normal}}</span>
                     </div>
                 </div>
+                        <div class="form-group row mt-2 text-center">
+                            <div class="col-6">
+                                <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
+                                <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
+                            </div>
+                            <div id="col-6">
+                                <label for="freteNormal">Frete normal <br> R$ 20,00</label>
+                                <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
+                            </div>
+                        </div>
                 <hr>
                 <h5>total</h5>
                 <div class="text-right">
@@ -78,16 +90,8 @@
                 <a routerLink="checkout"><button type="button" class="btn btn-success btn-block "><img
                             src="../../../assets/Imagem/buy.png" alt=""> continuar</button></a>
             </div>
-            <div class="form-group row mt-2 text-center">
-                <div class="col-6">
-                    <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                    <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
-                </div>
-                <div id="col-6">
-                    <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                    <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
+<app-footer></app-footer>

@@ -2,16 +2,15 @@
 
 <app-menu></app-menu>
 <main>
-    <!-- <app-produtos *ngFor="let item of items" [item]=item></app-produtos> -->
-    <div class="container-fluid">
+    <div class="container-fluid" (click)="passarDados.emit(item)">
         <div id="cardCentro" class="row">
             <div class="col-md-2 card p-2">
                 <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/palhaço.png" alt="Card image cap"
                         title="Bola Palhaço"></a>
                 <div class="card-body">
-                    <h5 class="card-title">{{item.nome}}</h5>
+                    <h5 class="card-title"></h5>
                     <!-- <p><s>De: R$ 98,36</s></p> -->
-                    <h4>Por: R$ {{item.preco}}</h4>
+                    <h4>Por: R$ </h4>
                 </div>
             </div>
             <div class="col-md-2 card p-2">

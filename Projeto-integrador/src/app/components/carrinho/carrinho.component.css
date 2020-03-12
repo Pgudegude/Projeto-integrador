@@ -1,13 +1,16 @@
 h2{
     margin-top: 2px;
 }
+
 select{
     cursor: pointer;
 }
+
 .org{
     display: flex;
     justify-content: space-between;
 }
+
 #carrinho{
     z-index: -999999;
 }
@@ -17,4 +20,13 @@ select{
     position: fixed;
     bottom: 0;
     width: 100vw;
+}
+
+#cart{
+    margin-top: 0;
+}
+
+#remove{
+    color: gray;
+    cursor: pointer;
 }
