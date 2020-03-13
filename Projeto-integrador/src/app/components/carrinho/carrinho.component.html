@@ -4,7 +4,7 @@
     <div class="row mt-2">
         <!-- <app-lista-produtos *ngFor="let item of items" [item]=item></app-lista-produtos>    -->
         <div class="col-8">
-            <div class="col-12">
+            <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
                     <div class="col-md-3">
                         <img src="../../../assets/Imagem/psicodelica.png" class="card-img" alt="Bola Universo"
@@ -12,32 +12,23 @@
                     </div>
                     <div class="col-md-5">
                         <h6>Produto:</h6>
-                        <h6><strong>Bola psicodelica de Mike Gong</strong></h6>
+                        <h6><strong>{{item.produto.nome}}</strong></h6>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
                     <div class="col-md-1">
                         <h6>Qtd:</h6>
                         <form [formGroup]="formularioQuantidade">
-                            <select (change)="mostrandoQuantidade()" (change)="calcularTotal()"
-                                formControlName='quantidade' style="width: 99">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                            <small class="text-muted"><a id="remove">Remover</a></small>
+                            <input type=image src="../../../assets/Imagem/rectangle.png" (click)="diminuir(item)"  >
+                            <input [ngClass]="{'arredondar':true}" [disabled] value="1" [(ngModel)]="item.quantidade" formControlName='quantidade' (change)="mostrandoQuantidade()" (change)="calcularTotal()">
+                                <input type=image src="../../../assets/Imagem/more.png" (click)="aumentar(item)"   >
+                            <small class="text-muted" (click)="excluirProduto(item.produto)">
+                                <a id="remove">Remover</a></small>
                         </form>
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>R$ 75,42</strong></p>
+                        <p><strong>{{item.produto.preco}}</strong></p>
                     </div>
                 </div>
                 <hr>

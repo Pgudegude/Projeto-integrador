@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder,FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
-import { ROUTES } from '../../app-routing.module';
+import { Carrinho } from '../models/carrinho';
 
 @Component({
   selector: 'app-carrinho',
@@ -20,21 +20,33 @@ export class CarrinhoComponent implements OnInit {
   
   formularioQuantidade: FormGroup;
   
-  public produtos: Produtos[] = [];
+  carrinho: Carrinho[]=[];
   
-  @Input() items:Produtos;
-  
-  
-  freteR = () => {
-    let quant = this.formularioQuantidade.value.quantidade
-    this.total = ((75.42 * quant )-(29.10 * quant))
-    if(this.normal === "20,00"){
-      this.normal = ""
-      this.rapido = "50,00"
-      this.totalDesconto = (this.total + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-    }else{
-      this.rapido = "50,00"
-      this.totalDesconto = (this.total  + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+  constructor() { 
+    this.carrinho.push(
+      new Carrinho(new Produtos("Bola Diamante",343,72.30,"Kennedy",67),5),
+      new Carrinho(new Produtos("Bola Diamante",343,72.30,"jonas",47),6),
+      new Carrinho(new Produtos("Bola Diamante",343,72.30,"fabio",7),8),
+      new Carrinho(new Produtos("Bola Diamante",343,72.30,"fabio",67),8),
+      )
+      this.carrinho.forEach(item =>{
+        this.total += item.produto.preco * item.quantidade;
+      })
+    }
+    
+    @Input() items:Produtos;
+    
+    
+    freteR = () => {
+      let quant = this.formularioQuantidade.value.quantidade
+      this.total = ((75.42 * quant )-(29.10 * quant))
+      if(this.normal === "20,00"){
+        this.normal = ""
+        this.rapido = "50,00"
+        this.totalDesconto = (this.total + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      }else{
+        this.rapido = "50,00"
+        this.totalDesconto = (this.total  + 50.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
   
@@ -61,27 +73,36 @@ export class CarrinhoComponent implements OnInit {
     }
   }
   
-  constructor(private fb: FormBuilder) { }
+  private fb: FormBuilder
   
   
   quantidade: any[];
-  criandoFormulario(){
-    this.formularioQuantidade = this.fb.group({
-      quantidade:[]
-    })
-  }
+  // criandoFormulario(){
+  //   this.formularioQuantidade = this.fb.group({
+  //     quantidade:[]
+  //   })
+  // }
   
   ngOnInit(): void {
-    this.criandoFormulario();
+    // this.criandoFormulario();
   }
   
   mostrandoQuantidade(){
     this.qtd = (this.formularioQuantidade.value.quantidade)    
   }
-  
-    removerProduto(){
-      
-      
+
+  aumentar(carrinho){
+    carrinho.qtd++;
+    this.total += carrinho.produto.valor
+  }
+  diminuir(carrinho){
+    if(carrinho.qtd > 1){
+      carrinho.qtd--;      
+      this.total -= carrinho.produto.valor
     }
+  }
+  excluirProduto(produto){
+    this.carrinho = this.carrinho.filter(item => item.produto != produto)
+  }
       
 }

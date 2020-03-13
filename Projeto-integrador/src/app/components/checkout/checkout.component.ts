@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/service/http.service';
 import { Endereco } from '../models/endereco';
 import { Checkout } from '../models/checkout';
@@ -13,7 +12,7 @@ import { Checkout } from '../models/checkout';
 })
 export class CheckoutComponent implements OnInit {
   
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private fb:  FormBuilder) {
     this.formularioCheckout = this.enviarCheckout(new Checkout("","","","",null,"","",""))
   }
   endereco: Endereco = new Endereco("","","","","","","","")
@@ -52,4 +51,76 @@ export class CheckoutComponent implements OnInit {
       console.log(this.formularioCheckout.value);
       
     }
+
+  criarCadastro() {
+      this.formularioCheckout = this.fb.group({
+        nomeCompleto: [
+          '',
+          Validators.compose([
+            Validators.required, // coloquei como obrigatorio
+            Validators.maxLength(100) // limitei o maximo de caractere 
+          ])],
+        cpf: ["",
+          Validators.compose([
+            Validators.required,
+            Validators.maxLength(11)
+          ])],
+        dataDeNascimento: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        telefone: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        cep: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        endereco: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        cidade: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        bairro: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        complemento: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        estado: ["",
+          Validators.compose([
+            Validators.required
+          ])],
+        numero: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+        email: ["",
+          Validators.compose([
+            Validators.email
+          ])],
+        confirmaEmail: ["",
+          Validators.compose([
+            Validators.email
+          ])]
+      })
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
