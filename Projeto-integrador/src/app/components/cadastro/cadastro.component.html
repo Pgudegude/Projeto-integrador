@@ -9,7 +9,7 @@
       <div >
         <div class="p-2">
           <div class="form-group">
-            <label for="nomeUsuario">Nome completo: *</label>
+            <label for="nomeUsuario">Nome completo: </label>
             <input class="form-control" type="text" id="nomeUsuario" name="nomeCompleto"
               placeholder="Digite o nome completo" required formControlName="nomeCompleto"
               >
@@ -17,14 +17,14 @@
 
           </div>
           <div class="form-group">
-            <label for="cpfUsuario">CPF: *</label>
+            <label for="cpfUsuario">CPF: </label>
             <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf"
-              formControlName="cpf" maxlength="11" placeholder="000.000.000-00"required>
+              formControlName="cpf" maxlength="11" placeholder="EX:012345678901"required>
               
           </div>
           
           <div class="form-group">
-            <label for="nascimentoUsuario">Data de Nascimento: *</label>
+            <label for="nascimentoUsuario">Data de Nascimento: </label>
             <input class="form-control " type="date" id="nascimentoUsuario" 
             formControlName="dataDeNascimento"name="dataDeNascimento" required>
               
@@ -34,13 +34,13 @@
           <div class="form-group row">
             
             <div class="col-md-6">
-              <label for="telefone">Telefone: *</label>
+              <label for="telefone">Telefone: </label>
               <input class="form-control cpf-mask" type="tel" id="telefone" name="telefone"
                 formControlName="telefone" maxlength="10" placeholder="Ex.: 0000-0000"required>
   
             </div>
             <div class="col-md-6">
-              <label for="cepUsuario">CEP: *</label>
+              <label for="cepUsuario">CEP: </label>
               <input  class="form-control cep-mask" type="tel" id="cepUsuario" 
               formControlName="cep" name="cep" placeholder="00000-000" required
               maxlength= "8" (blur)="capturarCEP()">
@@ -54,7 +54,7 @@
 
 
             <div class="col-md-6">
-              <label for="logradouro">Endereço: *</label>
+              <label for="logradouro">Endereço: </label>
               <input class="form-control" type="text" id="endUsuario" 
               name="logradouro" formControlName="endereco"placeholder="Digite seu endereço"
               required >
@@ -62,7 +62,7 @@
             </div>
 
             <div class="col-md-6">
-              <label for="cidUsuario">Cidade: *</label>
+              <label for="cidUsuario">Cidade: </label>
               <input class="form-control" type="text" id="cidUsuario" name="cidade"
                 placeholder="Digite seu Cidade" formControlName="cidade"
                 required >
@@ -71,55 +71,59 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-4">
-              <label for="bairroUsuario">Bairro: *</label>
+            <div class="col-md-5">
+              <label for="bairroUsuario">Bairro: </label>
               <input class="form-control" type="text" id="bairroUsuario" name="bairro" placeholder="Bairro"
                 formControlName="bairro"required>
-
             </div>
-
+            <div class="col-md-2">
+              <label for="numeroUsuario">Nº: </label>
+              <input class="form-control" type="text" id="numeroUsuario" placeholder="123"
+                formControlName="numero"name="numero" required>
+            </div>
          
 
-            <div class="col-md-4">
-              <label for="compleUsuario">Complemento: *</label>
+            <div class="col-md-3">
+              <label for="compleUsuario">Complemento: </label>
               <input class="form-control" type="text" id="compleUsuario" name="complemento" placeholder="Ex: casa 4"
                 formControlName="complemento"required>
 
             </div>
-            <div class="col-md-4">
-              <label for="estado">Estado:*</label>
+
+            <div class="col-md-2">
+              <label for="estado">Estado:</label>
               <select required class="form-control" id="estadoUsuario" formControlName="estado">
                 <option value="" disabled selected>
-                  Estado
+                  
 
-                  <option value="" disabled selected>Estado</option>
-                  <option value="AC">Acre</option>
-                  <option value="AL">Alagoas</option>
-                  <option value="AP">Amapá</option>
-                  <option value="AM">Amazonas</option>
-                  <option value="BA">Bahia</option>
-                  <option value="CE">Ceará</option>
-                  <option value="DF">Distrito Federal</option>
-                  <option value="ES">Espírito Santo</option>
-                  <option value="GO">Goiás</option>
-                  <option value="MA">Maranhão</option>
-                  <option value="MT">Mato Grosso</option>
-                  <option value="MS">Mato Grosso do Sul</option>
-                  <option value="MG">Minas Gerais</option>
-                  <option value="PA">Pará</option>
-                  <option value="PB">Paraíba</option>
-                  <option value="PR">Paraná</option>
-                  <option value="PE">Pernambuco</option>
-                  <option value="PI">Piauí</option>
-                  <option value="RJ">Rio de Janeiro</option>
-                  <option value="RN">Rio Grande do Norte</option>
-                  <option value="RS">Rio Grande do Sul</option>
-                  <option value="RO">Rondônia</option>
-                  <option value="RR">Roraima</option>
-                  <option value="SC">Santa Catarina</option>
-                  <option value="SP">São Paulo</option>
-                  <option value="SE">Sergipe</option>
-                  <option value="TO">Tocantins</option>
+                  <option value="" disabled selected></option>
+                  <option value="AC">AC</option>
+                  <option value="AL">Al</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
               </select>
 
             </div>
@@ -136,20 +140,20 @@
       <div class="p-2">
 
         <div class="form-group">
-          <label for="emailUsuario"> E-mail:* </label>
+          <label for="emailUsuario"> E-mail: </label>
           <input type="email" class="form-control" id="emailUsuario" formControlName="email"
            name="email" placeholder="Digite seu e-mail "required>
         </div>
 
         <div class="form-group">
-          <label for="confirmarEmail"> Confirmar e-mail:* </label>
+          <label for="confirmarEmail"> Confirmar e-mail: </label>
           <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
             name="confirmaEmail"formControlName="confirmaEmail" required>
         </div>
 
 
         <div class="form-group">
-          <label for="exampleFormControlInput1"> Senha*: </label>
+          <label for="exampleFormControlInput1"> Senha: </label>
           <input type="password" class="form-control" id="senha"
            placeholder=" Digite sua senha"maxlength= "12"name="senha"formControlName="senha"required>
             
@@ -157,7 +161,7 @@
 
 
         <div class="form-group">
-          <label for="exampleFormControlInput1"> Confirma senha*: </label>
+          <label for="exampleFormControlInput1"> Confirma senha: </label>
           <input type="password" class="form-control" id="confirmasenha"
            formControlName="confirmaSenha"maxlength= "12" name="confirmaSenha"placeholder="Confirme sua senha "required>
             
