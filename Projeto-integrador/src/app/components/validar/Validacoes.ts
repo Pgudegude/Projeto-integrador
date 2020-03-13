@@ -50,21 +50,34 @@ export class Validacoes {
 
       static conferirSenha(controle: AbstractControl) {
         let senha = controle.get('senha').value;
-        let confirmarSenha = controle.get('confirmarSenha').value;
+        let confirmarSenha = controle.get('confirmaSenha').value;
         
     
         if (senha === confirmarSenha) return null;
     
-        controle.get('confirmarSenha').setErrors({ senhasNaoCoincidem: true });
+        controle.get('confirmaSenha').setErrors({ senhasNaoCoincidem: true });
       }
 
       static conferirEmail(controle: AbstractControl) {
         let email = controle.get('email').value;
-        let confirmarEmail = controle.get('confirmarEmail').value;
+        let confirmarEmail = controle.get('confirmaEmail').value;
     
         if (email === confirmarEmail) return null;
     
-        controle.get('confirmarEmail').setErrors({ emailNaoCoincide: true });
+        controle.get('confirmaEmail').setErrors({ emailNaoCoincide: true });
       }
+      static MaiorQue18Anos(controle: AbstractControl) {
+        const nascimento = controle.value;
+        const [ano, mes, dia] = nascimento.split('-');
+        const hoje = new Date();
+        const dataNascimento = new Date(ano, mes, dia, 0, 0, 0);
+        const tempoParaTeste = 1000 * 60 * 60 * 24 * 365 * 18; //18 anos em mili segundos...
+    
+        if (hoje.getTime() - dataNascimento.getTime() >= tempoParaTeste)
+          return null;
+    
+        return { menorDeIdade: true };
+      }
+      
 
 }

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
@@ -12,8 +11,9 @@ import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import{HttpClientModule} from "@angular/common/http"
 import { from } from 'rxjs';
-import { EnderecoComponent } from './components/endereco/endereco.component';
 import { NgxViacepModule } from '@brunoc/ngx-viacep';
+
+
 
 
 
@@ -26,7 +26,7 @@ import { NgxViacepModule } from '@brunoc/ngx-viacep';
     ContatoComponent,
     SobreComponent,
     CadastroComponent,
-    EnderecoComponent
+    
     
     
   ],
@@ -37,7 +37,8 @@ import { NgxViacepModule } from '@brunoc/ngx-viacep';
     FormsModule,
     HttpClientModule,
     NgxViacepModule,
-    FormsModule
+    HttpClientModule,
+  
 
   ],
   providers: [],

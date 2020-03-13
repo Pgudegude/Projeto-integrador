@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { SobreComponent} from './components/sobre/sobre.component'
 import {CadastroComponent} from './components/cadastro/cadastro.component'
+import{CompraFinalizadaComponent} from './components/compra-finalizada/compra-finalizada.component'
+  import { from } from 'rxjs';
 
 const routes: Routes = [
     {
@@ -21,6 +23,10 @@ const routes: Routes = [
     {
       path:"cadastro",
       component:CadastroComponent
+    },
+    {
+      path:"final",
+      component:CompraFinalizadaComponent
     }
 
   ];

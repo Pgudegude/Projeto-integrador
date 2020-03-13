@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnderecoComponent } from './endereco.component';
+import { CompraFinalizadaComponent } from './compra-finalizada.component';
 
-describe('EnderecoComponent', () => {
-  let component: EnderecoComponent;
-  let fixture: ComponentFixture<EnderecoComponent>;
+describe('CompraFinalizadaComponent', () => {
+  let component: CompraFinalizadaComponent;
+  let fixture: ComponentFixture<CompraFinalizadaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnderecoComponent ]
+      declarations: [ CompraFinalizadaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EnderecoComponent);
+    fixture = TestBed.createComponent(CompraFinalizadaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Validacoes } from '../validar/Validacoes';
-import { HttpClient } from '@angular/common/http';
+import{Endereco} from "../models/Endereco";
+import { CepService } from 'src/app/cep.service';
+import { Cliente } from '../models/cliente';
+
+
+
 
 
 @Component({
@@ -12,37 +17,53 @@ import { HttpClient } from '@angular/common/http';
 export class CadastroComponent implements OnInit {
   
   formCadastro: FormGroup;
+ 
+  
+  constructor(
+    private formBuilder: FormBuilder,
+    private CEP: CepService
+  ) { 
+    this.formCadastro = this.enviarCadastro(new Cliente())
+  }
+   endereco: Endereco = new Endereco("","","","","","")
 
-  constructor(private formBuilder: FormBuilder,
-    private http:HttpClient,
-      
-    ) { }
+
 
   ngOnInit(): void {
     this.criarCadastro();
   }
-  enviarCadastro() {
-    const dadosFormulario = this.formCadastro.value;
-    dadosFormulario.nomeCompleto,
-    dadosFormulario.cpf,
-    dadosFormulario.dataDeNascimento,
-    dadosFormulario.telefone,
-    dadosFormulario.cep,
-    dadosFormulario.logradouro,
-    dadosFormulario.cidade,
-    dadosFormulario.bairro,
-    dadosFormulario.complemento,
-    dadosFormulario.estado,
-    dadosFormulario.email,
-    dadosFormulario.confirmaEmail,
-    dadosFormulario.senha,
-    dadosFormulario.confirmaSenha 
+  //envia os dados do formulario
+  enviarCadastro(cliente: Cliente) {
+    return new FormGroup({
+    nomeCompleto: new FormControl(cliente.nomeCompleto),
+    cpf: new FormControl(cliente.cpf),
+      dataDeNascimento: new FormControl (cliente.dataDeNascimento),
+      telefone: new FormControl(cliente.telefone),
+      cep: new FormControl(cliente.cep),
+      endereco: new FormControl(cliente.endereco),
+      cidade: new FormControl(cliente.cidade),
+      bairro: new FormControl(cliente.bairro),
+      complemento: new FormControl(cliente.complemento),
+      estado: new FormControl(cliente.estado),
+      email: new FormControl(cliente.email),
+      confirmaEmail: new FormControl(cliente.confirmaEmail),
+      senha: new FormControl (cliente.senha),
+      confirmaSenha: new FormControl(cliente.confirmaSenha)
+    })
 
-    alert(`O usuário ${dadosFormulario.nomeUsuario}foi cadastrado com sucesso. \n Dados: ${JSON.stringify(dadosFormulario)}`);
-    console.log(dadosFormulario)
-    this.formCadastro.reset();
+    // alert(`O usuário ${dadosFormulario.nomeUsuario}foi cadastrado com sucesso. \n Dados: ${JSON.stringify(dadosFormulario)}`);
+    // console.log(dadosFormulario)
+     
 
   }
+
+  enviarDadosCliente(){
+    console.log("estou enviando");
+    this.formCadastro.reset();
+    
+  }
+
+  //Valida os campos
   criarCadastro() {
     this.formCadastro = this.formBuilder.group({
 
@@ -63,63 +84,64 @@ export class CadastroComponent implements OnInit {
 
       dataDeNascimento: ["",
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validacoes.MaiorQue18Anos
         ])],
-   
+
 
       telefone: ["",
         Validators.compose([
-          Validators.required,
-          Validators.max(10)
+          Validators.required
+
         ])],
 
       cep: ["",
         Validators.compose([
-          Validators.required,
-          Validators.max(8)
+          Validators.required
+
         ])],
 
-      logradouro: ["",
+      endereco: ["",
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])],
 
       cidade: ["",
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])],
 
       bairro: ["",
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])],
 
       complemento: ["",
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])],
 
       estado: ["",
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])],
-        // numero: ["",
-        // Validators.compose([
-        //   Validators.required,
-        // ])],
+      // numero: ["",
+      // Validators.compose([
+      //   Validators.required,
+      // ])],
 
-      email: ["", 
+      email: ["",
         Validators.compose([
-          Validators.email,
+          Validators.email
         ])],
 
       confirmaEmail: ["",
         Validators.compose([
-          Validators.email,
+          Validators.email
         ])],
       conferirEmail: Validacoes.conferirEmail,
 
-      senha: ["", 
+      senha: ["",
         Validators.compose([
           Validators.required,
           Validators.minLength(8),
@@ -138,55 +160,84 @@ export class CadastroComponent implements OnInit {
   }
 
   
+
+
   //os gets irao mostrar a informação para o usuario
-  get nomeCompleto() {
-    return this.formCadastro.get('nomeCompleto');
-  }
-  get cpf() {
-    return this.formCadastro.get('cpf');
+  // get nomeCompleto() {
+  //   return this.formCadastro.get('nomeCompleto');
+  // }
+  // get cpf() {
+  //   return this.formCadastro.get('cpf');
+  // }
+
+  // get dataDeNascimento() {
+  //   return this.formCadastro.get('dataDeNascimento');
+  // }
+  // get telefone() {
+  //   return this.formCadastro.get('telefone');
+  // }
+  // get cep() {
+  //   return this.formCadastro.get('cep');
+  // }
+  // get endereco() {
+  //   return this.formCadastro.get('endereco');
+  // }
+
+  // get cidade() {
+  //   return this.formCadastro.get('cidade');
+  // }
+
+  // get bairro() {
+  //   return this.formCadastro.get('bairro');
+  // }
+  // get complemento() {
+  //   return this.formCadastro.get('complemento');
+  // }
+
+  // get estado() {
+  //   return this.formCadastro.get('estado');
+  // }
+
+  // get email() {
+  //   return this.formCadastro.get('email');
+  // }
+  // get confirmaEmail() {
+  //   return this.formCadastro.get('email');
+  // }
+
+  // get senha() {
+  //   return this.formCadastro.get('senha');
+  // }
+
+  // get confirmaSenha() {
+  //   return this.formCadastro.get('confirmaSenha');
+  // }
+  capturarCEP(){
+    this.CEP.getCep(this.formCadastro.value).subscribe((data)=>{
+      this.endereco.setEndereco(data.cep,data.logradouro,data.bairro,data.uf,data.uf)
+      this.formCadastro.controls['endereco'].patchValue(this.endereco.endereco);
+      this.formCadastro.controls['bairro'].patchValue(this.endereco.bairro);
+      this.formCadastro.controls['estado'].patchValue(this.endereco.estado);
+      this.formCadastro.controls['cidade'].patchValue(this.endereco.cidade);
+    })
   }
 
-  get dataDeNascimento() {
-    return this.formCadastro.get('dataDeNascimento');
-  }
-  get telefone () {
-    return this.formCadastro.get('telefone');
-  }
-  get cep() {
-    return this.formCadastro.get('cep');
-  }
-  get endereco() {
-    return this.formCadastro.get('endereco');
-  }
-
-  get cidade() {
-    return this.formCadastro.get('cidade');
-  }
-
-  get bairro() {
-    return this.formCadastro.get('bairro');
-  }
-  get complemento() {
-    return this.formCadastro.get('complemento');
-  }
-
-  get estado() {
-    return this.formCadastro.get('estado');
-  }
-
-  get email() {
-    return this.formCadastro.get('email');
-  }
-  get confirmaEmail() {
-    return this.formCadastro.get('email');
-  }
-
-  get senha() {
-    return this.formCadastro.get('senha');
-  }
   
-  get confirmaSenha() {
-    return this.formCadastro.get('confirmaSenha');
-  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
