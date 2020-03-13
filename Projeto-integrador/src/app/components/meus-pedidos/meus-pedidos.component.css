@@ -1,0 +1,10 @@
+.linha-vertical {
+    border-left: 1px solid;
+    box-sizing: border-box;
+   }
+
+   main div {
+       height: 70vh;
+       width: 100%;
+   }
+   

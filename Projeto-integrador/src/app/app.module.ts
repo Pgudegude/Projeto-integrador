@@ -19,7 +19,8 @@ import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarrosselComponent } from './components/carrossel/carrossel.component';
 import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
     SobreComponent,
     CadastroComponent,
     CarrosselComponent,
+    MeusPedidosComponent,
     
     
   ],
