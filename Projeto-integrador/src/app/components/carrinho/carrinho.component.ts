@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder,FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
+import { ROUTES } from '../../app-routing.module';
 
 @Component({
   selector: 'app-carrinho',
@@ -18,11 +19,11 @@ export class CarrinhoComponent implements OnInit {
   totalDesconto: any;
   
   formularioQuantidade: FormGroup;
-
+  
   public produtos: Produtos[] = [];
-
+  
   @Input() items:Produtos;
-
+  
   
   freteR = () => {
     let quant = this.formularioQuantidade.value.quantidade
@@ -50,16 +51,16 @@ export class CarrinhoComponent implements OnInit {
       this.totalDesconto = (this.total  + 20.00).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
-
+  
   calcularTotal(){
     let quant = this.formularioQuantidade.value.quantidade
     if(this.total != ""){
-    this.total = this.preco = (75.42 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-    this.desconto = (0.7 * 75.42 * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-    this.totalDesconto = ((75.42 * quant )-(0.7 * 75.42 * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.total = this.preco = (75.42 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.desconto = (0.7 * 75.42 * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = ((75.42 * quant )-(0.7 * 75.42 * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+    }
   }
-  }
-
+  
   constructor(private fb: FormBuilder) { }
   
   
@@ -77,5 +78,10 @@ export class CarrinhoComponent implements OnInit {
   mostrandoQuantidade(){
     this.qtd = (this.formularioQuantidade.value.quantidade)    
   }
-
+  
+    removerProduto(){
+      
+      
+    }
+      
 }

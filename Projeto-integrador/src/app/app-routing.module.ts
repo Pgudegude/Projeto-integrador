@@ -10,7 +10,7 @@ import { SobreComponent } from './components/sobre/sobre.component'
 import { CadastroComponent } from './components/cadastro/cadastro.component'
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 
-const routes: Routes = [
+export const ROUTES: Routes = [
 
   {
     path: "",
@@ -59,7 +59,7 @@ pathMatch: "full"
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(ROUTES)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

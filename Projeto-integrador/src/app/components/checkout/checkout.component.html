@@ -1,30 +1,30 @@
 
 <main class="container">
-    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarCheckout()">
+    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
                 Informações Pessoais
             </header>
             <div class="p-2">
                 <div class="form-group">
-                    <label for="nomeUsuario">Nome Completo: *</label>
+                    <label for="nomeUsuario">Nome Completo:</label>
                     <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
-                        placeholder="Digite seu nome completo" required formControlName="nomeUsuario">
+                        placeholder="Digite seu nome completo" required formControlName="nome">
                 </div>
                 <div class="form-group">
                     <label for="telUsuario">Telefone:</label>
                     <input class="form-control" type="tel" name="telUsuario" maxlength="11" id="telUsuario"
-                        placeholder="DD-XXXXXXXXX" required formControlName="telUsuario">
+                        placeholder="DD-XXXXXXXXX" required formControlName="telefone">
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP:</label>
-                    <input class="form-control" maxlength="8" type="text" name="cep" id="cep"
+                    <input class="form-control" maxlength="8" (blur)="capturarCEP()" type="text" name="cep" id="cep"
                             placeholder="Digite seu CEP" required formControlName="cep">
                     </div>
                     <div class="form-group">
-                        <label for="endEnterga">Endereço:</label>
-                        <input class="form-control" type="text" name="endEnterga" id="endEnterga"
-                            placeholder="Digite seu Endereço" required formControlName="endEnterga">
+                        <label for="endEntrega">Endereço:</label>
+                        <input class="form-control" type="text" name="endEnterga" id="endEntrega"
+                            placeholder="Digite seu Endereço" required formControlName="endereco">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -46,22 +46,45 @@
                     <div class="form-group">
                         <label for="bairro">Bairro:</label>
                         <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
-                            required>
+                        formControlName="bairro"  required>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="cidade">Cidade:</label>
                             <input class="form-control" type="text" name="cidade" id="cidade"
-                                placeholder="Digite sua cidade" required>
+                                placeholder="Digite sua cidade" formControlName="cidade" required>
                         </div>
                         <div class=" col-6 form-group">
                             <label for="estado">Estado:</label>
-                            <select id='estado' name="estado" class="form-control">
+                            <select id='estado' name="estado" formControlName="estado" class="form-control">
                                 <option value="" disabled selected>Estado</option>
-                                <option value="SP">SP</option>
-                                <option value="RJ">RJ</option>
-                                <option value="MG">MG</option>
-                                <option value="BA">BA</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
                             </select>
                         </div>
                     </div>    
@@ -156,7 +179,7 @@
                     </tr>
                 </table>
                 <div class="d-flex justify-content-center">
-                    <button type="button" data-toggle="modal" data-target="#compraFinalizada"
+                    <button type="button" data-toggle="modal"  data-target="#compraFinalizada"
                         class="btn btn-success btn-block">Finalizar Compra</button>
                 </div>
             </div>

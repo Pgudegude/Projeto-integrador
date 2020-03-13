@@ -2,8 +2,8 @@
     <h2>meu carrinho</h2>
     <hr>
     <div class="row mt-2">
-        <!-- <!-- <app-lista-produtos *ngFor="let item of items" [item]=item></app-lista-produtos>    --> -->
-        <div class="col-md-8">
+        <!-- <app-lista-produtos *ngFor="let item of items" [item]=item></app-lista-produtos>    -->
+        <div class="col-8">
             <div class="col-12">
                 <div class="row">
                     <div class="col-md-3">
@@ -42,6 +42,8 @@
                 </div>
                 <hr>
             </div>
+        </div>
+
 
         <div id="cart" class="col-md-4">
             <div class="card-header">
@@ -70,16 +72,16 @@
                         <span>R$ {{rapido}}{{normal}}</span>
                     </div>
                 </div>
-                        <div class="form-group row mt-2 text-center">
-                            <div class="col-6">
-                                <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                                <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
-                            </div>
-                            <div id="col-6">
-                                <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                                <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
-                            </div>
-                        </div>
+                <div class="form-group row mt-2 text-center">
+                    <div class="col-6">
+                        <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
+                        <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
+                    </div>
+                    <div id="col-6">
+                        <label for="freteNormal">Frete normal <br> R$ 20,00</label>
+                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
+                    </div>
+                </div>
                 <hr>
                 <h5>total</h5>
                 <div class="text-right">
@@ -87,7 +89,7 @@
                     <h5>{{totalDesconto}} em 1x no cartão</h5>
                 </div>
                 <hr>
-                <a routerLink="checkout"><button type="button" class="btn btn-success btn-block "><img
+                <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
                             src="../../../assets/Imagem/buy.png" alt=""> continuar</button></a>
             </div>
 
