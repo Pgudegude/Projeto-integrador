@@ -2,7 +2,7 @@
     <h2>meu carrinho</h2>
     <hr>
     <div class="row mt-2">
-        <!-- <app-lista-produtos *ngFor="let item of items" [item]=item></app-lista-produtos>    -->
+        <!-- <app-lista-produtos  [item]=item></app-lista-produtos>    -->
         <div class="col-8">
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
@@ -19,22 +19,30 @@
                     <div class="col-md-1">
                         <h6>Qtd:</h6>
                         <form [formGroup]="formularioQuantidade">
-                            <input type=image src="../../../assets/Imagem/rectangle.png" (click)="diminuir(item)"  >
-                            <input [ngClass]="{'arredondar':true}" [disabled] value="1" [(ngModel)]="item.quantidade" formControlName='quantidade' (change)="mostrandoQuantidade()" (change)="calcularTotal()">
-                                <input type=image src="../../../assets/Imagem/more.png" (click)="aumentar(item)"   >
-                            <small class="text-muted" (click)="excluirProduto(item.produto)">
-                                <a id="remove">Remover</a></small>
+                            <select (change)="mostrandoQuantidade()" (change)="calcularTotal()"
+                                formControlName='quantidade' style="width: 99">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <small><a (click)="excluirProduto(item.produto)" id="remove">Remover</a></small>
                         </form>
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>{{item.produto.preco}}</strong></p>
+                        <p><strong>{{preco}}</strong></p>
                     </div>
                 </div>
                 <hr>
             </div>
         </div>
-
 
         <div id="cart" class="col-md-4">
             <div class="card-header">
@@ -81,9 +89,8 @@
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
-                            src="../../../assets/Imagem/buy.png" alt=""> continuar</button></a>
+                src="../../../assets/Imagem/buy.png" alt="">continuar</button></a>
             </div>
-
         </div>
     </div>
 </div>

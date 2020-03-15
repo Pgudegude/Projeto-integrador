@@ -3,13 +3,13 @@
 <app-menu></app-menu>
 <main>
     <div class="container-fluid">
-        <div id="cardCentro" class="row">
+        <div id="cardCentro" class="row" (click)="selecionado(produto)"  *ngFor="let produto od Produtos">
             <div class="col-md-2 card p-2">
                 <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/palhaço.png" alt="Card image cap"
                         title="Bola Palhaço"></a>
                 <div class="card-body">
                     <h5 class="card-title"></h5>
-                    <!-- <p><s>De: R$ 98,36</s></p> -->
+                    <p><s>De: R$ 98,36</s></p>
                     <h4>Por: R$ </h4>
                 </div>
             </div>

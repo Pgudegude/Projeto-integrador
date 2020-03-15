@@ -29,7 +29,7 @@ export const ROUTES: Routes = [
     component: ListaProdutosComponent
   },
   {
-    path: "home/listaProduto/produto",
+    path: "home/listaProduto/:id",
     component: ProdutoComponent
   },
   {

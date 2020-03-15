@@ -10,36 +10,37 @@ import { Carrinho } from '../models/carrinho';
 })
 export class CarrinhoComponent implements OnInit {
   
+  @Input() items:Produtos;
+  
   desconto: any = "70%"
   rapido: any ;
   normal: any ;
-  preco: any = "R$ 75,42";
   total: any = "R$ 46,32";
   qtd: any;   
   totalDesconto: any;
+  totalFrete: any;
   
-  formularioQuantidade: FormGroup;
+  formularioQuantidade: FormGroup ;
   
   carrinho: Carrinho[]=[];
   
   constructor() { 
     this.carrinho.push(
-      new Carrinho(new Produtos("Bola Diamante",343,72.30,"Kennedy",67),5),
-      new Carrinho(new Produtos("Bola Diamante",343,72.30,"jonas",47),6),
-      new Carrinho(new Produtos("Bola Diamante",343,72.30,"fabio",7),8),
-      new Carrinho(new Produtos("Bola Diamante",343,72.30,"fabio",67),8),
+      new Carrinho(new Produtos(1,"Bola 1",343,72.30,"Kennedy",67),5),
+      new Carrinho(new Produtos(2,"Bola 2",343,72.30,"jonas",47),6),
+      new Carrinho(new Produtos(3,"Bola 3",343,72.30,"fabio",7),8),
+      new Carrinho(new Produtos(4,"Bola 4",343,72.30,"fabio",67),8),
       )
       this.carrinho.forEach(item =>{
         this.total += item.produto.preco * item.quantidade;
       })
     }
     
-    @Input() items:Produtos;
     
     
     freteR = () => {
       let quant = this.formularioQuantidade.value.quantidade
-      this.total = ((75.42 * quant )-(29.10 * quant))
+      this.total = ((this.items.preco * quant )-(29.10 * quant))
       if(this.normal === "20,00"){
         this.normal = ""
         this.rapido = "50,00"
@@ -53,7 +54,7 @@ export class CarrinhoComponent implements OnInit {
   
   freteN = () => {
     let quant = this.formularioQuantidade.value.quantidade
-    this.total = ((75.42 * quant )-(29.10 * quant))
+    this.total = ((this.items.preco * quant )-(29.10 * quant))
     if(this.rapido === "50,00"){
       this.rapido = ""
       this.normal = "20,00"
@@ -67,9 +68,9 @@ export class CarrinhoComponent implements OnInit {
   calcularTotal(){
     let quant = this.formularioQuantidade.value.quantidade
     if(this.total != ""){
-      this.total = this.preco = (75.42 * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-      this.desconto = (0.7 * 75.42 * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-      this.totalDesconto = ((75.42 * quant )-(0.7 * 75.42 * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.total = (this.items.preco * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.desconto = (0.7 * this.items.preco * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = ((this.total )-(0.7 * this.items.preco * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
   
@@ -77,32 +78,23 @@ export class CarrinhoComponent implements OnInit {
   
   
   quantidade: any[];
-  // criandoFormulario(){
-  //   this.formularioQuantidade = this.fb.group({
-  //     quantidade:[]
-  //   })
-  // }
+  criandoFormulario(){
+    this.formularioQuantidade = this.fb.group({
+      quantidade:[]
+    })
+  }
   
   ngOnInit(): void {
-    // this.criandoFormulario();
+    this.criandoFormulario();
   }
   
   mostrandoQuantidade(){
     this.qtd = (this.formularioQuantidade.value.quantidade)    
   }
 
-  aumentar(carrinho){
-    carrinho.qtd++;
-    this.total += carrinho.produto.valor
-  }
-  diminuir(carrinho){
-    if(carrinho.qtd > 1){
-      carrinho.qtd--;      
-      this.total -= carrinho.produto.valor
-    }
-  }
   excluirProduto(produto){
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
+    
   }
       
 }
