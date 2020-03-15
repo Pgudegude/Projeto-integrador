@@ -6,47 +6,45 @@
       <header class="header-cadastro-formulario p-2">
         <h3> Dados pessoais</h3>
       </header>
-      <div >
+      <div>
         <div class="p-2">
           <div class="form-group">
             <label for="nomeUsuario">Nome completo: </label>
             <input class="form-control" type="text" id="nomeUsuario" name="nomeCompleto"
-              placeholder="Digite o nome completo" required formControlName="nomeCompleto"
-              >
-              
+              placeholder="Digite o nome completo" required formControlName="nomeCompleto">
+
 
           </div>
           <div class="form-group">
             <label for="cpfUsuario">CPF: </label>
-            <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf"
-              formControlName="cpf" maxlength="11" placeholder="Ex: 00000000000"required>
-              
-              
-          </div>
-          
-          <div class="form-group">
-            <label for="nascimentoUsuario">Data de Nascimento: </label>
-            <input class="form-control " type="date" id="nascimentoUsuario" 
-            formControlName="dataDeNascimento"name="dataDeNascimento" required>
-              
+            <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf" formControlName="cpf"
+              maxlength="11" placeholder="Ex: 00000000000" required>
+
 
           </div>
-          
+
+          <div class="form-group">
+            <label for="nascimentoUsuario">Data de Nascimento: </label>
+            <input class="form-control " type="date" id="nascimentoUsuario" formControlName="dataDeNascimento"
+              name="dataDeNascimento" required>
+
+
+          </div>
+
           <div class="form-group row">
-            
+
             <div class="col-md-6">
               <label for="telefone">Telefone: </label>
-              <input class="form-control cpf-mask" type="tel" id="telefone" name="telefone"
-                formControlName="telefone" maxlength="10" placeholder="Ex.: 00000000"required>
-                 
+              <input class="form-control cpf-mask" type="tel" id="telefone" name="telefone" formControlName="telefone"
+                maxlength="10" placeholder="Ex.: 00000000" required>
+
             </div>
             <div class="col-md-6">
               <label for="cepUsuario">CEP: </label>
-              <input  class="form-control cep-mask" type="tel" id="cepUsuario" 
-              formControlName="cep" name="cep" placeholder="ex: 00000000" required
-              maxlength= "8" (blur)="capturarCEP()">
-                 
-        
+              <input class="form-control cep-mask" type="tel" id="cepUsuario" formControlName="cep" name="cep"
+                placeholder="ex: 00000000" required maxlength="8" (blur)="capturarCEP()">
+
+
 
             </div>
           </div>
@@ -57,18 +55,16 @@
 
             <div class="col-md-6">
               <label for="logradouro">Endereço: </label>
-              <input class="form-control" type="text" id="endUsuario" 
-              name="logradouro" formControlName="endereco"placeholder="Digite seu endereço"
-              required >
+              <input class="form-control" type="text" id="endUsuario" name="logradouro" formControlName="endereco"
+                placeholder="Digite seu endereço" required>
 
-                
+
             </div>
 
             <div class="col-md-6">
               <label for="cidUsuario">Cidade: </label>
-              <input class="form-control" type="text" id="cidUsuario" name="cidade"
-                placeholder="Digite seu Cidade" formControlName="cidade"
-                required >
+              <input class="form-control" type="text" id="cidUsuario" name="cidade" placeholder="Digite seu Cidade"
+                formControlName="cidade" required>
             </div>
 
           </div>
@@ -77,19 +73,19 @@
             <div class="col-md-5">
               <label for="bairroUsuario">Bairro: </label>
               <input class="form-control" type="text" id="bairroUsuario" name="bairro" placeholder="Bairro"
-                formControlName="bairro"required>
+                formControlName="bairro" required>
             </div>
             <div class="col-md-2">
               <label for="numeroUsuario">Nº: </label>
-              <input class="form-control" type="text" id="numeroUsuario" placeholder="123"
-                formControlName="numero"name="numero" required>
+              <input class="form-control" type="text" id="numeroUsuario" placeholder="123" formControlName="numero"
+                name="numero" required>
             </div>
-         
+
 
             <div class="col-md-3">
               <label for="compleUsuario">Complemento: </label>
               <input class="form-control" type="text" id="compleUsuario" name="complemento" placeholder="Ex: casa 4"
-                formControlName="complemento"required>
+                formControlName="complemento" required>
 
             </div>
 
@@ -97,36 +93,36 @@
               <label for="estado">Estado:</label>
               <select required class="form-control" id="estadoUsuario" formControlName="estado">
                 <option value="" disabled selected>
-                  
 
-                  <option value="" disabled selected></option>
-                  <option value="AC">AC</option>
-                  <option value="AL">Al</option>
-                  <option value="AP">AP</option>
-                  <option value="AM">AM</option>
-                  <option value="BA">BA</option>
-                  <option value="CE">CE</option>
-                  <option value="DF">DF</option>
-                  <option value="ES">ES</option>
-                  <option value="GO">GO</option>
-                  <option value="MA">MA</option>
-                  <option value="MT">MT</option>
-                  <option value="MS">MS</option>
-                  <option value="MG">MG</option>
-                  <option value="PA">PA</option>
-                  <option value="PB">PB</option>
-                  <option value="PR">PR</option>
-                  <option value="PE">PE</option>
-                  <option value="PI">PI</option>
-                  <option value="RJ">RJ</option>
-                  <option value="RN">RN</option>
-                  <option value="RS">RS</option>
-                  <option value="RO">RO</option>
-                  <option value="RR">RR</option>
-                  <option value="SC">SC</option>
-                  <option value="SP">SP</option>
-                  <option value="SE">SE</option>
-                  <option value="TO">TO</option>
+
+                <option value="" disabled selected></option>
+                <option value="AC">AC</option>
+                <option value="AL">Al</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
               </select>
 
             </div>
@@ -144,43 +140,53 @@
 
         <div class="form-group">
           <label for="emailUsuario"> E-mail: </label>
-          <input type="email" class="form-control" id="emailUsuario" formControlName="email"
-           name="email" placeholder="Digite seu e-mail "required>
+          <input type="email" class="form-control" id="emailUsuario" formControlName="email" name="email"
+            placeholder="Digite seu e-mail " required>
 
         </div>
 
         <div class="form-group">
           <label for="confirmarEmail"> Confirmar e-mail: </label>
           <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
-            name="confirmaEmail"formControlName="confirmaEmail" required>
-            
+            name="confirmaEmail" formControlName="confirmaEmail" required>
+            <div *ngIf="!confirmaEmail.pristine && confirmaEmail.errors">
+              <p class="text-danger" *ngIf="confirmaEmail.errors.emailErrado">
+                  Emails não coincidem!
+              </p>
+          </div>
+
         </div>
 
 
         <div class="form-group">
           <label for="exampleFormControlInput1"> Senha: </label>
-          <input type="password" class="form-control b" id="senha"
-           placeholder=" Digite sua senha"maxlength= "12"name="senha"formControlName="senha"required>
-           
+          <input type="password" class="form-control b" id="senha" placeholder=" Digite sua senha" maxlength="12"
+            name="senha" formControlName="senha" required>
+
         </div>
 
 
         <div class="form-group">
           <label for="exampleFormControlInput1"> Confirma senha: </label>
-          <input type="password" class="form-control" id="confirmasenha"
-           formControlName="confirmaSenha"maxlength= "12" name="confirmaSenha"placeholder="Confirme sua senha "required>
-           
+          <input type="password" class="form-control" id="confirmasenha" formControlName="confirmaSenha" maxlength="12"
+            name="confirmaSenha" placeholder="Confirme sua senha " required>
+          <div *ngIf="!confirmaSenha.pristine && confirmaSenha.errors">
+            <p class="text-danger" *ngIf="confirmaSenha.errors.senhaErrada">
+              Senhas diferentes!
+            </p>
+          </div>
+
+
         </div>
         <div class="d-flex justify-content-center">
           <div class="d-flex justify-content-end">
-            <button id="botao"class="form-control" name="BTEnvia" 
-            [disabled]="!formCadastro.valid" >Cadastrar</button>
+            <button id="botao" class="form-control" name="BTEnvia" [disabled]="!formCadastro.valid">Cadastrar</button>
 
           </div>
         </div>
 
       </div>
-      
+
     </div>
 
 

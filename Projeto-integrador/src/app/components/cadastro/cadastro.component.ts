@@ -133,12 +133,14 @@ export class CadastroComponent implements OnInit {
 
       email: ["",
         Validators.compose([
-          Validators.email
+          Validators.email,
+          Validators.required
         ])],
 
       confirmaEmail: ["",
         Validators.compose([
-          Validators.email
+          Validators.email,
+          Validators.required,
         ])],
 
 
@@ -146,26 +148,32 @@ export class CadastroComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(12),
+          Validators.maxLength(12)
 
         ])],
 
       confirmaSenha: ["",
         Validators.compose([
-          Validators.required,
+         
           Validators.minLength(8),
           Validators.maxLength(12)
+          
 
         ])]
     }, {
-      conferirEmail: Validacoes.conferirEmail,
-      Validators: Validacoes.conferirSenha
-    }
-    )
+      conferirEmail: Validacoes.ConferirEmail,
+      validators: Validacoes.ConferirSenha
+    });
+    
   }
 
 
-
+  get confirmaSenha() {
+    return this.formCadastro.get('confirmaSenha');
+  }
+  get confirmaEmail() {
+    return this.formCadastro.get('confirmaEmail');
+  }
 
 capturarCEP(){
   this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
