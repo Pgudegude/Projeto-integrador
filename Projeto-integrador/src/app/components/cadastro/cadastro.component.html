@@ -1,7 +1,7 @@
 <main id="container">
 
 
-  <form method="POST" class="form-row mt-5 p-4" [formGroup]="formCadastro" (ngSubmit)="enviarDadosCliente()">
+  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro" (ngSubmit)="enviarDadosCliente()">
     <div class="col-md-6 ">
       <header class="header-cadastro-formulario p-2">
         <h3> Dados pessoais</h3>
@@ -19,7 +19,8 @@
           <div class="form-group">
             <label for="cpfUsuario">CPF: </label>
             <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf"
-              formControlName="cpf" maxlength="11" placeholder="EX:012345678901"required>
+              formControlName="cpf" maxlength="11" placeholder="Ex: 00000000000"required>
+             <label class="label"> <strong>digite somente os numeros do CPF</strong> </label> 
               
           </div>
           
@@ -36,14 +37,15 @@
             <div class="col-md-6">
               <label for="telefone">Telefone: </label>
               <input class="form-control cpf-mask" type="tel" id="telefone" name="telefone"
-                formControlName="telefone" maxlength="10" placeholder="Ex.: 0000-0000"required>
-  
+                formControlName="telefone" maxlength="10" placeholder="Ex.: 00000000"required>
+                <label class="label"> <strong>digite somente os numeros do Telefone</strong> </label>  
             </div>
             <div class="col-md-6">
               <label for="cepUsuario">CEP: </label>
               <input  class="form-control cep-mask" type="tel" id="cepUsuario" 
-              formControlName="cep" name="cep" placeholder="00000-000" required
+              formControlName="cep" name="cep" placeholder="ex: 00000000" required
               maxlength= "8" (blur)="capturarCEP()">
+              <label class="label"> <strong>digite somente os numeros do CEP</strong> </label>       
         
 
             </div>
@@ -58,6 +60,7 @@
               <input class="form-control" type="text" id="endUsuario" 
               name="logradouro" formControlName="endereco"placeholder="Digite seu endereço"
               required >
+
                 
             </div>
 
@@ -143,20 +146,22 @@
           <label for="emailUsuario"> E-mail: </label>
           <input type="email" class="form-control" id="emailUsuario" formControlName="email"
            name="email" placeholder="Digite seu e-mail "required>
+
         </div>
 
         <div class="form-group">
           <label for="confirmarEmail"> Confirmar e-mail: </label>
           <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
             name="confirmaEmail"formControlName="confirmaEmail" required>
+            <label class="label"> <strong>Digite o mesmo email</strong> </label> 
         </div>
 
 
         <div class="form-group">
           <label for="exampleFormControlInput1"> Senha: </label>
-          <input type="password" class="form-control" id="senha"
+          <input type="password" class="form-control " id="senha"
            placeholder=" Digite sua senha"maxlength= "12"name="senha"formControlName="senha"required>
-            
+           <label class="label"> <strong>Senha no minimo de 8 caracteres</strong> </label> 
         </div>
 
 
@@ -164,7 +169,7 @@
           <label for="exampleFormControlInput1"> Confirma senha: </label>
           <input type="password" class="form-control" id="confirmasenha"
            formControlName="confirmaSenha"maxlength= "12" name="confirmaSenha"placeholder="Confirme sua senha "required>
-            
+           <label class="label"> <strong>Digite a mesma senha</strong> </label> 
         </div>
         <div class="d-flex justify-content-center">
           <div class="d-flex justify-content-end">

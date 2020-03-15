@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl,} from '@angular/forms';
 import { Validacoes } from '../validar/Validacoes';
 import{Endereco} from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
+
 
 
 
@@ -51,14 +52,14 @@ export class CadastroComponent implements OnInit {
       confirmaSenha: new FormControl(cliente.confirmaSenha)
     })
 
-    // alert;
-    // console.log(dadosFormulario)
+    
+    alert(`O usuário ${cliente.nomeCompleto} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(cliente)}`);
      
 
   }
 
   enviarDadosCliente(){
-    console.log("estou enviando");
+    
     this.formCadastro.reset();
     
   }
@@ -145,7 +146,8 @@ export class CadastroComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(12)
+          Validators.maxLength(12),
+          
         ])],
 
       confirmaSenha: ["",
@@ -153,9 +155,11 @@ export class CadastroComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(12)
+          
         ])],
-      conferirSenha: Validacoes.conferirSenha
 
+      Validators: Validacoes.conferirSenha
+        
     })
   }
 
