@@ -55,7 +55,7 @@ export class Validacoes {
     
         if (senha === confirmarSenha) return null;
     
-        controle.get('confirmaSenha').setErrors({ senhasNaoCoincidem: true });
+        controle.get('confirmaSenha').setErrors({ senhaErrada: true });
       }
 
       static conferirEmail(controle: AbstractControl) {
