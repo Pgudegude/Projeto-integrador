@@ -40,10 +40,16 @@ const routes: Routes = [
     {
       path:"cadastro",
       component:CadastroComponent
+    }, {
+      path:"login/cadastro",
+      component:CadastroComponent
     },
     {
       path:"meusPedidos",
       component: MeusPedidosComponent
+    },{
+      path:"**",
+      component: HomeComponent
     }
   ];
   
