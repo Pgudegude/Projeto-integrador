@@ -17,6 +17,17 @@ export class CheckoutComponent implements OnInit {
   }
   endereco: Endereco = new Endereco("","","","","","","","")
 
+  total: any = "R$ 108.89";
+  valor: number = 108.89 ;
+
+
+  freteR = () => {
+      this.total = (108.89 + 50 ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
+
+  freteN = () => {
+    this.total = (108.89 + 20 ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
 
   formularioCheckout: FormGroup;
 

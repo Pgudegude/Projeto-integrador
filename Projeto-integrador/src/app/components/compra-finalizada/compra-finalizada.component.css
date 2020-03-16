@@ -1,0 +1,49 @@
+*{
+    font-family: Arial;
+    margin: 0;
+}
+h1{
+    text-align: center;
+    font-size: 18pt;
+
+}
+
+header{
+    padding-top: 40px;
+}
+
+.pedido{
+    text-align: center;
+    font-size: 14pt;
+}
+#concluido{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#botao{
+    margin-bottom:  20px;
+    width: 400px;
+}
+.info{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16pt;
+}
+.pedido{
+    margin-top: 20px;
+}
+p{
+    font-size: 11pt;
+}
+h5{
+    font-size: 14pt;
+}
+#end{
+    margin-top:5 ;
+
+}
+#informacao{
+    padding-top: 50px;
+}

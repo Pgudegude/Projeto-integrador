@@ -6,12 +6,12 @@
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="../../../assets/Imagem/psicodelica.png" class="card-img" alt="Bola Universo"
-                            title="Bola Universo">
+                        <img src="../../../assets/Imagem/bola diamante.png" class="card-img" alt="Bola Universo"
+                            title="Bola Diamante">
                     </div>
                     <div class="col-md-5">
                         <h6>Produto:</h6>
-                        <h6><strong>{{item.nome}}</strong></h6>
+                        <h6><strong>Bola Diamante</strong></h6>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
@@ -40,6 +40,7 @@
                     </div>
                 </div>
                 <hr>
+                
             </div>
         </div>
 
@@ -71,15 +72,15 @@
                     </div>
                 </div>escolha seu frete
                 <form [formGroup]="formularioFrete">
-                <div class="row mt-2 text-center">
-                        <div class="col-md-6">
+                <div class="row mt-2 ">
+                        <div class="col-md-6 ">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
-                            <input class="form-control" type="radio" formControlName="frete" name="frete" (click)="freteR()" value="50.0"
+                            <input class="form-control frete" type="radio" formControlName="frete" name="frete" (click)="freteR()" value="50.0"
                                 id="freteR">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <label for="freteNormal">normal <br> R$ 20,00</label>
-                            <input class="form-control" type="radio" value="20.0" formControlName="frete" (click)="freteN()" name="frete"
+                            <input class="form-control frete" type="radio" value="20.0" formControlName="frete" (click)="freteN()" name="frete"
                                 id="freteN">
                         </div>
                 </div>
@@ -91,7 +92,7 @@
                     <h5>{{totalComFrete}} em 1x no cartão</h5>
                 </div>
                 <hr>
-                <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
+                <a  [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block  "><img
                             src="../../../assets/Imagem/buy.png" alt="">continuar</button></a>
             </div>
         </div>

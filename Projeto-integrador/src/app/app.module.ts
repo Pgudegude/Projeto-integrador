@@ -16,9 +16,12 @@ import { MenuComponent } from './components/menu/menu.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-
-import {ROUTES} from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import {ROUTES} from './app-routing.module';
+import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
+
+
+
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { RouterModule } from '@angular/router';
     SobreComponent,
     CadastroComponent,
     CheckoutComponent,
+    MeusPedidosComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,11 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    HttpClientModule,
+    
     RouterModule.forRoot(ROUTES)
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

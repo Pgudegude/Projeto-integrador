@@ -2,15 +2,38 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
-import { ListaProdutosComponent } from "./components/lista-produtos/lista-produtos.component";
+import { SobreComponent} from './components/sobre/sobre.component'
+import {CadastroComponent} from './components/cadastro/cadastro.component'
+import{CompraFinalizadaComponent} from './components/compra-finalizada/compra-finalizada.component'
+  import { from } from 'rxjs';
+import { LoginComponent } from './components/login/login.component';
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ProdutoComponent } from './components/produto/produto.component';
-import { CarrinhoComponent } from "./components/carrinho/carrinho.component";
-import { LoginComponent } from './components/login/login.component'
-import { SobreComponent } from './components/sobre/sobre.component'
-import { CadastroComponent } from './components/cadastro/cadastro.component'
-import { CheckoutComponent } from "./components/checkout/checkout.component";
+import { ListaProdutosComponent } from './components/lista-produtos/lista-produtos.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 
 export const ROUTES: Routes = [
+    {
+      path: "",
+      component: HomeComponent
+    },
+    {
+      path: "contato",
+      component: ContatoComponent
+    },
+    {
+      path: "sobre",
+      component:SobreComponent
+    },
+    {
+      path:"cadastro",
+      component:CadastroComponent
+    },
+    {
+      path:"final",
+      component:CompraFinalizadaComponent
+    },
 
   {
     path: "",
@@ -22,7 +45,7 @@ export const ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path: "contato",
+    path: "home/contato",
     component: ContatoComponent
   }, {
     path: "home/listaProduto",
@@ -31,6 +54,13 @@ export const ROUTES: Routes = [
   {
     path: "home/listaProduto/:id",
     component: ProdutoComponent
+  },
+  {
+    path: "home/sobre",
+    component: SobreComponent
+  },{
+    path: "home/cadastro",
+    component: CadastroComponent
   },
   {
     path: "carrinho",
@@ -50,6 +80,14 @@ export const ROUTES: Routes = [
   {
     path: "carrinho/checkout",
     component: CheckoutComponent
+  },
+  {
+    path: "meusPedidos",
+    component: MeusPedidosComponent
+  },
+  {
+    path: "final/home",
+    component: HomeComponent
   },
   {
 path: "**",

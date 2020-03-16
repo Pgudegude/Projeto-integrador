@@ -3,7 +3,7 @@
     <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
-                Informações Pessoais
+                Dados para entrega
             </header>
             <div class="p-2">
                 <div class="form-group">
@@ -102,11 +102,11 @@
                 <div class="form-group row">
                     <div class="col-6">
                         <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                        <input type="radio" name="frete" value="50.0" id="freteRapido">
+                        <input type="radio" (click)="freteR()" name="frete" value="50.0" id="freteRapido">
                     </div>
                     <div class="col-6">
                         <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                        <input type="radio" value="20.0" name="frete" id="freteNormal">
+                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteNormal">
                     </div>
                 </div>
                 <h5 class="p-2">
@@ -175,11 +175,11 @@
                         <!-- <th scope="col">produto(s)</th> -->
                         <th scope="col">3</th>
                         <th scope="col">valor</th>
-                        <th scope="col">R$ 108,99</th>
+                        <th scope="col">{{total}}</th>
                     </tr>
                 </table>
                 <div class="d-flex justify-content-center">
-                    <button type="button" data-toggle="modal"  data-target="#compraFinalizada"
+                    <button type="button" [routerLink]="['/final']" data-toggle="modal"  data-target="#compraFinalizada"
                         class="btn btn-success btn-block">Finalizar Compra</button>
                 </div>
             </div>

@@ -8,12 +8,13 @@ interface ItensCart {
   viewValue: number
 }
 
+
+
 @Component({
   selector: 'app-carrinho',
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
-
 
 export class CarrinhoComponent implements OnInit {
 
@@ -44,10 +45,11 @@ export class CarrinhoComponent implements OnInit {
     {value: 10, viewValue: 10}
   ]
 
+    
   preco = 0;
   constructor(private fb: FormBuilder) {
     this.carrinho.push(
-      new Carrinho(new Produtos(1, "Bola 1", 3, 2.0, "Kennedy", 67), 1),
+      new Carrinho(new Produtos(1, "Bola Diamante", 3, 2.0, "Kennedy", 67), 1),
       new Carrinho(new Produtos(2, "Bola 2", 33, 2.0, "jonas", 47), 1),
       new Carrinho(new Produtos(3, "Bola 3", 9, 2.0, "fabio", 7), 1),
       new Carrinho(new Produtos(4, "Bola 4", 343, 2.0, "fabio", 67), 1),
@@ -69,14 +71,12 @@ export class CarrinhoComponent implements OnInit {
     console.log(this.totalComDesconto);
   }
 
-
   freteR = () => {
     this.frete = (50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     if (this.frete) {
       this.totalComFrete = (this.total - (this.total *0.7) + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     }
   }
-
 
   freteN = () => {
     this.frete = (20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -85,17 +85,6 @@ export class CarrinhoComponent implements OnInit {
       this.totalComFrete = (this.total - (this.total *0.7) + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     }
   }
-
-  // calcularTotal() {
-  //   let quant = this.formularioQuantidade.value.quantidade
-  //   if (this.total != 0) {
-  //     this.carrinho.forEach(item=>{
-  //       this.desconto = (this.total*0.7).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-  //       this.totalComDesconto = (this.total+this.formularioFrete.value-(this.desconto)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-
-  //     })
-  // }
-  // }
 
   frete: any
   quantidade: any[];
@@ -110,11 +99,8 @@ export class CarrinhoComponent implements OnInit {
     // 
   }
 
-
   ngOnInit(): void {
     this.criandoFormulario();
-
-
   }
 
   mostrandoQuantidade() {
@@ -136,6 +122,5 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
-  }
-
+  }  
 }

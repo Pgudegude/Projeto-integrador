@@ -1,0 +1,26 @@
+<main>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Pedido</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Status Pagamento</th>
+                    <th scope="col">Status Pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedidos of pedido; index as i">
+                    <th scope="row">{{pedidos.data}}</th>
+                    <th scope="row">{{pedidos.pedido}}</th>
+                    <th scope="row">{{pedidos.valor}}</th>
+                    <th scope="row">{{pedidos.statusPagamento}}</th>
+                    <th scope="row">{{pedidos.statusPedido}}</th>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</main>
