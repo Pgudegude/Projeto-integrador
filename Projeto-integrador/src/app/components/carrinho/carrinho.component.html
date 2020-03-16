@@ -18,10 +18,10 @@
                     <div class="col-md-1">
                         <h6>Qtd:</h6>
                         <mat-form-field [formGroup]="formularioQuantidade">
-                            <mat-select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.quantidade)"
-                                formControlName='quantidade' style="width: 99">
-                                <mat-option *ngFor="let item of itensCart" [value]="item.value"> {{item.viewValue}}</mat-option>
-                                <!-- <option value="2">2</option>
+                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.quantidade)"
+                                formControlName='quantidade' style="width: 99" matNativeContro >
+                                <option [selected]="true" > 1</option>
+                                <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
@@ -29,8 +29,8 @@
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                                 <option value="9">9</option>
-                                <option value="10">10</option> -->
-                            </mat-select>
+                                <option value="10">10</option>
+                            </select>
                             <small><a (click)="excluirProduto(item.produto)" id="remove">Remover</a></small>
                         </mat-form-field>
                     </div>

@@ -36,8 +36,6 @@ import { RouterModule } from '@angular/router';
     SobreComponent,
     CadastroComponent,
     CheckoutComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
