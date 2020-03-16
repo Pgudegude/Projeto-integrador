@@ -12,16 +12,16 @@
                     </div>
                     <div class="col-md-5">
                         <h6>Produto:</h6>
-                        <h6><strong>{{item.produto.nome}}</strong></h6>
+                        <h6><strong>{{item.nome}}</strong></h6>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
                     <div class="col-md-1">
                         <h6>Qtd:</h6>
                         <form [formGroup]="formularioQuantidade">
-                            <select (change)="mostrandoQuantidade()" (change)="calcularTotal()"
+                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.produto)"
                                 formControlName='quantidade' style="width: 99">
-                                <option value="1">1</option>
+                                <option selected value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>{{preco}}</strong></p>
+                        <p><strong>{{item.produto.preco}}</strong></p>
                     </div>
                 </div>
                 <hr>
@@ -52,7 +52,7 @@
                         <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6">
-                        <span>{{preco}}</span>
+                        <span>{{total}}</span>
                     </div>
                 </div>
                 <div class="row text-muted org">
@@ -68,28 +68,31 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6">
-                        <span>R$ {{rapido}}{{normal}}</span>
+                        <span>R$ {{frete}}</span>
                     </div>
                 </div>
                 <div class="form-group row mt-2 text-center">
-                    <div class="col-6">
-                        <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                        <input type="radio" name="frete" (click)="freteR()" value="50.0" id="freteR">
-                    </div>
-                    <div id="col-6">
-                        <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteN">
-                    </div>
+                    <form [formGroup]="formularioFrete">
+                        <div class="col-6">
+
+                            <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
+                            <input type="radio"formControlName="frete"name="frete" (click)="freteR()" value="50.0" id="freteR">
+                        </div>
+                        <div id="col-6">
+                            <label for="freteNormal">Frete normal <br> R$ 20,00</label>
+                            <input type="radio" value="20.0"formControlName="frete" (click)="freteN()" name="frete" id="freteN">
+                        </div>
+                    </form>
                 </div>
                 <hr>
                 <h5>total</h5>
                 <div class="text-right">
-                    <span class="text-muted">{{totalDesconto}} em até 3x ou</span>
-                    <h5>{{totalDesconto}} em 1x no cartão</h5>
+                    <span class="text-muted">{{totalComDesconto}} em até 3x ou</span>
+                    <h5>{{totalComFrete}} em 1x no cartão</h5>
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
-                src="../../../assets/Imagem/buy.png" alt="">continuar</button></a>
+                            src="../../../assets/Imagem/buy.png" alt="">continuar</button></a>
             </div>
         </div>
     </div>
