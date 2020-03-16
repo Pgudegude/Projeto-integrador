@@ -78,7 +78,7 @@ export class Validacoes {
           
       }
 
-     
+    
       static MaiorQue18Anos(controle: AbstractControl) {
         const nascimento = controle.value;
         const [ano, mes, dia] = nascimento.split('-');
