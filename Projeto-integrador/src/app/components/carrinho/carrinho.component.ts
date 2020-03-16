@@ -3,11 +3,18 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
 
+interface ItensCart {
+  value: number
+  viewValue: number
+}
+
 @Component({
   selector: 'app-carrinho',
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
+
+
 export class CarrinhoComponent implements OnInit {
 
   @Input() item: Produtos;
@@ -24,13 +31,26 @@ export class CarrinhoComponent implements OnInit {
   formularioFrete: FormGroup;
   carrinho: Carrinho[] = [];
 
+  itensCart: ItensCart[] = [
+    {value: 1,viewValue: 1},
+    {value: 2, viewValue: 2},
+    {value: 3, viewValue: 3},
+    {value: 4, viewValue: 4},
+    {value: 5, viewValue: 5},
+    {value: 6, viewValue: 6},
+    {value: 7, viewValue: 7},
+    {value: 8, viewValue: 8},
+    {value: 9, viewValue: 9},
+    {value: 10, viewValue: 10}
+  ]
+
   preco = 0;
   constructor(private fb: FormBuilder) {
     this.carrinho.push(
-      new Carrinho(new Produtos(1, "Bola 1", 343, 22.30, "Kennedy", 67), 1),
-      new Carrinho(new Produtos(2, "Bola 2", 343, 79.30, "jonas", 47), 1),
-      new Carrinho(new Produtos(3, "Bola 3", 343, 52.30, "fabio", 7), 1),
-      new Carrinho(new Produtos(4, "Bola 4", 343, 82.30, "fabio", 67), 1),
+      new Carrinho(new Produtos(1, "Bola 1", 3, 2.0, "Kennedy", 67), 1),
+      new Carrinho(new Produtos(2, "Bola 2", 33, 2.0, "jonas", 47), 1),
+      new Carrinho(new Produtos(3, "Bola 3", 9, 2.0, "fabio", 7), 1),
+      new Carrinho(new Produtos(4, "Bola 4", 343, 2.0, "fabio", 67), 1),
     )
     this.calcularTotal()
     this.mostrandoQuantidade()
@@ -49,17 +69,21 @@ export class CarrinhoComponent implements OnInit {
     console.log(this.totalComDesconto);
   }
 
-  freteR = () => {
-    this.totalComFrete = (this.total - (this.total *0.7)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    console.log();
-    this.frete = (50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
+  freteR = () => {
+    this.frete = (50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    if (this.frete) {
+      this.totalComFrete = (this.total - (this.total *0.7) + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
   }
 
 
   freteN = () => {
-    this.totalComFrete = (this.total + this.formularioFrete.value - this.desconto).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.frete = (20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    if (this.frete) {
+      
+      this.totalComFrete = (this.total - (this.total *0.7) + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
   }
 
   // calcularTotal() {
@@ -106,8 +130,6 @@ export class CarrinhoComponent implements OnInit {
         item.quantidade = this.formularioQuantidade.value.quantidade;
     })
     this.calcularTotal();
-    this.freteN();
-
   }
 
   excluirProduto(produto) {

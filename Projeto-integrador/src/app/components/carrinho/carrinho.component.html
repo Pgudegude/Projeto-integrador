@@ -17,11 +17,11 @@
                     </div>
                     <div class="col-md-1">
                         <h6>Qtd:</h6>
-                        <form [formGroup]="formularioQuantidade">
-                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.produto)"
+                        <mat-form-field [formGroup]="formularioQuantidade">
+                            <mat-select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.quantidade)"
                                 formControlName='quantidade' style="width: 99">
-                                <option selected value="1">1</option>
-                                <option value="2">2</option>
+                                <mat-option *ngFor="let item of itensCart" [value]="item.value"> {{item.viewValue}}</mat-option>
+                                <!-- <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
@@ -29,14 +29,14 @@
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                                 <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
+                                <option value="10">10</option> -->
+                            </mat-select>
                             <small><a (click)="excluirProduto(item.produto)" id="remove">Remover</a></small>
-                        </form>
+                        </mat-form-field>
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>{{item.produto.preco}}</strong></p>
+                        <p><strong>{{item.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong></p>
                     </div>
                 </div>
                 <hr>
@@ -70,8 +70,8 @@
                         <span>{{frete}}</span>
                     </div>
                 </div>escolha seu frete
+                <form [formGroup]="formularioFrete">
                 <div class="row mt-2 text-center">
-                    <form [formGroup]="formularioFrete">
                         <div class="col-md-6">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
                             <input class="form-control" type="radio" formControlName="frete" name="frete" (click)="freteR()" value="50.0"
@@ -82,13 +82,13 @@
                             <input class="form-control" type="radio" value="20.0" formControlName="frete" (click)="freteN()" name="frete"
                                 id="freteN">
                         </div>
-                    </form>
                 </div>
+            </form>
                 <hr>
                 <h5>total</h5>
                 <div class="text-right">
-                    <span class="text-muted">{{totalComDesconto}} em até 3x ou</span>
-                    <h5>{{totalComDesconto}} em 1x no cartão</h5>
+                    <span class="text-muted">{{totalComFrete}} em até 3x ou</span>
+                    <h5>{{totalComFrete}} em 1x no cartão</h5>
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
