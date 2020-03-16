@@ -10,7 +10,7 @@ import { Carrinho } from '../models/carrinho';
 })
 export class CarrinhoComponent implements OnInit {
   
-  @Input() items:Produtos;
+  @Input() item:Produtos;
   
   desconto: any = "70%"
   rapido: any ;
@@ -24,23 +24,21 @@ export class CarrinhoComponent implements OnInit {
   
   carrinho: Carrinho[]=[];
   
-  constructor() { 
+  constructor( private fb: FormBuilder) { 
     this.carrinho.push(
       new Carrinho(new Produtos(1,"Bola 1",343,72.30,"Kennedy",67),5),
-      new Carrinho(new Produtos(2,"Bola 2",343,72.30,"jonas",47),6),
-      new Carrinho(new Produtos(3,"Bola 3",343,72.30,"fabio",7),8),
-      new Carrinho(new Produtos(4,"Bola 4",343,72.30,"fabio",67),8),
+      new Carrinho(new Produtos(2,"Bola 2",343,70.30,"jonas",47),6),
+      new Carrinho(new Produtos(3,"Bola 3",343,2.30,"fabio",7),8),
+      new Carrinho(new Produtos(4,"Bola 4",343,724.30,"fabio",67),8),
       )
       this.carrinho.forEach(item =>{
         this.total += item.produto.preco * item.quantidade;
       })
     }
     
-    
-    
     freteR = () => {
       let quant = this.formularioQuantidade.value.quantidade
-      this.total = ((this.items.preco * quant )-(29.10 * quant))
+      this.total = ((this.item.preco * quant )-(0.7 * this.item.preco * quant))
       if(this.normal === "20,00"){
         this.normal = ""
         this.rapido = "50,00"
@@ -51,10 +49,9 @@ export class CarrinhoComponent implements OnInit {
     }
   }
   
-  
   freteN = () => {
     let quant = this.formularioQuantidade.value.quantidade
-    this.total = ((this.items.preco * quant )-(29.10 * quant))
+    this.total = ((this.item.preco * quant )-(0.7 * this.item.preco * quant))
     if(this.rapido === "50,00"){
       this.rapido = ""
       this.normal = "20,00"
@@ -68,14 +65,11 @@ export class CarrinhoComponent implements OnInit {
   calcularTotal(){
     let quant = this.formularioQuantidade.value.quantidade
     if(this.total != ""){
-      this.total = (this.items.preco * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-      this.desconto = (0.7 * this.items.preco * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
-      this.totalDesconto = ((this.total )-(0.7 * this.items.preco * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.total = (this.item.preco * quant ).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.desconto = (0.7 * this.item.preco * quant).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
+      this.totalDesconto = ((this.total )-(0.7 * this.item.preco * quant)).toLocaleString('pt-BR',{style: 'currency',currency: 'BRL'})
     }
   }
-  
-  private fb: FormBuilder
-  
   
   quantidade: any[];
   criandoFormulario(){
@@ -86,15 +80,18 @@ export class CarrinhoComponent implements OnInit {
   
   ngOnInit(): void {
     this.criandoFormulario();
+    for (let index = 0; index < this.carrinho.length; index++) {
+      console.log(this.carrinho[index].produto.preco);
+    }
   }
   
   mostrandoQuantidade(){
-    this.qtd = (this.formularioQuantidade.value.quantidade)    
+    this.qtd = (this.formularioQuantidade.value.quantidade)  
+  
   }
 
   excluirProduto(produto){
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     
-  }
-      
+  }     
 }

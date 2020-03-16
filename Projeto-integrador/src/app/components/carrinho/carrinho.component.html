@@ -2,7 +2,6 @@
     <h2>meu carrinho</h2>
     <hr>
     <div class="row mt-2">
-        <!-- <app-lista-produtos  [item]=item></app-lista-produtos>    -->
         <div class="col-8">
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
@@ -12,7 +11,7 @@
                     </div>
                     <div class="col-md-5">
                         <h6>Produto:</h6>
-                        <h6><strong>{{item.produto.nome}}</strong></h6>
+                        <h6><strong>{{item.nome}}</strong></h6>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
@@ -32,12 +31,12 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <small><a (click)="excluirProduto(item.produto)" id="remove">Remover</a></small>
+                            <small><a (click)="excluirProduto(item.produto)"  id="remove">Remover</a></small>
                         </form>
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>{{preco}}</strong></p>
+                        <p><strong>{{item.produto.preco}}</strong></p>
                     </div>
                 </div>
                 <hr>
@@ -52,7 +51,7 @@
                         <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6">
-                        <span>{{preco}}</span>
+                        <span>{{total}}</span>
                     </div>
                 </div>
                 <div class="row text-muted org">
