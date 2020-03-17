@@ -1,12 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
-
-interface ItensCart {
-  value: number
-  viewValue: number
-}
 
 
 
@@ -27,24 +22,10 @@ export class CarrinhoComponent implements OnInit {
   qtd = 0;
   totalComDesconto: any;
   totalComFrete: any;
-
+  novoCarrinho: Carrinho[] = [];
   formularioQuantidade: FormGroup;
   formularioFrete: FormGroup;
   carrinho: Carrinho[] = [];
-
-  itensCart: ItensCart[] = [
-    {value: 1,viewValue: 1},
-    {value: 2, viewValue: 2},
-    {value: 3, viewValue: 3},
-    {value: 4, viewValue: 4},
-    {value: 5, viewValue: 5},
-    {value: 6, viewValue: 6},
-    {value: 7, viewValue: 7},
-    {value: 8, viewValue: 8},
-    {value: 9, viewValue: 9},
-    {value: 10, viewValue: 10}
-  ]
-
     
   preco = 0;
   constructor(private fb: FormBuilder) {
@@ -59,6 +40,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   calcularTotal = () => {
+    this.total=0
     this.carrinho.forEach(item => {
       this.total += item.produto.preco * item.quantidade;
       if (this.total != 0) {
@@ -68,7 +50,6 @@ export class CarrinhoComponent implements OnInit {
       }
     })
     this.totalComDesconto = (this.total -(this.total * 0.7)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    console.log(this.totalComDesconto);
   }
 
   freteR = () => {
@@ -87,7 +68,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   frete: any
-  quantidade: any[];
+  quantidade: number;
 
   criandoFormulario() {
     this.formularioQuantidade = this.fb.group({
@@ -111,16 +92,24 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
-    this.carrinho.forEach(item => {
-      if (item === produto)
-        item.quantidade = this.formularioQuantidade.value.quantidade;
-    })
-    this.calcularTotal();
+    let item: Carrinho = this.carrinho.find(x => x.produto.id == produto.produto.id);
+    item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+    // this.carrinho.forEach(item => {
+    //   if (item.produto.id == produto){
+    //     item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);}
+    //   })
+      console.log (this.carrinho)
+    
+      this.calcularTotal();
+      this.mostrandoQuantidade();
+      console.log(this.formularioQuantidade.value.quantidade);
   }
 
   excluirProduto(produto) {
-    this.carrinho = this.carrinho.filter(item => item.produto != produto)
+    this.carrinho = this.carrinho.filter(item => item.produto != produto);
     this.calcularTotal();
     this.mostrandoQuantidade();
+    
   }  
+  
 }

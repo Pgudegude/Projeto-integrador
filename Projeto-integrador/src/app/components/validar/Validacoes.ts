@@ -91,6 +91,4 @@ export class Validacoes {
     
         return { menorDeIdade: true };
       }
-      
-
 }

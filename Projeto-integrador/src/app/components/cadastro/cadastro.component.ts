@@ -113,7 +113,6 @@ export class CadastroComponent implements OnInit {
         ])],
       confirmaSenha: ["",
         Validators.compose([
-         
           Validators.minLength(8),
           Validators.maxLength(12)
           

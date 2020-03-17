@@ -1,6 +1,6 @@
 
 <main class="container">
-    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarCompra()">
+    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
                 Dados para entrega
@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <label for="nomeUsuario">Nome Completo:</label>
                     <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
-                        placeholder="Digite seu nome completo" required formControlName="nome">
+                        placeholder="Digite seu nome completo" required formControlName="nomeCompleto">
                 </div>
                 <div class="form-group">
                     <label for="telUsuario">Telefone:</label>
@@ -116,28 +116,28 @@
                 <div class="form-group">
                     <label for="numeroCartao">Numero do cartão:</label>
                     <input class="form-control" maxlength="16" type="text" name="numeroCartao" id="numeroCartao"
-                        placeholder="0000 0000 0000 0000" required>
+                        placeholder="0000 0000 0000 0000" formControlName="numeroCartao" required>
                 </div>
                 <div class="row">
                     <div class="col-8 form-group">
                         <label for="dataValidade">Data de validade:</label>
                         <input class="form-control" type="month" name="dataValidade" id="dataValidade"
-                            placeholder="MM/AA" required>
+                            placeholder="MM/AA" formControlName="dataValidade" required>
                     </div>
                     <div class="col-4 form-group">
                         <label for="codigoSeguranca">CVV:</label>
                         <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
-                            id="codigoSeguranca" placeholder="CVV" required>
+                            id="codigoSeguranca" placeholder="CVV" formControlName="cvv" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nomeTitular">Nome titular:</label>
                     <input class="form-control" type="text" name="nomeTitular" id="nomeTitular"
-                        placeholder="Nome Titular" required>
+                        placeholder="Nome Titular" formControlName="nomeTitular" required>
                 </div>
                 <div class="form-group">
                     <label for="cpfTitular">CPF titular:</label>
-                    <input class="form-control" type="text" maxlength="11" formControlName="cpfitular" id="cpfTitular" name="cpfTitular"
+                    <input class="form-control" type="tel" maxlength="11" formControlName="cpf" id="cpfTitular" name="cpfTitular"
                     placeholder="000.000.000-00" required>
                 </div>
             </div>
