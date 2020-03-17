@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {HeaderComponent} from '../header/header.component'
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Produtos } from '../models/produtos';
+
 
 @Component({
   selector: 'app-produto',
@@ -8,15 +9,32 @@ import {HeaderComponent} from '../header/header.component'
 })
 
 export class ProdutoComponent implements OnInit {
-  cont: number = 0;
+
+  listaProdutos = localStorage.getItem('listaProdutos') ? JSON.parse(localStorage.getItem('listaProdutos')) : []
+
+
+  salvarLocaStorage = salvarProdutos => {
+    let converterJson = JSON.stringify(salvarProdutos)
+    localStorage.setItem('ListaProdutos', converterJson)
+    console.log("Lista de Produtos salva com sucesso!");
+  }
+
+  // cont: number = 0;
+  // @Output() contadorProduto = new EventEmitter() 
+
+
+  // increment (){
+  //   console.log(this.contadorProduto.emit(this.cont++));
+  // }
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
-  
-  countItems(){
-    this.cont ++;
-  }
+
+  // countItems(){
+
+  // }
 
 }

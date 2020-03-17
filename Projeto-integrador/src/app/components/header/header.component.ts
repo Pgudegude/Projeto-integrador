@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoComponent } from "../produto/produto.component";
+import { ROUTES } from '../../app-routing.module';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +7,7 @@ import { ProdutoComponent } from "../produto/produto.component";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  cont: number = 0;
-  
-  countItems(){
-    this.cont ++;
-  }
+
 
   constructor() { }
 

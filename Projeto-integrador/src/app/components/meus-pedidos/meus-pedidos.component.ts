@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-
-
 interface Pedido {
   data: string;
   pedido: string;
@@ -8,8 +6,6 @@ interface Pedido {
   statusPagamento: string;
   statusPedido: string;
 }
-
-
 const ped: Pedido[] = [
   {
     data: '13/03/2020',
@@ -27,24 +23,21 @@ const ped: Pedido[] = [
   },
   {
     data: '02/12/2019',
-    pedido: '31992',  
+    pedido: '31992',
     valor: 72.00,
     statusPagamento: 'recusado',
     statusPedido: 'cancelado'
   }
 ];
-
 @Component({
   selector: 'app-meus-pedidos',
   templateUrl: './meus-pedidos.component.html',
   styleUrls: ['./meus-pedidos.component.css']
 })
 export class MeusPedidosComponent {
- 
+
   pedido = ped;
-
 }
-
 
 
 
