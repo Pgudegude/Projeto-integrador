@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { HttpService } from 'src/app/service/http.service';
 import { Endereco } from '../models/endereco';
 import { Checkout } from '../models/checkout';
+import { Validacoes } from '../validar/Validacoes';
 
 
 @Component({
@@ -71,10 +72,11 @@ export class CheckoutComponent implements OnInit {
             Validators.required, // coloquei como obrigatorio
             Validators.maxLength(100) // limitei o maximo de caractere 
           ])],
-        cpf: ["",
+        cpfTitular: ["",
           Validators.compose([
             Validators.required,
-            Validators.maxLength(11)
+            Validators.maxLength(11),
+            Validacoes.ValidaCpf
           ])],
         dataDeNascimento: ["",
           Validators.compose([
