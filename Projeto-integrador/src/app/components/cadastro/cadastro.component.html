@@ -1,5 +1,5 @@
 <main id="container">
-  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro" (ngSubmit)="enviarDadosCliente()">
+  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro">
     <div class="col-md-6 ">
       <header class="header-cadastro-formulario p-2">
         <h3> Dados pessoais</h3>
@@ -15,6 +15,7 @@
             <label for="cpfUsuario">CPF: </label>
             <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf" formControlName="cpf"
               maxlength="11" placeholder="Ex: 00000000000" required>
+              
           </div>
           <div class="form-group">
             <label for="nascimentoUsuario">Data de Nascimento: </label>
@@ -29,7 +30,7 @@
             </div>
             <div class="col-md-6">
               <label for="cepUsuario">CEP: </label>
-              <input class="form-control cep-mask" type="tel" id="cepUsuario" formControlName="cep" name="cep"
+              <input class="form-control " type="tel" id="cepUsuario" formControlName="cep" name="cep"
                 placeholder="ex: 00000000" required maxlength="8" (blur)="capturarCEP()">
             </div>
           </div>
@@ -137,7 +138,7 @@
         <div class="d-flex justify-content-center">
           <div class="d-flex justify-content-end">
             <button id="botao" class="form-control" name="BTEnvia"
-            [disabled]="!formCadastro.valid"><a routerLink="home">Cadastrar</a></button>
+            [disabled]="!formCadastro.valid">Cadastrar</button>
           </div>
         </div>
       </div>

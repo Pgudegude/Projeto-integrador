@@ -1,4 +1,27 @@
-*{
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.card {
+  margin-right: 20px;
+  box-shadow: 0px 1px 0px 1px #bbb8b8;
+  margin-bottom: 50px;
+}
+
+#cardCentro {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+#imagem{
+    margin: 50px;
+}
+#banner{
+    margin: 50px,0;
     padding: 0;
 }
+

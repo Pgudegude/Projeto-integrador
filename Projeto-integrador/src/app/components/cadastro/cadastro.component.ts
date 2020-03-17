@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
-import { Validacoes } from '../validar/Validacoes';
+import { Validacoes } from '../models/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
@@ -23,6 +23,7 @@ export class CadastroComponent implements OnInit {
   }
   //envia os dados do formulario
   enviarCadastro(cliente: Cliente) {
+
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
@@ -39,11 +40,13 @@ export class CadastroComponent implements OnInit {
       senha: new FormControl(cliente.senha),
       confirmaSenha: new FormControl(cliente.confirmaSenha)
     })
-    alert(`O usuário ${cliente.nomeCompleto} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(cliente)}`);
+
+
   }
-  enviarDadosCliente() {
-    this.formCadastro.reset();
-  }
+
+
+
+
   //Valida os campos
   criarCadastro() {
     this.formCadastro = this.formBuilder.group({
@@ -85,7 +88,7 @@ export class CadastroComponent implements OnInit {
         ])],
       complemento: ["",
         Validators.compose([
-          Validators.required
+
         ])],
       estado: ["",
         Validators.compose([
@@ -113,16 +116,15 @@ export class CadastroComponent implements OnInit {
         ])],
       confirmaSenha: ["",
         Validators.compose([
-         
+
           Validators.minLength(8),
           Validators.maxLength(12)
-          
+
         ])]
     }, {
-      conferirEmail: Validacoes.ConferirEmail,
-      validators: Validacoes.ConferirSenha
+      validators: [Validacoes.ConferirSenha, Validacoes.ConferirEmail]
     });
-    
+
   }
   get confirmaSenha() {
     return this.formCadastro.get('confirmaSenha');
@@ -130,17 +132,17 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
-capturarCEP(){
-  this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
-    this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
-    this.formCadastro.controls['endereco'].patchValue(this.endereco.endereco);
-    this.formCadastro.controls['bairro'].patchValue(this.endereco.bairro);
-    this.formCadastro.controls['estado'].patchValue(this.endereco.estado);
-    this.formCadastro.controls['cidade'].patchValue(this.endereco.cidade);
-  })
-}
-  
-  
+  capturarCEP() {
+    this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.formCadastro.controls['endereco'].patchValue(this.endereco.endereco);
+      this.formCadastro.controls['bairro'].patchValue(this.endereco.bairro);
+      this.formCadastro.controls['estado'].patchValue(this.endereco.estado);
+      this.formCadastro.controls['cidade'].patchValue(this.endereco.cidade);
+    })
+  }
+
+
 }
 
 
