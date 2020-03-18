@@ -1,6 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
@@ -24,7 +24,9 @@ import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import {ROUTES} from './app-routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,15 @@ import {ROUTES} from './app-routing.module';
     ButtonsModule, 
     NgbModule,
     HttpClientModule,
-  
+    RouterModule.forRoot(ROUTES),
+    MatDatepickerModule,
+    TextMaskModule,
     
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    
+    BrowserAnimationsModule
+  
+
   ],
   exports: [BsDropdownModule,  ModalModule], 
   providers: [],

@@ -47,7 +47,7 @@ export class HttpService {
   insertClient(){
     
   }
-const contatoBanco = (contato:Contato) =>{
+   contatoBanco = (contato:Contato) =>{
     console.log(contato);
     return {
       "name": contato.nome,

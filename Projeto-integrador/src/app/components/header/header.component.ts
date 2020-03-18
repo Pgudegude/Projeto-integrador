@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES } from '../../app-routing.module';
 
 @Component({
   selector: 'app-header',
