@@ -40,28 +40,40 @@ export const ROUTES: Routes = [
     path: "home/listaProduto/contato",
     component: ContatoComponent
   }, 
+  {
+    path: "home/contato/sobre",
+    component: ContatoComponent
+  },
  
   {
     path: "home/contato",
     component: ContatoComponent
   },
   {
-    path: "home/listaProduto/contato/sobre",
-    component: SobreComponent
-  }, 
-  {
     path: "home/listaProduto/sobre",
     component: SobreComponent
   },
+  {
+    path: "home/sobre/contato",
+    component: SobreComponent
+  },
+
+  // {
+  //   path: "home/listaProduto/contato/sobre",
+  //   component: SobreComponent
+  // }, 
+  // // {
+  // //   path: "sobre/contato/listaProduto/home",
+  // //   component: SobreComponent
+  // // },
   
   {
     path: "home/sobre",
     component: SobreComponent
   }, 
 
-  
   {
-    path: "home/carrinho",
+    path: "carrinho",
     component: CarrinhoComponent
   }, {
     path: "login",
