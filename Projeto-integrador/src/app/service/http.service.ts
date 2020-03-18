@@ -47,15 +47,24 @@ export class HttpService {
   insertClient(){
     
   }
-
+const contatoBanco = (contato:Contato) =>{
+    console.log(contato);
+    return {
+      "name": contato.nome,
+      "mail": contato.email,
+      "subject": contato.assunto,
+      "text": contato.comentario,
+    }
+  }
   public insertContato(contato:Contato){
-      let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", contato);
+  let comunicacao = this.contatoBanco(contato)
+      let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
       return url.pipe(map(
         dados => dados
       ));
     }
   }
-
+  
 // getProdutos(){
 //   let prod = this.http.get(urlProdutos)
 //   return console.log(prod)
