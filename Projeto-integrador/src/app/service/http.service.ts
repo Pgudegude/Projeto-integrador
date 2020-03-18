@@ -5,10 +5,12 @@ import { Checkout } from "../components/models/checkout";
 import { Endereco } from '../components/models/endereco';
 import { Observable } from 'rxjs';
 import { Produtos } from '../components/models/produtos';
+import { Cliente } from '../components/models/cliente';
+import { Contato } from '../components/models/Contato';
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
 const urlProdutos: string = 'http://localhost:8080/ecommerce/find-product';
-
+const urlAdicionarCliente:String = 'http://localhost:8080/ecommerce/create-client';
 interface viacep{
   cep:string,
   logradouro: string,
@@ -40,6 +42,18 @@ export class HttpService {
 
   getProdutos() {
     this.http.get(urlProdutos).subscribe((resp:Produtos )=> console.log(resp))
+  }
+
+  insertClient(){
+    
+  }
+
+  public insertContato(contato:Contato){
+      let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", contato);
+      return url.pipe(map(
+        dados => dados
+      ));
+    }
   }
 
 // getProdutos(){
@@ -76,4 +90,3 @@ export class HttpService {
 // }
 
 
-}

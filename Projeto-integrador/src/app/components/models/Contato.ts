@@ -1,4 +1,6 @@
 export class Contato{
-    constructor(nome: string, email: string, assunto:string, comentarios:string){}
+  nome: any;
+  email: any;
+    constructor(nome?: string, email?: string, assunto?:string, comentarios?:string){}
 
 }
