@@ -21,13 +21,13 @@ export class CarrinhoComponent implements OnInit {
   total = 0;
   qtd = 0;
   totalComDesconto: any;
-  totalComFrete: any;
   novoCarrinho: Carrinho[] = [];
   formularioQuantidade: FormGroup;
-  formularioFrete: FormGroup;
   carrinho: Carrinho[] = [];
-    
+
+
   preco = 0;
+  formularioFrete: FormGroup;
   constructor(private fb: FormBuilder) {
     this.carrinho.push(
       new Carrinho(new Produtos(1, "Bola Diamante", 3, 2.0, "Kennedy", 67), 1),
@@ -40,7 +40,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   calcularTotal = () => {
-    this.total=0
+    this.total = 0
     this.carrinho.forEach(item => {
       this.total += item.produto.preco * item.quantidade;
       if (this.total != 0) {
@@ -49,22 +49,17 @@ export class CarrinhoComponent implements OnInit {
         })
       }
     })
-    this.totalComDesconto = (this.total -(this.total * 0.7)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.totalComDesconto = (this.total - (this.total * 0.7)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return this.totalComDesconto
   }
 
   freteR = () => {
     this.frete = (50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    if (this.frete) {
-      this.totalComFrete = (this.total - (this.total *0.7) + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    }
+    this.totalComDesconto = (this.total - (this.total * 0.7) + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
   }
-
   freteN = () => {
     this.frete = (20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    if (this.frete) {
-      
-      this.totalComFrete = (this.total - (this.total *0.7) + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    }
+    this.totalComDesconto = (this.total - (this.total * 0.7) + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
   }
 
   frete: any
@@ -75,7 +70,7 @@ export class CarrinhoComponent implements OnInit {
       quantidade: []
     })
     this.formularioFrete = this.fb.group({
-      frete: Number
+      frete: []
     })
     // 
   }
@@ -98,18 +93,14 @@ export class CarrinhoComponent implements OnInit {
     //   if (item.produto.id == produto){
     //     item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);}
     //   })
-      console.log (this.carrinho)
-    
-      this.calcularTotal();
-      this.mostrandoQuantidade();
-      console.log(this.formularioQuantidade.value.quantidade);
+    this.calcularTotal();
+    this.mostrandoQuantidade();
   }
 
   excluirProduto(produto) {
     this.carrinho = this.carrinho.filter(item => item.produto != produto);
     this.calcularTotal();
     this.mostrandoQuantidade();
-    
-  }  
-  
+  }
+
 }

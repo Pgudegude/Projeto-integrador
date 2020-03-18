@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>meu carrinho</h2>
+    <h1>meu carrinho</h1>
     <hr>
     <div class="row mt-2">
         <div class="col-8">
@@ -10,13 +10,13 @@
                             title="Bola Diamante">
                     </div>
                     <div class="col-md-5">
-                        <h6>Produto:</h6>
-                        <h6><strong>Bola Diamante</strong></h6>
+                        <h4>Produto:</h4>
+                        <h3><strong>Bola Diamante</strong></h3>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
                     <div class="col-md-1">
-                        <h6>Qtd:</h6>
+                        <h4>Qtd:</h4>
                         <mat-form-field [formGroup]="formularioQuantidade">
                             <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)"
                                 formControlName='quantidade' style="width: 99" matNativeContro >
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <p><strong>{{item.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong></p>
+                        <h3><strong>{{item.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong></h3>
                     </div>
                 </div>
                 <hr>
@@ -46,7 +46,7 @@
 
         <div id="cart" class="col-md-4">
             <div class="card-header">
-                <h5 class="card-title">resumo do pedido</h5>
+                <h1 class="card-title">resumo do pedido</h1>
                 <div class="row text-muted org">
                     <div class="col-md-6">
                         <p>{{qtd}} produto(s)</p>
@@ -70,7 +70,8 @@
                     <div class="col-md-6">
                         <span>{{frete}}</span>
                     </div>
-                </div>escolha seu frete
+                </div>
+                escolha seu frete
                 <form [formGroup]="formularioFrete">
                 <div class="row mt-2 ">
                         <div class="col-md-6 ">
@@ -86,10 +87,10 @@
                 </div>
             </form>
                 <hr>
-                <h5>total</h5>
+                <h1>total</h1>
                 <div class="text-right">
-                    <span class="text-muted">{{totalComFrete}} em até 3x ou</span>
-                    <h5>{{totalComFrete}} em 1x no cartão</h5>
+                    <h2 class="text-muted">{{totalComDesconto}} em até 3x ou</h2>
+                    <h1>{{totalComDesconto}} em 1x no cartão</h1>
                 </div>
                 <hr>
                 <a  [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block  "><img

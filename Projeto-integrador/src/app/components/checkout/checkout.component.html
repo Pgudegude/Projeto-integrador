@@ -95,9 +95,9 @@
                 Entrega e Pagamento
             </header>
             <div class="p-2">
-                <h5 class="p-2">
+                <h4 class="p-2">
                     <strong>Escolha o frete</strong> 
-                </h5>
+                </h4>
                 <hr>
                 <div class="form-group row">
                     <div class="col-6">
@@ -109,9 +109,9 @@
                         <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteNormal">
                     </div>
                 </div>
-                <h5 class="p-2">
+                <h4 class="p-2">
                     <strong>Pagamento</strong> 
-                </h5>
+                </h4>
                 <hr>
                 <div class="form-group">
                     <label for="numeroCartao">Numero do cartão:</label>
@@ -179,8 +179,7 @@
                     </tr>
                 </table>
                 <div class="d-flex justify-content-center">
-                    <button type="button" [routerLink]="['/final']" data-toggle="modal"  data-target="#compraFinalizada"
-                        class="btn btn-success btn-block">Finalizar Compra</button>
+                    <button type="button" [routerLink]="['/final']" class="btn btn-success btn-block form-control">Finalizar Compra</button>
                 </div>
             </div>
         </div>

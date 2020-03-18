@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/service/http.service';
 import { Endereco } from '../models/endereco';
-import { Checkout } from '../models/checkout';
 import { Validacoes } from '../validar/Validacoes';
 import { Compra } from '../models/compra';
-import { combineAll } from 'rxjs/operators';
 
 
 @Component({
@@ -13,11 +11,14 @@ import { combineAll } from 'rxjs/operators';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
+
 export class CheckoutComponent implements OnInit {
+
 
   constructor(private http: HttpService, private fb: FormBuilder) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
   }
+  
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
 
   total: any = "R$ 108.89";
@@ -47,6 +48,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.criarDadosCompra();
   }
 
   enviarDaDosCompra(comprador: Compra) {
@@ -133,7 +135,8 @@ export class CheckoutComponent implements OnInit {
         ])],
       dataValidade: ["",
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validacoes.validarData
         ])],
       nomeTitular: ["",
         Validators.compose([

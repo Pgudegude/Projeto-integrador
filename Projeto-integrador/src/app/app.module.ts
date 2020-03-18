@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,9 +19,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import {ROUTES} from './app-routing.module';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
-
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -48,8 +47,11 @@ import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.com
     FormsModule,
     HttpClientModule,
     HttpClientModule,
+    MatDatepickerModule,
     
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    
+    BrowserAnimationsModule
   
 
   ],
