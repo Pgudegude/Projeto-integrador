@@ -14,26 +14,23 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 
 export const ROUTES: Routes = [
-  {
-    path: "",
-    component: HomeComponent
-  },
-  {
-    path: "contato",
-    component: ContatoComponent
-  },
-  {
-    path: "sobre",
-    component: SobreComponent
-  },
-  {
-    path: "cadastro",
-    component: CadastroComponent
-  },
-  {
-    path: "final",
-    component: CompraFinalizadaComponent
-  },
+  // {
+  //   path: "",
+  //   component: HomeComponent
+  // },
+  // {
+  //   path: "contato",
+  //   component: ContatoComponent
+  // },
+  // {
+  //   path: "sobre",
+  //   component: SobreComponent
+  // },
+  // {
+  //   path: "cadastro",
+  //   component: CadastroComponent
+  // },
+
 
   {
     path: "",
@@ -52,16 +49,14 @@ export const ROUTES: Routes = [
     component: ListaProdutosComponent
   },
   {
-    path: "home/listaProduto/:id",
-    component: ProdutoComponent
-  },
-  {
-    path: "home/sobre",
-    component: SobreComponent
-  }, {
     path: "home/cadastro",
     component: CadastroComponent
   },
+  
+  {
+    path: "home/sobre",
+    component: SobreComponent
+  }, 
   {
     path: "carrinho",
     component: CarrinhoComponent
@@ -69,10 +64,10 @@ export const ROUTES: Routes = [
     path: "login",
     component: LoginComponent
   },
-  {
-    path: "sobre",
-    component: SobreComponent
-  },
+  // {
+  //   path: "sobre",
+  //   component: SobreComponent
+  // },
   {
     path: "login/cadastro",
     component: CadastroComponent
@@ -80,6 +75,10 @@ export const ROUTES: Routes = [
   {
     path: "carrinho/checkout",
     component: CheckoutComponent
+  },
+  {
+    path: "final",
+    component: CompraFinalizadaComponent
   },
   {
     path: "meusPedidos",
