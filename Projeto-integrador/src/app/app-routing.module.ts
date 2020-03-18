@@ -48,7 +48,7 @@ export const ROUTES: Routes = [
     path: "home/contato",
     component: ContatoComponent
   }, {
-    path: "home/listaProduto",
+    path: "listaProduto",
     component: ListaProdutosComponent
   },
   {

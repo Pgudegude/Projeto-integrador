@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, FormControl, ControlValueAccessor } from '@angular/forms';
 
 export class Validacoes {
 
@@ -103,5 +103,4 @@ export class Validacoes {
 
     return { invalido: true };
   }
-
 }

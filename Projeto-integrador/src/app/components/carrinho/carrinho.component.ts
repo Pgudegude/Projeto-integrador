@@ -56,11 +56,15 @@ export class CarrinhoComponent implements OnInit {
   freteR = () => {
     this.frete = (50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return 50
   }
   freteN = () => {
     this.frete = (20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return 20
   }
+
+
 
   frete: any
   quantidade: number;
@@ -89,12 +93,11 @@ export class CarrinhoComponent implements OnInit {
   ajustarQuantidade(produto) {
     let item: Carrinho = this.carrinho.find(x => x.produto.id == produto.produto.id);
     item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
-    // this.carrinho.forEach(item => {
-    //   if (item.produto.id == produto){
-    //     item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);}
-    //   })
+
+
     this.calcularTotal();
     this.mostrandoQuantidade();
+ 
   }
 
   excluirProduto(produto) {

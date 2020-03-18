@@ -14,11 +14,10 @@ import { Compra } from '../models/compra';
 
 export class CheckoutComponent implements OnInit {
 
-
   constructor(private http: HttpService, private fb: FormBuilder) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
   }
-  
+
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
 
   total: any = "R$ 108.89";
@@ -143,17 +142,5 @@ export class CheckoutComponent implements OnInit {
           Validators.required
         ])],
     })
-  }
-
-
-
-
-
-
-
-
-
-
-
-
+}
 }

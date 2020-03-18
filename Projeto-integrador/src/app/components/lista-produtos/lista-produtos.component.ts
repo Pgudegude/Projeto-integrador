@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Produtos } from '../models/produtos';
-import { EventEmitter } from 'protractor';
 import { Router } from '@angular/router';
-// import { HttpService } from 'src/app/services/http.service';
+import { apiProduct } from '../models/apiProduct';
+import { ProductService } from 'src/app/service/product.service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -10,49 +11,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./lista-produtos.component.css']
 })
 export class ListaProdutosComponent implements OnInit {
-
-  // public produtos: Produtos[] = [];
-  passarDados: EventEmitter;
-
-  // public produtosExibidos: Produtos[] = [];
-
-  public items:Produtos[] = [
-    new Produtos(1,"Bola diamante", 1, 99.99, "Desc",66),
-    new Produtos(2,"Bola uiverso", 4, 49.99, "Desc",66),
-    new Produtos(3,"Bola Espiral", 1, 59.99, "Desc",66),
-    new Produtos(4,"Bola Mike Cong", 9, 979.99, "Desc",66),
-    new Produtos(5,"Bola Esfera do dragao", 8, 476.99, "Desc",66),
-    new Produtos(6,"Bola Splinter", 3, 98.62, "Desc",66),
-    new Produtos(7,"Bola Donatello", 3, 9.99, "Desc",66),
-    new Produtos(8,"Bola Universo3", 9, 12.99, "Desc",66),
-    new Produtos(9,"Bola Psicodelica",123, 56.32, "Desc",66),
-    new Produtos(10,"Bola Prata", 3, 74.63, "Desc",66)
-  ]
-
-
-  // listaDoGrupo(id: number) {
+  
+  getter() {
+    this.productService.getProducts().subscribe(
+      (data: apiProduct) => {
+        this.apiProduct = data;
+      }, (error: any) => {
+        console.error("ERROR", error)
+      })
+    }
     
-  //   return id !== 0 ? this.produtosExibidos = this.produtos.filter(produto => produto.categoria == id) : this.produtosExibidos = this.produtos
+    public product: Produtos[] = [];
     
-  // }
-  // private http: HttpService
-  constructor(private router: Router) { 
+    public productDisplay: Produtos[] = [];
+    
+    apiProduct: apiProduct
+    erro: any
+    
+    constructor(private router: Router,private productService: ProductService) {
+      this.getter();
+    
+    }
 
-  //   this.http.getProdutos().subscribe(
-  //     data => {
-  //       data.forEach(d => this.produtos.push(new Produtos(d.nome,d.code,d.preco,d.desc,d.categoria)))
-  //       this.produtosExibidos = data
-  //     }
-  //   )
-
-    // this.passarDados.emit(this.items);
+    categorySelected(categoria: Category) {
+      if(categoria.id != 0){
+        this.product = this.productDisplay.filter(produto => produto.categoria == categoria.id)
+      }else{
+        this.product = this.productDisplay
+      }
+    }
+  
+    
+  ngOnInit(){
+    for(let i = 0; i < this.product.length; i++){
+      this.productDisplay.push(this.product[i])
+    }
   }
-
-  ngOnInit(): void {
+  
+  selecionado(produto) {
+    this.router.navigate(['/produtos', produto.id])
   }
-
-  selecionado(produto){
-    this.router.navigate(['/produtos',produto.id])
-  }
-
+  
 }

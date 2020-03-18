@@ -21,7 +21,7 @@ import {ROUTES} from './app-routing.module';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     HttpClientModule,
     HttpClientModule,
     MatDatepickerModule,
+    TextMaskModule,
     
     RouterModule.forRoot(ROUTES),
     

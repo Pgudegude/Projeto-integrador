@@ -18,8 +18,8 @@
                     <div class="col-md-1">
                         <h4>Qtd:</h4>
                         <mat-form-field [formGroup]="formularioQuantidade">
-                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)"
-                                formControlName='quantidade' style="width: 99" matNativeContro >
+                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)"  (change)="freteR()" (change)="freteN()"
+                                formControlName='quantidade' style="width: 99"  >
                                 <option [selected]="true" value=1 > 1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
@@ -51,23 +51,23 @@
                     <div class="col-md-6">
                         <p>{{qtd}} produto(s)</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                         <span>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
                     </div>
                 </div>
-                <div class="row text-muted org">
+                <div class="row text-muted">
                     <div class="col-md-6">
                         <p>desconto</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                         <span>{{desconto}}</span>
                     </div>
                 </div>
-                <div class="row text-muted org">
+                <div class="row text-muted">
                     <div class="col-md-6">
                         <p>frete</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                         <span>{{frete}}</span>
                     </div>
                 </div>
@@ -76,12 +76,12 @@
                 <div class="row mt-2 ">
                         <div class="col-md-6 ">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
-                            <input class="form-control frete" type="radio" formControlName="frete" name="frete" (click)="freteR()" value="50.0"
+                            <input class="form-control frete" type="radio" formControlName="frete" name="frete" value="50.0"
                                 id="freteR">
                         </div>
                         <div class="col-md-6 ">
                             <label for="freteNormal">normal <br> R$ 20,00</label>
-                            <input class="form-control frete" type="radio" value="20.0" formControlName="frete" (click)="freteN()" name="frete"
+                            <input class="form-control frete" type="radio" value="20.0" formControlName="frete"  name="frete"
                                 id="freteN">
                         </div>
                 </div>
