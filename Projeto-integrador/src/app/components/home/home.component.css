@@ -1,29 +1,32 @@
 * {
   margin: 0;
   padding: 0;
+  overflow: hidden
 }
 
 
 .card {
-  margin-right: 15px;
+  margin-right: 20px;
   box-shadow: 0px 1px 0px 1px #bbb8b8;
-  margin-bottom: 50px;
+  
 }
 
 #cardCentro {
   display: flex;
   justify-content: center;
-
+  margin-bottom: 50px;
+  margin-top: 50px;
 
 }
 
-#imagem{
-    /* margin: 50px;
-    padding: 0px; */
+.imagem{
+  display: flex;
+  justify-content: center;
 }
 #banner{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     padding: 0px;
+    
 }
 
