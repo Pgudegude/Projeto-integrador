@@ -9,9 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class  ContatoComponent implements OnInit {
 
   formularioDeContato:FormGroup;
-  constructor(private fb: FormBuilder) {
-
-  }
+  constructor(private fb: FormBuilder) {  }
  
   assunto:any[];
   ngOnInit(): void {
@@ -23,8 +21,6 @@ export class  ContatoComponent implements OnInit {
     alert(`sua ${this.formularioDeContato.value.assunto} foi enviada com sucesso`)
     
   }
-
-  
 
   criarFormularioDeContato(){
     this.formularioDeContato=this.fb.group({

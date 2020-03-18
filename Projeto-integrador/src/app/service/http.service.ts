@@ -4,8 +4,10 @@ import { map, retry } from "rxjs/operators";
 import { Checkout } from "../components/models/checkout";
 import { Endereco } from '../components/models/endereco';
 import { Observable } from 'rxjs';
+import { Produtos } from '../components/models/produtos';
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
+const urlProdutos: string = 'http://localhost:8080/ecommerce/find-product';
 
 interface viacep{
   cep:string,
@@ -26,6 +28,8 @@ interface viacep{
 // }
 export class HttpService {
 
+  info: Produtos
+
   constructor(private http: HttpClient) { }
 
   getCep(endereco: Endereco): Observable<viacep>{
@@ -34,6 +38,16 @@ export class HttpService {
 
   }
 
+  getProdutos() {
+    this.http.get(urlProdutos).subscribe((resp:Produtos )=> console.log(resp))
+  }
+
+// getProdutos(){
+//   let prod = this.http.get(urlProdutos)
+//   return console.log(prod)
+   
+// }
+  
   // getProdutos() {
   //   let prod = this.http.get(`${urlAPI}/produtos`)
 
