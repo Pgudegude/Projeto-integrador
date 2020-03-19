@@ -1,5 +1,5 @@
 <main id="container">
-  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro">
+  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro"(ngSubmit)="enviarDados()">
     <div class="col-md-6 ">
       <header class="header-cadastro-formulario p-2">
         <h3> Dados pessoais</h3>
@@ -138,7 +138,7 @@
         <div class="d-flex justify-content-center">
           <div class="d-flex justify-content-end">
             <button id="botao" class="form-control" name="BTEnvia"
-            [disabled]="!formCadastro.valid">Cadastrar</button>
+            [disabled]="!formCadastro.valid" >Cadastrar</button>
           </div>
         </div>
       </div>

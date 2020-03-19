@@ -18,7 +18,7 @@ export class CadastroService {
       "cpf": cliente.cpf,
       "birthDate": cliente.dataDeNascimento,
       "mail": cliente.email,
-      "password": cliente.senha,
+      "password": cliente.cidade,
       "phone": cliente.telefone,
       }
   }

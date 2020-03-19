@@ -4,7 +4,12 @@ import { Validacoes } from '../validar/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
-
+import { HttpService } from 'src/app/service/http.service';
+import {CadastroService} from 'src/app/service/cadastro.service'
+import {EnderecoService} from'src/app/service/endereco.service'
+import { from } from 'rxjs';
+import { importType } from '@angular/compiler/src/output/output_ast';
+import { R3ExpressionFactoryMetadata } from '@angular/compiler/src/render3/r3_factory';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -15,7 +20,9 @@ export class CadastroComponent implements OnInit {
   formCadastro: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private CEP: CepService
+    private CEP: CepService,
+    private cadastrar:CadastroService,
+    private cadEnd:EnderecoService
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente())
   }
@@ -24,12 +31,16 @@ export class CadastroComponent implements OnInit {
     this.criarCadastro();
   }
   //envia os dados do formulario
-  
-  enviarDados(){
 
+  enviarDados(){
+    this.cadastrar.insertCliente(this.formCadastro.value).subscribe(
+      data => {
+        this.cadastrar.insertCliente(data);
+        this.cadEnd.insertEndereco(data);
+        }
+    )
   }
   enviarCadastro(cliente: Cliente) {
-
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
@@ -45,7 +56,7 @@ export class CadastroComponent implements OnInit {
       confirmaEmail: new FormControl(cliente.confirmaEmail),
       senha: new FormControl(cliente.senha),
       confirmaSenha: new FormControl(cliente.confirmaSenha)
-    })
+    }) 
   }
   //Valida os campos
   criarCadastro() {
