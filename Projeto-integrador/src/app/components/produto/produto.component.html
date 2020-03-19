@@ -7,13 +7,14 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img [src]="product.image" class="card-img" alt={{product.name}} title={{product.name}}>
+                            <img [src]="product[0].image" class="card-img" alt={{product[0].name}}
+                                title={{product[0].name}}>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <h5 class="card-title">{{product.name}}</h5>
-                                <small class="text-muted">código produto: {{product.codProduct}}</small>
-                                <p class="card-text">{{product.description}}</p>
+                                <h1 class="card-title">{{product[0].name}}</h1>
+                                <small class="text-muted">código produto: {{product[0].codProduct}}</small>
+                                <h4 class="card-text">{{product[0].description}}</h4>
                             </div>
                         </div>
                     </div>
@@ -21,7 +22,8 @@
             </div>
             <div class="col-md-3">
                 <hr>
-                <h4>Preço produto: {{product.valueProduct}}</h4>
+                <h4>Preço produto:
+                    {{product[0].valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
                 <hr>
                 <label for="frete">Forma de Envio:</label>
                 <div class="form-group row">
@@ -35,8 +37,7 @@
                     </div>
                 </div>
                 <hr>
-                <button type="button"
-                    class="btn btn-success btn-lg btn-block" >Incluir no
+                <button type="button" class="btn btn-success btn-lg btn-block">Incluir no
                     Carrinho</button>
             </div>
         </div>
