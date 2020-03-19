@@ -44,7 +44,7 @@ export class CadastroComponent implements OnInit {
      let  dadosEndereco:Endereco = new Endereco(
         this.formCadastro.value.cep,
         this.formCadastro.value.endereco,
-        this.formCadastro.value.bairrp,
+        this.formCadastro.value.bairro,
         this.formCadastro.value.numero,
         this.formCadastro.value.estado,
         this.formCadastro.value.cidade,

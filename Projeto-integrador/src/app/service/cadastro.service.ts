@@ -18,7 +18,7 @@ export class CadastroService {
       "birthDate":cliente.dataDeNascimento,
       "mail":cliente.email,
       "phone":cliente.telefone,
-      "password":cliente.senha,
+      "password":cliente.senha
       }
   }
 

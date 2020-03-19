@@ -10,10 +10,7 @@ export class EnderecoService {
 
   constructor(private http: HttpClient) { }
 
-
-  
   enderecoBanco = (endereco:Endereco) =>{
-    console.log(endereco);
     return {
       "zipCode": endereco.cep,
       "logradouro": endereco.endereco,
