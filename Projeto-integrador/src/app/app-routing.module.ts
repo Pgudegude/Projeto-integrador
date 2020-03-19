@@ -52,7 +52,7 @@ export const ROUTES: Routes = [
     component: ListaProdutosComponent
   },
   {
-    path: "home/listaProduto/:id",
+    path: "produto/:code",
     component: ProdutoComponent
   },
   {

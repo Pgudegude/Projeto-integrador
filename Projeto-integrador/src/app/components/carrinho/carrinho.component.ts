@@ -30,10 +30,10 @@ export class CarrinhoComponent implements OnInit {
   formularioFrete: FormGroup;
   constructor(private fb: FormBuilder) {
     this.carrinho.push(
-      new Carrinho(new Produtos(1, "Bola Diamante", 3, 2.0, "Kennedy", 67), 1),
-      new Carrinho(new Produtos(2, "Bola 2", 33, 2.0, "jonas", 47), 1),
-      new Carrinho(new Produtos(3, "Bola 3", 9, 2.0, "fabio", 7), 1),
-      new Carrinho(new Produtos(4, "Bola 4", 343, 2.0, "fabio", 67), 1),
+      new Carrinho(new Produtos( "Bola Diamante", 3, 2.0, "Kennedy", 67), 1),
+      new Carrinho(new Produtos( "Bola 2", 33, 2.0, "jonas", 47), 1),
+      new Carrinho(new Produtos( "Bola 3", 9, 2.0, "fabio", 7), 1),
+      new Carrinho(new Produtos( "Bola 4", 343, 2.0, "fabio", 67), 1),
     )
     this.calcularTotal()
     this.mostrandoQuantidade()
@@ -91,13 +91,12 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
-    let item: Carrinho = this.carrinho.find(x => x.produto.id == produto.produto.id);
+    let item: Carrinho = this.carrinho.find(x => x.produto.code == produto.produto.code);
     item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
 
 
     this.calcularTotal();
     this.mostrandoQuantidade();
- 
   }
 
   excluirProduto(produto) {
