@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
 import { Validacoes } from '../models/Validacoes';
 import { Endereco } from "../models/Endereco";
-import { CepService } from 'src/app/cep.service';
-import { Cliente } from '../models/cliente';
+import { CepService } from 'src/app/Cep.service';
+import { Cliente } from '../models/Cliente';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',

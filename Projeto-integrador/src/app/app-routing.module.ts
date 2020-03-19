@@ -5,7 +5,7 @@ import { ContatoComponent } from './components/contato/contato.component';
 import { SobreComponent } from './components/sobre/sobre.component'
 import { CadastroComponent } from './components/cadastro/cadastro.component'
 import { CompraFinalizadaComponent } from './components/compra-finalizada/compra-finalizada.component'
-import { from } from 'rxjs';
+
 import { LoginComponent } from './components/login/login.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ProdutoComponent } from './components/produto/produto.component';

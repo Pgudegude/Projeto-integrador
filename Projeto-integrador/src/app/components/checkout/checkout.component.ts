@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/service/http.service';
-import { Endereco } from '../models/endereco';
-import { Checkout } from '../models/checkout';
+import { Endereco } from '../models/Endereco';
+import { Checkout } from '../models/Checkout';
 
 
 @Component({
