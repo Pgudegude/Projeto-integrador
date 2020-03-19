@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/service/http.service';
-import { Endereco } from '../models/endereco';
-import { Validacoes } from '../validar/Validacoes';
-import { Compra } from '../models/compra';
+import { Endereco } from '../models/Endereco';
+import { Validacoes } from '../models/Validacoes';
+import { Compra } from '../models/Compra';
 
 
 @Component({
@@ -81,16 +81,6 @@ export class CheckoutComponent implements OnInit {
           Validators.required, // coloquei como obrigatorio
           Validators.maxLength(100) // limitei o maximo de caractere 
         ])],
-      cpf: ["",
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(11),
-          Validacoes.ValidaCpf
-        ])],
-      dataDeNascimento: ["",
-        Validators.compose([
-          Validators.required
-        ])],
       telefone: ["",
         Validators.compose([
           Validators.required
@@ -126,7 +116,8 @@ export class CheckoutComponent implements OnInit {
       numeroCartao: ["",
         Validators.compose([
           Validators.maxLength(16),
-          Validators.required
+          Validators.required,
+          Validacoes.ValidaCartao
         ])],
       cvv: ["",
         Validators.compose([
@@ -140,6 +131,12 @@ export class CheckoutComponent implements OnInit {
       nomeTitular: ["",
         Validators.compose([
           Validators.required
+        ])],
+        
+        cpfTitular: ["",
+        Validators.compose([
+          Validators.required,
+          Validacoes.ValidaCpf
         ])],
     })
 }

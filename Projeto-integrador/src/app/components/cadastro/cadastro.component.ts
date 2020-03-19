@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
-import { Validacoes } from '../validar/Validacoes';
+import { Validacoes } from '../models/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
@@ -81,6 +81,10 @@ export class CadastroComponent implements OnInit {
       confirmaSenha: new FormControl(cliente.confirmaSenha)
     }) 
   }
+
+
+
+
   //Valida os campos
   criarCadastro() {
     this.formCadastro = this.formBuilder.group({

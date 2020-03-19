@@ -2,9 +2,10 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContatoComponent } from './components/contato/contato.component';
-import { SobreComponent} from './components/sobre/sobre.component'
-import {CadastroComponent} from './components/cadastro/cadastro.component'
-import{CompraFinalizadaComponent} from './components/compra-finalizada/compra-finalizada.component'
+import { SobreComponent } from './components/sobre/sobre.component'
+import { CadastroComponent } from './components/cadastro/cadastro.component'
+import { CompraFinalizadaComponent } from './components/compra-finalizada/compra-finalizada.component'
+
 import { LoginComponent } from './components/login/login.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ProdutoComponent } from './components/produto/produto.component';
@@ -13,26 +14,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 
 export const ROUTES: Routes = [
-    {
-      path: "",
-      component: HomeComponent
-    },
-    {
-      path: "contato",
-      component: ContatoComponent
-    },
-    {
-      path: "sobre",
-      component:SobreComponent
-    },
-    {
-      path:"cadastro",
-      component:CadastroComponent
-    },
-    {
-      path:"final",
-      component:CompraFinalizadaComponent
-    },
   {
     path: "",
     redirectTo: "/home",
@@ -49,17 +30,51 @@ export const ROUTES: Routes = [
     path: "listaProduto",
     component: ListaProdutosComponent
   },
-  {
-    path: "home/listaProduto/:id",
-    component: ProdutoComponent
+   {
+    path: "home/listaProduto/cadastro",
+    component: CadastroComponent
   },
+
   {
-    path: "home/sobre",
-    component: SobreComponent
-  },{
     path: "home/cadastro",
     component: CadastroComponent
   },
+  {
+    path: "home/listaProduto/contato",
+    component: ContatoComponent
+  }, 
+  {
+    path: "home/contato/sobre",
+    component: ContatoComponent
+  },
+ 
+  {
+    path: "home/contato",
+    component: ContatoComponent
+  },
+  {
+    path: "home/listaProduto/sobre",
+    component: SobreComponent
+  },
+  {
+    path: "home/sobre/contato",
+    component: SobreComponent
+  },
+
+  // {
+  //   path: "home/listaProduto/contato/sobre",
+  //   component: SobreComponent
+  // }, 
+  // // {
+  // //   path: "sobre/contato/listaProduto/home",
+  // //   component: SobreComponent
+  // // },
+  
+  {
+    path: "home/sobre",
+    component: SobreComponent
+  }, 
+
   {
     path: "carrinho",
     component: CarrinhoComponent
@@ -80,6 +95,10 @@ export const ROUTES: Routes = [
     component: CheckoutComponent
   },
   {
+    path: "final",
+    component: CompraFinalizadaComponent
+  },
+  {
     path: "meusPedidos",
     component: MeusPedidosComponent
   },
@@ -93,6 +112,10 @@ export const ROUTES: Routes = [
   },{
     path:"home/sobre/contato",
     component:ContatoComponent
+  },
+  {
+    path:"cadastro",
+    component:CadastroComponent
   },
   {
 path: "**",
