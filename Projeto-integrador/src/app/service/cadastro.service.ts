@@ -12,14 +12,13 @@ export class CadastroService {
 
 
   clienteBanco = (cliente: Cliente) => {
-    console.log(cliente);
     return {
-      "name ": cliente.nomeCompleto,
-      "cpf": cliente.cpf,
-      "birthDate": cliente.dataDeNascimento,
-      "mail": cliente.email,
-      "password": cliente.cidade,
-      "phone": cliente.telefone,
+      "name":cliente.nomeCompleto,
+      "cpf":cliente.cpf,
+      "birthDate":cliente.dataDeNascimento,
+      "mail":cliente.email,
+      "phone":cliente.telefone,
+      "password":cliente.senha,
       }
   }
 

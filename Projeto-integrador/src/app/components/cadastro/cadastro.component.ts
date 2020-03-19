@@ -4,12 +4,11 @@ import { Validacoes } from '../validar/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
-import { HttpService } from 'src/app/service/http.service';
 import {CadastroService} from 'src/app/service/cadastro.service'
 import {EnderecoService} from'src/app/service/endereco.service'
-import { from } from 'rxjs';
-import { importType } from '@angular/compiler/src/output/output_ast';
-import { R3ExpressionFactoryMetadata } from '@angular/compiler/src/render3/r3_factory';
+import { tick } from '@angular/core/testing';
+
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -24,34 +23,58 @@ export class CadastroComponent implements OnInit {
     private cadastrar:CadastroService,
     private cadEnd:EnderecoService
   ) {
-    this.formCadastro = this.enviarCadastro(new Cliente())
+    this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
   endereco: Endereco = new Endereco("", "", "", "", "", "")
   ngOnInit(): void {
     this.criarCadastro();
   }
   //envia os dados do formulario
-
+ 
+ 
   enviarDados(){
-    this.cadastrar.insertCliente(this.formCadastro.value).subscribe(
+  let  dadosCliente:Cliente = new Cliente(
+      this.formCadastro.value.nomeCompleto,
+      this.formCadastro.value.cpf,
+      this.formCadastro.value.dataDeNascimento,
+      this.formCadastro.value.telefone,
+      this.formCadastro.value.email,
+      this.formCadastro.value.senha
+      )
+     let  dadosEndereco:Endereco = new Endereco(
+        this.formCadastro.value._cep,
+        this.formCadastro.value._endereco,
+        this.formCadastro.value._bairrp,
+        this.formCadastro.value._numero,
+        this.formCadastro.value._estado,
+        this.formCadastro.value._cidade,
+        this.formCadastro.value._complemento,
+    )
+
+    this.cadastrar.insertCliente(dadosCliente).subscribe(
       data => {
         this.cadastrar.insertCliente(data);
+        console.log(data)
+        }
+    )
+    this.cadEnd.insertEndereco(dadosEndereco).subscribe(
+      data => {
         this.cadEnd.insertEndereco(data);
         }
     )
   }
-  enviarCadastro(cliente: Cliente) {
+  enviarCadastro(cliente: Cliente, endereco:Endereco) {
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
       dataDeNascimento: new FormControl(cliente.dataDeNascimento),
       telefone: new FormControl(cliente.telefone),
-      cep: new FormControl(cliente.cep),
-      endereco: new FormControl(cliente.endereco),
-      cidade: new FormControl(cliente.cidade),
-      bairro: new FormControl(cliente.bairro),
-      complemento: new FormControl(cliente.complemento),
-      estado: new FormControl(cliente.estado),
+      cep: new FormControl(endereco.cep),
+      endereco: new FormControl(endereco.endereco),
+      cidade: new FormControl(endereco.cidade),
+      bairro: new FormControl(endereco.bairro),
+      complemento: new FormControl(endereco.complemento),
+      estado: new FormControl(endereco.estado),
       email: new FormControl(cliente.email),
       confirmaEmail: new FormControl(cliente.confirmaEmail),
       senha: new FormControl(cliente.senha),
