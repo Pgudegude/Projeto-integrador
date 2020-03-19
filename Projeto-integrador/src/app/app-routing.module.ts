@@ -32,7 +32,10 @@ export const ROUTES: Routes = [
   },
    {
     path: "home/listaProduto/cadastro",
-    component: CadastroComponent
+    component: CadastroComponent},
+  {
+    path: "produto/:code",
+    component: ProdutoComponent
   },
 
   {

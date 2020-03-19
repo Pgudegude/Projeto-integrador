@@ -41,7 +41,7 @@ export class ListaProdutosComponent implements OnInit {
       }
     }
   
-    
+  
   ngOnInit(){
     for(let i = 0; i < this.product.length; i++){
       this.productDisplay.push(this.product[i])
@@ -49,7 +49,9 @@ export class ListaProdutosComponent implements OnInit {
   }
   
   selecionado(produto) {
-    this.router.navigate(['/produtos', produto.id])
+    this.router.navigate(['listaProduto', produto.code])
+    console.log("eu devia funcionar");
+    
   }
   
 }
