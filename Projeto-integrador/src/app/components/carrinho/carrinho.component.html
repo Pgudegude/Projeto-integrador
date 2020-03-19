@@ -86,10 +86,16 @@
                 </div>
             </form>
                 <hr>
-                <h5>total</h5>
+                <h5>
+                    Total: 
+                    <p  class="text-right">{{totalComFrete}}  
+                    
+                    </p>
+                </h5>
                 <div class="text-right">
-                    <span class="text-muted">{{totalComFrete}} em até 3x ou</span>
-                    <h5>{{totalComFrete}} em 1x no cartão</h5>
+                    <h5>em 1x no cartão</h5>
+                    <span class="text-muted">ou em até 3x sem juros  </span>
+                    
                 </div>
                 <hr>
                 <a  [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block  "><img

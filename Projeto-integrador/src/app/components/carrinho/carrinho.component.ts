@@ -24,7 +24,7 @@ export class CarrinhoComponent implements OnInit {
   rapido: any;
   normal: any;
   total = 0;
-  qtd = 0;
+  qtd = null;
   totalComDesconto: any;
   totalComFrete: any;
 
@@ -56,6 +56,7 @@ export class CarrinhoComponent implements OnInit {
     )
     this.calcularTotal()
     this.mostrandoQuantidade()
+    
   }
 
   calcularTotal = () => {
@@ -108,7 +109,9 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho.forEach(item => {
       this.qtd += item.quantidade;
     })
+    
   }
+
 
   ajustarQuantidade(produto) {
     this.carrinho.forEach(item => {
@@ -116,11 +119,26 @@ export class CarrinhoComponent implements OnInit {
         item.quantidade = this.formularioQuantidade.value.quantidade;
     })
     this.calcularTotal();
+    
+   
   }
 
   excluirProduto(produto) {
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
-    this.calcularTotal();
+    
     this.mostrandoQuantidade();
+    this.diminuir();
   }  
+
+  diminuir = () => {
+    this.carrinho.forEach(item => {
+      this.total -= item.produto.preco - item.quantidade;
+      if (this.total != 0) {
+        this.carrinho.forEach(item => {
+          this.desconto = (this.total *0.7).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        })
+      }
+    })
+  
+  }
 }
