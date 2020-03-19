@@ -14,6 +14,7 @@ export class ProdutoComponent implements OnInit {
 
   // listaProdutos = localStorage.getItem('listaProdutos') ? JSON.parse(localStorage.getItem('listaProdutos')) : []
 
+  public productCODE;
   product: apiProduct;
   code: number
   // salvarLocaStorage = salvarProdutos => {
@@ -22,19 +23,19 @@ export class ProdutoComponent implements OnInit {
   //   console.log("Lista de Produtos salva com sucesso!");
   // }
 
-  constructor(private route: ActivatedRoute, public service: ProductService) { 
-  
+  constructor(private route: ActivatedRoute, public service: ProductService) {
+    this.route.params.subscribe(parameters => {
+      this.service.findByProductsCode(parameters['code'])
+        .subscribe((product: apiProduct) => {
+          this.code = parameters['code'];
+          this.product = product;
+          console.log(product);
+        })
+    })
   }
 
-  ngOnInit(): void{
-  this.route.params.subscribe(parameters => {
-    this.service.findByProductsCode(parameters['code'])
-    .subscribe((product: apiProduct)=>{
-this.code = parameters['code'];
-this.product = product;
-console.log(product);
-
-    })
-  })
+  ngOnInit(): void {
+    console.log(this.product);
+    
   }
 }

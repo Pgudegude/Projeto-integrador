@@ -44,7 +44,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     SobreComponent,
     CadastroComponent,
     CarrosselComponent,
-     CheckoutComponent,
+    CheckoutComponent,
     MeusPedidosComponent,
   ],
   imports: [
@@ -59,7 +59,6 @@ import { TextMaskModule } from 'angular2-text-mask';
     ButtonsModule, 
     NgbModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES),
     MatDatepickerModule,
     TextMaskModule,
     
