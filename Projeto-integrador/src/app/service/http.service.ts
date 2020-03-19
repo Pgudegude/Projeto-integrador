@@ -37,10 +37,8 @@ export class HttpService {
     return this.http.get<viacep>(urlAPI+endereco.cep+"/json/").pipe(retry(2));
 
   }
-
-  insertClient(){
     
-  }
+  
    contatoBanco = (contato:Contato) =>{
     console.log(contato);
     return {

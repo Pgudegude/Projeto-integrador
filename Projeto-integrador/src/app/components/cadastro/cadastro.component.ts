@@ -24,7 +24,12 @@ export class CadastroComponent implements OnInit {
     this.criarCadastro();
   }
   //envia os dados do formulario
+  
+  enviarDados(){
+
+  }
   enviarCadastro(cliente: Cliente) {
+
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
