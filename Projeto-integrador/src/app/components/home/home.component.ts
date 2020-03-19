@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/service/http.service';
 export class HomeComponent implements OnInit {
 
   constructor(public http: HttpService) {
-    this.http.getProdutos();
+ 
    }
 
   ngOnInit(): void {

@@ -30,18 +30,12 @@ interface viacep{
 // }
 export class HttpService {
 
-  info: Produtos
-
   constructor(private http: HttpClient) { }
 
   getCep(endereco: Endereco): Observable<viacep>{
 
     return this.http.get<viacep>(urlAPI+endereco.cep+"/json/").pipe(retry(2));
 
-  }
-
-  getProdutos() {
-    this.http.get(urlProdutos).subscribe((resp:Produtos )=> console.log(resp))
   }
 
   insertClient(){

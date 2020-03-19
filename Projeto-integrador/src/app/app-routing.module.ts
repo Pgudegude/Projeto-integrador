@@ -33,7 +33,6 @@ export const ROUTES: Routes = [
       path:"final",
       component:CompraFinalizadaComponent
     },
-
   {
     path: "",
     redirectTo: "/home",
@@ -69,7 +68,7 @@ export const ROUTES: Routes = [
     component: LoginComponent
   },
   {
-    path: "sobre",
+    path: "listaProduto/sobre",
     component: SobreComponent
   },
   {
@@ -91,6 +90,9 @@ export const ROUTES: Routes = [
   {
     path:"home/listaProduto/cadastro",
     component: CadastroComponent
+  },{
+    path:"home/sobre/contato",
+    component:ContatoComponent
   },
   {
 path: "**",

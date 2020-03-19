@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public getProducts() {
-    return this.http.get(`http://localhost:8080/ecommerce/find-product/list`)
+    return this.http.get(`http://localhost:8080/ecommerce/find-product`)
   }
 
   public findByProductsCode(code: number) {
