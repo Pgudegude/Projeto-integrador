@@ -42,13 +42,13 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.value.senha
       )
      let  dadosEndereco:Endereco = new Endereco(
-        this.formCadastro.value._cep,
-        this.formCadastro.value._endereco,
-        this.formCadastro.value._bairrp,
-        this.formCadastro.value._numero,
-        this.formCadastro.value._estado,
-        this.formCadastro.value._cidade,
-        this.formCadastro.value._complemento,
+        this.formCadastro.value.cep,
+        this.formCadastro.value.endereco,
+        this.formCadastro.value.bairrp,
+        this.formCadastro.value.numero,
+        this.formCadastro.value.estado,
+        this.formCadastro.value.cidade,
+        this.formCadastro.value.complemento,
     )
 
     this.cadastrar.insertCliente(dadosCliente).subscribe(

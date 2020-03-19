@@ -15,7 +15,7 @@ export class EnderecoService {
   enderecoBanco = (endereco:Endereco) =>{
     console.log(endereco);
     return {
-      "zipCode ": endereco.cep,
+      "zipCode": endereco.cep,
       "logradouro": endereco.endereco,
       "neighborhood": endereco.bairro,
       "state": endereco.estado,
