@@ -6,7 +6,7 @@
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
                     <div class="col-md-3">
-                        <img [src]="item.produto.image" alt="item.produto.name" title="item.produto.name" class="card-img"  >
+                        <img [src]="item.produto[0].image" alt="item.produto.name" title="item.produto.name" class="card-img"  >
                     </div>
                     <div class="col-md-5">
                         <h4>Produto:</h4>
