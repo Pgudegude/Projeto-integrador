@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <h1 class="card-title">{{product[0].name}}</h1>
                                 <small class="text-muted">código produto: {{product[0].codProduct}}</small>
-                                <h4 class="card-text">{{product[0].description}}</h4>
+                                <h3 class="card-text">{{product[0].description}}</h3>
                             </div>
                         </div>
                     </div>
@@ -37,11 +37,10 @@
                     </div>
                 </div>
                 <hr>
-                <button type="button" class="btn btn-success btn-lg btn-block">Incluir no
+                <button type="button" class="btn btn-success btn-lg btn-block" (click)='saveProduct()'>Incluir no
                     Carrinho</button>
             </div>
         </div>
     </div>
 </div>
 <app-footer class="fot"></app-footer>
-<!-- (click)="salvarLocaStorage()" -->

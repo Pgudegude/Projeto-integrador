@@ -12,16 +12,10 @@ import { ProductService } from 'src/app/service/product.service';
 
 export class ProdutoComponent implements OnInit {
 
-  // listaProdutos = localStorage.getItem('listaProdutos') ? JSON.parse(localStorage.getItem('listaProdutos')) : []
-
-  public productCODE;
+  localProduct: apiProduct[] = []
   product: apiProduct;
   code: number
-  // salvarLocaStorage = salvarProdutos => {
-  //   let converterJson = JSON.stringify(salvarProdutos)
-  //   localStorage.setItem('ListaProdutos', converterJson)
-  //   console.log("Lista de Produtos salva com sucesso!");
-  // }
+
 
   constructor(private route: ActivatedRoute, public service: ProductService) {
     this.route.params.subscribe(parameters => {
@@ -29,13 +23,36 @@ export class ProdutoComponent implements OnInit {
         .subscribe((product: apiProduct) => {
           this.code = parameters['code'];
           this.product = product;
-          console.log(product);
         })
     })
   }
 
   ngOnInit(): void {
-    console.log(this.product);
-    
+    let storageProduct = JSON.parse(localStorage.getItem('cartProduct'))
+    if (storageProduct != null) {
+      for (let i = 0; i < storageProduct.length; i++) {
+        if (storageProduct != null) {
+          this.localProduct.push(storageProduct[i])
+        }
+      }
+    }
   }
+
+  saveProduct() {
+    let count = 0
+    let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
+    if (product != null) {
+      for (let i = 0; i < product.length; i++) {
+        if (product[i].name == this.product.name)
+          count++
+      }
+    }
+    if (count == 0) {
+      this.localProduct.push(this.product)
+      let produto_json = JSON.stringify(this.localProduct)
+      localStorage.setItem("cartProduct", produto_json)
+    }
+  }
+
+
 }

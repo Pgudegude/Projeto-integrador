@@ -17,4 +17,8 @@ export class ProductService {
   public findByProductsCode(code: number) {
     return this.http.get(`http://localhost:8080/ecommerce/product-id/${code}`)
   }
+
+  public getCategory(code: number){
+    return this.http.get(`http://localhost:8080/ecommerce/product-category/${code}`)
+  }
 }

@@ -6,12 +6,11 @@
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="../../../assets/Imagem/bola diamante.png" class="card-img" alt="Bola Universo"
-                            title="Bola Diamante">
+                        <img [src]="item.produto.image" alt="item.produto.name" title="item.produto.name" class="card-img"  >
                     </div>
                     <div class="col-md-5">
                         <h4>Produto:</h4>
-                        <h3><strong>Bola Diamante</strong></h3>
+                        <h3><strong>{{item.produto.name}}</strong></h3>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
@@ -36,7 +35,7 @@
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <h3><strong>{{item.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong></h3>
+                        <h3><strong>{{item.produto.valueProduct}}</strong></h3>
                     </div>
                 </div>
                 <hr>
@@ -52,7 +51,7 @@
                         <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
+                        <span>{{total}}</span>
                     </div>
                 </div>
                 <div class="row text-muted">
