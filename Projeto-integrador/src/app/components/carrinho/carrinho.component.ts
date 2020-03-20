@@ -110,11 +110,11 @@ export class CarrinhoComponent implements OnInit {
 
   excluirProduto(produto) {
     // this.carrinho = this.carrinho.filter(item => item.produto != produto);
-    
     //this.total -= (item.produto.vlProductDiscount * item.quantidade)
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
+
   }
 
   searchProduct (){
