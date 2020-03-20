@@ -19,6 +19,7 @@
                         <h6>Qtd:</h6>
                         <mat-form-field [formGroup]="formularioQuantidade">
                             <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item.quantidade)"
+                            
                                 formControlName='quantidade' style="width: 99" matNativeContro >
                                 <option [selected]="true" > 1</option>
                                 <option value="2">2</option>
