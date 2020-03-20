@@ -102,7 +102,7 @@ export class CarrinhoComponent implements OnInit {
   excluirProduto(item) {
     // this.carrinho = this.carrinho.filter(item => item.produto != produto);
     
-    this.total -= (item.produto.vlProductDiscount * item.quantidade)
+    this.total -= (item.produto.valueProduct * item.quantidade)
     this.carrinho = this.carrinho.filter(itemP => item.produto != item)
     this.calcularTotal();
     this.mostrandoQuantidade();

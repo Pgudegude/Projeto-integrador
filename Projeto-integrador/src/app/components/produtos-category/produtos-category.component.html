@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div id="cardCentro" class="row">
+        <div class="card col-md-2 p-2 mt-5">
+            <ul id="categorias" class="rounded list-group list-group-flush">
+                <li class="mt-4 p-2 list-group-item" *ngFor="let categoria of categoryAPI">
+                    <a routerLink="/listaProduto" (click)="categoryClicked.emit(categoria)">{{categoria.id}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
