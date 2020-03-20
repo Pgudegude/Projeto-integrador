@@ -5,5 +5,7 @@
 #login::after{
     content: 'Faça seu login aqui!';
 }
-
-
+*{
+    padding: 0%;
+    margin: 0%;
+}

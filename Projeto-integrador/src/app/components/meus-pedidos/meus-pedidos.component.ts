@@ -18,7 +18,7 @@ const ped: Pedido[] = [
     data: '31/01/2020',
     pedido: '123221',
     valor: 300.00,
-    statusPagamento: 'aprovado',
+    statusPagamento: 'aprovado',  
     statusPedido: 'entregue',
   },
   {

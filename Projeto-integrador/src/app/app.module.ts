@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,13 +15,18 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CarrosselComponent } from './components/carrossel/carrossel.component';
+import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import {ROUTES} from './app-routing.module';
-import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
-
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -38,6 +43,7 @@ import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.com
     MenuComponent,
     SobreComponent,
     CadastroComponent,
+    CarrosselComponent,
     CheckoutComponent,
     MeusPedidosComponent,
   ],
@@ -46,13 +52,23 @@ import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.com
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    ModalModule,
+    BsDropdownModule,
+    CarouselModule,
+    WavesModule,
+    ButtonsModule, 
+    NgbModule,
     HttpClientModule,
-    HttpClientModule,
+    MatDatepickerModule,
+    TextMaskModule,
     
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    
+    BrowserAnimationsModule
   
 
   ],
+  exports: [BsDropdownModule,  ModalModule], 
   providers: [],
   bootstrap: [AppComponent]
 })

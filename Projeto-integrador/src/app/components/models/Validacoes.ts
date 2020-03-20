@@ -67,8 +67,6 @@ export class Validacoes {
     const email = controle.get('email').value;
     const confirmaEmail = controle.get('confirmaEmail').value;
 
-
-
     if (email === confirmaEmail) {
 
       return null
@@ -103,6 +101,7 @@ export class Validacoes {
 
     return { invalido: true };
   }
+
   static ValidaCartao(controle: AbstractControl) {
     let cartao = controle.value;
 

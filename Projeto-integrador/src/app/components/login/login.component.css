@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
 }
 
 #cad{
@@ -47,3 +46,9 @@
     border: 1px solid #888;
     width: 35%; 
 } 
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+    }
+.ng-invalid:not(form)  {
+    border-left: 5px solid #A94442; /* red */
+    }

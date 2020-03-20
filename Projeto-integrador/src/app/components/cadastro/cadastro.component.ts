@@ -2,46 +2,84 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
 import { Validacoes } from '../models/Validacoes';
 import { Endereco } from "../models/Endereco";
-import { CepService } from 'src/app/Cep.service';
-import { Cliente } from '../models/Cliente';
+import { CepService } from 'src/app/cep.service';
+import { Cliente } from '../models/cliente';
+import {CadastroService} from 'src/app/service/cadastro.service'
+import {EnderecoService} from'src/app/service/endereco.service'
+import { tick } from '@angular/core/testing';
+
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
+
 export class CadastroComponent implements OnInit {
   formCadastro: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private CEP: CepService
+    private CEP: CepService,
+    private cadastrar:CadastroService,
+    private cadEnd:EnderecoService
   ) {
-    this.formCadastro = this.enviarCadastro(new Cliente())
+    this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
   endereco: Endereco = new Endereco("", "", "", "", "", "")
   ngOnInit(): void {
     this.criarCadastro();
   }
   //envia os dados do formulario
-  enviarCadastro(cliente: Cliente) {
+ 
+ 
+  enviarDados(){
+  let  dadosCliente:Cliente = new Cliente(
+      this.formCadastro.value.nomeCompleto,
+      this.formCadastro.value.cpf,
+      this.formCadastro.value.dataDeNascimento,
+      this.formCadastro.value.telefone,
+      this.formCadastro.value.email,
+      this.formCadastro.value.senha
+      )
+     let  dadosEndereco:Endereco = new Endereco(
+        this.formCadastro.value.cep,
+        this.formCadastro.value.endereco,
+        this.formCadastro.value.bairro,
+        this.formCadastro.value.numero,
+        this.formCadastro.value.estado,
+        this.formCadastro.value.cidade,
+        this.formCadastro.value.complemento,
+    )
 
+    this.cadastrar.insertCliente(dadosCliente).subscribe(
+      data => {
+        this.cadastrar.insertCliente(data);
+        console.log(data)
+        }
+    )
+    this.cadEnd.insertEndereco(dadosEndereco).subscribe(
+      data => {
+        this.cadEnd.insertEndereco(data);
+        }
+    )
+  }
+  enviarCadastro(cliente: Cliente, endereco:Endereco) {
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
       dataDeNascimento: new FormControl(cliente.dataDeNascimento),
       telefone: new FormControl(cliente.telefone),
-      cep: new FormControl(cliente.cep),
-      endereco: new FormControl(cliente.endereco),
-      cidade: new FormControl(cliente.cidade),
-      bairro: new FormControl(cliente.bairro),
-      complemento: new FormControl(cliente.complemento),
-      estado: new FormControl(cliente.estado),
+      cep: new FormControl(endereco.cep),
+      endereco: new FormControl(endereco.endereco),
+      cidade: new FormControl(endereco.cidade),
+      bairro: new FormControl(endereco.bairro),
+      complemento: new FormControl(endereco.complemento),
+      estado: new FormControl(endereco.estado),
       email: new FormControl(cliente.email),
       confirmaEmail: new FormControl(cliente.confirmaEmail),
       senha: new FormControl(cliente.senha),
       confirmaSenha: new FormControl(cliente.confirmaSenha)
-    })
-
-
+    }) 
   }
 
 
@@ -88,7 +126,6 @@ export class CadastroComponent implements OnInit {
         ])],
       complemento: ["",
         Validators.compose([
-
         ])],
       estado: ["",
         Validators.compose([
@@ -116,15 +153,12 @@ export class CadastroComponent implements OnInit {
         ])],
       confirmaSenha: ["",
         Validators.compose([
-
           Validators.minLength(8),
           Validators.maxLength(12)
-
         ])]
     }, {
-      validators: [Validacoes.ConferirSenha, Validacoes.ConferirEmail]
+      validators: [Validacoes.ConferirSenha,Validacoes.ConferirEmail]
     });
-
   }
   get confirmaSenha() {
     return this.formCadastro.get('confirmaSenha');
@@ -141,17 +175,4 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.controls['cidade'].patchValue(this.endereco.cidade);
     })
   }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Produtos } from '../models/produtos';
+import { apiProduct } from '../models/apiProduct';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/service/product.service';
 
 
 @Component({
@@ -10,31 +12,50 @@ import { Produtos } from '../models/produtos';
 
 export class ProdutoComponent implements OnInit {
 
-  listaProdutos = localStorage.getItem('listaProdutos') ? JSON.parse(localStorage.getItem('listaProdutos')) : []
+  localProduct: apiProduct[] = []
+  product: apiProduct;
+  code: number
 
 
-  salvarLocaStorage = salvarProdutos => {
-    let converterJson = JSON.stringify(salvarProdutos)
-    localStorage.setItem('ListaProdutos', converterJson)
-    console.log("Lista de Produtos salva com sucesso!");
+  constructor(private route: ActivatedRoute, public service: ProductService) {
+    this.route.params.subscribe(parameters => {
+      this.service.findByProductsCode(parameters['code'])
+        .subscribe((product: apiProduct) => {
+          this.code = parameters['code'];
+          this.product = product;
+        })
+    })
   }
 
-  // cont: number = 0;
-  // @Output() contadorProduto = new EventEmitter() 
-
-
-  // increment (){
-  //   console.log(this.contadorProduto.emit(this.cont++));
-  // }
-
-  constructor() { }
-
-  ngOnInit() {
-
+  ngOnInit(): void {
+    let storageProduct = JSON.parse(localStorage.getItem('cartProduct'))
+    if (storageProduct != null) {
+      for (let i = 0; i < storageProduct.length; i++) {
+        if (storageProduct != null) {
+          this.localProduct.push(storageProduct[i])
+        }
+      }
+    }
   }
 
-  // countItems(){
+  saveProduct() {
+    let count = 0
+    let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
+    if (product != null) {
+      for (let i = 0; i < product.length; i++) {
+        if (product[i].name == this.product.name)
+          count++
+      }
+      this.localProduct.push(this.product)
+      let produto_json = JSON.stringify(this.localProduct)
+      localStorage.setItem("cartProduct", produto_json)
+    }
+    if (count == 0) {
+      this.localProduct.push(this.product)
+      let produto_json = JSON.stringify(this.localProduct)
+      localStorage.setItem("cartProduct", produto_json)
+    }
+  }
 
-  // }
 
 }

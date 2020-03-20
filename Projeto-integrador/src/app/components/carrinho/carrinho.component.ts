@@ -1,4 +1,3 @@
-  
 import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
@@ -32,11 +31,12 @@ export class CarrinhoComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.searchProduct()
   for(let i = 0; i < this.cartProduct.length; i++){
-    // this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    console.log(this.carrinho)
   }
   
   this.carrinho.forEach(item =>{
-    // this.total += item.produto.valueProduct * item.quantidade;
+    this.total += item.produto[0].valueProduct * item.quantidade;
   })
     this.calcularTotal()
     this.mostrandoQuantidade()
@@ -45,7 +45,7 @@ export class CarrinhoComponent implements OnInit {
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
-      // this.total += item.produto.valueProduct * item.quantidade;
+      this.total += item.produto[0].valueProduct * item.quantidade;
       if (this.total != 0) {
         this.carrinho.forEach(item => {
           this.desconto = (this.total * 0.7)
@@ -94,19 +94,27 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
+    this.carrinho.forEach(item=>{
+      if(item.produto[0].codProduct == produto.produto[0].codProduct)
+      item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+    }
+    )
     // let item: Carrinho = this.carrinho.find(x => x.produto.codProduct == produto.produto.code);
+    // console.log(this.carrinho)
+    // console.log(item)
     // item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     this.calcularTotal();
     this.mostrandoQuantidade();
+    
   }
 
-  excluirProduto(item) {
+  excluirProduto(produto) {
     // this.carrinho = this.carrinho.filter(item => item.produto != produto);
-    
-    this.total -= (item.produto.vlProductDiscount * item.quantidade)
-    this.carrinho = this.carrinho.filter(itemP => item.produto != item)
+    //this.total -= (item.produto.vlProductDiscount * item.quantidade)
+    this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
+
   }
 
   searchProduct (){
@@ -114,7 +122,7 @@ export class CarrinhoComponent implements OnInit {
     for(let i = 0; i < product.length; i++){
       this.cartProduct.push(product[i])
     }
-    return product == null ? [] : product.produto
+    return product == null ? [] : this.cartProduct
   }
 
 }

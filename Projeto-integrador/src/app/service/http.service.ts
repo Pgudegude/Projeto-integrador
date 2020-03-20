@@ -4,9 +4,13 @@ import { map, retry } from "rxjs/operators";
 import { Checkout } from "../components/models/checkout";
 import { Endereco } from '../components/models/endereco';
 import { Observable } from 'rxjs';
+import { Produtos } from '../components/models/produtos';
+import { Cliente } from '../components/models/cliente';
+import { Contato } from '../components/models/Contato';
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
-
+const urlProdutos: string = 'http://localhost:8080/ecommerce/find-product';
+const urlAdicionarCliente:String = 'http://localhost:8080/ecommerce/create-client';
 interface viacep{
   cep:string,
   logradouro: string,
@@ -33,7 +37,31 @@ export class HttpService {
     return this.http.get<viacep>(urlAPI+endereco.cep+"/json/").pipe(retry(2));
 
   }
-
+    
+   contatoBanco = (contato:Contato) =>{
+    console.log(contato);
+    return {
+      "name": contato.nome,
+      "mail": contato.email,
+      "subject": contato.assunto,
+      "text": contato.comentario,
+    }
+  }
+  public insertContato(contato:Contato){
+  let comunicacao = this.contatoBanco(contato)
+      let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
+      return url.pipe(map(
+        dados => dados
+      ));
+    }
+  }
+  
+// getProdutos(){
+//   let prod = this.http.get(urlProdutos)
+//   return console.log(prod)
+   
+// }
+  
   // getProdutos() {
   //   let prod = this.http.get(`${urlAPI}/produtos`)
 
@@ -62,4 +90,3 @@ export class HttpService {
 // }
 
 
-}

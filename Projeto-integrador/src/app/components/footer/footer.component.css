@@ -1,4 +1,6 @@
 footer{
     background: #A7E0D7;
-    width: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }

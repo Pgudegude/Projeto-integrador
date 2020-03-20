@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpService } from 'src/app/service/http.service';
+import { Contato } from '../models/Contato';
 
 @Component({
   selector: 'app-contato',
@@ -9,29 +11,33 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class  ContatoComponent implements OnInit {
 
   formularioDeContato:FormGroup;
-  constructor(private fb: FormBuilder) {
-
-  }
+  constructor(private fb: FormBuilder, private contatar:HttpService) {  }
  
   assunto:any[];
   ngOnInit(): void {
-    this.criarFormularioDeContato();
-  }
 
-  enviarDados() {
-    console.log(this.formularioDeContato.value);
-    alert(`sua ${this.formularioDeContato.value.assunto} foi enviada com sucesso`)
-    
+    this.criarFormularioDeContato(new Contato());
   }
 
   
+  
+  enviarDados() {
+    console.log(this.formularioDeContato.value);
+    alert(`sua ${this.formularioDeContato.value.assunto} foi enviada com sucesso`)
+    this.contatar.insertContato(this.formularioDeContato.value).subscribe(
+      data => {
+        this.contatar.insertContato(data);
+          
+        }
+    )
+      }
 
-  criarFormularioDeContato(){
+  criarFormularioDeContato(contato:Contato){
     this.formularioDeContato=this.fb.group({
-      nome:[''],
-      email:[''],
-      assunto:[''],
-      comentario:['']
+      nome:[contato.nome],
+      email:[contato.email],
+      assunto:[contato.assunto], 
+      comentario:[contato.comentario]
     })
   }
 }

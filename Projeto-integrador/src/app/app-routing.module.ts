@@ -24,12 +24,18 @@ export const ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path: "home/listaProduto",
+    path: "home/contato",
+    component: ContatoComponent
+  }, {
+    path: "listaProduto",
     component: ListaProdutosComponent
   },
    {
     path: "home/listaProduto/cadastro",
-    component: CadastroComponent
+    component: CadastroComponent},
+  {
+    path: "produto/:code",
+    component: ProdutoComponent
   },
 
   {
@@ -79,7 +85,10 @@ export const ROUTES: Routes = [
     path: "login",
     component: LoginComponent
   },
-  
+  {
+    path: "listaProduto/sobre",
+    component: SobreComponent
+  },
   {
     path: "login/cadastro",
     component: CadastroComponent
@@ -101,9 +110,20 @@ export const ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path: "**",
-    redirectTo: "/home",
-    pathMatch: "full"
+    path:"home/listaProduto/cadastro",
+    component: CadastroComponent
+  },{
+    path:"home/sobre/contato",
+    component:ContatoComponent
+  },
+  {
+    path:"cadastro",
+    component:CadastroComponent
+  },
+  {
+path: "**",
+redirectTo: "/home",
+pathMatch: "full"
   }
 ];
 

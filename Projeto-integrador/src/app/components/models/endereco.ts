@@ -1,13 +1,13 @@
 export class Endereco{
     constructor(
-        private _cep:string,
-        private _endereco: string,
-        private _bairro: string,
-        private _numero:string,
-        private _estado:string,
-        private _cidade:string,
-        private _complemento?:string,
-        private _id?:string,
+        public _cep?:string,
+        public _endereco?: string,
+        public _bairro?: string,
+        public _numero?:string,
+        public _estado?:string,
+        public _cidade?:string,
+        public _complemento?:string,
+        public _id?:string,
         ){}
         setEndereco(cep:string, endereco:string, bairro:string, estado:string, cidade:string){
             this._cep = cep;
