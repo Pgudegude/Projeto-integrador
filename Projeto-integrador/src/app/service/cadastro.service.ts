@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../components/models/cliente';
 import { map } from 'rxjs/operators';
+import { Endereco } from '../components/models/endereco';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class CadastroService {
       "password":cliente.senha
       }
   }
-
   public insertCliente(cliente: Cliente) {
     let comunicacao = this.clienteBanco(cliente)
     let url = this.http.post<any>("http://localhost:8080/ecommerce/create-client", comunicacao);
@@ -29,5 +29,7 @@ export class CadastroService {
       dados => dados
     ));
   }
-
+  public unirClienteAoEndereco(client: Cliente, endereco: Endereco){
+    
+  }
 }
