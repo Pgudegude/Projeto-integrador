@@ -50,7 +50,7 @@ export class CarrinhoComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.carrinho.push(
       new Carrinho(new Produtos(1, "Bola Diamante", 3, 2.0, "Kennedy", 67), 1),
-
+      
     )
     this.calcularTotal()
     this.mostrandoQuantidade()
@@ -104,12 +104,13 @@ export class CarrinhoComponent implements OnInit {
   }
 
   mostrandoQuantidade() {
-    this.qtd = 0;
+    this.quantidade = [];
     this.carrinho.forEach(item => {
-      this.qtd += item.quantidade;
+      this.qtd = this.qtd+item.quantidade
     })
 
   }
+ 
 
 
   ajustarQuantidade(produto) {
@@ -117,16 +118,18 @@ export class CarrinhoComponent implements OnInit {
       if (item === produto)
         item.quantidade = this.formularioQuantidade.value.quantidade;
       this.calcularTotal();
-    }) 
-
+      
+    })
 
   }
+
 
   excluirProduto(produto) {
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
 
     this.mostrandoQuantidade();
     this.diminuir();
+    
   }
 
   diminuir = () => {
