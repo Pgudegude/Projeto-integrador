@@ -38,7 +38,6 @@ export class HttpService {
 
   }
     
-  
    contatoBanco = (contato:Contato) =>{
     console.log(contato);
     return {

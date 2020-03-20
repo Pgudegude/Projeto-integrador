@@ -46,6 +46,9 @@ export class ProdutoComponent implements OnInit {
         if (product[i].name == this.product.name)
           count++
       }
+      this.localProduct.push(this.product)
+      let produto_json = JSON.stringify(this.localProduct)
+      localStorage.setItem("cartProduct", produto_json)
     }
     if (count == 0) {
       this.localProduct.push(this.product)
