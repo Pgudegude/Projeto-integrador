@@ -29,9 +29,5 @@ export class CadastroService {
       dados => dados
     ));
   }
-  // public unirClienteEndereco(client: Cliente, endereco: Endereco){
-  //   let url= this.http.get(`http://localhost:8080/ecommerce/find-client/${client.email}`);
-    
-    
-  // }
+ 
 }

@@ -12,9 +12,16 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class HomeComponent implements OnInit {
 
+
+  public product: any[] = [];
+    
+  public productDisplay: any[] = [];
+
   constructor(public http: HttpService) {
+
+  }
+
  
-   }
 
   ngOnInit(): void {
   }

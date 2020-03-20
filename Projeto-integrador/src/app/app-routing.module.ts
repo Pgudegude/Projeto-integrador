@@ -5,7 +5,6 @@ import { ContatoComponent } from './components/contato/contato.component';
 import { SobreComponent } from './components/sobre/sobre.component'
 import { CadastroComponent } from './components/cadastro/cadastro.component'
 import { CompraFinalizadaComponent } from './components/compra-finalizada/compra-finalizada.component'
-
 import { LoginComponent } from './components/login/login.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ProdutoComponent } from './components/produto/produto.component';
@@ -30,9 +29,10 @@ export const ROUTES: Routes = [
     path: "listaProduto",
     component: ListaProdutosComponent
   },
-   {
+  {
     path: "home/listaProduto/cadastro",
-    component: CadastroComponent},
+    component: CadastroComponent
+  },
   {
     path: "produto/:code",
     component: ProdutoComponent
@@ -45,12 +45,12 @@ export const ROUTES: Routes = [
   {
     path: "home/listaProduto/contato",
     component: ContatoComponent
-  }, 
+  },
   {
     path: "home/contato/sobre",
     component: ContatoComponent
   },
- 
+
   {
     path: "home/contato",
     component: ContatoComponent
@@ -72,11 +72,11 @@ export const ROUTES: Routes = [
   // //   path: "sobre/contato/listaProduto/home",
   // //   component: SobreComponent
   // // },
-  
+
   {
     path: "home/sobre",
     component: SobreComponent
-  }, 
+  },
 
   {
     path: "carrinho",
@@ -110,20 +110,20 @@ export const ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path:"home/listaProduto/cadastro",
+    path: "home/listaProduto/cadastro",
     component: CadastroComponent
-  },{
-    path:"home/sobre/contato",
-    component:ContatoComponent
+  }, {
+    path: "home/sobre/contato",
+    component: ContatoComponent
   },
   {
-    path:"cadastro",
-    component:CadastroComponent
+    path: "cadastro",
+    component: CadastroComponent
   },
   {
-path: "**",
-redirectTo: "/home",
-pathMatch: "full"
+    path: "**",
+    redirectTo: "/home",
+    pathMatch: "full"
   }
 ];
 

@@ -50,16 +50,17 @@ export class CadastroComponent implements OnInit {
         this.formCadastro.value.cidade,
         this.formCadastro.value.complemento,
     )
-
     this.cadastrar.insertCliente(dadosCliente).subscribe(
       data => {
-        this.cadastrar.insertCliente(data);
-        console.log(data)
+        if(data['statusCodeValue'] == 500){
+          alert("usuário já tem cadastro, redefina a senha")
+        }
+        else alert("usuário cadastrado com sucesso")
         }
     )
     this.cadEnd.insertEndereco(dadosEndereco).subscribe(
       data => {
-        this.cadEnd.insertEndereco(data);
+        console.log(data)
         }
     )
   }
@@ -81,10 +82,6 @@ export class CadastroComponent implements OnInit {
       confirmaSenha: new FormControl(cliente.confirmaSenha)
     }) 
   }
-
-
-
-
   //Valida os campos
   criarCadastro() {
     this.formCadastro = this.formBuilder.group({

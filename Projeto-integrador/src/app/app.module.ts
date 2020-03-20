@@ -27,6 +27,7 @@ import {ROUTES} from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProdutosCategoryComponent } from './components/produtos-category/produtos-category.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     CarrosselComponent,
     CheckoutComponent,
     MeusPedidosComponent,
+    ProdutosCategoryComponent,
   ],
   imports: [
     BrowserModule,
