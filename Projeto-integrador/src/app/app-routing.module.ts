@@ -11,6 +11,7 @@ import { ProdutoComponent } from './components/produto/produto.component';
 import { ListaProdutosComponent } from './components/lista-produtos/lista-produtos.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
+import { ProdutosCategoryComponent } from './components/produtos-category/produtos-category.component';
 
 export const ROUTES: Routes = [
   {
@@ -63,16 +64,29 @@ export const ROUTES: Routes = [
     path: "home/sobre/contato",
     component: SobreComponent
   },
-
+  {
+    path:"listaCategoria/:categoria.id",
+    component: ProdutosCategoryComponent
+  },
+  //  {
+  //   path:"listaCategoria/10",
+  //   component: ProdutosCategoryComponent
+  // },
   // {
-  //   path: "home/listaProduto/contato/sobre",
-  //   component: SobreComponent
-  // }, 
-  // // {
-  // //   path: "sobre/contato/listaProduto/home",
-  // //   component: SobreComponent
-  // // },
-
+  //   path:"listaCategoria/8",
+  //   component: ProdutosCategoryComponent
+  // }, {
+  //   path:"listaCategoria/7",
+  //   component: ProdutosCategoryComponent
+  // },
+  {
+    path: "home/listaProduto/contato/sobre",
+    component: SobreComponent
+  }, 
+  {
+    path: "sobre/contato/listaProduto/home",
+    component: SobreComponent
+  },
   {
     path: "home/sobre",
     component: SobreComponent
