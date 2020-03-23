@@ -28,6 +28,8 @@ export class CarrinhoComponent implements OnInit {
 
   preco = 0;
   formularioFrete: FormGroup;
+
+  
   constructor(private fb: FormBuilder) {
     this.searchProduct()
   for(let i = 0; i < this.cartProduct.length; i++){

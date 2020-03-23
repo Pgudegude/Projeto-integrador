@@ -44,7 +44,7 @@ export class ProdutoComponent implements OnInit {
     let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
     if (product != null) {
       for (let i = 0; i < product.length; i++) {
-        if (product[i].name == this.product.name)
+        if (product[i].codProduct === this.product.codProduct)
           count++
       }
       this.localProduct.push(this.product)
@@ -57,6 +57,4 @@ export class ProdutoComponent implements OnInit {
       localStorage.setItem("cartProduct", produto_json)
     }
   }
-
-
 }
