@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from "@angular/forms";
 import { LoginService } from 'src/app/service/login.service';
 import { Login } from '../models/login.model';
-import { userInfo } from 'os';
+
 
 @Component({
   selector: 'app-login',
@@ -42,7 +42,9 @@ logar(){
   let user: Login = new Login()
   user.mail=this.formularioLogin.value.email;
   user.password=this.formularioLogin.value.senha;
-    this.http.log(user).subscribe(data=>{
+  console.log(user.password)
+  console.log(user.mail)
+    this.http.fazerLogin(user).subscribe(data=>{
       console.log(data)
     })
     alert ("Você está logado")
