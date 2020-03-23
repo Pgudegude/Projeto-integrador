@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
@@ -104,11 +104,10 @@ export class CarrinhoComponent implements OnInit {
   }
 
   excluirProduto(produto) {
-    // this.carrinho = this.carrinho.filter(item => item.produto != produto);
-    //this.total -= (item.produto.vlProductDiscount * item.quantidade)
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
+    
   }
 
   searchProduct (){

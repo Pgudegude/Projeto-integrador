@@ -156,26 +156,19 @@
                             <th scope="col">total</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngFor="let item of carrinho">
                         <tr>
-                            <td><img src="../../../assets/Imagem/bol.png" alt="bola diamante" title="bola diamante" width="30" height="30"></td>
-                            <td>2</td>
-                            <td>R$ 50,00</td>
+                            <td><img [src]="item.produto[0].image" alt="item.produto.name" title="item.produto.name" class="card-img" width="30" height="30"></td>
+                            <td>{{item.produto[0].quantidade}}</td>
+                            <td>{{item.produto[0].valueProduct.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</td>
                             <td>R$ 85,36</td>
-                        </tr>
-                        <tr>
-                            <td><img src="../../../assets/Imagem/04.png" alt="metalica" title="metalica" width="30" height="30"></td>
-                            <td>1</td>
-                            <td>R$ 23,63</td>
-                            <td>R$ 23,63</td>
                         </tr>
                     </tbody>
                     <tr>
                         <th scope="col">Total</th>
-                        <!-- <th scope="col">produto(s)</th> -->
                         <th scope="col">3</th>
                         <th scope="col">valor</th>
-                        <th scope="col">{{total}}</th>
+                        <th scope="col">{{total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</th>
                     </tr>
                 </table>
                 <div class="d-flex justify-content-center">
