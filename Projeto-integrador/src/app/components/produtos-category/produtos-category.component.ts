@@ -2,6 +2,10 @@ import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
 import { Category } from '../models/category';
 import { ApiCategory } from '../models/apiCategory';
 import { ProductService } from 'src/app/service/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/service/http.service';
+import { apiProduct } from '../models/apiProduct';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos-category',
@@ -17,22 +21,37 @@ export class ProdutosCategoryComponent implements OnInit {
   categoryAPI: ApiCategory;
   erro: any;
 
-  getter(){
-this.service.getCategory().subscribe(
-  (data: ApiCategory) => {
-    this.categoryAPI = data;
-  },(error: any) => {
-    console.log("ERROR",error);
+public product: any = [];
     
-  }
-)
-  }
+public productDisplay: any = [];
 
-  constructor(private service: ProductService) { 
-    this.getter()
-  }
+apiProduct: apiProduct
+
+  constructor(private service: HttpService,private route: ActivatedRoute,private router: Router ) { 
+    this.route.params.subscribe(parameters => {
+        console.log(parameters)
+      this.service.getCategory(parameters['categoria.id'])
+      .subscribe(
+        (data) => {
+        this.apiProduct = data;
+        this.product = this.apiProduct
+        this.productDisplay = this.product
+      }, (error: any) => {
+        console.error("ERROR", error)
+      })
+    })}
+   
+
+  
 
   ngOnInit(): void {
+    for(let i = 0; i < this.product.length; i++){
+      this.productDisplay.push(this.product[i])
+    }
   }
-
+  selecionado(produto) {
+    this.router.navigate(['listaProduto', produto.code])
+    console.log("eu devia funcionar");
+    
+  }
 }

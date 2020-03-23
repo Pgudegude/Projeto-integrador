@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import  {  HttpClient  }  from  "@angular/common/http" ;
+import { HttpClient } from "@angular/common/http";
 import { map, retry } from "rxjs/operators";
 import { Checkout } from "../components/models/checkout";
 import { Endereco } from '../components/models/endereco';
@@ -10,9 +10,9 @@ import { Contato } from '../components/models/Contato';
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
 const urlProdutos: string = 'http://localhost:8080/ecommerce/find-product';
-const urlAdicionarCliente:String = 'http://localhost:8080/ecommerce/create-client';
-interface viacep{
-  cep:string,
+const urlAdicionarCliente: String = 'http://localhost:8080/ecommerce/create-client';
+interface viacep {
+  cep: string,
   logradouro: string,
   bairro: string,
   uf: string,
@@ -32,13 +32,13 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getCep(endereco: Endereco): Observable<viacep>{
+  getCep(endereco: Endereco): Observable<viacep> {
 
-    return this.http.get<viacep>(urlAPI+endereco.cep+"/json/").pipe(retry(2));
+    return this.http.get<viacep>(urlAPI + endereco.cep + "/json/").pipe(retry(2));
 
   }
-    
-   contatoBanco = (contato:Contato) =>{
+
+  contatoBanco = (contato: Contato) => {
     console.log(contato);
     return {
       "name": contato.nome,
@@ -47,21 +47,29 @@ export class HttpService {
       "text": contato.comentario,
     }
   }
-  public insertContato(contato:Contato){
-  let comunicacao = this.contatoBanco(contato)
-      let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
-      return url.pipe(map(
-        dados => dados
-      ));
-    }
+  public insertContato(contato: Contato) {
+    let comunicacao = this.contatoBanco(contato)
+    let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
+    return url.pipe(map(
+      dados => dados
+    ));
   }
-  
+
+
+  public getCategory(value:any){
+    return this.http.get(`http://localhost:8080/ecommerce/product-category/${value}`)
+  }
+
+
+}
+
+
 // getProdutos(){
 //   let prod = this.http.get(urlProdutos)
 //   return console.log(prod)
-   
+
 // }
-  
+
   // getProdutos() {
   //   let prod = this.http.get(`${urlAPI}/produtos`)
 
