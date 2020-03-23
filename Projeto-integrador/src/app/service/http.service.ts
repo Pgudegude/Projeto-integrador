@@ -59,6 +59,8 @@ export class HttpService {
   public getCategory(value:any){
     return this.http.get(`http://localhost:8080/ecommerce/product-category/${value}`)
   }
+
+
 }
 
 

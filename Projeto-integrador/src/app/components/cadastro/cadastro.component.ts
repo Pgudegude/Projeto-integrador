@@ -22,6 +22,7 @@ export class CadastroComponent implements OnInit {
     private CEP: CepService,
     private cadastrar:CadastroService,
     private cadEnd:EnderecoService
+   
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -52,16 +53,19 @@ export class CadastroComponent implements OnInit {
     )
     this.cadastrar.insertCliente(dadosCliente).subscribe(
       data => {
-        if(data['statusCodeValue'] == 500){
-          alert("usuário já tem cadastro, redefina a senha")
-        }
-        else alert("usuário cadastrado com sucesso")
-        }
+        console.log(data)}
+        
     )
     this.cadEnd.insertEndereco(dadosEndereco).subscribe(
-      data => {
+      data => {console.log(data)}  
+    )
+    return this.teste()
+  }
+  teste(){
+    this.cadastrar.insertClientAddress().subscribe(
+      data=>{
         console.log(data)
-        }
+      }
     )
   }
   enviarCadastro(cliente: Cliente, endereco:Endereco) {

@@ -21,7 +21,18 @@ export class CadastroService {
       "phone":cliente.telefone,
       "password":cliente.senha
       }
+    
   }
+  
+  public idCLient = this.http.get(`http://localhost:8080/ecommerce/find-lastAddress`)
+  public idAddress = this.http.get(`http://localhost:8080/ecommerce/find-lastClient`)
+  public getClientAddress(){
+    return { "client": {"idClient":this.idCLient },
+             "address":{"idAddress":this.idAddress }
+            }
+ }
+ 
+
   public insertCliente(cliente: Cliente) {
     let comunicacao = this.clienteBanco(cliente)
     let url = this.http.post<any>("http://localhost:8080/ecommerce/create-client", comunicacao);
@@ -29,5 +40,9 @@ export class CadastroService {
       dados => dados
     ));
   }
- 
+  public insertClientAddress(){
+    let comunicacao = this.getClientAddress()
+    let url = this.http.post<any>("http://localhost:8080/ecommerce/create-client-address",comunicacao);
+    return url.pipe(map(dados=>dados))
+  }
 }
