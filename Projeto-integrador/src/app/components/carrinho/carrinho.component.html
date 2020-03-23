@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <h3><strong>{{item.produto[0].valueProduct}}</strong></h3>
+                        <h3><strong>{{item.produto[0].valueProduct.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</strong></h3>
                     </div>
                 </div>
                 <hr>
@@ -51,7 +51,7 @@
                         <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{total}}</span>
+                        <span>{{total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</span>
                     </div>
                 </div>
                 <div class="row text-muted">
@@ -59,7 +59,7 @@
                         <p>desconto</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{desconto}}</span>
+                        <span>{{desconto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</span>
                     </div>
                 </div>
                 <div class="row text-muted">
@@ -67,7 +67,7 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{frete}}</span>
+                        <span>{{frete.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</span>
                     </div>
                 </div>
                 escolha seu frete
@@ -88,8 +88,8 @@
                 <hr>
                 <h1>total</h1>
                 <div class="text-right">
-                    <h2 class="text-muted">{{totalComDesconto}} em até 3x ou</h2>
-                    <h1>{{totalComDesconto}} em 1x no cartão</h1>
+                    <h2 class="text-muted">{{totalComDesconto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}} em até 3x ou</h2>
+                    <h1>{{totalComDesconto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}} em 1x no cartão</h1>
                 </div>
                 <hr>
                 <a  [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img

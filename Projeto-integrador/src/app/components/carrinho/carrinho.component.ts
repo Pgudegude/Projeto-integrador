@@ -99,22 +99,14 @@ export class CarrinhoComponent implements OnInit {
       item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     }
     )
-    // let item: Carrinho = this.carrinho.find(x => x.produto.codProduct == produto.produto.code);
-    // console.log(this.carrinho)
-    // console.log(item)
-    // item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     this.calcularTotal();
     this.mostrandoQuantidade();
-    
   }
 
   excluirProduto(produto) {
-    // this.carrinho = this.carrinho.filter(item => item.produto != produto);
-    //this.total -= (item.produto.vlProductDiscount * item.quantidade)
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
-
   }
 
   searchProduct (){
