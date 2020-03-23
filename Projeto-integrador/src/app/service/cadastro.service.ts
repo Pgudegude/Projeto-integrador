@@ -27,8 +27,10 @@ export class CadastroService {
   public idCLient = this.http.get(`http://localhost:8080/ecommerce/find-lastAddress`)
   public idAddress = this.http.get(`http://localhost:8080/ecommerce/find-lastClient`)
   public getClientAddress(){
-    return { "client": {"idClient":this.idCLient },
-             "address":{"idAddress":this.idAddress }
+    let seila = {"idClient":this.idCLient }
+    let outro ={"idAddress":this.idAddress }
+    return { "client": seila,
+             "address": outro
             }
  }
  
