@@ -4,7 +4,10 @@ export class Produtos {
         public code:number,
         public preco:number,
         public desc: string,
-        public categoria: number
+        public categoria?:{
+            id?: number,
+            descCategoria?: string
+        }
         ) {
     }
 }

@@ -22,6 +22,7 @@ export class CadastroComponent implements OnInit {
     private CEP: CepService,
     private cadastrar:CadastroService,
     private cadEnd:EnderecoService
+   
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -50,17 +51,21 @@ export class CadastroComponent implements OnInit {
         this.formCadastro.value.cidade,
         this.formCadastro.value.complemento,
     )
-
     this.cadastrar.insertCliente(dadosCliente).subscribe(
       data => {
-        this.cadastrar.insertCliente(data);
-        console.log(data)
-        }
+        console.log(data)}
+        
     )
     this.cadEnd.insertEndereco(dadosEndereco).subscribe(
-      data => {
-        this.cadEnd.insertEndereco(data);
-        }
+      data => {console.log(data)}  
+    )
+    return this.teste()
+  }
+  teste(){
+    this.cadastrar.insertClientAddress().subscribe(
+      data=>{
+        console.log(data)
+      }
     )
   }
   enviarCadastro(cliente: Cliente, endereco:Endereco) {
@@ -81,10 +86,6 @@ export class CadastroComponent implements OnInit {
       confirmaSenha: new FormControl(cliente.confirmaSenha)
     }) 
   }
-
-
-
-
   //Valida os campos
   criarCadastro() {
     this.formCadastro = this.formBuilder.group({

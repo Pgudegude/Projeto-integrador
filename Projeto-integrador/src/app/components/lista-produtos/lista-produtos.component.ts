@@ -3,7 +3,7 @@ import { Produtos } from '../models/produtos';
 import { Router } from '@angular/router';
 import { apiProduct } from '../models/apiProduct';
 import { ProductService } from 'src/app/service/product.service';
-import { Category } from '../models/category';
+import { ApiCategory } from '../models/apiCategory';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -16,14 +16,16 @@ export class ListaProdutosComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (data: apiProduct) => {
         this.apiProduct = data;
+        this.product = this.apiProduct
+        this.productDisplay = this.product
       }, (error: any) => {
         console.error("ERROR", error)
       })
     }
     
-    public product: Produtos[] = [];
+    public product: any = [];
     
-    public productDisplay: Produtos[] = [];
+    public productDisplay: any = [];
     
     apiProduct: apiProduct
     erro: any
@@ -33,12 +35,13 @@ export class ListaProdutosComponent implements OnInit {
     
     }
 
-    categorySelected(categoria: Category) {
-      if(categoria.id != 0){
-        this.product = this.productDisplay.filter(produto => produto.categoria == categoria.id)
-      }else{
+    categorySelected(category: ApiCategory) {
+      if (category.id != 0) {
+        this.product = this.productDisplay.filter(produto => produto.category.id == category.id)
+      } else {
         this.product = this.productDisplay
       }
+      console.log(category);
     }
   
   
