@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
-import { Validacoes } from '../models/Validacoes';
+import { Validacoes } from '../validar/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';

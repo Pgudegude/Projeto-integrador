@@ -15,18 +15,18 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// import { ModalModule } from 'ngx-bootstrap/modal';
+// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarrosselComponent } from './components/carrossel/carrossel.component';
-import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+// import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import {ROUTES} from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { TextMaskModule } from 'angular2-text-mask';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -52,15 +52,15 @@ import { TextMaskModule } from 'angular2-text-mask';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ModalModule,
-    BsDropdownModule,
-    CarouselModule,
-    WavesModule,
-    ButtonsModule, 
+    // ModalModule,
+    // BsDropdownModule,
+    // CarouselModule,
+    // WavesModule,
+    // ButtonsModule, 
     NgbModule,
     HttpClientModule,
-    MatDatepickerModule,
-    TextMaskModule,
+    // MatDatepickerModule,
+    // TextMaskModule,
     
     RouterModule.forRoot(ROUTES),
     
@@ -68,7 +68,8 @@ import { TextMaskModule } from 'angular2-text-mask';
   
 
   ],
-  exports: [BsDropdownModule,  ModalModule], 
+  // BsDropdownModule,  ModalModule
+  exports: [], 
   providers: [],
   bootstrap: [AppComponent]
 })

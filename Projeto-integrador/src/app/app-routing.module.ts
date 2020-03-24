@@ -30,6 +30,10 @@ export const ROUTES: Routes = [
     path: "listaProduto",
     component: ListaProdutosComponent
   },
+  {
+    path: "home/listaProduto",
+    component: CadastroComponent},
+  
    {
     path: "home/listaProduto/cadastro",
     component: CadastroComponent},
