@@ -107,7 +107,8 @@ export class CadastroComponent implements OnInit {
         ])],
       telefone: ["",
         Validators.compose([
-          Validators.required
+          Validators.required,
+          
         ])],
       cep: ["",
         Validators.compose([
