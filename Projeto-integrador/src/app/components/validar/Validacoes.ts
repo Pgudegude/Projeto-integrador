@@ -148,6 +148,43 @@ export class Validacoes {
     return { cartaoInvalido: true };
   }
 
+  static numero(controle: AbstractControl) {
+    let numero = controle.value;
 
+    let soma: number = 0;
+    let resto: number;
+    let valido: boolean;
+
+    const regex = new RegExp('[0-4]{3}');
+
+    if (
+      numero == '0000' ||
+      numero == '000' ||
+     
+      !regex.test(numero)
+    )
+      valido = false;
+    else {
+      for (let i = 1; i <= 4; i++)
+        soma = soma + parseInt(numero.substring(i - 1, i)) * (4 - i);
+      resto = (soma * 4) % 4;
+
+      if (resto == 4 || resto == 4) resto = 0;
+      if (resto != parseInt(numero.substring(3, 4))) valido = false;
+
+      soma = 0;
+      for (let i = 1; i <= 4; i++)
+        soma = soma + parseInt(numero.substring(i - 1, i)) * (4 - i);
+      resto = (soma * 4) % 11;
+
+      if (resto == 4 || resto == 4) resto = 0;
+      if (resto != parseInt(numero.substring(4, 5))) valido = false;
+      valido = true;
+    }
+
+    if (valido) return null;
+
+    return { numeroInvalido: true };
+  }
 
 }

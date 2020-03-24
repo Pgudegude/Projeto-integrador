@@ -134,6 +134,7 @@ export class CadastroComponent implements OnInit {
       numero: ["",
         Validators.compose([
           Validators.required,
+          Validacoes.numero
         ])],
       email: ["",
         Validators.compose([
