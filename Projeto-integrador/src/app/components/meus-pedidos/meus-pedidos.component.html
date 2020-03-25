@@ -1,6 +1,6 @@
 <main>
-    <div class="container">
-        <table class="table table-striped">
+    <div class="container" >
+        <table class="table table-striped" *ngIf="login; else logar">
             <thead>
                 <tr>
                     <th scope="col">Data</th>
@@ -20,7 +20,10 @@
                 </tr>
             </tbody>
         </table>
-
-
+        <ng-template #logar>
+            <p>
+              Você não está logado ainda, 
+            </p>
+          </ng-template>
     </div>
 </main>
