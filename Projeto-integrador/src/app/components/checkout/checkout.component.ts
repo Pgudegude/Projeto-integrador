@@ -27,10 +27,15 @@ export class CheckoutComponent implements OnInit {
   totalComDesconto: any;
   formularioCheckout: FormGroup;
   formularioQuantidade: any;
+  totalComFrete: any;
 
   constructor(private http: HttpService, private fb: FormBuilder,private recuperar: StockService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.carrinho  = recuperar.recoverCart();
+    this.calcularTotal();
+    this.mostrandoQuantidade();
+    this.freteR();
+    this.freteN();
   }
   
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
@@ -142,19 +147,19 @@ export class CheckoutComponent implements OnInit {
 
 freteR = () => {
   this.frete = (50)
-  this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
+  this.totalComFrete = (this.total - (this.total * 0.7) + 50)
   return 50
 }
 freteN = () => {
   this.frete = (20)
-  this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
+  this.totalComFrete = (this.total - (this.total * 0.7) + 20)
   return 20
 }
 
 calcularTotal = () => {
   this.total = 0
   this.carrinho.forEach(item => {
-    this.total += item.produto[0].valueProduct * item.quantidade;
+    this.total += item.produto.valueProduct * item.quantidade;
     if (this.total != 0) {
       this.carrinho.forEach(item => {
         this.desconto = (this.total * 0.7)

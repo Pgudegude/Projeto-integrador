@@ -88,7 +88,7 @@ export class Validacoes {
     const idadeLimite = 1000 * 60 * 60 * 24 * 365 * 95; //95 anos em mili segundos...
 
     if ((hoje.getTime() - dataNascimento.getTime()) >= tempoParaTeste &&
-      (hoje.getTime() - dataNascimento.getTime()) <= idadeLimite)
+      (hoje.getTime() - dataNascimento.getTime()) < idadeLimite)
       return null;
 
     return { menorDeIdade: true };
