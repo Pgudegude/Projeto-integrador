@@ -7,14 +7,14 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img [src]="product[0].image" class="card-img" alt={{product[0].name}}
-                                title={{product[0].name}}>
+                            <img [src]="product.image" class="card-img" alt={{product.name}}
+                                title={{product.name}}>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <h1 class="card-title">{{product[0].name}}</h1>
-                                <small class="text-muted">código produto: {{product[0].codProduct}}</small>
-                                <h3 class="card-text">{{product[0].description}}</h3>
+                                <h1 class="card-title">{{product.name}}</h1>
+                                <small class="text-muted">código produto: {{product.codProduct}}</small>
+                                <h3 class="card-text">{{product.description}}</h3>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             <div class="col-md-3">
                 <hr>
                 <h4>Preço produto:
-                    {{product[0].valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    {{product.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
                 <hr>
                 <label for="frete">Forma de Envio:</label>
                 <div class="form-group row">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-<app-footer class="fot"></app-footer>
+<app-footer class="relative-bottom"></app-footer>

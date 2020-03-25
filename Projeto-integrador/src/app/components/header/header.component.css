@@ -1,6 +1,6 @@
 #selector{
     background: #A7E0D7;
-    width: 100vw;
+    width: 100%;
 }
 #login::after{
     content: 'Faça seu login aqui!';

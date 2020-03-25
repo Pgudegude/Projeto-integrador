@@ -23,7 +23,7 @@ export class ProdutoComponent implements OnInit {
       this.service.findByProductsCode(parameters['code'])
         .subscribe((product: apiProduct) => {
           this.code = parameters['code'];
-          this.product = product;
+          this.product = product[0];
         })
     })
   }
@@ -44,9 +44,12 @@ export class ProdutoComponent implements OnInit {
     let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
     if (product != null) {
       for (let i = 0; i < product.length; i++) {
-        if (product[i].name == this.product.name)
-          count++
+        if (product[i].codProduct == this.product.codProduct)
+          count++ 
       }
+      // this.localProduct.push(this.product)
+      // let produto_json = JSON.stringify(this.localProduct)
+      // localStorage.setItem("cartProduct", produto_json)
     }
     if (count == 0) {
       this.localProduct.push(this.product)

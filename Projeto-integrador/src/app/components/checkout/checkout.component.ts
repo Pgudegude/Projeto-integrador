@@ -5,6 +5,7 @@ import { Endereco } from '../models/Endereco';
 import { Validacoes } from '../models/Validacoes';
 import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -16,15 +17,6 @@ import { Carrinho } from '../models/carrinho';
 export class CheckoutComponent implements OnInit {
 
   cartProduct = []
-  formularioQuantidade: any;
-
-  constructor(private http: HttpService, private fb: FormBuilder) {
-    this.formularioCheckout = this.enviarDaDosCompra(new Compra)
-  }
-
-  endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
-  
-  
   frete: any
   carrinho: Carrinho[] = [];
   desconto: any;
@@ -32,12 +24,17 @@ export class CheckoutComponent implements OnInit {
   normal: any;
   total = 0;
   qtd = 0;
-  valor: number = 108.89;
   totalComDesconto: any;
   formularioCheckout: FormGroup;
+  formularioQuantidade: any;
 
-
-
+  constructor(private http: HttpService, private fb: FormBuilder,private recuperar: StockService) {
+    this.formularioCheckout = this.enviarDaDosCompra(new Compra)
+    this.carrinho  = recuperar.recoverCart();
+  }
+  
+  endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
+  
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
@@ -167,21 +164,12 @@ calcularTotal = () => {
   this.totalComDesconto = (this.total - (this.total * 0.7))
   return this.totalComDesconto
 }
+
 mostrandoQuantidade() {
   this.qtd = 0;
   this.carrinho.forEach(item => {
     this.qtd += item.quantidade;
   })
-}
-
-ajustarQuantidade(produto) {
-  this.carrinho.forEach(item=>{
-    if(item.produto[0].codProduct == produto.produto[0].codProduct)
-    item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
-  }
-  )
-  this.calcularTotal();
-  this.mostrandoQuantidade();
 }
 
 searchProduct (){
