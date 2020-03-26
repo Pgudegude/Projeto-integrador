@@ -152,7 +152,15 @@
                         </h4>
                     </div>
                     <div class="col-md-6 text-right">
-                        <h4>{{totalComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                        <h4>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>desconto</h4>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>{{desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
                     </div>
                 </div>
                 <div class="row">
@@ -169,7 +177,7 @@
                         <h2>total</h2>
                     </div>
                     <div class="col-md-6 text-right">
-                        <h4>{{totalComFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                        <h4>{{totalComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -194,13 +202,13 @@
                     class="card-img" width="50" height="50">
                 </div>
                 <div class="col-md-3">
-                    <h5>Nome:. {{item.produto.name}}</h5>
+                    <h5>Nome:. <br> {{item.produto.name}}</h5>
                 </div>
                 <div class="col-md-3">
-                    <h5>Quant:.{{item.produto.quantidade}}</h5>
+                    <h5>Quant:. <br> {{item.quantidade}}</h5>
                 </div>
                 <div class="col-md-3">
-                    <h5>Valor unit:. {{item.produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h5>
+                    <h5>Valor unit:. <br> {{item.produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h5>
                 </div>
                 </div>
         </div>

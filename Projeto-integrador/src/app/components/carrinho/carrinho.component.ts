@@ -88,6 +88,8 @@ export class CarrinhoComponent implements OnInit {
     this.criandoFormulario();
   }
 
+
+
   mostrandoQuantidade() {
     this.qtd = 0;
     this.carrinho.forEach(item => {

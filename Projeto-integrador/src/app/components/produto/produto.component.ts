@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 
 export class ProdutoComponent implements OnInit {
-
+  
   localProduct: apiProduct[] = []
   product: apiProduct;
   code: number
@@ -47,9 +47,6 @@ export class ProdutoComponent implements OnInit {
         if (product[i].codProduct == this.product.codProduct)
           count++ 
       }
-      // this.localProduct.push(this.product)
-      // let produto_json = JSON.stringify(this.localProduct)
-      // localStorage.setItem("cartProduct", produto_json)
     }
     if (count == 0) {
       this.localProduct.push(this.product)

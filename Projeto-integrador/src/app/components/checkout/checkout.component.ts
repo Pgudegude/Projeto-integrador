@@ -147,12 +147,12 @@ export class CheckoutComponent implements OnInit {
 
 freteR = () => {
   this.frete = (50)
-  this.totalComFrete = (this.total - (this.total * 0.7) + 50)
+  this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
   return 50
 }
 freteN = () => {
   this.frete = (20)
-  this.totalComFrete = (this.total - (this.total * 0.7) + 20)
+  this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
   return 20
 }
 
@@ -175,6 +175,16 @@ mostrandoQuantidade() {
   this.carrinho.forEach(item => {
     this.qtd += item.quantidade;
   })
+}
+
+ajustarQuantidade(produto) {
+  this.carrinho.forEach(item=>{
+    if(item.produto.codProduct == produto.produto.codProduct)
+    item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+  }
+  )
+  this.calcularTotal();
+  this.mostrandoQuantidade();
 }
 
 searchProduct (){
