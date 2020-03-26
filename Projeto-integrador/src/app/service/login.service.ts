@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cliente } from '../components/models/cliente';
 import { Login } from '../components/models/login.model';
 
 
@@ -19,9 +18,9 @@ export class LoginService {
 
   }
 
-  fazerLogin(login:Login){
+  fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
-   let body:any
+ 
    let url = this.http.post(`http://localhost:8080/ecommerce/login`,comunicacao)
    return url.pipe(data=>data)
   }

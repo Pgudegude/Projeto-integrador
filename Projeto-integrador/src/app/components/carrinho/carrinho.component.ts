@@ -23,30 +23,31 @@ export class CarrinhoComponent implements OnInit {
   totalComDesconto: any;
   formularioQuantidade: FormGroup;
   carrinho: Carrinho[] = [];
-  cartProduct = []
+  cartProduct = [];
+  product: object
 
 
   preco = 0;
   formularioFrete: FormGroup;
 
-  
+
   constructor(private fb: FormBuilder) {
     this.searchProduct()
-  for(let i = 0; i < this.cartProduct.length; i++){
-    let cont: number = 1;
-    for(let y = 0; y< this.cartProduct.length; y++){
-      if(this.cartProduct[i] == this.cartProduct[y] )
-        cont ++;
-        this.cartProduct.splice(y,1);
+    for (let i = 0; i < this.cartProduct.length; i++) {
+      let cont: number = 1;
+      for (let y = 0; y < this.cartProduct.length; y++) {
+        if (this.cartProduct[i] === this.cartProduct[y])
+          cont++;
+        this.cartProduct.splice(y, 1);
+      }
+      this.product = this.cartProduct[i];
+      this.carrinho.push(new Carrinho(this.product, cont))
+      console.log(this.carrinho)
     }
 
-    this.carrinho.push(new Carrinho(this.cartProduct[i], cont))
-    console.log(this.carrinho)
-  }
-  
-  this.carrinho.forEach(item =>{
-    this.total += item.produto[0].valueProduct * item.quantidade;
-  })
+    this.carrinho.forEach(item => {
+      this.total += item.produto[0].valueProduct * item.quantidade;
+    })
     this.calcularTotal()
     this.mostrandoQuantidade()
   }
@@ -88,7 +89,7 @@ export class CarrinhoComponent implements OnInit {
     this.formularioFrete = this.fb.group({
       frete: []
     })
-    
+
   }
 
   ngOnInit(): void {
@@ -103,9 +104,9 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
-    this.carrinho.forEach(item=>{
-      if(item.produto[0].codProduct == produto.produto[0].codProduct)
-      item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+    this.carrinho.forEach(item => {
+      if (item.produto[0].codProduct == produto.produto[0].codProduct)
+        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     }
     )
     // let item: Carrinho = this.carrinho.find(x => x.produto.codProduct == produto.produto.code);
@@ -114,7 +115,7 @@ export class CarrinhoComponent implements OnInit {
     // item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     this.calcularTotal();
     this.mostrandoQuantidade();
-    
+
   }
 
   excluirProduto(produto) {
@@ -126,9 +127,9 @@ export class CarrinhoComponent implements OnInit {
 
   }
 
-  searchProduct (){
+  searchProduct() {
     let product = JSON.parse(localStorage.getItem("cartProduct"))
-    for(let i = 0; i < product.length; i++){
+    for (let i = 0; i < product.length; i++) {
       this.cartProduct.push(product[i])
     }
     return product == null ? [] : this.cartProduct
