@@ -12,9 +12,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pedidos of pedido; index as i">
-                    <th scope="row">{{pedidos.data}}</th>
-                    <th scope="row">{{pedidos.pedido}}</th>
-                    <th scope="row">{{pedidos.valor}}</th>
+                    <th scope="row">{{pedidos.date}}</th>
+                    <th scope="row">{{pedidos.id}}</th>
+                    <th scope="row">{{pedidos.price}}</th>
                     <th scope="row">{{pedidos.statusPagamento}}</th>
                     <th scope="row">{{pedidos.statusPedido}}</th>
                 </tr>

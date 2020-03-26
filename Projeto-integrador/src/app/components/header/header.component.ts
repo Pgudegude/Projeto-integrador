@@ -15,10 +15,10 @@ logar:boolean;
   verificarLogin(){  
     let usuario =  JSON.parse(localStorage.getItem("usuario"))
     if(usuario==null){
-      this.logar=false
+      this.logar=true
       console.log("usuário não logado")
     }
-    else{this.logar=true
+    else{this.logar=false
     console.log(usuario)}
     }
   ngOnInit(): void {
