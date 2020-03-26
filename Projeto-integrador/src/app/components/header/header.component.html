@@ -8,9 +8,14 @@
             <div id="bordao" class="col-lg-7 text-center mt-3">
                 <h1><strong>O melhor da sua infância está aqui!</strong></h1>
             </div>
-            <div id="login" class="col-lg-2 mt-3">
-                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login"></a>
+            <div id="login" class="col-lg-2 mt-3 login" *ngIf="logar; else logado">
+                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login">Faça seu login aqui!</a>
             </div>
+            <ng-template  #logado>
+            <div id="login" class="col-lg-2 mt-3 login">
+                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login">Você está logado</a>
+            </div>
+        </ng-template >
             <div id="carrinho" class="col-lg-1 text-center mt-2">
                 <a class="navbar-brand" routerLink="/carrinho"><img src="../../../assets/Imagem/carrinho.png" alt="carrinho" title="carrinho">
                 </a>

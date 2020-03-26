@@ -1,6 +1,6 @@
 <main>
-    <div class="container">
-        <table class="table table-striped">
+    <div class="container" >
+        <table class="table table-striped" *ngIf="login; else logar">
             <thead>
                 <tr>
                     <th scope="col">Data</th>
@@ -12,15 +12,18 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pedidos of pedido; index as i">
-                    <th scope="row">{{pedidos.data}}</th>
-                    <th scope="row">{{pedidos.pedido}}</th>
-                    <th scope="row">{{pedidos.valor}}</th>
-                    <th scope="row">{{pedidos.statusPagamento}}</th>
-                    <th scope="row">{{pedidos.statusPedido}}</th>
+                    <th scope="row">{{pedidos.date}}</th>
+                    <th scope="row">{{pedidos.id}}</th>
+                    <th scope="row">{{pedidos.price}}</th>
+                    <th scope="row">{{pedidos.payment.status}}</th>
+                    <th scope="row">{{pedidos.statusRequest}}</th>
                 </tr>
             </tbody>
         </table>
-
-
+        <ng-template #logar>
+            <p>
+              Você não está logado ainda, 
+            </p>
+          </ng-template>
     </div>
 </main>

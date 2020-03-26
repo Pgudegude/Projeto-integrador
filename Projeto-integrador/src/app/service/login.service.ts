@@ -12,7 +12,7 @@ export class LoginService {
 
   dado(login: Login) {
     return {
-
+      "mail": login.mail,
       "password": login.password
     }
 
@@ -20,8 +20,8 @@ export class LoginService {
 
   fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
-    let body: any
-    let url = this.http.post(`http://localhost:8080/ecommerce/login/${login.mail}/${login.password}`, comunicacao)
+
+    let url = this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
     return url.pipe(data => data)
   }
 }

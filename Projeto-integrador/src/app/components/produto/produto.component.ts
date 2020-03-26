@@ -54,6 +54,4 @@ export class ProdutoComponent implements OnInit {
       localStorage.setItem("cartProduct", produto_json)
     }
   }
-
-
 }
