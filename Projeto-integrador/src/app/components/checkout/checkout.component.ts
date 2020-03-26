@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private http: HttpService, private fb: FormBuilder) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
+    
   }
 
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")

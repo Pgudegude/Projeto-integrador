@@ -33,7 +33,14 @@ export class CarrinhoComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.searchProduct()
   for(let i = 0; i < this.cartProduct.length; i++){
-    this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    let cont: number = 1;
+    for(let y = 0; y< this.cartProduct.length; y++){
+      if(this.cartProduct[i] == this.cartProduct[y] )
+        cont ++;
+        this.cartProduct.splice(y,1);
+    }
+
+    this.carrinho.push(new Carrinho(this.cartProduct[i], cont))
     console.log(this.carrinho)
   }
   

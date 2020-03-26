@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 
 
+
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
@@ -56,5 +57,6 @@ export class ProdutoComponent implements OnInit {
       let produto_json = JSON.stringify(this.localProduct)
       localStorage.setItem("cartProduct", produto_json)
     }
+    
   }
 }
