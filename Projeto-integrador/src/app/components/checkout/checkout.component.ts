@@ -34,8 +34,6 @@ export class CheckoutComponent implements OnInit {
     this.carrinho  = recuperar.recoverCart();
     this.calcularTotal();
     this.mostrandoQuantidade();
-    this.freteR();
-    this.freteN();
     
   }
   

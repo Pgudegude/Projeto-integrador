@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { apiProduct } from '../models/apiProduct';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
+import { Carrinho } from '../models/carrinho';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -15,10 +17,10 @@ export class ProdutoComponent implements OnInit {
   localProduct: apiProduct[] = []
   product: apiProduct;
   code: number
-  limitador: number = 0;
+  carrinho: Carrinho[] = [];
 
 
-  constructor(private route: ActivatedRoute, public service: ProductService) {
+  constructor(private route: ActivatedRoute, public service: ProductService, private stock: StockService) {
     this.route.params.subscribe(parameters => {
       console.log(parameters)
       this.service.findByProductsCode(parameters['code'])
@@ -54,13 +56,6 @@ export class ProdutoComponent implements OnInit {
       let produto_json = JSON.stringify(this.localProduct)
       localStorage.setItem("cartProduct", produto_json)
     }
-  }
-
-  count(){
-    if (this.limitador > 0) {
-      alert("PRODUTO JÁ ESTÁ NO CARRINHO!")
-    }
-    this.limitador++;
   }
 
 
