@@ -2,25 +2,28 @@
 <main class="container-fluid mt-3">
     <div>
         <div class="row-fluid" id="banner">
-            <a routerLink="listaProduto"><img  src="../../../assets/Imagem/Banner.jpg" width="100%"></a>
+            <a routerLink="listaProduto"><img src="../../../assets/Imagem/Banner.jpg" width="100%"></a>
         </div>
 
         <div class="row">
             <div class="col-md-4 imagem p-2">
                 <button (click)="selecionaCategoria(categoria2)" value="8">
-                   <a  [routerLink]="['/listaCategoria', categoria2.id]"><img src="../../../assets/Imagem/dbz cm .jpg" width="90%"></a> 
+                    <a [routerLink]="['/listaCategoria', categoria2.id]"><img src="../../../assets/Imagem/dbz cm .jpg"
+                            width="90%"></a>
                 </button>
             </div>
 
             <div class="col-md-4 imagem p-2">
                 <button (click)="selecionaCategoria(categoria3)" value="10">
-                    <a  [routerLink]="['/listaCategoria',categoria3.id]"> <img src="../../../assets/Imagem/mike gong cm.jpg" width="90%"></a>
+                    <a [routerLink]="['/listaCategoria',categoria3.id]"> <img
+                            src="../../../assets/Imagem/mike gong cm.jpg" width="90%"></a>
                 </button>
             </div>
 
             <div class="col-md-4 imagem p-2">
                 <button (click)="selecionaCategoria(categoria1)" value="7">
-                    <a  [routerLink]="['/listaCategoria', categoria1.id]">  <img src="../../../assets/Imagem/gude gourmet cm.jpg" width="90%"></a>
+                    <a [routerLink]="['/listaCategoria', categoria1.id]"> <img
+                            src="../../../assets/Imagem/gude gourmet cm.jpg" width="90%"></a>
                 </button>
             </div>
         </div>
@@ -29,7 +32,7 @@
         <div class="container-fluid text-center">
             <div id="cardCentro" class="row">
                 <div class="col-md-2 mt-2 card p-2">
-                    <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/tamanho menor.png"
+                    <a routerLink="produto"><img class="card-img-top" src="../../../assets/Imagem/dbzn7.png"
                             alt="Card image cap" title="Esfera do Dragao 7 estrelas"></a>
                     <div class="card-body">
                         <h5 class="card-title">Esfera do dragao 7 estrelas</h5>

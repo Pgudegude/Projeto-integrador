@@ -12,10 +12,11 @@ import { ProductService } from 'src/app/service/product.service';
 })
 
 export class ProdutoComponent implements OnInit {
-
+  
   localProduct: apiProduct[] = []
   product: apiProduct;
   code: number
+  limitador: number = 0;
 
 
   constructor(private route: ActivatedRoute, public service: ProductService) {
@@ -24,7 +25,7 @@ export class ProdutoComponent implements OnInit {
       this.service.findByProductsCode(parameters['code'])
         .subscribe((product: apiProduct) => {
           this.code = parameters['code'];
-          this.product = product;
+          this.product = product[0];
         })
     })
   }
@@ -45,12 +46,9 @@ export class ProdutoComponent implements OnInit {
     let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
     if (product != null) {
       for (let i = 0; i < product.length; i++) {
-        if (product[i].codProduct === this.product.codProduct)
-          count++
+        if (product[i].codProduct == this.product.codProduct)
+          count++ 
       }
-      this.localProduct.push(this.product)
-      let produto_json = JSON.stringify(this.localProduct)
-      localStorage.setItem("cartProduct", produto_json)
     }
     if (count == 0) {
       this.localProduct.push(this.product)
@@ -59,4 +57,13 @@ export class ProdutoComponent implements OnInit {
     }
     
   }
+
+  count(){
+    if (this.limitador > 0) {
+      alert("PRODUTO JÁ ESTÁ NO CARRINHO!")
+    }
+    this.limitador++;
+  }
+
+
 }

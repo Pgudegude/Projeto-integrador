@@ -4,6 +4,8 @@ import { HttpService } from 'src/app/service/http.service';
 import { Endereco } from '../models/Endereco';
 import { Validacoes } from '../validar/Validacoes';
 import { Compra } from '../models/Compra';
+import { Carrinho } from '../models/carrinho';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -14,29 +16,31 @@ import { Compra } from '../models/Compra';
 
 export class CheckoutComponent implements OnInit {
 
-  constructor(private http: HttpService, private fb: FormBuilder) {
+  cartProduct = []
+  frete: any
+  carrinho: Carrinho[] = [];
+  desconto: any;
+  rapido: any;
+  normal: any;
+  total = 0;
+  qtd = 0;
+  totalComDesconto: any;
+  formularioCheckout: FormGroup;
+  formularioQuantidade: any;
+  totalComFrete: any;
+
+  constructor(private http: HttpService, private fb: FormBuilder,private recuperar: StockService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
+    this.carrinho  = recuperar.recoverCart();
+    this.calcularTotal();
+    this.mostrandoQuantidade();
+    this.freteR();
+    this.freteN();
     
   }
-
+  
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
-
-  total: any = "R$ 108.89";
-  valor: number = 108.89;
-
-
-  freteR = () => {
-    this.total = (108.89 + 50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-  }
-
-  freteN = () => {
-    this.total = (108.89 + 20).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-  }
-
-  formularioCheckout: FormGroup;
-
-
-
+  
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
@@ -141,4 +145,57 @@ export class CheckoutComponent implements OnInit {
         ])],
     })
 }
+
+freteR = () => {
+  this.frete = (50)
+  this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
+  return 50
+}
+freteN = () => {
+  this.frete = (20)
+  this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
+  return 20
+}
+
+calcularTotal = () => {
+  this.total = 0
+  this.carrinho.forEach(item => {
+    this.total += item.produto.valueProduct * item.quantidade;
+    if (this.total != 0) {
+      this.carrinho.forEach(item => {
+        this.desconto = (this.total * 0.7)
+      })
+    }
+  })
+  this.totalComDesconto = (this.total - (this.total * 0.7))
+  return this.totalComDesconto
+}
+
+mostrandoQuantidade() {
+  this.qtd = 0;
+  this.carrinho.forEach(item => {
+    this.qtd += item.quantidade;
+  })
+}
+
+ajustarQuantidade(produto) {
+  this.carrinho.forEach(item=>{
+    if(item.produto.codProduct == produto.produto.codProduct)
+    item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+  }
+  )
+  this.calcularTotal();
+  this.mostrandoQuantidade();
+  console.log(this.carrinho);
+  
+}
+
+searchProduct (){
+  let product = JSON.parse(localStorage.getItem("cartProduct"))
+  for(let i = 0; i < product.length; i++){
+    this.cartProduct.push(product[i])
+  }
+  return product == null ? [] : this.cartProduct
+}
+
 }

@@ -12,7 +12,7 @@ border-left: 5px solid #42A948;
 border-left: 5px solid #A94442;
 }
 #container{
-  margin-left: 50px;
+  margin: 50px;
 }
 .label{
 font-size: 9pt;

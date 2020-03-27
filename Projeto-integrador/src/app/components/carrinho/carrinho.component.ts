@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
+import { StockService } from 'src/app/service/stock.service';
 
 
 
@@ -29,6 +30,7 @@ export class CarrinhoComponent implements OnInit {
 
   preco = 0;
   formularioFrete: FormGroup;
+<<<<<<< HEAD
 
 
   constructor(private fb: FormBuilder) {
@@ -48,6 +50,18 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho.forEach(item => {
       this.total += item.produto[0].valueProduct * item.quantidade;
     })
+=======
+  constructor(private fb: FormBuilder, private stock: StockService) {
+    this.searchProduct()
+  for(let i = 0; i < this.cartProduct.length; i++){
+    this.carrinho.push(new Carrinho(this.cartProduct[i]))
+  }
+  
+  this.carrinho.forEach(item =>{
+    this.total += item.produto.valueProduct * item.quantidade;
+  })
+    this.stock.saveCart(this.carrinho)
+>>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
     this.calcularTotal()
     this.mostrandoQuantidade()
   }
@@ -55,7 +69,7 @@ export class CarrinhoComponent implements OnInit {
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
-      this.total += item.produto[0].valueProduct * item.quantidade;
+      this.total += item.produto.valueProduct * item.quantidade;
       if (this.total != 0) {
         this.carrinho.forEach(item => {
           this.desconto = (this.total * 0.7)
@@ -96,6 +110,8 @@ export class CarrinhoComponent implements OnInit {
     this.criandoFormulario();
   }
 
+
+
   mostrandoQuantidade() {
     this.qtd = 0;
     this.carrinho.forEach(item => {
@@ -104,27 +120,31 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
+<<<<<<< HEAD
     this.carrinho.forEach(item => {
       if (item.produto[0].codProduct == produto.produto[0].codProduct)
         item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+=======
+    this.carrinho.forEach(item=>{
+      if(item.produto.codProduct == produto.produto.codProduct)
+      item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+>>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
     }
     )
-    // let item: Carrinho = this.carrinho.find(x => x.produto.codProduct == produto.produto.code);
-    // console.log(this.carrinho)
-    // console.log(item)
-    // item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     this.calcularTotal();
     this.mostrandoQuantidade();
+<<<<<<< HEAD
 
+=======
+    this.stock.saveCart(this.carrinho)
+>>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
   }
 
   excluirProduto(produto) {
-    // this.carrinho = this.carrinho.filter(item => item.produto != produto);
-    //this.total -= (item.produto.vlProductDiscount * item.quantidade)
     this.carrinho = this.carrinho.filter(item => item.produto != produto)
     this.calcularTotal();
     this.mostrandoQuantidade();
-
+    this.stock.saveCart(this.carrinho)
   }
 
   searchProduct() {
