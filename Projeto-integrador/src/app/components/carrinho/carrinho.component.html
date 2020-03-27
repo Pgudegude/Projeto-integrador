@@ -6,11 +6,12 @@
             <div class="col-12" *ngFor="let item of carrinho">
                 <div class="row">
                     <div class="col-md-3">
-                        <img [src]="item.produto[0].image" alt="item.produto.name" title="item.produto.name" class="card-img"  >
+                        <img [src]="item.produto.image" alt="{{item.produto.name}}" title="{{item.produto.name}}"
+                            class="card-img">
                     </div>
                     <div class="col-md-5">
                         <h4>Produto:</h4>
-                        <h3><strong>{{item.produto[0].name}}</strong></h3>
+                        <h3><strong>{{item.produto.name}}</strong></h3>
                         <small><strong>Material:</strong> Vidro maciço</small><br>
                         <small><strong>Diâmetro: </strong>63mm</small>
                     </div>
@@ -35,11 +36,12 @@
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
-                        <h3><strong>{{item.produto[0].valueProduct}}</strong></h3>
+                        <h3><strong>{{item.produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong>
+                        </h3>
                     </div>
                 </div>
                 <hr>
-                
+
             </div>
         </div>
 
@@ -51,7 +53,7 @@
                         <p>{{qtd}} produto(s)</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{total}}</span>
+                        <span>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
                     </div>
                 </div>
                 <div class="row text-muted">
@@ -59,7 +61,7 @@
                         <p>desconto</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{desconto}}</span>
+                        <span>{{desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
                     </div>
                 </div>
                 <div class="row text-muted">
@@ -67,29 +69,32 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{frete}}</span>
+                        <span>{{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
                     </div>
                 </div>
                 escolha seu frete
                 <form [formGroup]="formularioFrete">
-                <div class="row mt-2 ">
+                    <div class="row mt-2 ">
                         <div class="col-md-6 ">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
-                            <input class="form-control frete" type="radio"  (change)="freteR()" formControlName="frete" name="frete" value="50.0"
-                                id="freteR">
+                            <input class="form-control frete" type="radio" (click)="freteR()" formControlName="frete"
+                                name="frete" value="50.0" id="freteR">
                         </div>
                         <div class="col-md-6 ">
                             <label for="freteNormal">normal <br> R$ 20,00</label>
-                            <input class="form-control frete" type="radio" value="20.0" (change)="freteN()" formControlName="frete"  name="frete"
-                                id="freteN">
+                            <input class="form-control frete" type="radio" value="20.0" (click)="freteN()"
+                                formControlName="frete" name="frete" id="freteN">
                         </div>
-                </div>
-            </form>
+                    </div>
+                </form>
                 <hr>
                 <h1>total</h1>
                 <div class="text-right">
-                    <h2 class="text-muted">{{totalComDesconto}} em até 3x ou</h2>
-                    <h1>{{totalComDesconto}} em 1x no cartão</h1>
+                    <h2 class="text-muted">
+                        {{totalComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}} em até 3x
+                        ou</h2>
+                    <h1>{{totalComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}} em 1x no
+                        cartão</h1>
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img

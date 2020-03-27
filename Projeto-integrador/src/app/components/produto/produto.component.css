@@ -14,3 +14,7 @@
 h1{
     font-size: xx-large;
 }
+
+.card{
+    box-shadow: 0px 1px 0px 1px #bbb8b8
+}

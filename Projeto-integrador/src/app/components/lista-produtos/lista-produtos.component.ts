@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { apiProduct } from '../models/apiProduct';
 import { ProductService } from 'src/app/service/product.service';
 import { ApiCategory } from '../models/apiCategory';
+import { Carrinho } from '../models/carrinho';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -44,8 +45,6 @@ export class ListaProdutosComponent implements OnInit {
   
   selecionado(produto) {
     this.router.navigate(['listaProduto', produto.code])
-    console.log("eu devia funcionar");
-    
   }
   
 }

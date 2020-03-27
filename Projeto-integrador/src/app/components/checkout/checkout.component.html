@@ -1,4 +1,3 @@
-
 <main class="container">
     <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
         <div class="col-md-4">
@@ -19,75 +18,75 @@
                 <div class="form-group">
                     <label for="cep">CEP:</label>
                     <input class="form-control" maxlength="8" (blur)="capturarCEP()" type="text" name="cep" id="cep"
-                            placeholder="Digite seu CEP" required formControlName="cep">
-                    </div>
-                    <div class="form-group">
-                        <label for="endEntrega">Endereço:</label>
-                        <input class="form-control" type="text" name="endEnterga" id="endEntrega"
-                            placeholder="Digite seu Endereço" required formControlName="endereco">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="numero">Numero:</label>
-                                <input class="form-control" type="text" name="numero" id="numero"
-                                    placeholder="Número da residência" title="Número da residência"  required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="complemento">Complemento:</label>
-                                <input class="form-control" type="text" name="complemento" id="complemento"
-                                    placeholder="Ex:. escola, apto , bloco ,mercado etc.."
-                                    title="Ex:. escola, apto , bloco ,mercado etc..">
-                            </div>
+                        placeholder="Digite seu CEP" required formControlName="cep">
+                </div>
+                <div class="form-group">
+                    <label for="endEntrega">Endereço:</label>
+                    <input class="form-control" type="text" name="endEnterga" id="endEntrega"
+                        placeholder="Digite seu Endereço" required formControlName="endereco">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numero">Numero:</label>
+                            <input class="form-control" type="text" name="numero" id="numero"
+                                placeholder="Número da residência" title="Número da residência" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="bairro">Bairro:</label>
-                        <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
-                        formControlName="bairro"  required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            <input class="form-control" type="text" name="complemento" id="complemento"
+                                placeholder="Ex:. escola, apto , bloco ,mercado etc.."
+                                title="Ex:. escola, apto , bloco ,mercado etc..">
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6 form-group">
-                            <label for="cidade">Cidade:</label>
-                            <input class="form-control" type="text" name="cidade" id="cidade"
-                                placeholder="Digite sua cidade" formControlName="cidade" required>
-                        </div>
-                        <div class=" col-6 form-group">
-                            <label for="estado">Estado:</label>
-                            <select id='estado' name="estado" formControlName="estado" class="form-control">
-                                <option value="" disabled selected>Estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
-                        </div>
-                    </div>    
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
+                        formControlName="bairro" required>
+                </div>
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input class="form-control" type="text" name="cidade" id="cidade"
+                            placeholder="Digite sua cidade" formControlName="cidade" required>
+                    </div>
+                    <div class=" col-6 form-group">
+                        <label for="estado">Estado:</label>
+                        <select id='estado' name="estado" formControlName="estado" class="form-control">
+                            <option value="" disabled selected>Estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -96,7 +95,7 @@
             </header>
             <div class="p-2">
                 <h4 class="p-2">
-                    <strong>Escolha o frete</strong> 
+                    <strong>Escolha o frete</strong>
                 </h4>
                 <hr>
                 <div class="form-group row">
@@ -110,7 +109,7 @@
                     </div>
                 </div>
                 <h4 class="p-2">
-                    <strong>Pagamento</strong> 
+                    <strong>Pagamento</strong>
                 </h4>
                 <hr>
                 <div class="form-group">
@@ -127,7 +126,7 @@
                     <div class="col-4 form-group">
                         <label for="codigoSeguranca">CVV:</label>
                         <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
-                            id="codigoSeguranca"  placeholder="CVV" formControlName="cvv" required>
+                            id="codigoSeguranca" placeholder="CVV" formControlName="cvv" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -137,8 +136,8 @@
                 </div>
                 <div class="form-group">
                     <label for="cpfTitular">CPF titular:</label>
-                    <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular" id="cpfTitular" name="cpfTitular"
-                    placeholder="000.000.000-00"   required>
+                    <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular" id="cpfTitular"
+                        name="cpfTitular" placeholder="000.000.000-00" required>
                 </div>
             </div>
         </div>
@@ -146,42 +145,72 @@
             <header class="p-2 text-center">
                 Resumo do pedido
             </header>
-            <div>
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Produto</th>
-                            <th scope="col">qtde</th>
-                            <th scope="col">preço unit</th>
-                            <th scope="col">total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="../../../assets/Imagem/bol.png" alt="bola diamante" title="bola diamante" width="30" height="30"></td>
-                            <td>2</td>
-                            <td>R$ 50,00</td>
-                            <td>R$ 85,36</td>
-                        </tr>
-                        <tr>
-                            <td><img src="../../../assets/Imagem/04.png" alt="metalica" title="metalica" width="30" height="30"></td>
-                            <td>1</td>
-                            <td>R$ 23,63</td>
-                            <td>R$ 23,63</td>
-                        </tr>
-                    </tbody>
-                    <tr>
-                        <th scope="col">Total</th>
-                        <!-- <th scope="col">produto(s)</th> -->
-                        <th scope="col">3</th>
-                        <th scope="col">valor</th>
-                        <th scope="col">{{total}}</th>
-                    </tr>
-                </table>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>{{qtd}} produtos <a id="visualizar" data-toggle="modal" data-target="#resumo">visualizar</a>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>desconto</h4>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>{{desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>frete</h4>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>{{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>total</h2>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>{{totalComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-center">
-                    <button type="button" [routerLink]="['/final']" class="btn btn-success btn-block form-control">Finalizar Compra</button>
+                    <button type="button" [routerLink]="['/final']"
+                        class="btn btn-success btn-block form-control">Finalizar Compra</button>
                 </div>
             </div>
         </div>
     </form>
 </main>
+
+<!-- modal --> 
+<div id="resumo" class="modal m-2">
+    <form class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title">Meus produtos</h1>
+        </div>
+        <div class="container">
+            <div class="row m-3" *ngFor="let item of carrinho">
+                <div class="col-md-3">
+                    <img [src]="item.produto.image" alt="{{item.produto.name}}" title="{{item.produto.name}}"
+                    class="card-img" width="50" height="50">
+                </div>
+                <div class="col-md-3">
+                    <h5>Nome:. <br> {{item.produto.name}}</h5>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quant:. <br> {{item.quantidade}}</h5>
+                </div>
+                <div class="col-md-3">
+                    <h5>Valor unit:. <br> {{item.produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h5>
+                </div>
+                </div>
+        </div>
+    </form>
+</div>

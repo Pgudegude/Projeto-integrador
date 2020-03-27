@@ -71,17 +71,6 @@ export const ROUTES: Routes = [
     path:"listaCategoria/:categoria.id",
     component: ProdutosCategoryComponent
   },
-  //  {
-  //   path:"listaCategoria/10",
-  //   component: ProdutosCategoryComponent
-  // },
-  // {
-  //   path:"listaCategoria/8",
-  //   component: ProdutosCategoryComponent
-  // }, {
-  //   path:"listaCategoria/7",
-  //   component: ProdutosCategoryComponent
-  // },
   {
     path: "home/listaProduto/contato/sobre",
     component: SobreComponent
@@ -96,7 +85,7 @@ export const ROUTES: Routes = [
   },
 
   {
-    path: "carrinho",
+    path: 'carrinho', 
     component: CarrinhoComponent
   }, {
     path: "login",
