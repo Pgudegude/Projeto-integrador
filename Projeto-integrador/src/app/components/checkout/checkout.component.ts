@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
     this.mostrandoQuantidade();
     this.freteR();
     this.freteN();
+    
   }
   
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
@@ -185,6 +186,8 @@ ajustarQuantidade(produto) {
   )
   this.calcularTotal();
   this.mostrandoQuantidade();
+  console.log(this.carrinho);
+  
 }
 
 searchProduct (){

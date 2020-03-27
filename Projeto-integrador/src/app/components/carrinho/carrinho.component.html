@@ -77,12 +77,12 @@
                     <div class="row mt-2 ">
                         <div class="col-md-6 ">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
-                            <input class="form-control frete" type="radio" (change)="freteR()" formControlName="frete"
+                            <input class="form-control frete" type="radio" (click)="freteR()" formControlName="frete"
                                 name="frete" value="50.0" id="freteR">
                         </div>
                         <div class="col-md-6 ">
                             <label for="freteNormal">normal <br> R$ 20,00</label>
-                            <input class="form-control frete" type="radio" value="20.0" (change)="freteN()"
+                            <input class="form-control frete" type="radio" value="20.0" (click)="freteN()"
                                 formControlName="frete" name="frete" id="freteN">
                         </div>
                     </div>

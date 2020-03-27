@@ -15,6 +15,7 @@ export class ProdutoComponent implements OnInit {
   localProduct: apiProduct[] = []
   product: apiProduct;
   code: number
+  limitador: number = 0;
 
 
   constructor(private route: ActivatedRoute, public service: ProductService) {
@@ -54,4 +55,13 @@ export class ProdutoComponent implements OnInit {
       localStorage.setItem("cartProduct", produto_json)
     }
   }
+
+  count(){
+    if (this.limitador > 0) {
+      alert("PRODUTO JÁ ESTÁ NO CARRINHO!")
+    }
+    this.limitador++;
+  }
+
+
 }

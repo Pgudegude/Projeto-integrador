@@ -33,7 +33,6 @@ export class CarrinhoComponent implements OnInit {
     this.searchProduct()
   for(let i = 0; i < this.cartProduct.length; i++){
     this.carrinho.push(new Carrinho(this.cartProduct[i]))
-    console.log(this.carrinho)
   }
   
   this.carrinho.forEach(item =>{
@@ -105,6 +104,7 @@ export class CarrinhoComponent implements OnInit {
     )
     this.calcularTotal();
     this.mostrandoQuantidade();
+    this.stock.saveCart(this.carrinho)
   }
 
   excluirProduto(produto) {
