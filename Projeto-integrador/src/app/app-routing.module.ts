@@ -55,6 +55,9 @@ export const ROUTES: Routes = [
   {
     path: "home/contato",
     component: ContatoComponent
+  },  {
+    path: "meusPedidos/login",
+    component: LoginComponent
   },
   {
     path: "home/listaProduto/sobre",

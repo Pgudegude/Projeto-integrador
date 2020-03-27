@@ -34,15 +34,6 @@ export class ListaProdutosComponent implements OnInit {
       this.getter();
     
     }
-
-    categorySelected(category: ApiCategory) {
-      if (category.id != 0) {
-        this.product = this.productDisplay.filter(produto => produto.category.id == category.id)
-      } else {
-        this.product = this.productDisplay
-      }
-      console.log(category);
-    }
   
   
   ngOnInit(){
