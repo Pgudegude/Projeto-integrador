@@ -84,7 +84,7 @@ export class CheckoutComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required, // coloquei como obrigatorio
-          Validators.maxLength(100) // limitei o maximo de caractere 
+          Validators.maxLength(100)  // limitei o maximo de caractere 
         ])],
       telefone: ["",
         Validators.compose([
@@ -200,7 +200,7 @@ export class CheckoutComponent implements OnInit {
 
   verificarLogin() {
     let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
+    if (usuario == null && this.carrinho.length <= 0) {
       this.login = false
       console.log("usuário não logado")
     }
@@ -209,5 +209,7 @@ export class CheckoutComponent implements OnInit {
       console.log(usuario)
     }
   }
+
+  
 
 }

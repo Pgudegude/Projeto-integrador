@@ -16,8 +16,8 @@
                 <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login">Você está logado</a>
             </div>
         </ng-template >
-            <div id="carrinho" class="col-lg-1 text-center mt-2">
-                <a class="navbar-brand" routerLink="/carrinho"><img src="../../../assets/Imagem/carrinho.png" alt="carrinho" title="carrinho">
+            <div id="carrinho" class="col-lg-1 text-center mt-2" (click)="verificarCarrinho()">
+                <a class="navbar-brand"><img src="../../../assets/Imagem/carrinho.png" alt="carrinho" title="carrinho">
                 </a>
             </div>
         </div>
