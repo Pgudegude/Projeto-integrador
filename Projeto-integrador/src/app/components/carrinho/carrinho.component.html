@@ -73,20 +73,18 @@
                     </div>
                 </div>
                 escolha seu frete
-                <form [formGroup]="formularioFrete">
+                <!-- <form [formGroup]="formularioFrete"> -->
                     <div class="row mt-2 ">
                         <div class="col-md-6 ">
                             <label for="freteRapido">rápido<br>R$ 50,00</label>
-                            <input class="form-control frete" type="radio" (click)="freteR()" formControlName="frete"
-                                name="frete" value="50" id="freteR">
+                            <input class="form-control frete" type="radio" (click)="freteR()" name="frete" value="50" id="freteR">
                         </div>
                         <div class="col-md-6 ">
                             <label for="freteNormal">normal <br> R$ 20,00</label>
-                            <input class="form-control frete" type="radio" value="20" (click)="freteN()"
-                                formControlName="frete" name="frete" id="freteN">
+                            <input class="form-control frete" type="radio" value="20" (click)="freteN()" name="frete" id="freteN">
                         </div>
                     </div>
-                </form>
+                <!-- </form> -->
                 <hr>
                 <h1>total</h1>
                 <div class="text-right">
