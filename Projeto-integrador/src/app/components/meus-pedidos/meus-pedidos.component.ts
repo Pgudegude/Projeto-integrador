@@ -39,38 +39,40 @@ import { Pedido } from '../models/Pedido';
   templateUrl: './meus-pedidos.component.html',
   styleUrls: ['./meus-pedidos.component.css']
 })
-export class MeusPedidosComponent implements OnInit{
+export class MeusPedidosComponent implements OnInit {
 
 
-  constructor(private http:PedidoService) { }
-login:boolean
-pedido: Pedido[] = []
-verificarLogin(){
- let usuario =  JSON.parse(localStorage.getItem("usuario"))
-if(usuario==null){
-  this.login=false
-  console.log("usuário não logado")
-}
-else{this.login=true
-  this.mostrarPedidos()
-console.log(usuario)}
-}
+  constructor(private http: PedidoService) { }
+  login: boolean
+  pedido: Pedido[] = []
+  verificarLogin() {
+    let usuario = JSON.parse(localStorage.getItem("usuario"))
+    if (usuario == null) {
+      this.login = false
+      console.log("usuário não logado")
+    }
+    else {
+    this.login = true
+      this.mostrarPedidos()
+      console.log(usuario)
+    }
+  }
 
 
-mostrarPedidos(){
-  this.http.acompanhar().subscribe(data=>{  
-    data.forEach(d =>
-      this.pedido.push(d)
-    )
-   })
-   return this.pedido , console.log(this.pedido)
-  
-}
+  mostrarPedidos() {
+    this.http.acompanhar().subscribe(data => {
+      data.forEach(d =>
+        this.pedido.push(d)
+      )
+    })
+    return this.pedido, console.log(this.pedido)
+
+  }
   ngOnInit(): void {
     this.verificarLogin()
-    
+
   }
-  
+
 }
 
 
