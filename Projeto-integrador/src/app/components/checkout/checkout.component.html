@@ -1,5 +1,5 @@
 <main class="container">
-    <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
+    <form method="POST" class="form-row mt-1 p-4" *ngIf="login; else logar" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
                 Dados para entrega
@@ -187,9 +187,17 @@
             </div>
         </div>
     </form>
+    <ng-template #logar>
+        <h1>
+        Você não está logado ainda, 
+        </h1>
+        <div class="text-center">
+            <img src="../../../assets/Imagem/logado.jpg" alt="">
+        </div>
+    </ng-template>
 </main>
 
-<!-- modal --> 
+<!-- modal -->
 <div id="resumo" class="modal m-2">
     <form class="modal-content">
         <div class="modal-header">
@@ -199,7 +207,7 @@
             <div class="row m-3" *ngFor="let item of carrinho">
                 <div class="col-md-3">
                     <img [src]="item.produto.image" alt="{{item.produto.name}}" title="{{item.produto.name}}"
-                    class="card-img" width="50" height="50">
+                        class="card-img" width="50" height="50">
                 </div>
                 <div class="col-md-3">
                     <h5>Nome:. <br> {{item.produto.name}}</h5>
@@ -208,9 +216,11 @@
                     <h5>Quant:. <br> {{item.quantidade}}</h5>
                 </div>
                 <div class="col-md-3">
-                    <h5>Valor unit:. <br> {{item.produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h5>
+                    <h5>Valor Unit:. <br>
+                        {{item.produto.valueDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                    </h5>
                 </div>
-                </div>
+            </div>
         </div>
     </form>
 </div>

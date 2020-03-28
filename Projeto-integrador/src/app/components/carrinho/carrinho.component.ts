@@ -62,15 +62,14 @@ export class CarrinhoComponent implements OnInit {
   freteR = () => {
     this.frete = (50)
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    return 50
+    return this.frete
   }
+
   freteN = () => {
     this.frete = (20)
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
-    return 20
+    return this.frete
   }
-
-
 
   frete: any
   quantidade: number;
@@ -82,9 +81,9 @@ export class CarrinhoComponent implements OnInit {
     this.formularioFrete = this.fb.group({
       frete: []
     })
-
   }
 
+  
   searchProduct() {
     let product = JSON.parse(localStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
@@ -114,6 +113,7 @@ export class CarrinhoComponent implements OnInit {
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
+    
   }
 
   excluirProduto(produto) {
