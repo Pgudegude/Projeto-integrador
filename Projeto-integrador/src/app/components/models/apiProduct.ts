@@ -8,6 +8,7 @@ export class apiProduct{
         description?: string
     }
     public valueProduct?: number;
+    public valueDiscount?: number;
     public brand?: string;
     public model?: string;
 }
