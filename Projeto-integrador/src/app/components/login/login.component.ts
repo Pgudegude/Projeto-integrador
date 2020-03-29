@@ -18,11 +18,22 @@ export class LoginComponent implements OnInit {
 
 constructor(private fb: FormBuilder, private http: LoginService, private http2:HttpService) { }
 
-
-
+login: boolean
+verificarLogin() {
+  let usuario = JSON.parse(localStorage.getItem("usuario"))
+  if (usuario == null) {
+    this.login = false
+    console.log("usuário não logado")
+  }
+  else {
+  this.login = true
+    console.log(usuario)
+  }
+}
 
 ngOnInit(): void {
   this.criarFormularioDeLogin()
+  this.verificarLogin()
 }
 
 criarFormularioDeLogin(){
@@ -39,7 +50,6 @@ criarFormularioDeLogin(){
 
 }
 
-
 logando(){
   let user: Login = new Login()
   user.mail=this.formularioLogin.value.email;
@@ -51,8 +61,9 @@ logando(){
       console.log(data)
       
     })
-
-    
   }
-  
+  deslogar(){
+    localStorage.removeItem("usuario")
+    this.verificarLogin()
+  }
 }
