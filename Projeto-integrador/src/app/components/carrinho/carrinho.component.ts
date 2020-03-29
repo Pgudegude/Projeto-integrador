@@ -28,17 +28,17 @@ export class CarrinhoComponent implements OnInit {
   
   
   preco = 0;
-  // formularioFrete: FormGroup;  
+  formularioFrete: FormGroup;  
   constructor(private fb: FormBuilder, private stock: StockService) {
-    this.criandoFormulario();
+
     this.searchProduct()
     for (let i = 0; i < this.cartProduct.length; i++) {
       this.carrinho.push(new Carrinho(this.cartProduct[i]))
+      this.carrinho.forEach(item => {
+        this.total += item.produto.valueProduct * item.quantidade;
+      })
     }
-    
-    this.carrinho.forEach(item => {
-      this.total += item.produto.valueProduct * item.quantidade;
-    })
+    this.criandoFormulario();
     this.calcularTotal()
     this.mostrandoQuantidade()  
   }
@@ -56,8 +56,6 @@ export class CarrinhoComponent implements OnInit {
     this.totalComDesconto = (this.total - (this.total * 0.7))
     return this.totalComDesconto
   }
-
-
 
   freteR = () => {
     this.frete = (50)
@@ -78,9 +76,9 @@ export class CarrinhoComponent implements OnInit {
     this.formularioQuantidade = this.fb.group({
       quantidade: []
     })
-    // this.formularioFrete = this.fb.group({
-    //   frete: []
-    // })
+    this.formularioFrete = this.fb.group({
+      frete: []
+    })
   }
 
   
@@ -93,6 +91,8 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
+
   }
 
 
@@ -121,6 +121,7 @@ export class CarrinhoComponent implements OnInit {
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
+    this.searchProduct()
   }
 
 
