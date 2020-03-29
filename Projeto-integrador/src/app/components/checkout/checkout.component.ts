@@ -52,7 +52,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.criarDadosCompra();
-    this.verificarLogin();
   }
 
   enviarDaDosCompra(comprador: Compra) {
@@ -199,6 +198,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   verificarLogin() {
+    this.carrinho = this.recuperar.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usuario == null && this.carrinho.length <= 0) {
       this.login = false
