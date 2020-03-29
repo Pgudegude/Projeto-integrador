@@ -60,7 +60,7 @@ export class MeusPedidosComponent implements OnInit {
 
 
   mostrarPedidos() {
-    this.http.acompanhar().subscribe(data => {
+    this.http.acompanhar().subscribe(data => {  
       data.forEach(d =>
         this.pedido.push(d)
       )

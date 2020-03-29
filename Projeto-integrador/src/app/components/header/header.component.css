@@ -11,3 +11,7 @@ a{
     padding: 0%;
     margin: 0%;
 }
+
+#carrinho{
+    cursor: pointer;
+}

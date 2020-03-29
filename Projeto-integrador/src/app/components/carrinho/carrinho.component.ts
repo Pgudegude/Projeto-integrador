@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
+import { Router } from '@angular/router';
 
 
 
@@ -28,9 +29,9 @@ export class CarrinhoComponent implements OnInit {
   
   
   preco = 0;
-  formularioFrete: FormGroup;  
-  constructor(private fb: FormBuilder, private stock: StockService) {
-
+  // formularioFrete: FormGroup;  
+  constructor(private fb: FormBuilder, private stock: StockService, private router: Router) {
+    this.criandoFormulario();
     this.searchProduct()
     for (let i = 0; i < this.cartProduct.length; i++) {
       this.carrinho.push(new Carrinho(this.cartProduct[i]))
@@ -76,9 +77,9 @@ export class CarrinhoComponent implements OnInit {
     this.formularioQuantidade = this.fb.group({
       quantidade: []
     })
-    this.formularioFrete = this.fb.group({
-      frete: []
-    })
+    // this.formularioFrete = this.fb.group({ 
+    //   frete: []
+    // })
   }
 
   
@@ -121,8 +122,14 @@ export class CarrinhoComponent implements OnInit {
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
-    this.searchProduct()
+    this.verificarCarrinho() 
   }
 
-
+  verificarCarrinho() {
+    this.carrinho = this.stock.recoverCart()
+    if (this.carrinho == null || this.carrinho.length <= 0) {
+      alert("Carrinho está vazio!")
+      this.router.navigate(["home"])
+    }
+  }
 }
