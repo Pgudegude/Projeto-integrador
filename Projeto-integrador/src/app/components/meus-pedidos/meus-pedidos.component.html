@@ -1,6 +1,7 @@
 <main>
     <div class="container" >
-        <table class="table table-striped" *ngIf="login; else logar">
+        <div *ngIf="login; else logar">
+        <table class="table table-striped" *ngIf="carregar; else comprar">
             <thead>
                 <tr>
                     <th scope="col">Data</th>
@@ -12,14 +13,21 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pedidos of pedido; index as i">
-                    <th scope="row">{{pedidos.date}}</th>
+                    <th scope="row">{{pedidos.date| date:"dd/MM/yyyy"}}</th>
                     <th scope="row">{{pedidos.id}}</th>
-                    <th scope="row">{{pedidos.price}}</th>
+                    <th scope="row">{{pedidos.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</th>
                     <th scope="row">{{pedidos.payment.status}}</th>
                     <th scope="row">{{pedidos.statusRequest}}</th>
                 </tr>
             </tbody>
         </table>
+        <ng-template #comprar>
+            <div class="container text-center mt-5">
+                <h2>Você ainda não tem pedidos</h2>
+               <a routerLink=""><button class="btn btn-outline-secondary" >Comprar </button></a>
+            </div>
+          </ng-template>
+    </div>
         <ng-template #logar>
             <div class="container text-center mt-5">
                 <h2>Ops... Você precisa estar logado!</h2>

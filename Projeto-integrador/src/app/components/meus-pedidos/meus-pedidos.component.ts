@@ -40,11 +40,11 @@ import { Pedido } from '../models/Pedido';
   styleUrls: ['./meus-pedidos.component.css']
 })
 export class MeusPedidosComponent implements OnInit {
-
-
   constructor(private http: PedidoService) { }
   login: boolean
   pedido: Pedido[] = []
+  carregar:boolean
+  vazio =[]
   verificarLogin() {
     let usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usuario == null) {
@@ -53,8 +53,13 @@ export class MeusPedidosComponent implements OnInit {
     }
     else {
     this.login = true
-      this.mostrarPedidos()
-      console.log(usuario)
+    if(this.mostrarPedidos()!=this.vazio){
+      this.carregar=true
+      console.log(this.pedido)
+    }
+    else{
+      this.carregar=false
+    }
     }
   }
 
@@ -65,7 +70,7 @@ export class MeusPedidosComponent implements OnInit {
         this.pedido.push(d)
       )
     })
-    return this.pedido, console.log(this.pedido)
+    return this.pedido
 
   }
   ngOnInit(): void {
