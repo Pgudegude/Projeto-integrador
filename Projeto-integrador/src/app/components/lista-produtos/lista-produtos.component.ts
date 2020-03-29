@@ -36,6 +36,7 @@ export class ListaProdutosComponent implements OnInit {
     
     }
   
+  
   ngOnInit(){
     for(let i = 0; i < this.product.length; i++){
       this.productDisplay.push(this.product[i])

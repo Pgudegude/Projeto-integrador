@@ -1,5 +1,6 @@
 <main class="container">
-    <form method="POST" class="form-row mt-1 p-4" *ngIf="login; else logar" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
+    <div *ngIf="login; else logar">
+    <form method="POST" class="form-row mt-1 p-4"  [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
                 Dados para entrega
@@ -168,7 +169,7 @@
                         <h4>frete</h4>
                     </div>
                     <div class="col-md-6 text-right">
-                        <h4>{{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                        <h4>{{frete}}</h4>
                     </div>
                 </div>
                 <hr>
@@ -187,6 +188,7 @@
             </div>
         </div>
     </form>
+</div>
     <ng-template #logar>
         <h1>
         Você não está logado ainda, 

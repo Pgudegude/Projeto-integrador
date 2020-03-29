@@ -69,10 +69,10 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
+                        <span>{{frete}}</span>
                     </div>
                 </div>
-                escolha seu frete
+                Simule um frete
                 <!-- <form [formGroup]="formularioFrete"> -->
                     <div class="row mt-2 ">
                         <div class="col-md-6 ">
@@ -96,7 +96,7 @@
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
-                            src="../../../assets/Imagem/basket.png" alt=""> continuar</button></a>
+                src="../../../assets/Imagem/basket.png" alt="">  continuar</button></a>
             </div>
         </div>
     </div>

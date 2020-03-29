@@ -35,11 +35,13 @@ export class CarrinhoComponent implements OnInit {
     this.searchProduct()
     for (let i = 0; i < this.cartProduct.length; i++) {
       this.carrinho.push(new Carrinho(this.cartProduct[i]))
+      this.carrinho.forEach(item => {
+        this.total += item.produto.valueProduct * item.quantidade;
+      })
+      
     }
-    
-    this.carrinho.forEach(item => {
-      this.total += item.produto.valueProduct * item.quantidade;
-    })
+    console.log(this.carrinho)
+    this.criandoFormulario();
     this.calcularTotal()
     this.mostrandoQuantidade()  
   }
@@ -49,29 +51,27 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho.forEach(item => {
       this.total += item.produto.valueProduct * item.quantidade;
       if (this.total != 0) {
-        this.carrinho.forEach(item => {
           this.desconto = (this.total * 0.7)
-        })
       }
     })
+    
     this.totalComDesconto = (this.total - (this.total * 0.7))
     return this.totalComDesconto
   }
-
-
-
   freteR = () => {
     this.frete = (50)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    return this.frete
+    console.log(this.carrinho)
+    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
   }
-
   freteN = () => {
     this.frete = (20)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }
-
   frete: any
   quantidade: number;
 
@@ -94,6 +94,8 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
+
   }
 
 

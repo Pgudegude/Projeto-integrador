@@ -32,10 +32,17 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private http: HttpService, private fb: FormBuilder, private recuperar: StockService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
-    this.carrinho = recuperar.recoverCart();
+    this.searchProduct()
+    for (let i = 0; i < this.cartProduct.length; i++) {
+      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+      this.carrinho.forEach(item => {
+        this.total += item.produto.valueProduct * item.quantidade;
+      })}
+    
+   console.log(this.carrinho)
     this.calcularTotal();
     this.mostrandoQuantidade();
-    this.freteN();
+    
   }
 
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
@@ -147,23 +154,27 @@ export class CheckoutComponent implements OnInit {
 
   freteR = () => {
     this.frete = (50)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    return 50
+    console.log(this.carrinho)
+    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
   }
+
   freteN = () => {
     this.frete = (20)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
-    return 20
+    return this.frete
   }
 
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
+      console.log(item)
       this.total += item.produto.valueProduct * item.quantidade;
       if (this.total != 0) {
-        this.carrinho.forEach(item => {
           this.desconto = (this.total * 0.7)
-        })
       }
     })
     this.totalComDesconto = (this.total - (this.total * 0.7))
@@ -200,7 +211,7 @@ export class CheckoutComponent implements OnInit {
   verificarLogin() {
     this.carrinho = this.recuperar.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null && this.carrinho.length <= 0) {
+    if (usuario == null ) {
       this.login = false
       console.log("usuário não logado")
     }
