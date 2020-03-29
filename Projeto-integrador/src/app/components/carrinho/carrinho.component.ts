@@ -38,7 +38,9 @@ export class CarrinhoComponent implements OnInit {
       this.carrinho.forEach(item => {
         this.total += item.produto.valueProduct * item.quantidade;
       })
+      
     }
+    console.log(this.carrinho)
     this.criandoFormulario();
     this.calcularTotal()
     this.mostrandoQuantidade()  
@@ -60,12 +62,16 @@ export class CarrinhoComponent implements OnInit {
 
   freteR = () => {
     this.frete = (50)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    return this.frete
+    console.log(this.carrinho)
+    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
   }
 
   freteN = () => {
     this.frete = (20)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }
@@ -132,4 +138,5 @@ export class CarrinhoComponent implements OnInit {
       this.router.navigate(["home"])
     }
   }
+
 }

@@ -17,10 +17,10 @@
                     </div>
                     <div class="col-md-1">
                         <h4>Qtd:</h4>
-                        <form [formGroup]="formularioQuantidade">
-                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)"
-                                formControlName='quantidade' style="width: 99">
-                                <option [selected]="true" value=1> 1</option>
+                        <mat-form-field [formGroup]="formularioQuantidade">
+                            <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)" 
+                                formControlName='quantidade' style="width: 99"  >
+                                <option [selected]="true" value=1 > 1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
                                 <option value=4>4</option>
@@ -32,7 +32,7 @@
                                 <option value=10>10</option>
                             </select>
                             <small><a (click)="excluirProduto(item.produto)" id="remove">Remover</a></small>
-                        </form>
+                        </mat-form-field>
                     </div>
                     <div class="col-md-3 text-center">
                         Preço unitário:
@@ -69,24 +69,22 @@
                         <p>frete</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span>{{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
+                        <span>{{frete}}</span>
                     </div>
                 </div>
                 escolha seu frete
-                <form [formGroup]="formularioFrete">
-                <div class="row mt-2 ">
-                    <div class="col-md-6 ">
-                        <label for="freteRapido">rápido<br>R$ 50,00</label>
-                        <input class="form-control frete" type="radio" (click)="freteR()" name="frete" value="50"
-                            id="freteR">
+                <!-- <form [formGroup]="formularioFrete"> -->
+                    <div class="row mt-2 ">
+                        <div class="col-md-6 ">
+                            <label for="freteRapido">rápido<br>R$ 50,00</label>
+                            <input class="form-control frete" type="radio" (click)="freteR()" name="frete" value="50" id="freteR">
+                        </div>
+                        <div class="col-md-6 ">
+                            <label for="freteNormal">normal <br> R$ 20,00</label>
+                            <input class="form-control frete" type="radio" value="20" (click)="freteN()" name="frete" id="freteN">
+                        </div>
                     </div>
-                    <div class="col-md-6 ">
-                        <label for="freteNormal">normal <br> R$ 20,00</label>
-                        <input class="form-control frete" type="radio" value="20" (click)="freteN()" name="frete"
-                            id="freteN">
-                    </div>
-                </div>
-                </form>
+                <!-- </form> -->
                 <hr>
                 <h1>total</h1>
                 <div class="text-right">
@@ -98,8 +96,7 @@
                 </div>
                 <hr>
                 <a [routerLink]="['/carrinho/checkout']"><button type="button" class="btn btn-success btn-block "><img
-                            src="../../../assets/Imagem/basket.png" alt=""> continuar</button></a>
-
+                src="../../../assets/Imagem/basket.png" alt="">  continuar</button></a>
             </div>
         </div>
     </div>
