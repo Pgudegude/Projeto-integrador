@@ -28,19 +28,25 @@ export class CheckoutComponent implements OnInit {
   formularioCheckout: FormGroup;
   formularioQuantidade: any;
   totalComFrete: any;
+  login: boolean;
 
-  constructor(private http: HttpService, private fb: FormBuilder,private recuperar: StockService) {
+  constructor(private http: HttpService, private fb: FormBuilder, private recuperar: StockService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
-    this.carrinho  = recuperar.recoverCart();
+    this.searchProduct()
+    for (let i = 0; i < this.cartProduct.length; i++) {
+      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+      this.carrinho.forEach(item => {
+        this.total += item.produto.valueProduct * item.quantidade;
+      })}
+    
+   console.log(this.carrinho)
     this.calcularTotal();
     this.mostrandoQuantidade();
-    this.freteR();
-    this.freteN();
     
   }
-  
+
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
-  
+
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
@@ -53,6 +59,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.criarDadosCompra();
+    this.verificarLogin();
   }
 
   enviarDaDosCompra(comprador: Compra) {
@@ -84,7 +91,7 @@ export class CheckoutComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required, // coloquei como obrigatorio
-          Validators.maxLength(100) // limitei o maximo de caractere 
+          Validators.maxLength(100)  // limitei o maximo de caractere 
         ])],
       telefone: ["",
         Validators.compose([
@@ -137,65 +144,83 @@ export class CheckoutComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-        
-        cpfTitular: ["",
+
+      cpfTitular: ["",
         Validators.compose([
           Validators.required,
           Validacoes.ValidaCpf
         ])],
     })
-}
+  }
 
-freteR = () => {
-  this.frete = (50)
-  this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-  return 50
-}
-freteN = () => {
-  this.frete = (20)
-  this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
-  return 20
-}
+  freteR = () => {
+    this.frete = (50)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
+    console.log(this.carrinho)
+    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
+  }
 
-calcularTotal = () => {
-  this.total = 0
-  this.carrinho.forEach(item => {
-    this.total += item.produto.valueProduct * item.quantidade;
-    if (this.total != 0) {
-      this.carrinho.forEach(item => {
-        this.desconto = (this.total * 0.7)
-      })
+  freteN = () => {
+    this.frete = (20)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
+    return this.frete
+  }
+
+  calcularTotal = () => {
+    this.total = 0
+    this.carrinho.forEach(item => {
+      console.log(item)
+      this.total += item.produto.valueProduct * item.quantidade;
+      if (this.total != 0) {
+          this.desconto = (this.total * 0.7)
+      }
+    })
+    this.totalComDesconto = (this.total - (this.total * 0.7))
+    return this.totalComDesconto
+  }
+
+  mostrandoQuantidade() {
+    this.qtd = 0;
+    this.carrinho.forEach(item => {
+      this.qtd += item.quantidade;
+    })
+  }
+
+  ajustarQuantidade(produto) {
+    this.carrinho.forEach(item => {
+      if (item.produto.codProduct == produto.produto.codProduct)
+        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     }
-  })
-  this.totalComDesconto = (this.total - (this.total * 0.7))
-  return this.totalComDesconto
-}
+    )
+    this.calcularTotal();
+    this.mostrandoQuantidade();
+    console.log(this.carrinho);
 
-mostrandoQuantidade() {
-  this.qtd = 0;
-  this.carrinho.forEach(item => {
-    this.qtd += item.quantidade;
-  })
-}
-
-ajustarQuantidade(produto) {
-  this.carrinho.forEach(item=>{
-    if(item.produto.codProduct == produto.produto.codProduct)
-    item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
   }
-  )
-  this.calcularTotal();
-  this.mostrandoQuantidade();
-  console.log(this.carrinho);
+
+  searchProduct() {
+    let product = JSON.parse(localStorage.getItem("cartProduct"))
+    for (let i = 0; i < product.length; i++) {
+      this.cartProduct.push(product[i])
+    }
+    return product == null ? [] : this.cartProduct
+  }
+
+  verificarLogin() {
+    let usuario = JSON.parse(localStorage.getItem("usuario"))
+    if (usuario == null ) {
+      this.login = false
+      console.log("usuário não logado")
+    }
+    else {
+    this.login = true
+      console.log(usuario)
+    }
+  }
+
   
-}
-
-searchProduct (){
-  let product = JSON.parse(localStorage.getItem("cartProduct"))
-  for(let i = 0; i < product.length; i++){
-    this.cartProduct.push(product[i])
-  }
-  return product == null ? [] : this.cartProduct
-}
 
 }

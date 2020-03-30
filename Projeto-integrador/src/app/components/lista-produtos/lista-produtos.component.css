@@ -19,9 +19,7 @@ h5 {
     display: flex;
     justify-content: center;
 }
-s {
-    color: rgb(223, 219, 219);
-}
+
 *{
     margin: 0;
     padding: 0;
@@ -31,4 +29,9 @@ s {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+p{
+    text-decoration: line-through;
+    color: rgba(128, 128, 128, 0.945);
 }

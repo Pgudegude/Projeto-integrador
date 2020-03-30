@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Produtos } from '../models/produtos';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
+import { Router } from '@angular/router';
 
 
 
@@ -13,9 +14,9 @@ import { StockService } from 'src/app/service/stock.service';
 })
 
 export class CarrinhoComponent implements OnInit {
-
+  
   @Input() item: Produtos;
-
+  
   desconto: any;
   rapido: any;
   normal: any;
@@ -24,24 +25,25 @@ export class CarrinhoComponent implements OnInit {
   totalComDesconto: any;
   formularioQuantidade: FormGroup;
   carrinho: Carrinho[] = [];
-  cartProduct = [];
- 
-
-
-  preco = 0;
-  formularioFrete: FormGroup;
-  constructor(private fb: FormBuilder, private stock: StockService) {
-    this.searchProduct()
-  for(let i = 0; i < this.cartProduct.length; i++){
-    this.carrinho.push(new Carrinho(this.cartProduct[i]))
-  }
+  cartProduct = []
   
-  this.carrinho.forEach(item =>{
-    this.total += item.produto.valueProduct * item.quantidade;
-  })
-    this.stock.saveCart(this.carrinho)
+  
+  preco = 0;
+  // formularioFrete: FormGroup;  
+  constructor(private fb: FormBuilder, private stock: StockService, private router: Router) {
+    this.criandoFormulario();
+    this.searchProduct()
+    for (let i = 0; i < this.cartProduct.length; i++) {
+      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+      this.carrinho.forEach(item => {
+        this.total += item.produto.valueProduct * item.quantidade;
+      })
+      
+    }
+    console.log(this.carrinho)
+    this.criandoFormulario();
     this.calcularTotal()
-    this.mostrandoQuantidade()
+    this.mostrandoQuantidade()  
   }
 
   calcularTotal = () => {
@@ -49,28 +51,27 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho.forEach(item => {
       this.total += item.produto.valueProduct * item.quantidade;
       if (this.total != 0) {
-        this.carrinho.forEach(item => {
           this.desconto = (this.total * 0.7)
-        })
       }
     })
+    
     this.totalComDesconto = (this.total - (this.total * 0.7))
     return this.totalComDesconto
   }
-
   freteR = () => {
     this.frete = (50)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    return 50
+    console.log(this.carrinho)
+    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
   }
   freteN = () => {
     this.frete = (20)
+    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
-    return 20
+    return this.frete
   }
-
-
-
   frete: any
   quantidade: number;
 
@@ -78,14 +79,23 @@ export class CarrinhoComponent implements OnInit {
     this.formularioQuantidade = this.fb.group({
       quantidade: []
     })
-    this.formularioFrete = this.fb.group({
-      frete: []
-    })
+    // this.formularioFrete = this.fb.group({ 
+    //   frete: []
+    // })
+  }
 
+  
+  searchProduct() {
+    let product = JSON.parse(localStorage.getItem("cartProduct"))
+    for (let i = 0; i < product.length; i++) {
+      this.cartProduct.push(product[i])
+    }
+    return product == null ? [] : this.cartProduct
   }
 
   ngOnInit(): void {
-    this.criandoFormulario();
+   
+
   }
 
 
@@ -98,14 +108,15 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
-    this.carrinho.forEach(item=>{
-      if(item.produto.codProduct == produto.produto.codProduct)
-      item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
+    this.carrinho.forEach(item => {
+      if (item.produto.codProduct == produto.produto.codProduct)
+        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
     }
     )
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
+    
   }
 
   excluirProduto(produto) {
@@ -113,14 +124,15 @@ export class CarrinhoComponent implements OnInit {
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
+    this.verificarCarrinho() 
   }
 
-  searchProduct() {
-    let product = JSON.parse(localStorage.getItem("cartProduct"))
-    for (let i = 0; i < product.length; i++) {
-      this.cartProduct.push(product[i])
+  verificarCarrinho() {
+    this.carrinho = this.stock.recoverCart()
+    if (this.carrinho == null || this.carrinho.length <= 0) {
+      alert("Carrinho está vazio!")
+      this.router.navigate(["home"])
     }
-    return product == null ? [] : this.cartProduct
   }
 
 }
