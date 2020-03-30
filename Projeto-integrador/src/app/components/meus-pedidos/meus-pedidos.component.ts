@@ -10,7 +10,6 @@ import { Pedido } from '../models/Pedido';
 //   statusPedido: string;
 // }
 
-
 // let ped: Pedido[] = [
 //   {
 //     date: '2020-12-03',
@@ -62,8 +61,6 @@ export class MeusPedidosComponent implements OnInit {
     }
     }
   }
-
-
   mostrarPedidos() {
     this.http.acompanhar().subscribe(data => {  
       data.forEach(d =>
@@ -71,13 +68,10 @@ export class MeusPedidosComponent implements OnInit {
       )
     })
     return this.pedido
-
   }
   ngOnInit(): void {
     this.verificarLogin()
-
   }
-
 }
 
 

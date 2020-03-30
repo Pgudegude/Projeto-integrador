@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { StockService } from 'src/app/service/stock.service';
 import { Carrinho } from '../models/carrinho';
 
+
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

@@ -51,20 +51,11 @@ export class CadastroComponent implements OnInit {
         this.formCadastro.value.cidade,
         this.formCadastro.value.complemento,
     )
-    this.cadastrar.insertCliente(dadosCliente).subscribe(
+    this.cadastrar.insertCliente(dadosCliente, dadosEndereco).subscribe(
       data => {
-        console.log(data)}
-        
-    )
-    this.cadEnd.insertEndereco(dadosEndereco).subscribe(
-      data => {console.log(data)}  
-    )
-    return this.teste()
-  }
-  teste(){
-    this.cadastrar.insertClientAddress().subscribe(
-      data=>{
-        console.log(data)
+        let login_json = JSON.stringify(data)
+      localStorage.setItem("usuario", login_json)
+      console.log(data)
       }
     )
   }
