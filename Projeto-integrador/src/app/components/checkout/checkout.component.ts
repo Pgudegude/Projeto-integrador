@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
         this.total += item.produto.valueProduct * item.quantidade;
       })}
     
-   console.log(this.carrinho)
+  console.log(this.carrinho)
     this.calcularTotal();
     this.mostrandoQuantidade();
     
@@ -154,16 +154,16 @@ export class CheckoutComponent implements OnInit {
 
   freteR = () => {
     this.frete = (50)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
     console.log(this.carrinho)
-    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return this.frete
     
   }
 
   freteN = () => {
     this.frete = (20)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }

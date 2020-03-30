@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
@@ -29,6 +29,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProdutosCategoryComponent } from './components/produtos-category/produtos-category.component';
 
+//definindo tipo de moeda 
+import localePt from '@angular/common/locales/pt';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localePt, 'pt');
+
 
 @NgModule({
   declarations: [
@@ -47,7 +53,8 @@ import { ProdutosCategoryComponent } from './components/produtos-category/produt
     CarrosselComponent,
     CheckoutComponent,
     MeusPedidosComponent,
-    ProdutosCategoryComponent,
+    ProdutosCategoryComponent
+
   ],
   imports: [
     BrowserModule,
@@ -71,7 +78,10 @@ import { ProdutosCategoryComponent } from './components/produtos-category/produt
 
   ],
   exports: [BsDropdownModule,  ModalModule], 
-  providers: [],
+  providers: [  {
+    provide: LOCALE_ID,
+    useValue: 'pt'
+}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
