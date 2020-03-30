@@ -34,16 +34,12 @@ export class CarrinhoComponent implements OnInit {
   constructor(private fb: FormBuilder, private stock: StockService, private router: Router) {
     this.criandoFormulario();
     this.searchProduct()
-    for (let i = 0; i < this.cartProduct.length; i++) {
-      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    this.carrinho = this.stock.recoverCart()
+    
       this.carrinho.forEach(item => {
         this.total += item.produto.valueProduct * item.quantidade
         this.total
       })
-      
-    }
-    this.stock.recoverCart();
-    this.criandoFormulario();
     this.calcularTotal()
     this.mostrandoQuantidade()  
   }
@@ -53,10 +49,12 @@ export class CarrinhoComponent implements OnInit {
     this.carrinho.forEach(item => {
       this.total += item.produto.valueProduct * item.quantidade;
       if (this.total != 0) {
+        
           this.desconto = (this.total * 0.7)
       }
     })
     this.totalComDesconto = (this.total - (this.total * 0.7))
+    this.stock.saveCart(this.carrinho)
     return this.totalComDesconto
   }
 
@@ -107,6 +105,7 @@ export class CarrinhoComponent implements OnInit {
     })
   }
 
+
   ajustarQuantidade(produto) {
     this.carrinho.forEach(item => {
       if (item.produto.codProduct == produto.produto.codProduct)
@@ -116,7 +115,6 @@ export class CarrinhoComponent implements OnInit {
     this.calcularTotal();
     this.mostrandoQuantidade();
     this.stock.saveCart(this.carrinho)
-    
   }
 
   excluirProduto(produto) {

@@ -80,7 +80,7 @@ registerLocaleData(localePt, 'pt');
   exports: [BsDropdownModule,  ModalModule], 
   providers: [  {
     provide: LOCALE_ID,
-    useValue: 'pt'
+    useValue: 'pt-BR'
 }],
   bootstrap: [AppComponent]
 })
