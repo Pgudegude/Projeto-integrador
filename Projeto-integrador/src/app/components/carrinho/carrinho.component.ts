@@ -25,32 +25,11 @@ export class CarrinhoComponent implements OnInit {
   formularioQuantidade: FormGroup;
   carrinho: Carrinho[] = [];
   cartProduct = [];
-  product: object
+ 
 
 
   preco = 0;
   formularioFrete: FormGroup;
-<<<<<<< HEAD
-
-
-  constructor(private fb: FormBuilder) {
-    this.searchProduct()
-    for (let i = 0; i < this.cartProduct.length; i++) {
-      let cont: number = 1;
-      for (let y = 0; y < this.cartProduct.length; y++) {
-        if (this.cartProduct[i] === this.cartProduct[y])
-          cont++;
-        this.cartProduct.splice(y, 1);
-      }
-      this.product = this.cartProduct[i];
-      this.carrinho.push(new Carrinho(this.product, cont))
-      console.log(this.carrinho)
-    }
-
-    this.carrinho.forEach(item => {
-      this.total += item.produto[0].valueProduct * item.quantidade;
-    })
-=======
   constructor(private fb: FormBuilder, private stock: StockService) {
     this.searchProduct()
   for(let i = 0; i < this.cartProduct.length; i++){
@@ -61,7 +40,6 @@ export class CarrinhoComponent implements OnInit {
     this.total += item.produto.valueProduct * item.quantidade;
   })
     this.stock.saveCart(this.carrinho)
->>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
     this.calcularTotal()
     this.mostrandoQuantidade()
   }
@@ -120,24 +98,14 @@ export class CarrinhoComponent implements OnInit {
   }
 
   ajustarQuantidade(produto) {
-<<<<<<< HEAD
-    this.carrinho.forEach(item => {
-      if (item.produto[0].codProduct == produto.produto[0].codProduct)
-        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
-=======
     this.carrinho.forEach(item=>{
       if(item.produto.codProduct == produto.produto.codProduct)
       item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
->>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
     }
     )
     this.calcularTotal();
     this.mostrandoQuantidade();
-<<<<<<< HEAD
-
-=======
     this.stock.saveCart(this.carrinho)
->>>>>>> 168c68a34fdb6778dcffdcec511225fc9aac006f
   }
 
   excluirProduto(produto) {
