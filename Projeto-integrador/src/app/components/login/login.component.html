@@ -1,5 +1,5 @@
 
-<main>
+<main  *ngIf="!login; else logar">
     <div class="container">
         <div id="row" class="row">
             <div class="col-md-6">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-</main>
+
 <!-- modal -->
 <div id="modalEsqueci" class="modal m-2">
     <form class="modal-content">
@@ -53,9 +53,23 @@
                             name="token" id="token" required>
                     </div>
                 </div>
-                <button type="button" class="btn btn-info btn-block">Confirmar</button>
+                <button type="button" class="btn btn-info btn-block"click="verificarLogin()">Confirmar</button>
             </div>
         </div>
+
     </form>
 </div>
 
+</main>
+<ng-template #logar>
+    <div class="container text-center mt-5">
+        <h2>Você está logado</h2>
+        <div class="text-left">
+            <ul>
+                <li > <a routerLink="listaProduto"> <button class="btn">Ir as Compras</button></a></li>
+                <li > <a routerLink="meusPedidos"> <button class="btn">Meus Pedidos</button></a></li>
+                <li> <a> <button class="btn" (click)="deslogar()">Deslogar</button></a></li>
+            </ul>
+    </div>
+    </div>
+  </ng-template>
