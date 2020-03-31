@@ -27,8 +27,7 @@ export class CarrinhoComponent implements OnInit {
   formularioQuantidade: FormGroup;
   carrinho: Carrinho[] = [];
   cartProduct = []
-  
-  
+
   preco = 0;
   // formularioFrete: FormGroup;  
   constructor(private fb: FormBuilder, private stock: StockService, private router: Router) {

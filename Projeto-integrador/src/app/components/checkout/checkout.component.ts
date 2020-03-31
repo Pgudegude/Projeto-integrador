@@ -6,6 +6,7 @@ import { Validacoes } from '../models/Validacoes';
 import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,19 +31,21 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
 
-  constructor(private http: HttpService, private fb: FormBuilder, private stock: StockService) {
+  constructor(private http: HttpService,
+    private fb: FormBuilder,
+    private stock: StockService,
+    private router: Router) {
+
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
-    
-      this.carrinho.forEach(item => {
-        this.total += item.produto.valueProduct * item.quantidade;
-      })
-    
-  console.log(this.carrinho)
+
+    this.carrinho.forEach(item => {
+      this.total += item.produto.valueProduct * item.quantidade;
+    })
     this.calcularTotal();
     this.mostrandoQuantidade();
-    
+
   }
 
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
@@ -156,9 +159,7 @@ export class CheckoutComponent implements OnInit {
     this.frete = (50)
     this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    console.log(this.carrinho)
     return this.frete
-    
   }
 
   freteN = () => {
@@ -171,13 +172,9 @@ export class CheckoutComponent implements OnInit {
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
-      console.log(item)
       this.total += item.produto.valueProduct * item.quantidade;
-      console.log("eu que estou com erro"+item.produto.valueProduct);
-      
       if (this.total != 0) {
-        console.log(this.total);
-          this.desconto = (this.total * 0.7)
+        this.desconto = (this.total * 0.7)
       }
     })
     this.totalComDesconto = (this.total - (this.total * 0.7))
@@ -199,8 +196,6 @@ export class CheckoutComponent implements OnInit {
     )
     this.calcularTotal();
     this.mostrandoQuantidade();
-    console.log(this.carrinho);
-
   }
 
   searchProduct() {
@@ -214,16 +209,14 @@ export class CheckoutComponent implements OnInit {
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null ) {
+    if (usuario == null) {
       this.login = false
       console.log("usuário não logado")
     }
     else {
-    this.login = true
+      this.login = true
       console.log(usuario)
     }
   }
-
-  
 
 }
