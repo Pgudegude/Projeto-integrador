@@ -189,23 +189,14 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  ajustarQuantidade(produto) {
-    this.carrinho.forEach(item => {
-      if (item.produto.codProduct == produto.produto.codProduct)
-        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
-    }
-    )
-    this.calcularTotal();
-    this.mostrandoQuantidade();
-    console.log(this.carrinho);
-
-  }
 
   searchProduct() {
     let product = JSON.parse(localStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
       this.cartProduct.push(product[i])
+
     }
+   
     return product == null ? [] : this.cartProduct
   }
 
