@@ -18,21 +18,21 @@ export class HeaderComponent implements OnInit {
 
   logar: boolean;
   carrinho: Carrinho[] = [];
+  usuario: any
 
   constructor(private http: HttpService, private router: Router,private stock: StockService) { }
 
-
   verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
+    this.usuario = JSON.parse(localStorage.getItem("usuario"))
+    if (this.usuario == null) {
       this.logar = true
       console.log("usuário não logado")
     }
     else {
     this.logar = false
-      console.log(usuario)
-    }
+      console.log(this.usuario)
   }
+}
 
 
   ngOnInit(): void {
