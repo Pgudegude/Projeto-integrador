@@ -69,6 +69,7 @@ export class MeusPedidosComponent implements OnInit {
     })
     return this.pedido
   }
+
   ngOnInit(): void {
     this.verificarLogin()
   }

@@ -14,7 +14,7 @@ import { StockService } from 'src/app/service/stock.service';
 
 export class ProdutoComponent implements OnInit {
   
-  localProduct: apiProduct[] = []
+  localProduct: Carrinho[] = []
   product: apiProduct;
   code: number
   carrinho: Carrinho[] = [];
@@ -44,15 +44,15 @@ export class ProdutoComponent implements OnInit {
 
   saveProduct() {
     let count = 0
-    let product: apiProduct[] = JSON.parse(localStorage.getItem("cartProduct"))
+    let product: Carrinho[] = JSON.parse(localStorage.getItem("cartProduct"))
     if (product != null) {
       for (let i = 0; i < product.length; i++) {
-        if (product[i].codProduct == this.product.codProduct)
+        if (product[i].produto.codProduct == this.product.codProduct)
           count++ 
       }
     }
     if (count == 0) {
-      this.localProduct.push(this.product)
+      this.localProduct.push(new Carrinho(this.product, 1))
       let produto_json = JSON.stringify(this.localProduct)
       localStorage.setItem("cartProduct", produto_json)
     }

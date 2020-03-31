@@ -30,16 +30,16 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
 
-  constructor(private http: HttpService, private fb: FormBuilder, private recuperar: StockService) {
+  constructor(private http: HttpService, private fb: FormBuilder, private stock: StockService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
-    for (let i = 0; i < this.cartProduct.length; i++) {
-      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    this.carrinho = this.stock.recoverCart()
+    
       this.carrinho.forEach(item => {
         this.total += item.produto.valueProduct * item.quantidade;
-      })}
+      })
     
-   console.log(this.carrinho)
+  console.log(this.carrinho)
     this.calcularTotal();
     this.mostrandoQuantidade();
     
@@ -59,7 +59,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.criarDadosCompra();
-    this.verificarLogin();
   }
 
   enviarDaDosCompra(comprador: Compra) {
@@ -155,16 +154,16 @@ export class CheckoutComponent implements OnInit {
 
   freteR = () => {
     this.frete = (50)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
     console.log(this.carrinho)
-    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return this.frete
     
   }
 
   freteN = () => {
     this.frete = (20)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }
@@ -174,7 +173,10 @@ export class CheckoutComponent implements OnInit {
     this.carrinho.forEach(item => {
       console.log(item)
       this.total += item.produto.valueProduct * item.quantidade;
+      console.log("eu que estou com erro"+item.produto.valueProduct);
+      
       if (this.total != 0) {
+        console.log(this.total);
           this.desconto = (this.total * 0.7)
       }
     })
@@ -201,6 +203,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   verificarLogin() {
+    this.carrinho = this.stock.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usuario == null ) {
       this.login = false

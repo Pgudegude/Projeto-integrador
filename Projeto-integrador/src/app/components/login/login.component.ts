@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.verificarLogin()
   }
 
+
   criarFormularioDeLogin() {
     this.formularioLogin = this.fb.group(
       {
@@ -47,8 +48,8 @@ export class LoginComponent implements OnInit {
         senha: ['']
       }
     )
-
   }
+
 
   logando() {
     let user: Login = new Login()
@@ -62,6 +63,8 @@ export class LoginComponent implements OnInit {
     
     })  
   }
+
+
   deslogar() {
     localStorage.removeItem("usuario")
     this.verificarLogin()
