@@ -1,4 +1,5 @@
 <main class="container">
+<<<<<<< HEAD
     <!-- *ngIf="login; else logar" -->
     <div>
         <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
@@ -42,6 +43,51 @@
                                     placeholder="Ex:. escola, apto , bloco ,mercado etc.."
                                     title="Ex:. escola, apto , bloco ,mercado etc..">
                             </div>
+=======
+    <div  *ngIf="login; else logar">
+    <form method="POST" class="form-row mt-1 p-4"  [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
+        <div class="col-md-4">
+            <header class="p-2 text-center">
+                Dados para entrega
+            </header>
+            <div class="p-2">
+                <div class="form-group">
+                    <label for="nomeUsuario">Nome Completo:</label>
+                    <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
+                        placeholder="Digite seu nome completo" required formControlName="nomeCompleto">
+                </div>
+                <div class="form-group">
+                    <label for="telUsuario">Telefone:</label>
+                    <input class="form-control" type="tel" name="telUsuario" maxlength="11" id="telUsuario"
+                        placeholder="DD-XXXXXXXXX" required formControlName="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input class="form-control" maxlength="8" (blur)="capturarCEP()" type="text" name="cep" id="cep"
+                        placeholder="Digite seu CEP" required formControlName="cep">
+                </div>
+                <div class="form-group">
+                    <label for="endEntrega">Endereço:</label>
+                    <input class="form-control" type="text" name="endEnterga" id="endEntrega"
+                        placeholder="Digite seu Endereço" required formControlName="endereco">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numero">Numero:</label>
+                            <input class="form-control" type="text" name="numero" id="numero"
+                                placeholder="Número da residência" title="Número da residência"
+                                formControlName="numero">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            <input class="form-control" type="text" name="complemento" id="complemento"
+                                placeholder="Ex:. escola, apto , bloco ,mercado etc.."
+                                title="Ex:. escola, apto , bloco ,mercado etc.."
+                                formControlName="complemento">
+>>>>>>> bbb2154563f6ef61bfd9145d33d4c4688bf559a2
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,6 +137,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="col-md-4">
                 <header class="p-2 text-center ">
                     Entrega e Pagamento
@@ -109,6 +156,26 @@
                             <label for="freteNormal">Frete normal <br> R$ 20,00</label>
                             <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteNormal">
                         </div>
+=======
+        </div>
+        <div class="col-md-4">
+            <header class="p-2 text-center ">
+                Entrega e Pagamento
+            </header>
+            <div class="p-2">
+                <h4 class="p-2">
+                    <strong>Escolha o frete</strong>
+                </h4>
+                <hr>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label for="frete">Frete rápido <br> R$ 50,00</label>
+                        <input type="radio" (click)="freteR()" name="frete" value="50.0" id="frete">
+                    </div>
+                    <div class="col-6">
+                        <label for="frete">Frete normal <br> R$ 20,00</label>
+                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="frete">
+>>>>>>> bbb2154563f6ef61bfd9145d33d4c4688bf559a2
                     </div>
                     <h4 class="p-2">
                         <strong>Pagamento</strong>
@@ -187,17 +254,28 @@
                         <button type="button" [routerLink]="['/final']" class="btn btn-success btn-block form-control">Finalizar Compra</button>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
         </form>
     </div>
     <!-- <ng-template #logar>
+=======
+                <div class="d-flex justify-content-center">
+                    <button value="enviarDadosCompra" class="btn btn-success form-control"[disabled]="!formularioCheckout.valid" >Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    <ng-template #logar>
+>>>>>>> bbb2154563f6ef61bfd9145d33d4c4688bf559a2
         <h1>
         Você não está logado ainda, 
         </h1>
         <div class="text-center">
             <img src="../../../assets/Imagem/logado.jpg" alt="">
         </div>
-    </ng-template> -->
+    </ng-template>
 </main>
 
 <!-- modal -->

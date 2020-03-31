@@ -16,16 +16,18 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService) { }
+  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent) { }
 
   login: boolean
   verificarLogin() {
     let usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usuario == null) {
       this.login = false
+      this.logar.verificarLogin()
     }
     else {
       this.login = true
+      this.logar.verificarLogin()
     }
   }
 
@@ -54,9 +56,11 @@ export class LoginComponent implements OnInit {
     user.mail = this.formularioLogin.value.email;
     user.password = this.formularioLogin.value.senha;
     this.http.fazerLogin(user).subscribe(data => {
+      
       let login_json = JSON.stringify(data)
       localStorage.setItem("usuario", login_json)
       this.verificarLogin()
+    
     })  
   }
 
@@ -64,5 +68,6 @@ export class LoginComponent implements OnInit {
   deslogar() {
     localStorage.removeItem("usuario")
     this.verificarLogin()
+    
   }
 }

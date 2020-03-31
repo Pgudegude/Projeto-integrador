@@ -78,10 +78,7 @@ export class CarrinhoComponent implements OnInit {
     this.formularioQuantidade = this.fb.group({
       quantidade: []
     })
-    // this.formularioFrete = this.fb.group({ 
-    //   frete: []
-    // })
-  }
+    }
 
   
   searchProduct() {
