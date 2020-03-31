@@ -19,7 +19,7 @@ export class PedidoService {
 
   adaptador2 = (pedido : Pedido) => {
     return {
-       " price" : pedido.price,
+       "price" : pedido.price,
        "priceFreight": pedido.priceFreight,
        "statusRequest":pedido.statusRequest,
        "date":pedido.date,       

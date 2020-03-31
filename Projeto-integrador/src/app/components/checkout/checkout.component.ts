@@ -52,7 +52,7 @@ export class CheckoutComponent implements OnInit {
 
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
-      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formularioCheckout.controls['endereco'].patchValue(this.endereco.endereco);
       this.formularioCheckout.controls['bairro'].patchValue(this.endereco.bairro);
       this.formularioCheckout.controls['estado'].patchValue(this.endereco.estado);
@@ -112,9 +112,12 @@ enviarDadosCompra() {
     this.http2.envPedido(pedido).subscribe(
       elem =>{
         alert("Pedido concluido com sucesso")
+        let elemento = JSON.stringify(elem)
+        localStorage.setItem('pedido', elemento)
       }
     )
     localStorage.removeItem('cartProduct')
+    
     return this.router.navigate(['/final'])
   }
 

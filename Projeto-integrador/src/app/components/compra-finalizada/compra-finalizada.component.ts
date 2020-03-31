@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/app/service/stock.service';
+import { Pedido } from '../models/Pedido';
 
 @Component({
   selector: 'app-compra-finalizada',
@@ -8,13 +9,20 @@ import { StockService } from 'src/app/service/stock.service';
 })
 export class CompraFinalizadaComponent implements OnInit {
 
-  constructor(private stock: StockService) { 
+pedido = JSON.parse(localStorage.getItem("pedido"))
+frete:string
+verificar(){
+if(this.pedido.frete==20){
+  this.frete="Normal"
+}
+else{this.frete="Rapido"}
+}
+  constructor() {
+    console.log(this.pedido) 
   }
 
-  clearCart(){
-   this.stock.removeCart()
-  }
   ngOnInit(): void {
+    this.verificar()
   }
 
 }
