@@ -9,7 +9,7 @@ import { Pedido } from '../models/Pedido';
 })
 export class CompraFinalizadaComponent implements OnInit {
 
-pedido = JSON.parse(localStorage.getItem("pedido"))
+pedido = JSON.parse(sessionStorage.getItem("pedido"))
 frete:string
 verificar(){
 if(this.pedido.frete==20){
