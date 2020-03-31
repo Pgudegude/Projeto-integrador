@@ -34,6 +34,9 @@ export class CheckoutComponent implements OnInit {
   formularioQuantidade: any;
   totalComFrete: any;
   login: boolean;
+  user: any
+  buy: Compra;
+
 
   constructor(private http: HttpService,private router: Router, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
@@ -63,6 +66,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.criarDadosCompra();
     this.verificarLogin();
+    this.userExist()
   }
 
 
@@ -225,11 +229,11 @@ enviarDadosCompra() {
       this.cartProduct.push(product[i])
 
     }
-   
     return product == null ? [] : this.cartProduct
   }
 
   usuario: Cliente
+
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
@@ -241,5 +245,12 @@ enviarDadosCompra() {
     this.usuario = usuario
     }
   }
+
+  userExist(){
+  this.user = JSON.parse(localStorage.getItem("usuario"))
+  this.buy.nomeCompleto = this.user.name
+  
+  }
+
 
 }

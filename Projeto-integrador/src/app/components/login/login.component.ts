@@ -14,14 +14,14 @@ import { HttpService } from 'src/app/service/http.service';
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
-
+usuario: any
 
   constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent) { }
 
   login: boolean
   verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
+    this.usuario = JSON.parse(localStorage.getItem("usuario"))
+    if (this.usuario == null) {
       this.login = false
       this.logar.verificarLogin()
     }
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       let login_json = JSON.stringify(data)
       localStorage.setItem("usuario", login_json)
       this.verificarLogin()
-    
+      location.reload()
     })  
   }
 
@@ -68,6 +68,8 @@ export class LoginComponent implements OnInit {
   deslogar() {
     localStorage.removeItem("usuario")
     this.verificarLogin()
-    
+    location.reload()
+
   }
+
 }
