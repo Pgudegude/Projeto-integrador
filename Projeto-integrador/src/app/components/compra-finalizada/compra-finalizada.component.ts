@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StockService } from 'src/app/service/stock.service';
 
 @Component({
   selector: 'app-compra-finalizada',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompraFinalizadaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private stock: StockService) { 
+  }
 
+  clearCart(){
+   this.stock.removeCart()
+  }
   ngOnInit(): void {
   }
 

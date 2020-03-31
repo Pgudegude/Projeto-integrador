@@ -19,8 +19,8 @@
                         <h4>Qtd:</h4>
                         <mat-form-field [formGroup]="formularioQuantidade">
                             <select (change)="mostrandoQuantidade()" (change)="ajustarQuantidade(item)" 
-                                formControlName='quantidade' style="width: 99"  >
-                                <option [selected]="true" value=1 > 1</option>
+                                formControlName='quantidade' style="width: 99" >
+                                <option [selected]="true" value=1 >{{item.quantidade}}</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
                                 <option value=4>4</option>
