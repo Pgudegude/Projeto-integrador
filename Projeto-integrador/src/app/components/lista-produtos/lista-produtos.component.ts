@@ -33,7 +33,6 @@ export class ListaProdutosComponent implements OnInit {
     
     constructor(private router: Router,private productService: ProductService) {
       this.getter();
-    
     }
   
   

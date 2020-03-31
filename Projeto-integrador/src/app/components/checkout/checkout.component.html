@@ -1,6 +1,5 @@
 <main class="container">
-    <!-- *ngIf="login; else logar" -->
-    <div >
+    <div  *ngIf="login; else logar">
     <form method="POST" class="form-row mt-1 p-4"  [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
         <div class="col-md-4">
             <header class="p-2 text-center">
@@ -32,7 +31,8 @@
                         <div class="form-group">
                             <label for="numero">Numero:</label>
                             <input class="form-control" type="text" name="numero" id="numero"
-                                placeholder="Número da residência" title="Número da residência">
+                                placeholder="Número da residência" title="Número da residência"
+                                formControlName="numero">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -40,7 +40,8 @@
                             <label for="complemento">Complemento:</label>
                             <input class="form-control" type="text" name="complemento" id="complemento"
                                 placeholder="Ex:. escola, apto , bloco ,mercado etc.."
-                                title="Ex:. escola, apto , bloco ,mercado etc..">
+                                title="Ex:. escola, apto , bloco ,mercado etc.."
+                                formControlName="complemento">
                         </div>
                     </div>
                 </div>
@@ -102,12 +103,12 @@
                 <hr>
                 <div class="form-group row">
                     <div class="col-6">
-                        <label for="freteRapido">Frete rápido <br> R$ 50,00</label>
-                        <input type="radio" (click)="freteR()" name="frete" value="50.0" id="freteRapido">
+                        <label for="frete">Frete rápido <br> R$ 50,00</label>
+                        <input type="radio" (click)="freteR()" name="frete" value="50.0" id="frete">
                     </div>
                     <div class="col-6">
-                        <label for="freteNormal">Frete normal <br> R$ 20,00</label>
-                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="freteNormal">
+                        <label for="frete">Frete normal <br> R$ 20,00</label>
+                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="frete">
                     </div>
                 </div>
                 <h4 class="p-2">
@@ -183,21 +184,20 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="button" [routerLink]="['/final']"
-                        class="btn btn-success btn-block form-control" >Finalizar Compra</button>
+                    <button value="enviarDadosCompra" class="btn btn-success form-control"[disabled]="!formularioCheckout.valid" >Finalizar Compra</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-    <!-- <ng-template #logar>
+    <ng-template #logar>
         <h1>
         Você não está logado ainda, 
         </h1>
         <div class="text-center">
             <img src="../../../assets/Imagem/logado.jpg" alt="">
         </div>
-    </ng-template> -->
+    </ng-template>
 </main>
 
 <!-- modal -->

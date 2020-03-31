@@ -6,6 +6,11 @@ import { Validacoes } from '../models/Validacoes';
 import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
+import { Pedido } from '../models/Pedido';
+import { Cliente } from '../models/cliente';
+import { Pagamento } from '../models/Pagamento';
+import { PedidoService } from 'src/app/service/pedido.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +35,7 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
 
-  constructor(private http: HttpService, private fb: FormBuilder, private stock: StockService) {
+  constructor(private http: HttpService,private router: Router, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
@@ -38,8 +43,6 @@ export class CheckoutComponent implements OnInit {
       this.carrinho.forEach(item => {
         this.total += item.produto.valueProduct * item.quantidade;
       })
-    
-  console.log(this.carrinho)
     this.calcularTotal();
     this.mostrandoQuantidade();
     
@@ -59,7 +62,9 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.criarDadosCompra();
+    this.verificarLogin();
   }
+
 
   enviarDaDosCompra(comprador: Compra) {
     return new FormGroup({
@@ -78,10 +83,39 @@ export class CheckoutComponent implements OnInit {
       cvv: new FormControl(comprador.CVV),
       numeroCartao: new FormControl(comprador.numeroCartao)
     })
+    
   }
+data : Date = new Date()
 
-  enviarDadosCompra() {
-    this.formularioCheckout.reset();
+enviarDadosCompra() {
+    let pagamento : Pagamento = new Pagamento("aguardando aprovação")
+    let endereco : Endereco = new Endereco(
+      this.formularioCheckout.value.cep,
+      this.formularioCheckout.value.endereco,
+      this.formularioCheckout.value.bairro,
+      this.formularioCheckout.value.numero,
+      this.formularioCheckout.value.estado,
+      this.formularioCheckout.value.cidade,
+      this.formularioCheckout.value.complemento
+    )
+    let pedido : Pedido = new Pedido(
+      this.totalComDesconto,
+      this.frete,
+      "Aguardando Pagamento",
+      this.data,
+      this.usuario,
+      pagamento,
+      this.formularioCheckout.value.nomeCompleto,
+      this.formularioCheckout.value.telefone,
+      endereco
+    )
+    this.http2.envPedido(pedido).subscribe(
+      elem =>{
+        alert("Pedido concluido com sucesso")
+      }
+    )
+    localStorage.removeItem('cartProduct')
+    return this.router.navigate(['/final'])
   }
 
   criarDadosCompra() {
@@ -112,10 +146,7 @@ export class CheckoutComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-      complemento: ["",
-        Validators.compose([
-          Validators.required
-        ])],
+      complemento: [""],
       estado: ["",
         Validators.compose([
           Validators.required
@@ -132,7 +163,8 @@ export class CheckoutComponent implements OnInit {
         ])],
       cvv: ["",
         Validators.compose([
-          Validators.maxLength(3)
+          Validators.maxLength(3),
+          Validators.minLength(3)
         ])],
       dataValidade: ["",
         Validators.compose([
@@ -156,7 +188,6 @@ export class CheckoutComponent implements OnInit {
     this.frete = (50)
     this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    console.log(this.carrinho)
     return this.frete
     
   }
@@ -171,12 +202,9 @@ export class CheckoutComponent implements OnInit {
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
-      console.log(item)
       this.total += item.produto.valueProduct * item.quantidade;
-      console.log("eu que estou com erro"+item.produto.valueProduct);
-      
+    
       if (this.total != 0) {
-        console.log(this.total);
           this.desconto = (this.total * 0.7)
       }
     })
@@ -202,16 +230,16 @@ export class CheckoutComponent implements OnInit {
     return product == null ? [] : this.cartProduct
   }
 
+  usuario: Cliente
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
     let usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usuario == null ) {
       this.login = false
-      console.log("usuário não logado")
     }
     else {
     this.login = true
-      console.log(usuario)
+    this.usuario = usuario
     }
   }
 
