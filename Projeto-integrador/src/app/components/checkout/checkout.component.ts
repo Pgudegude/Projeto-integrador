@@ -234,15 +234,12 @@ enviarDadosCompra() {
 
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
-    let usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    if (usuario == null) {
-      this.login = false
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-    this.login = true
-    this.usuario = usuario
-    console.log(usuario);
-    
+      this.login = false
     }
   }
 
