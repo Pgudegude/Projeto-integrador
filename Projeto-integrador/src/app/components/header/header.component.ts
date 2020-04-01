@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
     }
     else {
     this.logar = false
-      console.log(this.usuario)
   }
 }
 

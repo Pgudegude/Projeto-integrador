@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { Login } from '../models/login.model';
 import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 usuario: any
 
-  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent) { }
+  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
 
   login: boolean
   verificarLogin() {
@@ -69,7 +70,7 @@ usuario: any
     localStorage.removeItem("usuario")
     this.verificarLogin()
     location.reload()
-
+    this.stock.removeCart()
   }
 
 }

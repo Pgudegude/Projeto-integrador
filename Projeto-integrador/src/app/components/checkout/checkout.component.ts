@@ -35,7 +35,6 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
   user: any
-  buy: Compra;
 
 
   constructor(private http: HttpService,private router: Router, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
@@ -55,7 +54,7 @@ export class CheckoutComponent implements OnInit {
 
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
-      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formularioCheckout.controls['endereco'].patchValue(this.endereco.endereco);
       this.formularioCheckout.controls['bairro'].patchValue(this.endereco.bairro);
       this.formularioCheckout.controls['estado'].patchValue(this.endereco.estado);
@@ -66,7 +65,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.criarDadosCompra();
     this.verificarLogin();
-    this.userExist()
   }
 
 
@@ -243,14 +241,23 @@ enviarDadosCompra() {
     else {
     this.login = true
     this.usuario = usuario
+    console.log(usuario);
+    
     }
   }
 
+
   userExist(){
   this.user = JSON.parse(localStorage.getItem("usuario"))
-  this.buy.nomeCompleto = this.user.name
-  
+  this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
+  this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
+  this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
+  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
+  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
   }
 
+  newUser(){
+    this.user = true
+    }
 
 }

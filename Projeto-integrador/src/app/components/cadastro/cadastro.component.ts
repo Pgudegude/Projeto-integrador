@@ -158,9 +158,10 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
+  
   capturarCEP() {
     this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
-      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formCadastro.controls['endereco'].patchValue(this.endereco.endereco);
       this.formCadastro.controls['bairro'].patchValue(this.endereco.bairro);
       this.formCadastro.controls['estado'].patchValue(this.endereco.estado);

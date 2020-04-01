@@ -1,203 +1,222 @@
 <main class="container">
-    <div  *ngIf="login; else logar">
-    <form method="POST" class="form-row mt-1 p-4"  [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
-        <div class="col-md-4">
-            <header class="p-2 text-center">
-                Dados para entrega
-            </header>
-            <div class="p-2">
-                <div class="form-group">
-                    <label for="nomeUsuario">Nome Completo:</label>
-                    <input class="form-control" type="text" id="nomeUsuario" name="nomeUsuario"
-                        placeholder="Digite seu nome completo" required formControlName="nomeCompleto">
-                </div>
-                <div class="form-group">
-                    <label for="telUsuario">Telefone:</label>
-                    <input class="form-control" type="tel" name="telUsuario" maxlength="11" id="telUsuario"
-                        placeholder="DD-XXXXXXXXX" required formControlName="telefone">
-                </div>
-                <div class="form-group">
-                    <label for="cep">CEP:</label>
-                    <input class="form-control" maxlength="8" (blur)="capturarCEP()" type="text" name="cep" id="cep"
-                        placeholder="Digite seu CEP" required formControlName="cep">
-                </div>
-                <div class="form-group">
-                    <label for="endEntrega">Endereço:</label>
-                    <input class="form-control" type="text" name="endEnterga" id="endEntrega"
-                        placeholder="Digite seu Endereço" required formControlName="endereco">
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="numero">Numero:</label>
-                            <input class="form-control" type="text" name="numero" id="numero"
-                                placeholder="Número da residência" title="Número da residência"
-                                formControlName="numero">
+    <div *ngIf="login; else logar">
+        <form method="POST" class="form-row mt-1 p-4" [formGroup]="formularioCheckout" (ngSubmit)="enviarDadosCompra()">
+            <div class="col-md-4">
+                <header class="p-2 text-center">
+                    Dados para entrega
+                </header>
+                <div class="p-2" *ngIf="user; else usuario">
+                    <div class="form-group">
+                        <label for="nomeCompleto">Nome Completo:</label>
+                        <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                            placeholder="Digite seu nome completo" required formControlName="nomeCompleto">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input class="form-control" type="tel" name="telefone" maxlength="11" id="telefone"
+                            placeholder="DD-XXXXXXXXX" required formControlName="telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input class="form-control" maxlength="8" (blur)="capturarCEP()" type="text" name="cep" id="cep"
+                            placeholder="Digite seu CEP" required formControlName="cep">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço:</label>
+                        <input class="form-control" type="text" name="endereco" id="endereco"
+                            placeholder="Digite seu Endereço" required formControlName="endereco">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="numero">Numero:</label>
+                                <input class="form-control" type="text" name="numero" id="numero"
+                                    placeholder="Número da residência" title="Número da residência"
+                                    formControlName="numero">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="complemento">Complemento:</label>
+                                <input class="form-control" type="text" name="complemento" id="complemento"
+                                    placeholder="Ex:. escola, apto , bloco ,mercado etc.."
+                                    title="Ex:. escola, apto , bloco ,mercado etc.." formControlName="complemento">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="complemento">Complemento:</label>
-                            <input class="form-control" type="text" name="complemento" id="complemento"
-                                placeholder="Ex:. escola, apto , bloco ,mercado etc.."
-                                title="Ex:. escola, apto , bloco ,mercado etc.."
-                                formControlName="complemento">
+                    <div class="form-group">
+                        <label for="bairro">Bairro:</label>
+                        <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
+                            formControlName="bairro" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="cidade">Cidade:</label>
+                            <input class="form-control" type="text" name="cidade" id="cidade"
+                                placeholder="Digite sua cidade" formControlName="cidade" required>
+                        </div>
+                        <div class=" col-6 form-group">
+                            <label for="estado">Estado:</label>
+                            <select id='estado' name="estado" formControlName="estado" class="form-control">
+                                <option value="" disabled selected>Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="bairro">Bairro:</label>
-                    <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
-                        formControlName="bairro" required>
-                </div>
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <label for="cidade">Cidade:</label>
-                        <input class="form-control" type="text" name="cidade" id="cidade"
-                            placeholder="Digite sua cidade" formControlName="cidade" required>
+            </div>
+            <div class="col-md-4">
+                <header class="p-2 text-center ">
+                    Entrega e Pagamento
+                </header>
+                <div class="p-2">
+                    <h4 class="p-2">
+                        <strong>Escolha o frete</strong>
+                    </h4>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label for="frete">Frete rápido <br> R$ 50,00</label>
+                            <input type="radio" (click)="freteR()" name="frete" value="50.0" id="frete">
+                        </div>
+                        <div class="col-6">
+                            <label for="frete">Frete normal <br> R$ 20,00</label>
+                            <input type="radio" value="20.0" (click)="freteN()" name="frete" id="frete">
+                        </div>
                     </div>
-                    <div class=" col-6 form-group">
-                        <label for="estado">Estado:</label>
-                        <select id='estado' name="estado" formControlName="estado" class="form-control">
-                            <option value="" disabled selected>Estado</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
+                    <h4 class="p-2">
+                        <strong>Pagamento</strong>
+                    </h4>
+                    <hr>
+                    <div class="form-group">
+                        <label for="numeroCartao">Numero do cartão:</label>
+                        <input class="form-control" maxlength="16" type="text" name="numeroCartao" id="numeroCartao"
+                            placeholder="0000 0000 0000 0000" formControlName="numeroCartao" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 form-group">
+                            <label for="dataValidade">Data de validade:</label>
+                            <input class="form-control" type="month" name="dataValidade" id="dataValidade"
+                                placeholder="MM/AA" formControlName="dataValidade" required>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="codigoSeguranca">CVV:</label>
+                            <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
+                                id="codigoSeguranca" placeholder="CVV" formControlName="cvv" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeTitular">Nome titular:</label>
+                        <input class="form-control" type="text" name="nomeTitular" id="nomeTitular"
+                            placeholder="Nome Titular" formControlName="nomeTitular" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpfTitular">CPF titular:</label>
+                        <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular"
+                            id="cpfTitular" name="cpfTitular" placeholder="000.000.000-00" required>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <header class="p-2 text-center ">
-                Entrega e Pagamento
-            </header>
-            <div class="p-2">
-                <h4 class="p-2">
-                    <strong>Escolha o frete</strong>
-                </h4>
-                <hr>
-                <div class="form-group row">
-                    <div class="col-6">
-                        <label for="frete">Frete rápido <br> R$ 50,00</label>
-                        <input type="radio" (click)="freteR()" name="frete" value="50.0" id="frete">
+            <div class="col-md-4">
+                <header class="p-2 text-center">
+                    Resumo do pedido
+                </header>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>{{qtd}} produtos <a id="visualizar" data-toggle="modal"
+                                    data-target="#resumo">visualizar</a>
+                            </h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h4>{{total | currency:"BRL"}}</h4>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <label for="frete">Frete normal <br> R$ 20,00</label>
-                        <input type="radio" value="20.0" (click)="freteN()" name="frete" id="frete">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>desconto</h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h4>{{desconto | currency:"BRL"}}</h4>
+                        </div>
                     </div>
-                </div>
-                <h4 class="p-2">
-                    <strong>Pagamento</strong>
-                </h4>
-                <hr>
-                <div class="form-group">
-                    <label for="numeroCartao">Numero do cartão:</label>
-                    <input class="form-control" maxlength="16" type="text" name="numeroCartao" id="numeroCartao"
-                        placeholder="0000 0000 0000 0000" formControlName="numeroCartao" required>
-                </div>
-                <div class="row">
-                    <div class="col-8 form-group">
-                        <label for="dataValidade">Data de validade:</label>
-                        <input class="form-control" type="month" name="dataValidade" id="dataValidade"
-                            placeholder="MM/AA" formControlName="dataValidade" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>frete</h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h4>{{frete  | currency:"BRL"}}</h4>
+                        </div>
                     </div>
-                    <div class="col-4 form-group">
-                        <label for="codigoSeguranca">CVV:</label>
-                        <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
-                            id="codigoSeguranca" placeholder="CVV" formControlName="cvv" required>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>total</h2>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h4>{{totalComDesconto | currency:"BRL"}}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="nomeTitular">Nome titular:</label>
-                    <input class="form-control" type="text" name="nomeTitular" id="nomeTitular"
-                        placeholder="Nome Titular" formControlName="nomeTitular" required>
-                </div>
-                <div class="form-group">
-                    <label for="cpfTitular">CPF titular:</label>
-                    <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular" id="cpfTitular"
-                        name="cpfTitular" placeholder="000.000.000-00" required>
+                    <div class="d-flex justify-content-center">
+                        <button value="enviarDadosCompra" class="btn btn-success form-control"
+                            [disabled]="!formularioCheckout.valid">Finalizar Compra</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <header class="p-2 text-center">
-                Resumo do pedido
-            </header>
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4>{{qtd}} produtos <a id="visualizar" data-toggle="modal" data-target="#resumo">visualizar</a>
-                        </h4>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <h4>{{total | currency:"BRL"}}</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4>desconto</h4>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <h4>{{desconto | currency:"BRL"}}</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4>frete</h4>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <h4>{{frete  | currency:"BRL"}}</h4>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>total</h2>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <h4>{{totalComDesconto | currency:"BRL"}}</h4>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button value="enviarDadosCompra" class="btn btn-success form-control"[disabled]="!formularioCheckout.valid" >Finalizar Compra</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+
     <ng-template #logar>
         <h1>
-        Você não está logado ainda, 
+            Você não está logado ainda,
         </h1>
         <div class="text-center">
             <img src="../../../assets/Imagem/logado.jpg" alt="">
         </div>
     </ng-template>
+
+    <ng-template #usuario>
+        <div class="container">
+            <div class="form-group row">
+                <h2>Deseja usar os mesmos dados para entrega?</h2>
+                <div class="col-6">
+                    <label for="dadosFormulario">Usar mesmos dados!</label>
+                    <input type="radio" name="dadosFormulario" (click)="userExist()" id="dadosFormulario">
+                </div>
+                <div class="col-6">
+                    <label for="dadosFormulario">Usar dados diferentes!</label>
+                    <input type="radio" name="dadosFormulario" (click)="newUser()" id="dadosFormulario">
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
 </main>
 
 <!-- modal -->
