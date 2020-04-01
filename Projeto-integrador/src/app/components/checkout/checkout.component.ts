@@ -177,7 +177,6 @@ enviarDadosCompra() {
         Validators.compose([
           Validators.required
         ])],
-
       cpfTitular: ["",
         Validators.compose([
           Validators.required,
@@ -185,6 +184,7 @@ enviarDadosCompra() {
         ])],
     })
   }
+
 
   freteR = () => {
     this.frete = (50)
@@ -234,7 +234,7 @@ enviarDadosCompra() {
 
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
+    let usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
     if (usuario == null) {
       this.login = false
     }
@@ -248,16 +248,12 @@ enviarDadosCompra() {
 
 
   userExist(){
-  this.user = JSON.parse(localStorage.getItem("usuario"))
+  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
   this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
   this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
   this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
   this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
   this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
   }
-
-  newUser(){
-    this.user = true
-    }
 
 }

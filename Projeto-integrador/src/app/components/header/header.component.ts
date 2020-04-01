@@ -16,21 +16,20 @@ import { Carrinho } from '../models/carrinho';
 
 export class HeaderComponent implements OnInit {
 
-  logar: boolean;
+  
+  logar: boolean = true;
   carrinho: Carrinho[] = [];
   usuario: any
 
   constructor(private http: HttpService, private router: Router,private stock: StockService) { }
 
+
   verificarLogin() {
-    this.usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (this.usuario == null) {
-      this.logar = true
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+      this.logar = false
       console.log("usuário não logado")
     }
-    else {
-    this.logar = false
-  }
 }
 
 

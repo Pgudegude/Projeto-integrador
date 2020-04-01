@@ -21,14 +21,12 @@ usuario: any
 
   login: boolean
   verificarLogin() {
-    this.usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (this.usuario == null) {
-      this.login = false
-      this.logar.verificarLogin()
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-      this.login = true
-      this.logar.verificarLogin()
+      this.login = false
     }
   }
 
@@ -57,9 +55,8 @@ usuario: any
     user.mail = this.formularioLogin.value.email;
     user.password = this.formularioLogin.value.senha;
     this.http.fazerLogin(user).subscribe(data => {
-      
       let login_json = JSON.stringify(data)
-      localStorage.setItem("usuario", login_json)
+      sessionStorage.setItem("usuario", btoa(login_json))
       this.verificarLogin()
       location.reload()
     })  
@@ -67,7 +64,7 @@ usuario: any
 
 
   deslogar() {
-    localStorage.removeItem("usuario")
+    sessionStorage.removeItem("usuario")
     this.verificarLogin()
     location.reload()
     this.stock.removeCart()
