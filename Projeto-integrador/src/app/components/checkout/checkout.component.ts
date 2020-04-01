@@ -35,7 +35,7 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
   user: any
-  buy: Compra;
+
 
 
   constructor(private http: HttpService,private router: Router, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
@@ -87,7 +87,6 @@ export class CheckoutComponent implements OnInit {
       cvv: new FormControl(comprador.CVV),
       numeroCartao: new FormControl(comprador.numeroCartao)
     })
-    
   }
 data : Date = new Date()
 
@@ -117,13 +116,20 @@ enviarDadosCompra() {
       elem =>{
         alert("Pedido concluido com sucesso")
         let elemento = JSON.stringify(elem)
-        localStorage.setItem('pedido', elemento)
+        sessionStorage.setItem('pedido', elemento)
       }
     )
-    localStorage.removeItem('cartProduct')
-    
-    return this.router.navigate(['/final'])
+    this.salvarItensBanco()
+  return this.router.navigate(['/final'])
   }
+
+salvarItensBanco(){
+  let request = JSON.parse(sessionStorage.getItem('pedido'))
+  console.log(request)
+  console.log(this.carrinho)
+  this.http2.envItemCart(request,this.carrinho)
+  localStorage.removeItem('cartProduct')
+}
 
   criarDadosCompra() {
     this.formularioCheckout = this.fb.group({
@@ -251,7 +257,7 @@ enviarDadosCompra() {
 
   userExist(){
   this.user = JSON.parse(localStorage.getItem("usuario"))
-  this.buy.nomeCompleto = this.user.name
+ 
   
   }
 

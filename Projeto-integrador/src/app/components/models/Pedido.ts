@@ -3,6 +3,7 @@ import { Pagamento } from './Pagamento';
 import { Endereco } from './endereco';
 
 export class Pedido{
+    
     constructor(
    public  price?:Number,
    public priceFreight?:Number,
@@ -13,7 +14,7 @@ export class Pedido{
    public name?: String,
    public phone?: String,
    public address?:Endereco,
-   public id?: Number
+   public id?: Number,
     ){
     }
 }

@@ -7,6 +7,7 @@ import { Cliente } from '../models/cliente';
 import { CadastroService } from 'src/app/service/cadastro.service'
 import { EnderecoService } from 'src/app/service/endereco.service'
 import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private CEP: CepService,
     private cadastrar: CadastroService,
-    private cadEnd: EnderecoService
+    private router: Router
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -57,6 +58,9 @@ export class CadastroComponent implements OnInit {
       console.log(data)
       }
     )
+    alert("usuário cadastrado com sucesso")
+    this.router.navigate(['/home'])
+
   }
   
   enviarCadastro(cliente: Cliente, endereco: Endereco) {
