@@ -36,6 +36,7 @@ export class MeusPedidosComponent implements OnInit {
 
   ngOnInit(): void {
     this.verificarLogin()
+    this.mostrarPedidos()
   }
 }
 
