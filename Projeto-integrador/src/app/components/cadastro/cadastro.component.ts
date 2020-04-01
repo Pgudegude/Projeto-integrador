@@ -53,8 +53,8 @@ export class CadastroComponent implements OnInit {
     )
     this.cadastrar.insertCliente(dadosCliente, dadosEndereco).subscribe(
       data => {
-        let login_json = JSON.stringify(data)
-      localStorage.setItem("usuario", login_json)
+        let login_json = JSON.stringify(btoa(data))
+      sessionStorage.setItem("usuario", login_json)
       console.log(data)
       }
     )

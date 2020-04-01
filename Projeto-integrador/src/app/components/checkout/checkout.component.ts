@@ -127,7 +127,7 @@ salvarItensBanco(){
   console.log(request)
   console.log(this.carrinho)
   this.http2.envItemCart(request,this.carrinho)
-  localStorage.removeItem('cartProduct')
+  sessionStorage.removeItem('cartProduct')
 }
 
   criarDadosCompra() {
@@ -232,7 +232,7 @@ salvarItensBanco(){
 
 
   searchProduct() {
-    let product = JSON.parse(localStorage.getItem("cartProduct"))
+    let product = JSON.parse(sessionStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
       this.cartProduct.push(product[i])
 
@@ -241,30 +241,27 @@ salvarItensBanco(){
   }
 
   usuario: Cliente
-
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
-    let usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    if (usuario == null) {
-      this.login = false
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-    this.login = true
-    this.usuario = usuario
-    console.log(usuario);
-    
+      this.login = false
     }
   }
 
 
   userExist(){
-    this.http3.pegarEndereco(sessionStorage.getItem("usuario")).subscribe(data=>
-      sessionStorage.setItem("endereço",JSON.stringify(data)))
-  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
+   let resp:Endereco
+  this.user = 
+  
+  this.http3.pegarEndereco(this.user).subscribe(data=> console.log(resp) )
   this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
   this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
   this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
-  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
+  this.formularioCheckout.controls['endereco'].patchValue(this.endereco)
   this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
   }
 

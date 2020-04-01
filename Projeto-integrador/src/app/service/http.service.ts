@@ -50,9 +50,7 @@ export class HttpService {
   public insertContato(contato: Contato) {
     let comunicacao = this.contatoBanco(contato)
     let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
-    return url.pipe(map(
-      dados => dados
-    ));
+    return url.pipe();
   }
 
 

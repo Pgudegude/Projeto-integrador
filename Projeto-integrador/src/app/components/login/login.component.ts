@@ -54,6 +54,8 @@ usuario: any
     let user: Login = new Login()
     user.mail = this.formularioLogin.value.email;
     user.password = this.formularioLogin.value.senha;
+
+    
     this.http.fazerLogin(user).subscribe(data => {
       let login_json = JSON.stringify(data)
       sessionStorage.setItem("usuario", btoa(login_json))

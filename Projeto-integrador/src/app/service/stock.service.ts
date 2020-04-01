@@ -10,15 +10,15 @@ export class StockService {
   constructor() { }
 
   saveCart(cart) {
-    localStorage.setItem("cartProduct", JSON.stringify(cart))
+    sessionStorage.setItem("cartProduct", JSON.stringify(cart))
   }
 
   recoverCart() {
-    return JSON.parse(localStorage.getItem("cartProduct"))
+    return JSON.parse(sessionStorage.getItem("cartProduct"))
   }
 
   removeCart() {
-    localStorage.removeItem("cartProduct")
+    sessionStorage.removeItem("cartProduct")
   }
 
 }

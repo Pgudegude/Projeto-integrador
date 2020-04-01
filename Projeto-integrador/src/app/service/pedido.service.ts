@@ -67,7 +67,7 @@ export class PedidoService {
   }
 
   acompanhar() {
-    let cliente = JSON.parse(localStorage.getItem("usuario"))
+    let cliente =JSON.parse(atob(sessionStorage.getItem("usuario")))
     let url = this.http.post(`http://localhost:8080/ecommerce/acompanhar`, cliente)
     return url.pipe(
       map(adaptar
