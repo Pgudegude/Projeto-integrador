@@ -162,6 +162,7 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
+  
   capturarCEP() {
     this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)

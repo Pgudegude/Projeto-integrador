@@ -11,6 +11,7 @@ import { Cliente } from '../models/cliente';
 import { Pagamento } from '../models/Pagamento';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
 
 
 @Component({
@@ -37,8 +38,7 @@ export class CheckoutComponent implements OnInit {
   user: any
 
 
-
-  constructor(private http: HttpService,private router: Router, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
+  constructor(private http: HttpService,private router: Router,private http3:LoginService, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
@@ -66,7 +66,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.criarDadosCompra();
     this.verificarLogin();
-    this.userExist()
   }
 
 
@@ -188,7 +187,6 @@ salvarItensBanco(){
         Validators.compose([
           Validators.required
         ])],
-
       cpfTitular: ["",
         Validators.compose([
           Validators.required,
@@ -196,6 +194,7 @@ salvarItensBanco(){
         ])],
     })
   }
+
 
   freteR = () => {
     this.frete = (50)
@@ -245,21 +244,28 @@ salvarItensBanco(){
 
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
+    let usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
     if (usuario == null) {
       this.login = false
     }
     else {
     this.login = true
     this.usuario = usuario
+    console.log(usuario);
+    
     }
   }
 
-  userExist(){
-  this.user = JSON.parse(localStorage.getItem("usuario"))
- 
-  
-  }
 
+  userExist(){
+    this.http3.pegarEndereco(sessionStorage.getItem("usuario")).subscribe(data=>
+      sessionStorage.setItem("endereço",JSON.stringify(data)))
+  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
+  this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
+  this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
+  this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
+  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
+  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
+  }
 
 }

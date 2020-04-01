@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Login } from '../components/models/login.model';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
+import { Cliente } from '../components/models/cliente';
 
 
 @Injectable({
@@ -23,6 +24,7 @@ export class LoginService {
     }
 
   }
+  
 
   fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
@@ -34,9 +36,12 @@ export class LoginService {
       
       catchError(this.handleError)
     )
-    // return url.pipe(data => data)
-  }
-
+    }
+    pegarEndereco(cliente){
+      return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`,cliente).pipe(
+        map(dados=>dados)
+      )
+    }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

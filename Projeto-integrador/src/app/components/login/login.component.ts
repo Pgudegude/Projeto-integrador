@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { Login } from '../models/login.model';
 import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -16,18 +17,16 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 usuario: any
 
-  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent) { }
+  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
 
   login: boolean
   verificarLogin() {
-    this.usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (this.usuario == null) {
-      this.login = false
-      this.logar.verificarLogin()
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-      this.login = true
-      this.logar.verificarLogin()
+      this.login = false
     }
   }
 
@@ -56,9 +55,8 @@ usuario: any
     user.mail = this.formularioLogin.value.email;
     user.password = this.formularioLogin.value.senha;
     this.http.fazerLogin(user).subscribe(data => {
-      
       let login_json = JSON.stringify(data)
-      localStorage.setItem("usuario", login_json)
+      sessionStorage.setItem("usuario", btoa(login_json))
       this.verificarLogin()
       location.reload()
     })  
@@ -66,10 +64,10 @@ usuario: any
 
 
   deslogar() {
-    localStorage.removeItem("usuario")
+    sessionStorage.removeItem("usuario")
     this.verificarLogin()
     location.reload()
-
+    this.stock.removeCart()
   }
 
 }

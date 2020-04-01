@@ -11,8 +11,8 @@
                         title={{produto.name}}></a>
                 <div class="card-body">
                     <h5 class="card-title mt-3">{{produto.name}}</h5>
-                    <p>{{produto.valueProduct.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}} </p>
-                    <h4>{{produto.valueDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    <p>{{produto.valueProduct | currency:"BRL"}} </p>
+                    <h4>{{produto.valueDiscount | currency:"BRL"}}</h4>
                 </div>
             </div>
         </div>
