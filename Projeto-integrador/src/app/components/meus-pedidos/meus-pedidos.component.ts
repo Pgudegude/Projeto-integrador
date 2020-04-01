@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Pedido } from '../models/Pedido';
+import { ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-meus-pedidos',
@@ -25,12 +26,17 @@ export class MeusPedidosComponent implements OnInit {
     }
   }
   mostrarPedidos() {
+    
     this.http.acompanhar().subscribe(data => {  
       data.forEach(d =>
         this.pedido.push(d)
       )
-      console.log(data)
     })
+    if(this.pedido){
+      this.carregar=true;
+    }
+    else
+    {this.carregar=false}
     return this.pedido
   }
 
