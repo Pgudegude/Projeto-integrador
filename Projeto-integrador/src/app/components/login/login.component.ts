@@ -5,6 +5,7 @@ import { Login } from '../models/login.model';
 import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
 import { StockService } from 'src/app/service/stock.service';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 usuario: any
 
-  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
+  constructor(private fb: FormBuilder, private http: LoginService,private emissor:EmissorDeEventosService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
 
   login: boolean
   verificarLogin() {
@@ -57,17 +58,18 @@ usuario: any
     this.http.fazerLogin(user).subscribe(data => {
       let login_json = JSON.stringify(data)
       sessionStorage.setItem("usuario", btoa(login_json))
+      this.emissor.emitirUsuarioLogado()
       this.verificarLogin()
       
     },erro=>alert("usuário ou senha errada"))  
   }
 
-
   deslogar() {
     sessionStorage.removeItem("usuario")
     this.verificarLogin()
-    
     this.stock.removeCart()
+    console.log("desloguei")
+    this.emissor.emitirUsuarioLogado()
   }
 
 }

@@ -8,6 +8,7 @@ import { CadastroService } from 'src/app/service/cadastro.service'
 import { EnderecoService } from 'src/app/service/endereco.service'
 import { tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private CEP: CepService,
     private cadastrar: CadastroService,
-    private router: Router
+    private router: Router,
+    private emissor:EmissorDeEventosService
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -57,6 +59,7 @@ export class CadastroComponent implements OnInit {
         sessionStorage.setItem("usuario", btoa(login_json))
         console.log(data)
         alert("usuário cadastrado com sucesso")
+        this.emissor.emitirUsuarioLogado()
         this.router.navigate(['/home'])
       }, erro => (alert("CPF ou e-mail já cadastrados")))
   }
