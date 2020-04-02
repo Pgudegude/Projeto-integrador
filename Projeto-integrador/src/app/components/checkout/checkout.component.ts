@@ -252,17 +252,23 @@ salvarItensBanco(){
     }
   }
 
-
+resp:Endereco[]
   userExist(){
-   let resp:Endereco
-  this.user = 
   
-  this.http3.pegarEndereco(this.user).subscribe(data=> console.log(resp) )
+  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
+  this.http3.pegarEndereco(this.user).subscribe(data=>data.forEach(d=>this.resp.push(d)))
   this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
   this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
-  this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
-  this.formularioCheckout.controls['endereco'].patchValue(this.endereco)
-  this.formularioCheckout.controls['endereco'].patchValue(this.user.endereco)
+  this.formularioCheckout.controls['cep'].patchValue(this.user._cep)
+  console.log(this.resp)
+  // this.formularioCheckout.controls['endereco'].patchValue(this.resp._endereco)
+  // this.formularioCheckout.controls['cep'].patchValue(this.resp[0]._cep)
+  // this.formularioCheckout.controls['numero'].patchValue(this.resp[0]._numero)
+  // this.formularioCheckout.controls['complemento'].patchValue(this.resp[0]._complemento)
+  // this.formularioCheckout.controls['bairro'].patchValue(this.resp[0]._bairro)
+  // this.formularioCheckout.controls['cidade'].patchValue(this.resp[0]._cidade)
+  // this.formularioCheckout.controls['estado'].patchValue(this.resp[0]._estado)
+
   }
 
 }

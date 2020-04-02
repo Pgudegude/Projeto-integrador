@@ -4,11 +4,25 @@ import { Login } from '../components/models/login.model';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
 import { Cliente } from '../components/models/cliente';
+import { Endereco } from '../components/models/endereco';
 
-
+function adaptar(data: any[]) {
+  return data.map(
+    elem => new Endereco( elem.zipCode, 
+      elem.logradouro, 
+      elem.neighborhood,
+      elem.number, 
+      elem.state, elem.city, 
+      elem.complement,
+      elem.idAddress 
+    )
+  )
+}
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class LoginService {
 
   constructor(private http: HttpClient) { }
@@ -37,9 +51,11 @@ export class LoginService {
       catchError(this.handleError)
     )
     }
-    pegarEndereco(cliente){
-      return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`,cliente).pipe(
-        map(dados=>dados)
+    pegarEndereco(cliente:Cliente){
+      return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`,cliente)
+      .pipe(
+        map(adaptar
+        )
       )
     }
 
