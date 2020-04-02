@@ -15,16 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
-<<<<<<< HEAD
-// import { ModalModule } from 'ngx-bootstrap/modal';
-// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { CarrosselComponent } from './components/carrossel/carrossel.component';
-// import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-=======
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
->>>>>>> 6bf039cd2331910c91569700c8254bc4011ace75
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
@@ -82,17 +75,11 @@ registerLocaleData(localePt, 'pt');
   
 
   ],
-<<<<<<< HEAD
-  // BsDropdownModule,  ModalModule
-  exports: [], 
-  providers: [],
-=======
   exports: [BsDropdownModule,  ModalModule], 
   providers: [  {
     provide: LOCALE_ID,
     useValue: 'pt-BR'
 }],
->>>>>>> 6bf039cd2331910c91569700c8254bc4011ace75
   bootstrap: [AppComponent]
 })
 export class AppModule { }

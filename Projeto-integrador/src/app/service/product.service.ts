@@ -11,11 +11,11 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public getProducts() {
-    return this.http.get(`http://localhost:8080/ecommerce/find-product`)
+    return this.http.get(`/api/ecommerce/find-product`)
   }
 
   public findByProductsCode(code: number) {
-    return this.http.get(`http://localhost:8080/ecommerce/product-id/${code}`)
+    return this.http.get(`/api/ecommerce/product-id/${code}`)
   }
  
 }
