@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StockService } from 'src/app/service/stock.service';
+import { Pedido } from '../models/Pedido';
 
 @Component({
   selector: 'app-compra-finalizada',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompraFinalizadaComponent implements OnInit {
 
-  constructor() { }
+pedido = JSON.parse(sessionStorage.getItem('pedido'))
+frete:string
+verificar(){
+if(this.pedido.frete==20){
+  this.frete="Normal"
+}
+else{this.frete="Rapido"}
+}
+  constructor() {
+    console.log(this.pedido) 
+  }
 
   ngOnInit(): void {
+    this.verificar()
   }
 
 }

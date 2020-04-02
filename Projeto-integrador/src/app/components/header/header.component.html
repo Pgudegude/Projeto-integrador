@@ -13,7 +13,7 @@
             </div>
             <ng-template  #logado>
             <div id="login" class="col-lg-2 mt-3 login">
-                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login">Você está logado</a>
+                <a routerLink="login"><img src="../../../assets/Imagem/login.png" alt="login" title="login">Olá, {{usuario.name.split(" ", 1)}}</a>
             </div>
         </ng-template >
             <div id="carrinho" class="col-lg-1 text-center mt-2" (click)="verificarCarrinho()">

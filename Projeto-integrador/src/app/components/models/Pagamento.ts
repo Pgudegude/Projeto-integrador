@@ -1,5 +1,6 @@
 export class Pagamento{
-    id?: Number;
-    status?: String
-
+    
+    constructor(
+       public status?: String,
+       public id?: Number){}
 }

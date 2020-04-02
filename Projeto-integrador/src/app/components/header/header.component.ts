@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { StockService } from 'src/app/service/stock.service';
 import { Carrinho } from '../models/carrinho';
 
+
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,23 +16,21 @@ import { Carrinho } from '../models/carrinho';
 
 export class HeaderComponent implements OnInit {
 
-  logar: boolean;
+  
+  logar: boolean = true;
   carrinho: Carrinho[] = [];
+  usuario: any
 
   constructor(private http: HttpService, private router: Router,private stock: StockService) { }
 
 
   verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
-      this.logar = true
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+      this.logar = false
       console.log("usuário não logado")
     }
-    else {
-    this.logar = false
-      console.log(usuario)
-    }
-  }
+}
 
 
   ngOnInit(): void {

@@ -6,6 +6,12 @@ import { Validacoes } from '../validar/Validacoes';
 import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
+import { Pedido } from '../models/Pedido';
+import { Cliente } from '../models/cliente';
+import { Pagamento } from '../models/Pagamento';
+import { PedidoService } from 'src/app/service/pedido.service';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
 
 
 @Component({
@@ -29,27 +35,27 @@ export class CheckoutComponent implements OnInit {
   formularioQuantidade: any;
   totalComFrete: any;
   login: boolean;
+  user: any
 
-  constructor(private http: HttpService, private fb: FormBuilder, private recuperar: StockService) {
+
+  constructor(private http: HttpService,private router: Router,private http3:LoginService, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
-    for (let i = 0; i < this.cartProduct.length; i++) {
-      this.carrinho.push(new Carrinho(this.cartProduct[i]))
+    this.carrinho = this.stock.recoverCart()
+    
       this.carrinho.forEach(item => {
         this.total += item.produto.valueProduct * item.quantidade;
-      })}
-    
-   console.log(this.carrinho)
+      })
     this.calcularTotal();
     this.mostrandoQuantidade();
-    
+
   }
 
   endereco: Endereco = new Endereco("", "", "", "", "", "", "", "")
 
   capturarCEP() {
     this.http.getCep(this.formularioCheckout.value).subscribe((data) => {
-      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formularioCheckout.controls['endereco'].patchValue(this.endereco.endereco);
       this.formularioCheckout.controls['bairro'].patchValue(this.endereco.bairro);
       this.formularioCheckout.controls['estado'].patchValue(this.endereco.estado);
@@ -61,6 +67,7 @@ export class CheckoutComponent implements OnInit {
     this.criarDadosCompra();
     this.verificarLogin();
   }
+
 
   enviarDaDosCompra(comprador: Compra) {
     return new FormGroup({
@@ -80,10 +87,48 @@ export class CheckoutComponent implements OnInit {
       numeroCartao: new FormControl(comprador.numeroCartao)
     })
   }
+data : Date = new Date()
 
-  enviarDadosCompra() {
-    this.formularioCheckout.reset();
+enviarDadosCompra() {
+    let pagamento : Pagamento = new Pagamento("aguardando aprovação")
+    let endereco : Endereco = new Endereco(
+      this.formularioCheckout.value.cep,
+      this.formularioCheckout.value.endereco,
+      this.formularioCheckout.value.bairro,
+      this.formularioCheckout.value.numero,
+      this.formularioCheckout.value.estado,
+      this.formularioCheckout.value.cidade,
+      this.formularioCheckout.value.complemento
+    )
+    let pedido : Pedido = new Pedido(
+      this.totalComDesconto,
+      this.frete,
+      "Aguardando Pagamento",
+      this.data,
+      this.usuario,
+      pagamento,
+      this.formularioCheckout.value.nomeCompleto,
+      this.formularioCheckout.value.telefone,
+      endereco
+    )
+    this.http2.envPedido(pedido).subscribe(
+      elem =>{
+        alert("Pedido concluido com sucesso")
+        let elemento = JSON.stringify(elem)
+        sessionStorage.setItem('pedido', elemento)
+      }
+    )
+    this.salvarItensBanco()
+  return this.router.navigate(['/final'])
   }
+
+salvarItensBanco(){
+  let request = JSON.parse(sessionStorage.getItem('pedido'))
+  console.log(request)
+  console.log(this.carrinho)
+  this.http2.envItemCart(request,this.carrinho)
+  sessionStorage.removeItem('cartProduct')
+}
 
   criarDadosCompra() {
     this.formularioCheckout = this.fb.group({
@@ -113,10 +158,7 @@ export class CheckoutComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-      complemento: ["",
-        Validators.compose([
-          Validators.required
-        ])],
+      complemento: [""],
       estado: ["",
         Validators.compose([
           Validators.required
@@ -133,7 +175,8 @@ export class CheckoutComponent implements OnInit {
         ])],
       cvv: ["",
         Validators.compose([
-          Validators.maxLength(3)
+          Validators.maxLength(3),
+          Validators.minLength(3)
         ])],
       dataValidade: ["",
         Validators.compose([
@@ -144,7 +187,6 @@ export class CheckoutComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-
       cpfTitular: ["",
         Validators.compose([
           Validators.required,
@@ -153,18 +195,17 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
+
   freteR = () => {
     this.frete = (50)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
-    console.log(this.carrinho)
-    return this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    
+    return this.frete
   }
 
   freteN = () => {
     this.frete = (20)
-    this.frete = this.frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }
@@ -172,8 +213,8 @@ export class CheckoutComponent implements OnInit {
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
-      console.log(item)
       this.total += item.produto.valueProduct * item.quantidade;
+    
       if (this.total != 0) {
           this.desconto = (this.total * 0.7)
       }
@@ -189,38 +230,45 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  ajustarQuantidade(produto) {
-    this.carrinho.forEach(item => {
-      if (item.produto.codProduct == produto.produto.codProduct)
-        item.quantidade = parseInt(this.formularioQuantidade.value.quantidade);
-    }
-    )
-    this.calcularTotal();
-    this.mostrandoQuantidade();
-    console.log(this.carrinho);
-
-  }
 
   searchProduct() {
-    let product = JSON.parse(localStorage.getItem("cartProduct"))
+    let product = JSON.parse(sessionStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
       this.cartProduct.push(product[i])
+
     }
     return product == null ? [] : this.cartProduct
   }
 
+  usuario: Cliente
   verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null ) {
-      this.login = false
-      console.log("usuário não logado")
+    this.carrinho = this.stock.recoverCart();
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-    this.login = true
-      console.log(usuario)
+      this.login = false
     }
   }
 
+resp:Endereco[]
+  userExist(){
   
+  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
+  this.http3.pegarEndereco(this.user).subscribe(data=>data.forEach(d=>this.resp.push(d)))
+  this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
+  this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
+  this.formularioCheckout.controls['cep'].patchValue(this.user._cep)
+  console.log(this.resp)
+  // this.formularioCheckout.controls['endereco'].patchValue(this.resp._endereco)
+  // this.formularioCheckout.controls['cep'].patchValue(this.resp[0]._cep)
+  // this.formularioCheckout.controls['numero'].patchValue(this.resp[0]._numero)
+  // this.formularioCheckout.controls['complemento'].patchValue(this.resp[0]._complemento)
+  // this.formularioCheckout.controls['bairro'].patchValue(this.resp[0]._bairro)
+  // this.formularioCheckout.controls['cidade'].patchValue(this.resp[0]._cidade)
+  // this.formularioCheckout.controls['estado'].patchValue(this.resp[0]._estado)
+
+  }
 
 }

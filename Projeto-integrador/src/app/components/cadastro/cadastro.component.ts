@@ -4,9 +4,10 @@ import { Validacoes } from '../validar/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
-import {CadastroService} from 'src/app/service/cadastro.service'
-import {EnderecoService} from'src/app/service/endereco.service'
+import { CadastroService } from 'src/app/service/cadastro.service'
+import { EnderecoService } from 'src/app/service/endereco.service'
 import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,9 +21,8 @@ export class CadastroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private CEP: CepService,
-    private cadastrar:CadastroService,
-    private cadEnd:EnderecoService
-   
+    private cadastrar: CadastroService,
+    private router: Router
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -31,44 +31,39 @@ export class CadastroComponent implements OnInit {
     this.criarCadastro();
   }
   //envia os dados do formulario
- 
- 
-  enviarDados(){
-  let  dadosCliente:Cliente = new Cliente(
+
+
+  enviarDados() {
+    let dadosCliente: Cliente = new Cliente(
       this.formCadastro.value.nomeCompleto,
       this.formCadastro.value.cpf,
       this.formCadastro.value.dataDeNascimento,
       this.formCadastro.value.telefone,
       this.formCadastro.value.email,
       this.formCadastro.value.senha
-      )
-     let  dadosEndereco:Endereco = new Endereco(
-        this.formCadastro.value.cep,
-        this.formCadastro.value.endereco,
-        this.formCadastro.value.bairro,
-        this.formCadastro.value.numero,
-        this.formCadastro.value.estado,
-        this.formCadastro.value.cidade,
-        this.formCadastro.value.complemento,
     )
-    this.cadastrar.insertCliente(dadosCliente).subscribe(
+    let dadosEndereco: Endereco = new Endereco(
+      this.formCadastro.value.cep,
+      this.formCadastro.value.endereco,
+      this.formCadastro.value.bairro,
+      this.formCadastro.value.numero,
+      this.formCadastro.value.estado,
+      this.formCadastro.value.cidade,
+      this.formCadastro.value.complemento,
+    )
+    this.cadastrar.insertCliente(dadosCliente, dadosEndereco).subscribe(
       data => {
-        console.log(data)}
-        
-    )
-    this.cadEnd.insertEndereco(dadosEndereco).subscribe(
-      data => {console.log(data)}  
-    )
-    return this.teste()
-  }
-  teste(){
-    this.cadastrar.insertClientAddress().subscribe(
-      data=>{
-        console.log(data)
+        let login_json = JSON.stringify(btoa(data))
+      sessionStorage.setItem("usuario", login_json)
+      console.log(data)
       }
     )
+    alert("usuário cadastrado com sucesso")
+    this.router.navigate(['/home'])
+
   }
-  enviarCadastro(cliente: Cliente, endereco:Endereco) {
+  
+  enviarCadastro(cliente: Cliente, endereco: Endereco) {
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
       cpf: new FormControl(cliente.cpf),
@@ -84,7 +79,7 @@ export class CadastroComponent implements OnInit {
       confirmaEmail: new FormControl(cliente.confirmaEmail),
       senha: new FormControl(cliente.senha),
       confirmaSenha: new FormControl(cliente.confirmaSenha)
-    }) 
+    })
   }
   //Valida os campos
   criarCadastro() {
@@ -160,7 +155,7 @@ export class CadastroComponent implements OnInit {
           Validators.maxLength(12)
         ])]
     }, {
-      validators: [Validacoes.ConferirSenha,Validacoes.ConferirEmail]
+      validators: [Validacoes.ConferirSenha, Validacoes.ConferirEmail]
     });
   }
   get confirmaSenha() {
@@ -169,9 +164,10 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
+  
   capturarCEP() {
     this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
-      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.uf)
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formCadastro.controls['endereco'].patchValue(this.endereco.endereco);
       this.formCadastro.controls['bairro'].patchValue(this.endereco.bairro);
       this.formCadastro.controls['estado'].patchValue(this.endereco.estado);

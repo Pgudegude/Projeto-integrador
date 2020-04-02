@@ -1,5 +1,4 @@
-
-<main  *ngIf="!login; else logar">
+<main *ngIf="!login; else logar">
     <div class="container">
         <div id="row" class="row">
             <div class="col-md-6">
@@ -9,22 +8,21 @@
                         <a routerLink="cadastro"><button type="button" class="btn btn-info">Cadastre-se</button></a>
                     </div>
                     <hr>
-                    <form class="form-row"[formGroup]="formularioLogin" (ngSubmit)="logando()">
-                        <div class="col-md-12 formGroup" >
+                    <form class="form-row" [formGroup]="formularioLogin" (ngSubmit)="logando()">
+                        <div class="col-md-12 formGroup">
                             <label for="email" class="pl-3"><strong>Email:</strong></label>
                             <input class="form-control" type="text" name="email" id="email" required
-                                placeholder="exemplo@exemplo.com" formControlName = "email">
+                                placeholder="exemplo@exemplo.com" formControlName="email">
                         </div>
                         <div class="col-md-12 formGroup mt-3">
                             <label for="senha" class="pl-3"><strong>Senha:</strong></label>
-                            <input class="form-control" type="password" name="senha" id="senha" 
+                            <input class="form-control" type="password" name="senha" id="senha"
                                 placeholder="digite sua senha" formControlName="senha">
-                            <small  id="esqueci" class="text-muted pl-3"><a  data-toggle="modal" 
-                                data-target="#modalEsqueci">Esqueci minha senha</a></small>
+                            <small id="esqueci" class="text-muted pl-3"><a data-toggle="modal"
+                                    data-target="#modalEsqueci">Esqueci minha senha</a></small>
                         </div>
                         <div id="entrar" class="col-md-12 mt-3">
-                            <button 
-                                class="btn btn-info btn-block">Entrar</button>
+                            <button class="btn btn-info btn-block">Entrar</button>
                         </div>
                     </form>
                 </div>
@@ -32,44 +30,44 @@
         </div>
     </div>
 
-<!-- modal -->
-<div id="modalEsqueci" class="modal m-2">
-    <form class="modal-content">
-        <div class="container">
-            <div class="row m-3">
-                <div class="col-md-12">
-                    <label class="pl-3" for="email"><b>Email:</b></label>
-                    <input class="form-control" type="text" placeholder="exemplo@exemplo.com" name="uname" id required>    
-                </div>
-                <div class="row">
-                    <div class="col-md-6 pl-3">
-                        <label class="pl-3" for="senhaNova"><b>Nova senha:</b></label>
-                        <input class="form-control" type="password" placeholder="digite sua senha" name="senhaNova" id="senhaNova"
+    <!-- modal -->
+    <div id="modalEsqueci" class="modal m-2">
+        <form class="modal-content">
+            <div class="container">
+                <div class="row m-3">
+                    <div class="col-md-12">
+                        <label class="pl-3" for="email"><b>Email:</b></label>
+                        <input class="form-control" type="text" placeholder="exemplo@exemplo.com" name="uname" id
                             required>
                     </div>
-                    <div class="col-md-6">
-                        <label class="pl-3" for="token"><b>Token verificador:</b></label>
-                        <input maxlength="4" class="form-control" type="text" placeholder="0000 "
-                            name="token" id="token" required>
+                    <div class="row">
+                        <div class="col-md-6 pl-3">
+                            <label class="pl-3" for="senhaNova"><b>Nova senha:</b></label>
+                            <input class="form-control" type="password" placeholder="digite sua senha" name="senhaNova"
+                                id="senhaNova" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pl-3" for="token"><b>Token verificador:</b></label>
+                            <input maxlength="4" class="form-control" type="text" placeholder="0000 " name="token"
+                                id="token" required>
+                        </div>
                     </div>
+                    <button type="button" class="btn btn-info btn-block" click="verificarLogin()">Confirmar</button>
                 </div>
-                <button type="button" class="btn btn-info btn-block"click="verificarLogin()">Confirmar</button>
             </div>
-        </div>
-
-    </form>
-</div>
+        </form>
+    </div>
 
 </main>
 <ng-template #logar>
     <div class="container text-center mt-5">
-        <h2>Você está logado</h2>
-        <div class="text-left">
-            <ul>
-                <li > <a routerLink="listaProduto"> <button class="btn">Ir as Compras</button></a></li>
-                <li > <a routerLink="meusPedidos"> <button class="btn">Meus Pedidos</button></a></li>
-                <li> <a> <button class="btn" (click)="deslogar()">Deslogar</button></a></li>
+        <h2>Área do Cliente</h2>
+        <div class="card text-left" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a routerLink="listaProduto"><button class="btn">Ir as Compras</button></a></li>
+                <li class="list-group-item"><a routerLink="meusPedidos"> <button class="btn">Meus Pedidos</button></a></li>
+                <li class="list-group-item"><a><button class="btn" (click)="deslogar()">Deslogar</button></a></li>
             </ul>
+        </div>
     </div>
-    </div>
-  </ng-template>
+</ng-template>

@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { Login } from '../models/login.model';
 import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
+import { StockService } from 'src/app/service/stock.service';
 
 
 @Component({
@@ -14,18 +15,18 @@ import { HttpService } from 'src/app/service/http.service';
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
+usuario: any
 
-
-  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService) { }
+  constructor(private fb: FormBuilder, private http: LoginService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
 
   login: boolean
   verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
-      this.login = false
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-      this.login = true
+      this.login = false
     }
   }
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.criarFormularioDeLogin()
     this.verificarLogin()
   }
+
 
   criarFormularioDeLogin() {
     this.formularioLogin = this.fb.group(
@@ -45,21 +47,29 @@ export class LoginComponent implements OnInit {
         senha: ['']
       }
     )
-
   }
+
 
   logando() {
     let user: Login = new Login()
     user.mail = this.formularioLogin.value.email;
     user.password = this.formularioLogin.value.senha;
+
+    
     this.http.fazerLogin(user).subscribe(data => {
       let login_json = JSON.stringify(data)
-      localStorage.setItem("usuario", login_json)
+      sessionStorage.setItem("usuario", btoa(login_json))
       this.verificarLogin()
+      location.reload()
     })  
   }
+
+
   deslogar() {
-    localStorage.removeItem("usuario")
+    sessionStorage.removeItem("usuario")
     this.verificarLogin()
+    location.reload()
+    this.stock.removeCart()
   }
+
 }

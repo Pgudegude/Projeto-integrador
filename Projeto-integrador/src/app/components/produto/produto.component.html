@@ -23,7 +23,7 @@
             <div class="col-md-3">
                 <hr>
                 <h4>Preço produto:
-                    {{product.valueDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h4>
+                    {{product.valueDiscount | currency:"BRL"}}</h4>
                 <hr>
                 <label for="frete">Formas de Envio:</label>
                 <div>
@@ -31,7 +31,7 @@
                     Normal entrega em até 7 dias úteis valor R$20,00</p>
                 </div>
                 <hr>
-                <button type="button"   class="btn btn-success btn-lg btn-block" (click)='saveProduct()'>Incluir no
+                <button type="button" ngbTooltip="Produto adicionado com sucesso!" triggers="click:blur"  class="btn btn-success btn-lg btn-block" (click)='saveProduct()'>Incluir no
                     Carrinho</button>
                 
             </div>
