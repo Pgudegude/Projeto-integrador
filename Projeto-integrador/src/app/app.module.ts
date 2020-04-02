@@ -17,7 +17,6 @@ import { SobreComponent } from './components/sobre/sobre.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { CarrosselComponent } from './components/carrossel/carrossel.component';
 import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
@@ -50,8 +49,7 @@ registerLocaleData(localePt, 'pt');
     MenuComponent,
     SobreComponent,
     CadastroComponent,
-    CarrosselComponent,
-    CheckoutComponent,
+       CheckoutComponent,
     MeusPedidosComponent,
     ProdutosCategoryComponent
 

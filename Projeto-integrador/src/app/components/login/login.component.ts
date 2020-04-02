@@ -58,15 +58,15 @@ usuario: any
       let login_json = JSON.stringify(data)
       sessionStorage.setItem("usuario", btoa(login_json))
       this.verificarLogin()
-      location.reload()
-    })  
+      
+    },erro=>alert("usuário ou senha errada"))  
   }
 
 
   deslogar() {
     sessionStorage.removeItem("usuario")
     this.verificarLogin()
-    location.reload()
+    
     this.stock.removeCart()
   }
 

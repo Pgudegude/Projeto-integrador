@@ -7,6 +7,7 @@ import { Cliente } from '../models/cliente';
 import { CadastroService } from 'src/app/service/cadastro.service'
 import { EnderecoService } from 'src/app/service/endereco.service'
 import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private CEP: CepService,
     private cadastrar: CadastroService,
-    private cadEnd: EnderecoService
+    private router: Router
   ) {
     this.formCadastro = this.enviarCadastro(new Cliente(), new Endereco())
   }
@@ -53,12 +54,13 @@ export class CadastroComponent implements OnInit {
     this.cadastrar.insertCliente(dadosCliente, dadosEndereco).subscribe(
       data => {
         let login_json = JSON.stringify(data)
-      localStorage.setItem("usuario", login_json)
-      console.log(data)
-      }
-    )
+        sessionStorage.setItem("usuario", btoa(login_json))
+        console.log(data)
+        alert("usuário cadastrado com sucesso")
+        this.router.navigate(['/home'])
+      }, erro => (alert("CPF ou e-mail já cadastrados")))
   }
-  
+
   enviarCadastro(cliente: Cliente, endereco: Endereco) {
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
@@ -158,7 +160,7 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
-  
+
   capturarCEP() {
     this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)

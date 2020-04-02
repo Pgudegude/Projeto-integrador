@@ -82,7 +82,7 @@ export class CarrinhoComponent implements OnInit {
 
   
   searchProduct() {
-    let product = JSON.parse(localStorage.getItem("cartProduct"))
+    let product = JSON.parse(sessionStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
       this.cartProduct.push(product[i])
     }

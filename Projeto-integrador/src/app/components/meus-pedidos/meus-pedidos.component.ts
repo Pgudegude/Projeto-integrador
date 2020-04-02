@@ -1,38 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Pedido } from '../models/Pedido';
+import { ignoreElements } from 'rxjs/operators';
 
-// interface Pedido {
-//   data: string;
-//   pedido: string;
-//   valor: number;
-//   statusPagamento: string;
-//   statusPedido: string;
-// }
-
-// let ped: Pedido[] = [
-//   {
-//     date: '2020-12-03',
-//     id: '#1235678',
-//     price: 8001.00,
-//     payment: 'aprovado',
-//     statusRequest: 'enviado'
-//   },
-//   {
-//     data: '31/01/2020',
-//     pedido: '123221',
-//     valor: 300.00,
-//     statusPagamento: 'aprovado',  
-//     statusPedido: 'entregue',
-//   },
-//   {
-//     data: '02/12/2019',
-//     pedido: '31992',
-//     valor: 72.00,
-//     statusPagamento: 'recusado',
-//     statusPedido: 'cancelado'
-//   }
-// ];
 @Component({
   selector: 'app-meus-pedidos',
   templateUrl: './meus-pedidos.component.html',
@@ -44,21 +14,15 @@ export class MeusPedidosComponent implements OnInit {
   pedido: Pedido[] = []
   carregar:boolean
   vazio =[]
-  verificarLogin() {
-    let usuario = JSON.parse(localStorage.getItem("usuario"))
-    if (usuario == null) {
-      this.login = false
-      console.log("usuário não logado")
+  usuario:any
+    verificarLogin() {
+    
+    if (sessionStorage.getItem("usuario") != null) {
+    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.login = true
     }
     else {
-    this.login = true
-    if(this.mostrarPedidos()!=this.vazio){
-      this.carregar=true
-      console.log(this.pedido)
-    }
-    else{
-      this.carregar=false
-    }
+      this.login = false
     }
   }
   mostrarPedidos() {
@@ -67,11 +31,18 @@ export class MeusPedidosComponent implements OnInit {
         this.pedido.push(d)
       )
     })
+    if(this.pedido){
+      this.carregar=true;
+    }
+    else
+    {this.carregar=false}
+    console.log(this.pedido)
     return this.pedido
   }
 
   ngOnInit(): void {
     this.verificarLogin()
+    this.mostrarPedidos()
   }
 }
 

@@ -32,7 +32,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let storageProduct = JSON.parse(localStorage.getItem('cartProduct'))
+    let storageProduct = JSON.parse(sessionStorage.getItem('cartProduct'))
     if (storageProduct != null) {
       for (let i = 0; i < storageProduct.length; i++) {
         if (storageProduct != null) {
@@ -44,7 +44,7 @@ export class ProdutoComponent implements OnInit {
 
   saveProduct() {
     let count = 0
-    let product: Carrinho[] = JSON.parse(localStorage.getItem("cartProduct"))
+    let product: Carrinho[] = JSON.parse(sessionStorage.getItem("cartProduct"))
     if (product != null) {
       for (let i = 0; i < product.length; i++) {
         if (product[i].produto.codProduct == this.product.codProduct)
@@ -54,7 +54,7 @@ export class ProdutoComponent implements OnInit {
     if (count == 0) {
       this.localProduct.push(new Carrinho(this.product, 1))
       let produto_json = JSON.stringify(this.localProduct)
-      localStorage.setItem("cartProduct", produto_json)
+      sessionStorage.setItem("cartProduct", produto_json)
     }
   }
 
