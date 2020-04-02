@@ -53,16 +53,14 @@ export class CadastroComponent implements OnInit {
     )
     this.cadastrar.insertCliente(dadosCliente, dadosEndereco).subscribe(
       data => {
-        let login_json = JSON.stringify(btoa(data))
-      sessionStorage.setItem("usuario", login_json)
-      console.log(data)
-      }
-    )
-    alert("usuário cadastrado com sucesso")
-    this.router.navigate(['/home'])
-
+        let login_json = JSON.stringify(data)
+        sessionStorage.setItem("usuario", btoa(login_json))
+        console.log(data)
+        alert("usuário cadastrado com sucesso")
+        this.router.navigate(['/home'])
+      }, erro => (alert("CPF ou e-mail já cadastrados")))
   }
-  
+
   enviarCadastro(cliente: Cliente, endereco: Endereco) {
     return new FormGroup({
       nomeCompleto: new FormControl(cliente.nomeCompleto),
@@ -162,7 +160,7 @@ export class CadastroComponent implements OnInit {
   get confirmaEmail() {
     return this.formCadastro.get('confirmaEmail');
   }
-  
+
   capturarCEP() {
     this.CEP.getCep(this.formCadastro.value).subscribe((data) => {
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
