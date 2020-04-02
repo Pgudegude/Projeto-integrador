@@ -116,9 +116,11 @@ export class CheckoutComponent implements OnInit {
         alert("Pedido concluido com sucesso")
         let elemento = JSON.stringify(elem)
         sessionStorage.setItem('pedido', elemento)
+        this.salvarItensBanco()
       }
+      
     )
-    this.salvarItensBanco()
+    
     return this.router.navigate(['/final'])
   }
 
