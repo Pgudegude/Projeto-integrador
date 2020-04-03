@@ -244,13 +244,8 @@ export class CheckoutComponent implements OnInit {
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
     if (sessionStorage.getItem("usuario") != null) {
-<<<<<<< HEAD
-    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    this.login = true
-=======
       this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
       this.login = true
->>>>>>> a1d3d3a14da6bda02dd12b56aa034f32383f77f5
     }
     else {
       this.login = false
