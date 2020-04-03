@@ -6,6 +6,7 @@ import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
 import { StockService } from 'src/app/service/stock.service';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
+import { modalConfigDefaults } from 'ngx-bootstrap/modal/modal-options.class';
 
 
 @Component({
@@ -16,10 +17,10 @@ import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.serv
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
-usuario: any
+  usuario: any
 
   constructor(private fb: FormBuilder, private http: LoginService,private emissor:EmissorDeEventosService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
-
+    
   login: boolean
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
@@ -48,6 +49,7 @@ usuario: any
         senha: ['']
       }
     )
+    this.gerarForm()
   }
 
 
@@ -71,5 +73,29 @@ usuario: any
     console.log("desloguei")
     this.emissor.emitirUsuarioLogado()
   }
+  esqueciSenha:FormGroup
+  
+  gerarForm(){
+    {
+      this.esqueciSenha = this.fb.group(
+        {
+          emailEsqueciSenha: ["",
+            Validators.compose([
+              Validators.email,
+              Validators.required
+            ])]
+        }
+      )
+    }
+  }
 
+  value:any
+  enviarEmail(umMail){
+    umMail=this.esqueciSenha.value.emailEsqueciSenha
+     this.http.enviarSenha(umMail).subscribe(data=>data)
+     console.log(umMail)
+   alert("Enviamos um email com sua senha, verifique sua caixa de entrada")
+  
+  }
 }
+

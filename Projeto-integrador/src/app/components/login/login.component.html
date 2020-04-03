@@ -32,27 +32,15 @@
 
     <!-- modal -->
     <div id="modalEsqueci" class="modal m-2">
-        <form class="modal-content">
-            <div class="container">
+        <form class="modal-content" [formGroup]="esqueciSenha" (ngSubmit)="enviarEmail(value)">
+            <div class=" container">
                 <div class="row m-3">
                     <div class="col-md-12">
                         <label class="pl-3" for="email"><b>Email:</b></label>
-                        <input class="form-control" type="text" placeholder="exemplo@exemplo.com" name="uname" id
-                            required>
+                        <input class="form-control" type="text" formControlName="emailEsqueciSenha"
+                            placeholder="exemplo@exemplo.com" name="uname">
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 pl-3">
-                            <label class="pl-3" for="senhaNova"><b>Nova senha:</b></label>
-                            <input class="form-control" type="password" placeholder="digite sua senha" name="senhaNova"
-                                id="senhaNova" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="pl-3" for="token"><b>Token verificador:</b></label>
-                            <input maxlength="4" class="form-control" type="text" placeholder="0000 " name="token"
-                                id="token" required>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-info btn-block" click="verificarLogin()">Confirmar</button>
+                    <button  data-dismiss="modal" (click)="enviarEmail(value)"  class="btn btn-info btn-block">Confirmar</button>
                 </div>
             </div>
         </form>
@@ -64,8 +52,10 @@
         <h2>Área do Cliente</h2>
         <div class="card text-left" style="width: 18rem;">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a routerLink="listaProduto"><button class="btn">Ir as Compras</button></a></li>
-                <li class="list-group-item"><a routerLink="meusPedidos"> <button class="btn">Meus Pedidos</button></a></li>
+                <li class="list-group-item"><a routerLink="listaProduto"><button class="btn">Ir as Compras</button></a>
+                </li>
+                <li class="list-group-item"><a routerLink="meusPedidos"> <button class="btn">Meus Pedidos</button></a>
+                </li>
                 <li class="list-group-item"><a><button class="btn" (click)="deslogar()">Deslogar</button></a></li>
             </ul>
         </div>
