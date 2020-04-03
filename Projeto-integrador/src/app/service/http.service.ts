@@ -39,7 +39,6 @@ export class HttpService {
   }
 
   contatoBanco = (contato: Contato) => {
-    console.log(contato);
     return {
       "name": contato.nome,
       "mail": contato.email,
@@ -50,7 +49,7 @@ export class HttpService {
   public insertContato(contato: Contato) {
     let comunicacao = this.contatoBanco(contato)
     let url = this.http.post<any>("http://localhost:8080/ecommerce/create-contact", comunicacao);
-    return url.pipe();
+    return url;
   }
 
 

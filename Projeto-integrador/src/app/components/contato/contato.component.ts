@@ -26,8 +26,7 @@ export class  ContatoComponent implements OnInit {
     alert(`sua ${this.formularioDeContato.value.assunto} foi enviada com sucesso`)
     this.contatar.insertContato(this.formularioDeContato.value).subscribe(
       data => {
-        this.contatar.insertContato(data);
-          
+          data
         }
     )
       }
