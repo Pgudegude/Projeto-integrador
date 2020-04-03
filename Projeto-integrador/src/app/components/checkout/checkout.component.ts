@@ -7,7 +7,7 @@ import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
 import { Pedido } from '../models/Pedido';
-import { Cliente } from '../models/cliente';
+import { Cliente } from '../models/Cliente';
 import { Pagamento } from '../models/Pagamento';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Router } from '@angular/router';
@@ -38,14 +38,14 @@ export class CheckoutComponent implements OnInit {
   user: any
 
 
-  constructor(private http: HttpService,private router: Router,private http3:LoginService, private fb: FormBuilder, private stock: StockService, private http2 : PedidoService) {
+  constructor(private http: HttpService, private router: Router, private http3: LoginService, private fb: FormBuilder, private stock: StockService, private http2: PedidoService) {
     this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
-    
-      this.carrinho.forEach(item => {
-        this.total += item.produto.valueProduct * item.quantidade;
-      })
+
+    this.carrinho.forEach(item => {
+      this.total += item.produto.valueProduct * item.quantidade;
+    })
     this.calcularTotal();
     this.mostrandoQuantidade();
 
@@ -87,11 +87,11 @@ export class CheckoutComponent implements OnInit {
       numeroCartao: new FormControl(comprador.numeroCartao)
     })
   }
-data : Date = new Date()
+  data: Date = new Date()
 
-enviarDadosCompra() {
-    let pagamento : Pagamento = new Pagamento("aguardando aprovação")
-    let endereco : Endereco = new Endereco(
+  enviarDadosCompra() {
+    let pagamento: Pagamento = new Pagamento("aguardando aprovação")
+    let endereco: Endereco = new Endereco(
       this.formularioCheckout.value.cep,
       this.formularioCheckout.value.endereco,
       this.formularioCheckout.value.bairro,
@@ -100,7 +100,7 @@ enviarDadosCompra() {
       this.formularioCheckout.value.cidade,
       this.formularioCheckout.value.complemento
     )
-    let pedido : Pedido = new Pedido(
+    let pedido: Pedido = new Pedido(
       this.totalComDesconto,
       this.frete,
       "Aguardando Pagamento",
@@ -112,23 +112,25 @@ enviarDadosCompra() {
       endereco
     )
     this.http2.envPedido(pedido).subscribe(
-      elem =>{
+      elem => {
         alert("Pedido concluido com sucesso")
         let elemento = JSON.stringify(elem)
         sessionStorage.setItem('pedido', elemento)
+        this.salvarItensBanco()
       }
+      
     )
-    this.salvarItensBanco()
-  return this.router.navigate(['/final'])
+    
+    return this.router.navigate(['/final'])
   }
 
-salvarItensBanco(){
-  let request = JSON.parse(sessionStorage.getItem('pedido'))
-  console.log(request)
-  console.log(this.carrinho)
-  this.http2.envItemCart(request,this.carrinho)
-  sessionStorage.removeItem('cartProduct')
-}
+  salvarItensBanco() {
+    let request = JSON.parse(sessionStorage.getItem('pedido'))
+    console.log(request)
+    console.log(this.carrinho)
+    this.http2.envItemCart(request, this.carrinho)
+    sessionStorage.removeItem('cartProduct')
+  }
 
   criarDadosCompra() {
     this.formularioCheckout = this.fb.group({
@@ -214,9 +216,9 @@ salvarItensBanco(){
     this.total = 0
     this.carrinho.forEach(item => {
       this.total += item.produto.valueProduct * item.quantidade;
-    
+
       if (this.total != 0) {
-          this.desconto = (this.total * 0.7)
+        this.desconto = (this.total * 0.7)
       }
     })
     this.totalComDesconto = (this.total - (this.total * 0.7))
@@ -244,31 +246,30 @@ salvarItensBanco(){
   verificarLogin() {
     this.carrinho = this.stock.recoverCart();
     if (sessionStorage.getItem("usuario") != null) {
-    this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    this.login = true
+      this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
+      this.login = true
     }
     else {
       this.login = false
     }
   }
 
-resp:Endereco[]
-  userExist(){
-  
-  this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
-  this.http3.pegarEndereco(this.user).subscribe(data=>data.forEach(d=>this.resp.push(d)))
-  this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
-  this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
-  this.formularioCheckout.controls['cep'].patchValue(this.user._cep)
-  console.log(this.resp)
-  // this.formularioCheckout.controls['endereco'].patchValue(this.resp._endereco)
-  // this.formularioCheckout.controls['cep'].patchValue(this.resp[0]._cep)
-  // this.formularioCheckout.controls['numero'].patchValue(this.resp[0]._numero)
-  // this.formularioCheckout.controls['complemento'].patchValue(this.resp[0]._complemento)
-  // this.formularioCheckout.controls['bairro'].patchValue(this.resp[0]._bairro)
-  // this.formularioCheckout.controls['cidade'].patchValue(this.resp[0]._cidade)
-  // this.formularioCheckout.controls['estado'].patchValue(this.resp[0]._estado)
+  resp: Endereco
+  userExist() {
 
+    this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
+    this.http3.pegarEndereco(this.user).subscribe(data => {
+    this.resp = data
+      this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
+      this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
+      this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
+      this.formularioCheckout.controls['endereco'].patchValue(this.resp.endereco)
+      this.formularioCheckout.controls['cep'].patchValue(this.resp.cep)
+      this.formularioCheckout.controls['numero'].patchValue(this.resp.numero)
+      this.formularioCheckout.controls['complemento'].patchValue(this.resp.complemento)
+      this.formularioCheckout.controls['bairro'].patchValue(this.resp.bairro)
+      this.formularioCheckout.controls['cidade'].patchValue(this.resp.cidade)
+      this.formularioCheckout.controls['estado'].patchValue(this.resp.estado)
+    })
   }
-
 }

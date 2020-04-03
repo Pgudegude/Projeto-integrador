@@ -26,7 +26,6 @@ export class MeusPedidosComponent implements OnInit {
     }
   }
   mostrarPedidos() {
-    
     this.http.acompanhar().subscribe(data => {  
       data.forEach(d =>
         this.pedido.push(d)
@@ -37,6 +36,7 @@ export class MeusPedidosComponent implements OnInit {
     }
     else
     {this.carregar=false}
+    console.log(this.pedido)
     return this.pedido
   }
 

@@ -7,9 +7,19 @@ import { Carrinho } from '../components/models/carrinho';
 
 
 
-function adaptar(data: any[]) {
+function adaptar(data:any[]) {
   return data.map(
-    elem => new Pedido(elem.price, elem.priceFreight, elem.statusRequest, elem.date, elem.client, elem.payment, elem.id)
+    elem => new Pedido(elem.price, 
+      elem.priceFreight,
+       elem.statusRequest,
+       elem.date, 
+      elem.client, 
+      elem.payment,
+      elem.name,
+      elem.phone,
+      elem.address,
+       elem.id
+    )
   )
 }
 

@@ -1,3 +1,5 @@
+
+
 .header-cadastro-formulario{
   background-color: #A7E0D7;
 }
@@ -11,9 +13,10 @@ border-left: 5px solid #42A948;
 .ng-invalid:not(form)  {
 border-left: 5px solid #A94442;
 }
-#container{
-  margin: 50px;
-}
+
+/* #container{
+  margin-left: 50px;
+} */
 .label{
 font-size: 9pt;
 

@@ -22,17 +22,13 @@ export class CadastroService {
       "phone": cliente.telefone,
       "password": cliente.senha
     }
-
   }
-  
 
   public insertCliente(cliente: Cliente, endereco:Endereco) {
     let client = this.clienteBanco(cliente)
     let address = this.httpAddress.enderecoBanco(endereco)
     let comunicacao = {client,address}
     let url = this.http.post<any>("http://localhost:8080/ecommerce/create-client-address", comunicacao);
-    return url.pipe(map(
-      dados => dados
-    ));
+    return url
   }
 }

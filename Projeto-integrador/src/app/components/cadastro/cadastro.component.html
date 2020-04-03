@@ -1,5 +1,5 @@
 <main id="container">
-  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro"(ngSubmit)="enviarDados()">
+  <form method="POST" class="form-row mt-5 p-2" [formGroup]="formCadastro" (ngSubmit)="enviarDados()">
     <div class="col-md-6 ">
       <header class="header-cadastro-formulario p-2">
         <h3 class="titulo"><strong> Dados pessoais</strong></h3>
@@ -15,7 +15,7 @@
             <label for="cpfUsuario">CPF: </label>
             <input class="form-control cpf-mask" type="tel" id="cpfUsuario" name="cpf" formControlName="cpf"
               maxlength="11" placeholder="Ex: 00000000000" required>
-              
+
           </div>
           <div class="form-group">
             <label for="nascimentoUsuario">Data de Nascimento: </label>
@@ -114,10 +114,10 @@
           <label for="confirmarEmail"> Confirmar e-mail: </label>
           <input type="email" class="form-control" id="confirmarEmail" placeholder=" Confirme seu e-mail "
             name="confirmaEmail" formControlName="confirmaEmail" required>
-            <div *ngIf="!confirmaEmail.pristine && confirmaEmail.errors">
-              <p class="text-danger" *ngIf="confirmaEmail.errors.emailErrado">
-                  Emails não coincidem!
-              </p>
+          <div *ngIf="!confirmaEmail.pristine && confirmaEmail.errors">
+            <p class="text-danger" *ngIf="confirmaEmail.errors.emailErrado">
+              Emails não coincidem!
+            </p>
           </div>
         </div>
         <div class="form-group">
@@ -137,8 +137,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="d-flex justify-content-end">
-            <button id="botao" class="form-control" name="BTEnvia"
-            [disabled]="!formCadastro.valid" >Cadastrar</button>
+            <button id="botao" class="form-control" name="BTEnvia" [disabled]="!formCadastro.valid">Cadastrar</button>
           </div>
         </div>
       </div>

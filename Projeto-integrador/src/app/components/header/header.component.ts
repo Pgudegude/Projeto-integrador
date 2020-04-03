@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/service/http.service';
 import { Router } from '@angular/router';
 import { StockService } from 'src/app/service/stock.service';
 import { Carrinho } from '../models/carrinho';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 
 @Injectable({
@@ -21,13 +22,19 @@ export class HeaderComponent implements OnInit {
   carrinho: Carrinho[] = [];
   usuario: any
 
-  constructor(private http: HttpService, private router: Router,private stock: StockService) { }
+  constructor(private http: HttpService, private router: Router,private stock: StockService,private emissor : EmissorDeEventosService) {
+      this.emissor.emissor.subscribe(()=>{this.verificarLogin()})
+
+   }
 
 
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
     this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-      this.logar = false
+      this.logar = false  
+    }
+    else{
+      this.logar = true
       console.log("usuário não logado")
     }
 }
