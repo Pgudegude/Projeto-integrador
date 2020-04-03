@@ -52,7 +52,7 @@ export class LoginService {
     )
     }
     pegarEndereco(cliente:Cliente){
-      return this.http.post(`/api/ecommerce/find-Client-Address`,cliente)
+      return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`,cliente)
       .pipe(
         map(adaptar
         )
