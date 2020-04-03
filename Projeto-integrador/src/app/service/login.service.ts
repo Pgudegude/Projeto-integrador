@@ -52,7 +52,9 @@ export class LoginService {
         )
       )
   }
-
+  enviarSenha(email:string){
+    return this.http.post(`http://localhost:8080/ecommerce/email-send`,email)
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

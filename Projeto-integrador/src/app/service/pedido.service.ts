@@ -8,7 +8,6 @@ import { Carrinho } from '../components/models/carrinho';
 
 
 function adaptar(data:any[]) {
-  console.log(data)
   return data.map(
     elem => new Pedido(elem.price, 
       elem.priceFreight,
