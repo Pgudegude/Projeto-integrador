@@ -24,5 +24,7 @@ else{this.frete="Rapido"}
   ngOnInit(): void {
     this.verificar()
   }
-
+encerrarPedido(){
+  sessionStorage.removeItem('pedido')
+}
 }

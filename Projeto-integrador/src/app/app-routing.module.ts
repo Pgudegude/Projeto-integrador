@@ -49,7 +49,7 @@ export const ROUTES: Routes = [
   },
   {
     path: "home/contato/sobre",
-    component: ContatoComponent
+    component: SobreComponent
   },
   {
     path: "login/listaProduto",
@@ -71,7 +71,7 @@ export const ROUTES: Routes = [
   },
   {
     path: "home/sobre/contato",
-    component: SobreComponent
+    component: ContatoComponent
   },
   {
     path:"listaCategoria/:categoria.id",

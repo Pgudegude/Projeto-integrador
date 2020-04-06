@@ -117,11 +117,9 @@ export class CheckoutComponent implements OnInit {
         let elemento = JSON.stringify(elem)
         sessionStorage.setItem('pedido', elemento)
         this.salvarItensBanco()
+        return this.router.navigate(['/final'])
       }
-      
     )
-    
-    return this.router.navigate(['/final'])
   }
 
   salvarItensBanco() {
