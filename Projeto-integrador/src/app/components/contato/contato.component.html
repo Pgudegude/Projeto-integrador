@@ -29,7 +29,7 @@
         <div class="col-12 form-group">
             <label class="pl-3" for="comentarios">
                 Comentários:</label>
-            <textarea class="form-control" id="”mensagem”" name=”mensagem” required formControlName="comentario"> </textarea>
+            <textarea class="form-control" id="”mensagem”" name=”mensagem” required formControlName="comentario" maxlength="255" placeholder="deixe sua mensagem com até 255 caracteres"> </textarea>
         </div>
         <div class="col-12 ">
             <button class="form-control" name="BTEnvia"  [disabled]="!formularioDeContato.valid" value="enviarDados">Enviar</button>
