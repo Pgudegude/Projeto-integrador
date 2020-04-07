@@ -17,5 +17,21 @@ export class ProductService {
   public findByProductsCode(code: number) {
     return this.http.get(`http://localhost:8080/ecommerce/product-id/${code}`)
   }
+
+  public getProductsOrderByAZ() {
+    return this.http.get(`http://localhost:8080/ecommerce/product-orderName`)
+  }
+  
+  public getProductsOrderByZA() {
+    return this.http.get(`http://localhost:8080/ecommerce/product-orderNameDesc`)
+  }
+  
+  public getProductsOrderByValue() {
+    return this.http.get(`http://localhost:8080/ecommerce/product-orderPrice`)
+  }
+  
+  public getProductsOrderByValueDesc() {
+    return this.http.get(`http://localhost:8080/ecommerce/product-orderPriceDesc`)
+  }
  
 }

@@ -20,10 +20,7 @@ h5 {
     justify-content: center;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-}
+
 
 #menu{
     display: flex;
@@ -34,4 +31,8 @@ h5 {
 p{
     text-decoration: line-through;
     color: rgba(128, 128, 128, 0.945);
+}
+.form-control{
+    margin-right: 0;
+    
 }

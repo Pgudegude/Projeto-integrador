@@ -1,14 +1,25 @@
-
 <app-menu></app-menu>
 
 
 
 <main>
-    <div class="container-fluid">
+    <div class="container-fluid text-right">
+        <form [formGroup]="formularioDeOrdem" class="row">
+            <div class="col-md-9"></div>
+            <select (change)="alterar()" class="form-control form-control-sm ml-4 mt-4 col-md-2" formControlName="ordenacao">
+                <option value=""selected disabled>Ordenar por</option>
+                <option value="1" >Maior Preço</option>
+                <option value="2">Menor Preço</option>
+                <option value="3">A-Z</option>
+                <option value="4">Z-A</option>
+            </select>
+        </form>
+    </div>
+    <div class="container-fluid">   
         <div id="cardCentro" class="row">
             <div class="card col-md-2 p-2 mt-5" *ngFor="let produto of product" (click)="selecionado(produto)">
-                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image" alt={{produto.name}}
-                        title={{produto.name}}></a>
+                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image"
+                        alt={{produto.name}} title={{produto.name}}></a>
                 <div class="card-body">
                     <h5 class="card-title mt-3">{{produto.name}}</h5>
                     <p>{{produto.valueProduct | currency:"BRL"}} </p>
