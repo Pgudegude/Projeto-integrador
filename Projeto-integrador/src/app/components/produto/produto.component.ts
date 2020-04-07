@@ -20,9 +20,8 @@ export class ProdutoComponent implements OnInit {
   carrinho: Carrinho[] = [];
 
 
-  constructor(private route: ActivatedRoute, public service: ProductService, private stock: StockService) {
+  constructor(private route: ActivatedRoute, public service: ProductService) {
     this.route.params.subscribe(parameters => {
-      console.log(parameters)
       this.service.findByProductsCode(parameters['code'])
         .subscribe((product: apiProduct) => {
           this.code = parameters['code'];

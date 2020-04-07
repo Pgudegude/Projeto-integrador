@@ -4,22 +4,36 @@ import { Pedido } from '../components/models/Pedido';
 import { map } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
 import { Carrinho } from '../components/models/carrinho';
+import { Detalhe } from '../components/models/detalhe';
 
 
 
-function adaptar(data:any[]) {
+function adaptar(data: any[]) {
   return data.map(
-    elem => new Pedido(elem.price, 
+    elem => new Pedido(elem.price,
       elem.priceFreight,
-       elem.statusRequest,
-       elem.date, 
-      elem.client, 
+      elem.statusRequest,
+      elem.date,
+      elem.client,
       elem.payment,
       elem.name,
       elem.phone,
       elem.address,
-       elem.id
+      elem.id
     )
+  )
+}
+function adaptar3(data:any[]){
+  return data.map(
+    elem=> new Detalhe(elem.code,
+      elem.valueProduct,
+    elem.valueFreight,
+    elem.amount, 
+    elem.codProduct, 
+    new Pedido(elem.request.price, elem.request.priceFreight, elem.request.statusRequest, elem.request.date
+      ,elem.request.client, elem.request.payment, elem.request.name, elem.request.phone,
+      elem.request.address, elem.request.id)
+      )
   )
 }
 
@@ -30,7 +44,7 @@ export class PedidoService {
   constructor(private http: HttpClient, private httpAddress: EnderecoService) { }
 
   adaptador2 = (pedido: Pedido) => {
-    return {  
+    return {
       "price": pedido.price,
       "priceFreight": pedido.priceFreight,
       "statusRequest": pedido.statusRequest,
@@ -44,7 +58,7 @@ export class PedidoService {
 
   }
 
-  
+
   public envPedido(pedido: Pedido) {
     let comunicacao = this.adaptador2(pedido)
     let url = this.http.post('http://localhost:8080/ecommerce/request', comunicacao);
@@ -53,36 +67,41 @@ export class PedidoService {
     ));
   }
 
- 
-  public envItemCart(pedido:Pedido, carrinho : Carrinho []){
-    for(let i=0; i<carrinho.length; i++){
-      let comunicacao= {
-        "codProduct":carrinho[i].produto, 
-        "amount":carrinho[i].quantidade, 
-        "valueFreight":pedido.priceFreight,
-        "valueProduct":carrinho[i].produto.valueProduct,
-        "request":pedido
+
+  public envItemCart(pedido: Pedido, carrinho: Carrinho[]) {
+    for (let i = 0; i < carrinho.length; i++) {
+      let comunicacao = {
+        "codProduct": carrinho[i].produto,
+        "amount": carrinho[i].quantidade,
+        "valueFreight": pedido.priceFreight,
+        "valueProduct": carrinho[i].produto.valueProduct,
+        "request": pedido
       }
-      let url = this.http.post('http://localhost:8080/ecommerce/create-itemcart',comunicacao)
-       url.pipe(
+      let url = this.http.post('http://localhost:8080/ecommerce/create-itemcart', comunicacao)
+      url.pipe(
         map(
-          dados=>dados     
+          dados => dados
         )
       ).subscribe(
-        elemento=>{
+        elemento => {
           elemento
         }
       )
     }
   }
 
+details(code: number){
+  return this.http.get(`http://localhost:8080/ecommerce/find-itemcart/${code}`).pipe(
+    map(adaptar3)
+  )
+  }
+
   acompanhar() {
-    let cliente =JSON.parse(atob(sessionStorage.getItem("usuario")))
-    console.log(cliente)
+    let cliente = JSON.parse(atob(sessionStorage.getItem("usuario")))
     let url = this.http.post(`http://localhost:8080/ecommerce/acompanhar`, cliente)
     return url.pipe(
       map(adaptar
-))
+      ))
   }
-  
+
 }
