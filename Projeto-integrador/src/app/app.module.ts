@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID} from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
@@ -18,19 +18,19 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
-import {ROUTES} from './app-routing.module';
+import { ROUTES } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProdutosCategoryComponent } from './components/produtos-category/produtos-category.component';
 
 //definindo tipo de moeda 
 import localePt from '@angular/common/locales/pt';
-import {registerLocaleData} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localePt, 'pt');
 
@@ -49,7 +49,7 @@ registerLocaleData(localePt, 'pt');
     MenuComponent,
     SobreComponent,
     CadastroComponent,
-       CheckoutComponent,
+    CheckoutComponent,
     MeusPedidosComponent,
     ProdutosCategoryComponent
 
@@ -63,23 +63,23 @@ registerLocaleData(localePt, 'pt');
     BsDropdownModule,
     CarouselModule,
     WavesModule,
-    ButtonsModule, 
+    ButtonsModule,
     NgbModule,
     HttpClientModule,
     MatDatepickerModule,
     TextMaskModule,
-    
+
     RouterModule.forRoot(ROUTES),
-    
+
     BrowserAnimationsModule
-  
+
 
   ],
-  exports: [BsDropdownModule,  ModalModule], 
-  providers: [  {
+  exports: [BsDropdownModule, ModalModule],
+  providers: [{
     provide: LOCALE_ID,
     useValue: 'pt-BR'
-}],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

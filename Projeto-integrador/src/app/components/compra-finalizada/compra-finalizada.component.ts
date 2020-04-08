@@ -12,7 +12,7 @@ export class CompraFinalizadaComponent implements OnInit {
 pedido = JSON.parse(sessionStorage.getItem('pedido'))
 frete:string
 verificar(){
-if(this.pedido.frete==20){
+if(this.pedido.frete == 20){
   this.frete="Normal"
 }
 else{this.frete="Rapido"}

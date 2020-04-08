@@ -22,7 +22,12 @@ font-size: 9pt;
 
 }
 
-
+.titulo{
+  font-size: 17pt;
+}
+.header-cadastro-formulario{
+  border-radius: 4px;
+}
 
 
 

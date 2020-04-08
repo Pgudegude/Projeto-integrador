@@ -67,8 +67,6 @@ export class Validacoes {
     const email = controle.get('email').value;
     const confirmaEmail = controle.get('confirmaEmail').value;
 
-
-
     if (email === confirmaEmail) {
 
       return null
@@ -87,6 +85,7 @@ export class Validacoes {
     const tempoParaTeste = 1000 * 60 * 60 * 24 * 365 * 18; //18 anos em mili segundos...
     const idadeLimite = 1000 * 60 * 60 * 24 * 365 * 95; //95 anos em mili segundos...
 
+    
     if ((hoje.getTime() - dataNascimento.getTime()) >= tempoParaTeste &&
       (hoje.getTime() - dataNascimento.getTime()) < idadeLimite)
       return null;
@@ -105,4 +104,90 @@ export class Validacoes {
 
     return { invalido: true };
   }
+
+  static ValidaCartao(controle: AbstractControl) {
+    let cartao = controle.value;
+
+    let soma: number = 0;
+    let resto: number;
+    let valido: boolean;
+
+    const regex = new RegExp('[0-9]{16}');
+
+    if (
+      cartao == '0000000000000000' ||
+      cartao == '1111111111111111' ||
+      cartao == '2222222222222222' ||
+      cartao == '3333333333333333' ||
+      cartao == '4444444444444444' ||
+      cartao == '5555555555555555' ||
+      cartao == '6666666666666666' ||
+      cartao == '7777777777777777' ||
+      cartao == '8888888888888888' ||
+      cartao == '9999999999999999' ||
+      !regex.test(cartao)
+    )
+      valido = false;
+    else {
+      for (let i = 1; i <= 9; i++)
+        soma = soma + parseInt(cartao.substring(i - 1, i)) * (16 - i);
+      resto = (soma * 10) % 16;
+
+      if (resto == 10 || resto == 16) resto = 0;
+      if (resto != parseInt(cartao.substring(14, 15))) valido = false;
+
+      soma = 0;
+      for (let i = 1; i <= 10; i++)
+        soma = soma + parseInt(cartao.substring(i - 1, i)) * (17 - i);
+      resto = (soma * 10) % 11;
+
+      if (resto == 10 || resto == 16) resto = 0;
+      if (resto != parseInt(cartao.substring(15, 16))) valido = false;
+      valido = true;
+    }
+
+    if (valido) return null;
+
+    return { cartaoInvalido: true };
+  }
+
+  static numero(controle: AbstractControl) {
+    let numero = controle.value;
+
+    let soma: number = 0;
+    let resto: number;
+    let valido: boolean;
+
+    const regex = new RegExp('[0-4]{3}');
+
+    if (
+      numero == '0000' ||
+      numero == '000' ||
+     
+      !regex.test(numero)
+    )
+      valido = false;
+    else {
+      for (let i = 1; i <= 4; i++)
+        soma = soma + parseInt(numero.substring(i - 1, i)) * (4 - i);
+      resto = (soma * 4) % 4;
+
+      if (resto == 4 || resto == 4) resto = 0;
+      if (resto != parseInt(numero.substring(3, 4))) valido = false;
+
+      soma = 0;
+      for (let i = 1; i <= 4; i++)
+        soma = soma + parseInt(numero.substring(i - 1, i)) * (4 - i);
+      resto = (soma * 4) % 11;
+
+      if (resto == 4 || resto == 4) resto = 0;
+      if (resto != parseInt(numero.substring(4, 5))) valido = false;
+      valido = true;
+    }
+
+    if (valido) return null;
+
+    return { numeroInvalido: true };
+  }
+
 }
