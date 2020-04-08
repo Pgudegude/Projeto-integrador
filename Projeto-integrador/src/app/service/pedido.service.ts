@@ -4,6 +4,9 @@ import { Pedido } from '../components/models/Pedido';
 import { map } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
 import { Carrinho } from '../components/models/carrinho';
+import { Cliente } from '../components/models/cliente';
+import { Endereco } from '../components/models/endereco';
+import { CadastroService } from './cadastro.service';
 import { Detalhe } from '../components/models/detalhe';
 
 
@@ -41,7 +44,7 @@ function adaptar3(data:any[]){
   providedIn: 'root'
 })
 export class PedidoService {
-  constructor(private http: HttpClient, private httpAddress: EnderecoService) { }
+  constructor(private http: HttpClient, private httpAddress: EnderecoService, private httpCadastro: CadastroService) { }
 
   adaptador2 = (pedido: Pedido) => {
     return {
@@ -61,21 +64,26 @@ export class PedidoService {
 
   public envPedido(pedido: Pedido) {
     let comunicacao = this.adaptador2(pedido)
+    console.log(comunicacao)
     let url = this.http.post('http://localhost:8080/ecommerce/request', comunicacao);
-    return url.pipe(map(
-      dados => dados
-    ));
+    return url;
   }
 
-
-  public envItemCart(pedido: Pedido, carrinho: Carrinho[]) {
-    for (let i = 0; i < carrinho.length; i++) {
-      let comunicacao = {
-        "codProduct": carrinho[i].produto,
-        "amount": carrinho[i].quantidade,
-        "valueFreight": pedido.priceFreight,
-        "valueProduct": carrinho[i].produto.valueProduct,
-        "request": pedido
+  public cadastroEndereco(client: Cliente, endereco:Endereco) {
+    let address = this.httpAddress.enderecoBanco(endereco)
+    let comunicacao = {client,address}
+    let url = this.http.post<any>("http://localhost:8080/ecommerce/save-address", comunicacao);
+    return url
+  }
+ 
+  public envItemCart(pedido:Pedido, carrinho : Carrinho []){
+    for(let i=0; i<carrinho.length; i++){
+      let comunicacao= {
+        "codProduct":carrinho[i].produto, 
+        "amount":carrinho[i].quantidade, 
+        "valueFreight":pedido.priceFreight,
+        "valueProduct":carrinho[i].produto.valueProduct,
+        "request":pedido
       }
       let url = this.http.post('http://localhost:8080/ecommerce/create-itemcart', comunicacao)
       url.pipe(
