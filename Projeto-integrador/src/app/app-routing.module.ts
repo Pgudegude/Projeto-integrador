@@ -13,6 +13,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MeusPedidosComponent } from './components/meus-pedidos/meus-pedidos.component';
 import { ProdutosCategoryComponent } from './components/produtos-category/produtos-category.component';
 
+
+
 export const ROUTES: Routes = [
   {
     path: "",
@@ -22,6 +24,10 @@ export const ROUTES: Routes = [
   {
     path: "home",
     component: HomeComponent
+  },
+  {
+    path: "login/meusPedidos/carrinho",
+    component: CarrinhoComponent
   },
   {
     path: "home/contato",
@@ -54,14 +60,14 @@ export const ROUTES: Routes = [
   {
     path: "login/listaProduto",
     component: ListaProdutosComponent
-  },  {
+  }, {
     path: "login/meusPedidos",
     component: MeusPedidosComponent
   },
   {
     path: "home/contato",
     component: ContatoComponent
-  },  {
+  }, {
     path: "meusPedidos/login",
     component: LoginComponent
   },
@@ -74,13 +80,13 @@ export const ROUTES: Routes = [
     component: ContatoComponent
   },
   {
-    path:"listaCategoria/:categoria.id",
+    path: "listaCategoria/:categoria.id",
     component: ProdutosCategoryComponent
   },
   {
     path: "home/listaProduto/contato/sobre",
     component: SobreComponent
-  }, 
+  },
   {
     path: "sobre/contato/listaProduto/home",
     component: SobreComponent
@@ -91,7 +97,7 @@ export const ROUTES: Routes = [
   },
 
   {
-    path: 'carrinho', 
+    path: 'carrinho',
     component: CarrinhoComponent
   }, {
     path: "login",

@@ -6,7 +6,6 @@ import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
 import { StockService } from 'src/app/service/stock.service';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
-import { modalConfigDefaults } from 'ngx-bootstrap/modal/modal-options.class';
 
 
 @Component({
@@ -19,10 +18,10 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
   usuario: any
 
-  constructor(private fb: FormBuilder, private http: LoginService,private emissor:EmissorDeEventosService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
-    
+  constructor(private fb: FormBuilder, private http: LoginService, private emissor: EmissorDeEventosService, private http2: HttpService, private logar: HeaderComponent, private stock: StockService) { }
+
   login: boolean
-  verificarLogin() {
+  verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {
     this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
      this.login = true
@@ -62,9 +61,9 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("usuario", btoa(login_json))
       this.emissor.emitirUsuarioLogado()
       this.verificarLogin()
-      
-    },erro=>alert("usuário ou senha errada"))  
+    }, erro => alert("usuário ou senha errada"))
   }
+
 
   deslogar() {
     sessionStorage.removeItem("usuario")
@@ -72,9 +71,9 @@ export class LoginComponent implements OnInit {
     this.stock.removeCart()
      this.emissor.emitirUsuarioLogado()
   }
-  esqueciSenha:FormGroup
-  
-  gerarForm(){
+  esqueciSenha: FormGroup
+
+  gerarForm() {
     {
       this.esqueciSenha = this.fb.group(
         {
