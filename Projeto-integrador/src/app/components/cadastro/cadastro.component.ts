@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, } from '@angular/forms';
-import { Validacoes } from '../models/Validacoes';
+import { Validacoes } from '../validar/Validacoes';
 import { Endereco } from "../models/Endereco";
 import { CepService } from 'src/app/cep.service';
 import { Cliente } from '../models/cliente';
@@ -103,7 +103,8 @@ export class CadastroComponent implements OnInit {
         ])],
       telefone: ["",
         Validators.compose([
-          Validators.required
+          Validators.required,
+          
         ])],
       cep: ["",
         Validators.compose([
@@ -131,6 +132,7 @@ export class CadastroComponent implements OnInit {
       numero: ["",
         Validators.compose([
           Validators.required,
+          Validacoes.numero
         ])],
       email: ["",
         Validators.compose([

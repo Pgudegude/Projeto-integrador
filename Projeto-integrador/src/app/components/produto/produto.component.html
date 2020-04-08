@@ -7,8 +7,7 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img [src]="product.image" class="card-img" alt={{product.name}}
-                                title={{product.name}}>
+                            <img [src]="product.image" class="card-img" alt={{product.name}} title={{product.name}}>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
@@ -22,20 +21,37 @@
             </div>
             <div class="col-md-3">
                 <hr>
-                <h4>Preço produto:
-                    {{product.valueDiscount | currency:"BRL"}}</h4>
+                <h4>Preço produto: {{product.valueDiscount | currency:"BRL"}}</h4>
                 <hr>
                 <label for="frete">Formas de Envio:</label>
                 <div>
-                    <p> Rápido entrega em até 3 dias úteis valor R$50,00<br><br>
-                    Normal entrega em até 7 dias úteis valor R$20,00</p>
+                    <p> Rápido entrega em até 3 dias úteis valor R$50,00<br><br> Normal entrega em até 7 dias úteis valor R$20,00</p>
                 </div>
                 <hr>
-                <button type="button" ngbTooltip="Produto adicionado com sucesso!" triggers="click:blur"  class="btn btn-success btn-lg btn-block" (click)='saveProduct()'>Incluir no
+                <button type="button" ngbTooltip="Produto adicionado com sucesso!" triggers="click:blur" class="btn btn-success btn-lg btn-block" (click)='saveProduct()'>Incluir no
                     Carrinho</button>
-                
+
             </div>
         </div>
     </div>
 </div>
+
+<div class="p-2">
+    <h6><strong> Separamos as melhores ofertas para você :</strong></h6>
+</div>
+
+<main>
+    <div class="container-fluid">
+        <div id="cardCentro" class="row">
+            <div class="card col-md-2 p-2 mt-5" *ngFor="let produto of produtoFiltrado  | slice: 0:5 ; index as i" (click)="selecionado(produto)">
+                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image" alt={{produto.name}} title={{produto.name}}></a>
+                <div class="card-body">
+                    <h5 id="h5" class="card-title mt-3">{{produto.name}}</h5>
+                    <p id="p">{{produto.valueProduct | currency:"BRL"}} </p>
+                    <h4 id="h4">{{produto.valueDiscount | currency:"BRL"}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 <app-footer class="relative-bottom"></app-footer>

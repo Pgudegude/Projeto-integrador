@@ -1,5 +1,5 @@
 <header>
-  <h1><strong>
+    <h1><strong>
       RECEBEMOS O SEU PEDIDO
       <br>
       AGRADECEMOS PELA CONFIANÇA
@@ -7,32 +7,39 @@
 
 </header>
 <div>
-  <p class="pedido">Seu pedido é <span style="color: blue;">#{{pedido.id}}</span>
-    e agora aguardamos a confirmação do pagamento.
-    <br>
-    Assim que for confirmado iniciaremos sua entrega.
-    <br>
-    Acompanhe seu pedido <a routerLink="meusPedidos" (click)="encerrarPedido()"  >aqui.</a>
-  </p>
+    <p class="pedido">Seu pedido é <span style="color: blue;">#{{pedido.id}}</span> e agora aguardamos a confirmação do pagamento.
+        <br> Assim que for confirmado iniciaremos sua entrega.
+        <br> Acompanhe seu pedido <a routerLink="meusPedidos" (click)="encerrarPedido()">aqui.</a>
+    </p>
 </div>
 
 <div id="informacao">
-  <p class="info"><strong>INFORMAÇÕES DO PEDIDO</strong></p>
+    <p class="info"><strong>INFORMAÇÕES DO PEDIDO</strong></p>
 </div>
 
 <div class="container" id="concluido">
-  <div class="row">
-    <div class="col-md-4">
-      <h5>ENDEREÇO DE ENTREGA:</h5>
-      <p>
-        CEP:{{pedido.address.zipCode}}
-        <br>
-        {{pedido.address.logradouro}}, {{pedido.address.number}}
-        <br>
-        {{pedido.address.neighborhood}}
-        <br>
-        {{pedido.address.city}} - {{pedido.address.state}}
-      </p>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>ENDEREÇO DE ENTREGA:</h5>
+            <p>
+                CEP:{{pedido.address.zipCode}}
+                <br> {{pedido.address.logradouro}}, {{pedido.address.number}}
+                <br> {{pedido.address.neighborhood}}
+                <br> {{pedido.address.city}} - {{pedido.address.state}}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h5>FORMA DE PAGAMENTO:</h5>
+            <p>
+                Cartão de Crédito
+                <br> Valor total do pedido : <br> {{pedido.price.toLocaleString('pt-BR',{style: 'currency', currency:'BRL'}) }}
+                <br>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h5>FORMA DE ENTREGA:</h5>
+            <p>{{frete}}</p>
+        </div>
     </div>
     <div class="col-md-4">
       <h5>FORMA DE PAGAMENTO:</h5>
@@ -50,7 +57,6 @@
   </div>
 </div>
 <div class="d-flex justify-content-center">
-  <a routerLink="home"> <button id="botao" (click)="encerrarPedido()" class="btn btn-success"><span style ="color:white">Continue comprando</span></button></a>
+    <a routerLink="home"> <button id="botao" (click)="encerrarPedido()" class="btn btn-success"><span style ="color:white">Continue comprando</span></button></a>
 
 </div>
-  

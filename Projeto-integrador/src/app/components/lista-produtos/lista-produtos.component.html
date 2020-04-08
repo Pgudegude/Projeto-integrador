@@ -1,3 +1,5 @@
+<app-menu>
+</app-menu>
 
 
 
@@ -17,9 +19,14 @@
     </div>
     <div class="container-fluid">   
         <div id="cardCentro" class="row">
+<<<<<<< HEAD
             <div class="card col-md-2 p-2 mt-5" *ngFor="let produto of product" (click)="selecionado(produto)">
                 <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image"
                         alt={{produto.name}} title={{produto.name}}></a>
+=======
+            <div class="card col-md-2 p-2 mt-5" *ngFor="let produto of product">
+                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image" alt={{produto.name}} title={{produto.name}}></a>
+>>>>>>> fcf05bd85e68c85bc83c7a80d9aed42482755e1c
                 <div class="card-body">
                     <h5 class="card-title mt-3">{{produto.name}}</h5>
                     <p>{{produto.valueProduct | currency:"BRL"}} </p>

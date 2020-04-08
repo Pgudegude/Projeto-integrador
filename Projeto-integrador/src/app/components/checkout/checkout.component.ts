@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/service/http.service';
 import { Endereco } from '../models/Endereco';
-import { Validacoes } from '../models/Validacoes';
+import { Validacoes } from '../validar/Validacoes';
 import { Compra } from '../models/Compra';
 import { Carrinho } from '../models/carrinho';
 import { StockService } from 'src/app/service/stock.service';
