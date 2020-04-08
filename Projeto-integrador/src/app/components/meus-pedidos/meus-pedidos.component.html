@@ -10,6 +10,7 @@
                         <th scope="col">Status Pagamento</th>
                         <th scope="col">Status Pedido</th>
                         <th scope="col">Detalhes</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -19,8 +20,8 @@
                         <th scope="row">{{pedidos.price | currency:"BRL"}}</th>
                         <th scope="row">{{pedidos.payment.status}}</th>
                         <th scope="row">{{pedidos.statusRequest}}</th>
-                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" (click)="details(pedidos.id, pedidos)"
-                                src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
+                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" style="cursor: pointer;" (click)="details(pedidos.id, pedidos)" src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
+                        <th scope="row" id="refazer" (click)="remake(pedidos.id)">refazer pedido</th>
                     </tr>
                 </tbody>
             </table>

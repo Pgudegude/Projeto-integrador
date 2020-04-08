@@ -12,6 +12,7 @@ function adaptar(data: any) {
     data.city, data.complement, data.idAddress
   )
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,10 +42,10 @@ export class LoginService {
     return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
       .pipe(
         retry(2),
-
         catchError(this.handleError)
       )
   }
+
   pegarEndereco(cliente: Cliente) {
     return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`, cliente)
       .pipe(
@@ -52,9 +53,11 @@ export class LoginService {
         )
       )
   }
+
   enviarSenha(email:string){
     return this.http.post(`http://localhost:8080/ecommerce/email-send`,email)
   }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

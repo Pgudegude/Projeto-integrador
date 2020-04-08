@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
-import { Pedido } from '../models/Pedido';                   
+import { Pedido } from '../models/Pedido';
+import { StockService } from 'src/app/service/stock.service';
+import { Router } from '@angular/router';
+import { Carrinho } from '../models/carrinho';
+import { apiProduct } from '../models/apiProduct';
 
 
 @Component({
@@ -9,7 +13,7 @@ import { Pedido } from '../models/Pedido';
   styleUrls: ['./meus-pedidos.component.css']
 })
 export class MeusPedidosComponent implements OnInit {
-  constructor(private http: PedidoService) {
+  constructor(private http: PedidoService, private stock: StockService, private router: Router) {
   }
   login: boolean
   pedido: Pedido[] = []
@@ -17,7 +21,7 @@ export class MeusPedidosComponent implements OnInit {
   vazio = []
   usuario: any
   detalhe: any
-
+  refazer: any
 
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
@@ -54,8 +58,29 @@ export class MeusPedidosComponent implements OnInit {
       this.detalhe = data
       return this.detalhe;
     })
-    
+
     return (this.posicao = this.pedido.indexOf(pedido))
+  }
+
+  remake(item) {
+    this.http.details(item).subscribe(data => {
+      this.refazer = data.map(
+        elem =>
+          new Carrinho(new apiProduct(
+            elem.codProduct.codProduct,
+            elem.codProduct.description,
+            elem.codProduct.name,
+            elem.codProduct.image,
+            elem.codProduct.category,
+            elem.codProduct.valueProduct,
+            elem.codProduct.valueDiscount,
+            elem.codProduct.brand,
+            elem.codProduct.model),
+            elem.amount)
+      )
+      this.stock.saveCart(this.refazer)
+      this.router.navigate(["/carrinho"])
+    })
   }
 
 }

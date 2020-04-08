@@ -20,3 +20,9 @@ main div {
   border: 1px solid #888;
   width: 35%;
 }
+
+#refazer:hover{
+  color: #A7E0D7 ;
+  text-decoration: underline;
+  cursor: pointer;
+}
