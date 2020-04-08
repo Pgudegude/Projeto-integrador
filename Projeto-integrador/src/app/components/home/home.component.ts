@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
     this.produto5.code=52;
 
   }
+  
   selecionaCategoria(categoria: Category) {
     this.router.navigate(['listaCategoria', categoria.id])
   }

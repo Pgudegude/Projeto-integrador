@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Produtos } from '../models/produtos';
 import { Router } from '@angular/router';
 import { apiProduct } from '../models/apiProduct';
 import { ProductService } from 'src/app/service/product.service';
-import { ApiCategory } from '../models/apiCategory';
-import { Carrinho } from '../models/carrinho';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -40,10 +37,6 @@ export class ListaProdutosComponent implements OnInit {
     for(let i = 0; i < this.product.length; i++){
       this.productDisplay.push(this.product[i])
     }
-  }
-  
-  selecionado(produto) {
-    this.router.navigate(['listaProduto', produto.code])
   }
   
 }
