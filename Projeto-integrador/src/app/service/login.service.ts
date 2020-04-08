@@ -37,18 +37,6 @@ export class LoginService {
   fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
 
-<<<<<<< HEAD
-   // let url = this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
-   return this.http.post(`/api/ecommerce/login`, comunicacao)
-    .pipe(
-      retry(2),
-      
-      catchError(this.handleError)
-    )
-    }
-    pegarEndereco(cliente:Cliente){
-      return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`,cliente)
-=======
     // let url = this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
     return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
       .pipe(
@@ -59,7 +47,6 @@ export class LoginService {
   }
   pegarEndereco(cliente: Cliente) {
     return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`, cliente)
->>>>>>> 390922ddac6a0758ce8627d2941d92efc6104dc9
       .pipe(
         map(adaptar
         )

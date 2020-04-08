@@ -1,5 +1,5 @@
-
-<app-menu></app-menu>
+<app-menu>
+</app-menu>
 
 
 
@@ -7,8 +7,7 @@
     <div class="container-fluid">
         <div id="cardCentro" class="row">
             <div class="card col-md-2 p-2 mt-5" *ngFor="let produto of product" (click)="selecionado(produto)">
-                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image" alt={{produto.name}}
-                        title={{produto.name}}></a>
+                <a [routerLink]="['/produto', produto.codProduct]"><img class="card-img-top" [src]="produto.image" alt={{produto.name}} title={{produto.name}}></a>
                 <div class="card-body">
                     <h5 class="card-title mt-3">{{produto.name}}</h5>
                     <p>{{produto.valueProduct | currency:"BRL"}} </p>
