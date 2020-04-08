@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
     this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    console.log(this.usuario)
-    this.login = true
+     this.login = true
     }
     else {
       this.login = false
@@ -71,8 +70,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.removeItem("usuario")
     this.verificarLogin()
     this.stock.removeCart()
-    console.log("desloguei")
-    this.emissor.emitirUsuarioLogado()
+     this.emissor.emitirUsuarioLogado()
   }
   esqueciSenha:FormGroup
   
@@ -96,7 +94,6 @@ export class LoginComponent implements OnInit {
      this.http.enviarSenha(umMail).subscribe(data=>data)
      console.log(umMail)
    alert("Enviamos um email com sua senha, verifique sua caixa de entrada")
-  
   }
 }
 

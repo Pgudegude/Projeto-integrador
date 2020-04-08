@@ -36,10 +36,17 @@ export class CheckoutComponent implements OnInit {
   totalComFrete: any;
   login: boolean;
   user: any
+  escolha:any
+  
 
-
-  constructor(private http: HttpService, private router: Router, private http3: LoginService, private fb: FormBuilder, private stock: StockService, private http2: PedidoService) {
-    this.formularioCheckout = this.enviarDaDosCompra(new Compra)
+  constructor(private http: HttpService,
+    private router: Router,
+    private http3: LoginService,
+    private fb: FormBuilder,
+    private stock: StockService,
+    private http2: PedidoService,
+  ) {
+    // this.formularioCheckout = this.enviarDaDosCompra(new Compra)
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
 
@@ -69,37 +76,41 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  enviarDaDosCompra(comprador: Compra) {
-    return new FormGroup({
-      nomeCompleto: new FormControl(comprador.nomeCompleto),
-      dataDeNascimento: new FormControl(comprador.dataDeNascimento),
-      telefone: new FormControl(comprador.telefone),
-      cep: new FormControl(comprador.cep),
-      endereco: new FormControl(comprador.endereco),
-      cidade: new FormControl(comprador.cidade),
-      bairro: new FormControl(comprador.bairro),
-      complemento: new FormControl(comprador.complemento),
-      estado: new FormControl(comprador.estado),
-      nomeTitular: new FormControl(comprador.nomeTitular),
-      cpf: new FormControl(comprador.cpfTitular),
-      dataValidade: new FormControl(comprador.dataValidade),
-      cvv: new FormControl(comprador.CVV),
-      numeroCartao: new FormControl(comprador.numeroCartao)
-    })
-  }
+  // enviarDaDosCompra(comprador: Compra) {
+  //   return new FormGroup({
+  //     nomeCompleto: new FormControl(comprador.nomeCompleto),
+  //     dataDeNascimento: new FormControl(comprador.dataDeNascimento),
+  //     telefone: new FormControl(comprador.telefone),
+  //     cep: new FormControl(comprador.cep),
+  //     endereco: new FormControl(comprador.endereco),
+  //     cidade: new FormControl(comprador.cidade),
+  //     bairro: new FormControl(comprador.bairro),
+  //     complemento: new FormControl(comprador.complemento),
+  //     estado: new FormControl(comprador.estado),
+  //     nomeTitular: new FormControl(comprador.nomeTitular),
+  //     cpf: new FormControl(comprador.cpfTitular),
+  //     dataValidade: new FormControl(comprador.dataValidade),
+  //     cvv: new FormControl(comprador.CVV),
+  //     numeroCartao: new FormControl(comprador.numeroCartao)
+  //   })
+  // }
   data: Date = new Date()
 
   enviarDadosCompra() {
     let pagamento: Pagamento = new Pagamento("aguardando aprovação")
-    let endereco: Endereco = new Endereco(
-      this.formularioCheckout.value.cep,
-      this.formularioCheckout.value.endereco,
-      this.formularioCheckout.value.bairro,
-      this.formularioCheckout.value.numero,
-      this.formularioCheckout.value.estado,
-      this.formularioCheckout.value.cidade,
-      this.formularioCheckout.value.complemento
-    )
+    let endereco: Endereco = JSON.parse(sessionStorage.getItem("endereco"))
+    
+    // new Endereco(
+
+    //   // this.formularioCheckout.value.cep,
+    //   // this.formularioCheckout.value.endereco,
+    //   // this.formularioCheckout.value.bairro,
+    //   // this.formularioCheckout.value.numero,
+    //   // this.formularioCheckout.value.estado,
+    //   // this.formularioCheckout.value.cidade,
+    //   // this.formularioCheckout.value.complemento,
+
+    // )
     let pedido: Pedido = new Pedido(
       this.totalComDesconto,
       this.frete,
@@ -123,6 +134,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   salvarItensBanco() {
+      
     let request = JSON.parse(sessionStorage.getItem('pedido'))
     console.log(request)
     console.log(this.carrinho)
@@ -193,28 +205,102 @@ export class CheckoutComponent implements OnInit {
           Validacoes.ValidaCpf
         ])],
     })
+    this.cadastrarEndereco()
   }
-
-
+  capturarCEP2() {
+    this.http.getCep(this.formularioEndereco.value).subscribe((data) => {
+      this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
+      this.formularioEndereco.controls['endereco'].patchValue(this.endereco.endereco);
+      this.formularioEndereco.controls['bairro'].patchValue(this.endereco.bairro);
+      this.formularioEndereco.controls['estado'].patchValue(this.endereco.estado);
+      this.formularioEndereco.controls['cidade'].patchValue(this.endereco.cidade);
+    })
+  }
+  formularioEndereco: FormGroup
+  cadastrarEndereco() {
+    this.formularioEndereco = this.fb.group({
+      nomeCompleto: [
+        '',
+        Validators.compose([
+          Validators.required, // coloquei como obrigatorio
+          Validators.maxLength(100)  // limitei o maximo de caractere 
+        ])],
+      telefone: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      cep: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      endereco: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      cidade: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      bairro: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      complemento: [""],
+      estado: ["",
+        Validators.compose([
+          Validators.required
+        ])],
+      numero: ["",
+        Validators.compose([
+          Validators.required,
+        ])],
+    })
+  }
+  enviarEndereco() {
+    let end = new Endereco(this.formularioEndereco.value.cep,
+       this.formularioEndereco.value.endereco,
+       this.formularioEndereco.value.bairro,
+       this.formularioEndereco.value.numero,
+       this.formularioEndereco.value.estado,
+       this.formularioEndereco.value.cidade,
+       this.formularioEndereco.value.complemento, 
+        )
+    this.http2.cadastroEndereco(this.usuario,end).subscribe(data=>{
+      end = new Endereco(data.zipCode,data.logradouro, data.neighborhood, data.number, data.state, data.city, data.complemnt, data.idAddress)
+      sessionStorage.setItem("endereco",JSON.stringify(end))
+      console.log(end)
+      console.log(JSON.parse(sessionStorage.getItem('endereco')))
+    }
+      )
+    this.formularioCheckout.controls['nomeCompleto'].patchValue(this.formularioEndereco.value.nomeCompleto)
+    this.formularioCheckout.controls['telefone'].patchValue(this.formularioEndereco.value.telefone)
+    this.formularioCheckout.controls['cep'].patchValue(this.formularioEndereco.value.cep)
+    this.formularioCheckout.controls['endereco'].patchValue(this.formularioEndereco.value.endereco)
+    this.formularioCheckout.controls['cep'].patchValue(this.formularioEndereco.value.cep)
+    this.formularioCheckout.controls['numero'].patchValue(this.formularioEndereco.value.numero)
+    this.formularioCheckout.controls['complemento'].patchValue(this.formularioEndereco.value.complemento)
+    this.formularioCheckout.controls['bairro'].patchValue(this.formularioEndereco.value.bairro)
+    this.formularioCheckout.controls['cidade'].patchValue(this.formularioEndereco.value.cidade)
+    this.formularioCheckout.controls['estado'].patchValue(this.formularioEndereco.value.estado)
+    this.user= true
+    this.escolha = true 
+  }
   freteR = () => {
     this.frete = (50)
     this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 50)
     return this.frete
   }
-
   freteN = () => {
     this.frete = (20)
     this.frete = this.frete
     this.totalComDesconto = (this.total - (this.total * 0.7) + 20)
     return this.frete
   }
-
   calcularTotal = () => {
     this.total = 0
     this.carrinho.forEach(item => {
       this.total += item.produto.valueProduct * item.quantidade;
-
       if (this.total != 0) {
         this.desconto = (this.total * 0.7)
       }
@@ -222,15 +308,12 @@ export class CheckoutComponent implements OnInit {
     this.totalComDesconto = (this.total - (this.total * 0.7))
     return this.totalComDesconto
   }
-
   mostrandoQuantidade() {
     this.qtd = 0;
     this.carrinho.forEach(item => {
       this.qtd += item.quantidade;
     })
   }
-
-
   searchProduct() {
     let product = JSON.parse(sessionStorage.getItem("cartProduct"))
     for (let i = 0; i < product.length; i++) {
@@ -251,23 +334,40 @@ export class CheckoutComponent implements OnInit {
       this.login = false
     }
   }
+  resp: Endereco[]
 
-  resp: Endereco
+  
   userExist() {
-
     this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
     this.http3.pegarEndereco(this.user).subscribe(data => {
-    this.resp = data
+      console.log(data)
+      this.resp = data
+      // this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
+      // this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
+      // this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
+      // this.formularioCheckout.controls['endereco'].patchValue(this.resp.endereco)
+      // this.formularioCheckout.controls['cep'].patchValue(this.resp.cep)
+      // this.formularioCheckout.controls['numero'].patchValue(this.resp.numero)
+      // this.formularioCheckout.controls['complemento'].patchValue(this.resp.complemento)
+      // this.formularioCheckout.controls['bairro'].patchValue(this.resp.bairro)
+      // this.formularioCheckout.controls['cidade'].patchValue(this.resp.cidade)
+      // this.formularioCheckout.controls['estado'].patchValue(this.resp.estado)
+    })
+  }
+  preencherEndereco(endereco:Endereco){
       this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
       this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
       this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
-      this.formularioCheckout.controls['endereco'].patchValue(this.resp.endereco)
-      this.formularioCheckout.controls['cep'].patchValue(this.resp.cep)
-      this.formularioCheckout.controls['numero'].patchValue(this.resp.numero)
-      this.formularioCheckout.controls['complemento'].patchValue(this.resp.complemento)
-      this.formularioCheckout.controls['bairro'].patchValue(this.resp.bairro)
-      this.formularioCheckout.controls['cidade'].patchValue(this.resp.cidade)
-      this.formularioCheckout.controls['estado'].patchValue(this.resp.estado)
-    })
+      this.formularioCheckout.controls['endereco'].patchValue(endereco.endereco)
+      this.formularioCheckout.controls['cep'].patchValue(endereco.cep)
+      this.formularioCheckout.controls['numero'].patchValue(endereco.numero)
+      this.formularioCheckout.controls['complemento'].patchValue(endereco.complemento)
+      this.formularioCheckout.controls['bairro'].patchValue(endereco.bairro)
+      this.formularioCheckout.controls['cidade'].patchValue(endereco.cidade)
+      this.formularioCheckout.controls['estado'].patchValue(endereco.estado)
+      this.escolha = true
+     let end = endereco
+      endereco = new Endereco(end._cep, end._endereco, end._bairro, end._numero, end._estado, end._cidade, end._complemento, end._id)
+      sessionStorage.setItem("endereco", JSON.stringify(endereco))
   }
 }

@@ -1,11 +1,11 @@
-<app-menu></app-menu>
 
 
 
 <main>
+    
     <div class="container-fluid text-right">
         <form [formGroup]="formularioDeOrdem" class="row">
-            <div class="col-md-9"></div>
+            <div class="col-md-9 mt-4 text-center"></div>
             <select (change)="alterar()" class="form-control form-control-sm ml-4 mt-4 col-md-2" formControlName="ordenacao">
                 <option value=""selected disabled>Ordenar por</option>
                 <option value="1" >Maior Preço</option>

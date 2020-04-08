@@ -6,11 +6,19 @@ import { retry, catchError, map } from 'rxjs/operators';
 import { Cliente } from '../components/models/cliente';
 import { Endereco } from '../components/models/Endereco';
 
-function adaptar(data: any) {
+function adaptar(data: any[]) {
   console.log(data)
-  return new Endereco(data.zipCode, data.logradouro, data.neighborhood, data.number, data.state,
-    data.city, data.complement, data.idAddress
-  )
+  return data.map(
+    elem=>
+    new Endereco(elem.zipCode,
+     elem.logradouro, 
+     elem.neighborhood,
+      elem.number,
+       elem.state,
+    elem.city, 
+    elem.complement,
+     elem.idAddress
+  ))
 }
 @Injectable({
   providedIn: 'root'
