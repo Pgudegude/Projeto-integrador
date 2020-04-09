@@ -8,6 +8,7 @@ import { Cliente } from '../components/models/cliente';
 import { Endereco } from '../components/models/endereco';
 import { CadastroService } from './cadastro.service';
 import { Detalhe } from '../components/models/detalhe';
+import { StatusRequest } from '../components/models/StatusRequest';
 
 
 
@@ -15,14 +16,15 @@ function adaptar(data: any[]) {
   return data.map(
     elem => new Pedido(elem.price,
       elem.priceFreight,
-      elem.statusRequest,
       elem.date,
       elem.client,
       elem.payment,
       elem.name,
       elem.phone,
       elem.address,
+      elem.statusRequest,
       elem.id
+      
     )
   )
 }
@@ -46,23 +48,26 @@ function adaptar3(data:any[]){
 export class PedidoService {
   constructor(private http: HttpClient, private httpAddress: EnderecoService, private httpCadastro: CadastroService) { }
 
-  adaptador2 = (pedido: Pedido) => {
+  adaptador2 = (pedido: StatusRequest) => {
     return {
-      "price": pedido.price,
-      "priceFreight": pedido.priceFreight,
-      "statusRequest": pedido.statusRequest,
-      "date": pedido.date,
-      "client": pedido.client,
-      "payment": pedido.payment,
-      "name": pedido.name,
-      "phone": pedido.phone,
-      "address": this.httpAddress.enderecoBanco(pedido.address)
+      "date":pedido.date,
+      "statusRequest":pedido.statusRequest,
+      "request":{
+      "price": pedido.request.price,
+      "priceFreight": pedido.request.priceFreight,
+      "statusRequest": pedido.request.statusRequest,
+      "date": pedido.request.date,
+      "client": pedido.request.client,
+      "payment": pedido.request.payment,
+      "name": pedido.request.name,
+      "phone": pedido.request.phone,
+      "address": this.httpAddress.enderecoBanco(pedido.request.address)}
     }
 
   }
 
 
-  public envPedido(pedido: Pedido) {
+  public envPedido(pedido: StatusRequest) {
     let comunicacao = this.adaptador2(pedido)
     console.log(comunicacao)
     let url = this.http.post('http://localhost:8080/ecommerce/request', comunicacao);
@@ -107,6 +112,7 @@ details(code: number){
   acompanhar() {
     let cliente = JSON.parse(atob(sessionStorage.getItem("usuario")))
     let url = this.http.post(`http://localhost:8080/ecommerce/acompanhar`, cliente)
+    
     return url.pipe(
       map(adaptar
       ))

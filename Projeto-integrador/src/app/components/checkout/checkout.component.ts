@@ -12,6 +12,7 @@ import { Pagamento } from '../models/Pagamento';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
+import { StatusRequest } from '../models/StatusRequest';
 
 
 @Component({
@@ -111,16 +112,17 @@ export class CheckoutComponent implements OnInit {
     //   // this.formularioCheckout.value.complemento,
 
     // )
-    let pedido: Pedido = new Pedido(
+
+    let pedido: StatusRequest = new StatusRequest(
+      null, this.data,"Aguardando Pagamento",new Pedido(
       this.totalComDesconto,
       this.frete,
-      "Aguardando Pagamento",
       this.data,
       this.usuario,
       pagamento,
       this.formularioCheckout.value.nomeCompleto,
       this.formularioCheckout.value.telefone,
-      endereco
+      endereco)
     )
     this.http2.envPedido(pedido).subscribe(
       elem => {
