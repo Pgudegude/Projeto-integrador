@@ -5,6 +5,7 @@ import { StockService } from 'src/app/service/stock.service';
 import { Router } from '@angular/router';
 import { Carrinho } from '../models/carrinho';
 import { apiProduct } from '../models/apiProduct';
+import { StatusPedido } from '../models/StatusPedido';
 
 
 @Component({
@@ -16,12 +17,14 @@ export class MeusPedidosComponent implements OnInit {
   constructor(private http: PedidoService, private stock: StockService, private router: Router) {
   }
   login: boolean
-  pedido: Pedido[] = []
+  ped: StatusPedido[] = []
   carregar: boolean
   vazio = []
   usuario: any
   detalhe: any
   refazer: any
+  
+  pedido:Pedido[] =[]
 
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
@@ -35,15 +38,18 @@ export class MeusPedidosComponent implements OnInit {
 
   mostrarPedidos() {
     this.http.acompanhar().subscribe(data => {
-      data.forEach(d =>
+      data.forEach(d =>{
+        this.ped.push(new StatusPedido(d,d.statusRequest.length-1))
         this.pedido.push(d)
+      }
       )
+      console.log(this.ped)
     })
-    if (this.pedido) {
+    if (this.ped) {
       this.carregar = true;
     }
     else { this.carregar = false }
-    return this.pedido
+    return this.ped
   }
 
   ngOnInit(): void {
@@ -59,7 +65,7 @@ export class MeusPedidosComponent implements OnInit {
       return this.detalhe;
     })
 
-    return (this.posicao = this.pedido.indexOf(pedido))
+    return (this.posicao = this.pedido.indexOf(pedido)), console.log(this.posicao)
   }
 
   remake(item) {

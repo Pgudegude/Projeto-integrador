@@ -14,14 +14,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let pedidos of pedido; index as i">
-                        <th scope="row">{{pedidos.date | date:"dd/MM/yyyy"}}</th>
-                        <th scope="row">{{pedidos.id}}</th>
-                        <th scope="row">{{pedidos.price | currency:"BRL"}}</th>
-                        <th scope="row">{{pedidos.payment.status}}</th>
-                        <th scope="row">{{pedidos.statusRequest[0].statusRequest}}</th>
-                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" style="cursor: pointer;" (click)="details(pedidos.id, pedidos)" src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
-                        <th scope="row" id="refazer" (click)="remake(pedidos.id)">refazer pedido</th>
+                    <tr *ngFor="let pedidos of ped; index as i">
+                        <th scope="row">{{pedidos.pedido.date | date:"dd/MM/yyyy"}}</th>
+                        <th scope="row">{{pedidos?.pedido.id}}</th>
+                        <th scope="row">{{pedidos?.pedido.price | currency:"BRL"}}</th>
+                        <th scope="row">{{pedidos?.pedido.payment.status}}</th>
+                        <th scope="row">{{pedidos?.pedido.statusRequest[pedidos.quantidade].statusRequest}}</th>
+                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" style="cursor: pointer;" (click)="details(pedidos.pedido.id, pedidos.pedido)" src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
+                        <th scope="row" id="refazer" (click)="remake(pedidos.pedido.id)">refazer pedido</th>
                     </tr>
                 </tbody>
             </table>
@@ -48,7 +48,13 @@
             <h1 class="modal-title">Meu pedido</h1>
         </div>
         <div class="container" >
-            <h5><strong>Endereço de entrega:.</strong> <br> {{pedido[posicao]?.address.logradouro}}, {{pedido[posicao]?.address.number}}, {{pedido[posicao]?.address.neighborhood}}, {{pedido[posicao]?.address.city}}-{{pedido[posicao]?.address.state}} {{pedido[posicao]?.address.zipCode}}</h5>
+            <h5><strong>Endereço de entrega:.</strong> <br>
+                 {{ped[posicao]?.pedido.address.logradouro}},
+                  {{ped[posicao]?.pedido.address.number}},
+                   {{ped[posicao]?.pedido.address.neighborhood}},
+                    {{ped[posicao]?.pedido.address.city}}-
+                    {{ped[posicao]?.pedido.address.state}} 
+                    {{ped[posicao]?.pedido.address.zipCode}}</h5>
             <div class="row m-2" *ngFor="let item of detalhe">
                 <div class="col-md-3">
                     <h5><strong>Produto:.</strong><img [src]="item.codProduct.image" alt="{{item.codProduct.name}}" title="{{item.codProduct.name}}"
