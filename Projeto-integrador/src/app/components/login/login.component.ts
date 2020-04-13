@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: LoginService, private emissor: EmissorDeEventosService, private http2: HttpService, private logar: HeaderComponent, private stock: StockService) { }
 
   login: boolean
-  verificarLogin(){
+  verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
     this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
      this.login = true
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.removeItem("usuario")
     this.verificarLogin()
     this.stock.removeCart()
-     this.emissor.emitirUsuarioLogado()
+    this.emissor.emitirUsuarioLogado()
   }
   esqueciSenha: FormGroup
 

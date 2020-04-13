@@ -1,13 +1,14 @@
 <header>
     <h1><strong>
-      RECEBEMOS O SEU PEDIDO
-      <br>
-      AGRADECEMOS PELA CONFIANÇA
-    </strong></h1>
+            RECEBEMOS O SEU PEDIDO
+            <br>
+            AGRADECEMOS PELA CONFIANÇA
+        </strong></h1>
 
 </header>
 <div>
-    <p class="pedido">Seu pedido é <span style="color: blue;">#{{pedido.id}}</span> e agora aguardamos a confirmação do pagamento.
+    <p class="pedido">Seu pedido é <span style="color: blue;">#{{pedido.id}}</span> e agora aguardamos a confirmação do
+        pagamento.
         <br> Assim que for confirmado iniciaremos sua entrega.
         <br> Acompanhe seu pedido <a href="meusPedidos" routerLink="meusPedidos" (click)="encerrarPedido()">aqui.</a>
     </p>
@@ -32,7 +33,8 @@
             <h5>FORMA DE PAGAMENTO:</h5>
             <p>
                 Cartão de Crédito
-                <br> Valor total do pedido : <br> {{pedido.price.toLocaleString('pt-BR',{style: 'currency', currency:'BRL'}) }}
+                <br> Valor total do pedido : <br>
+                {{pedido.price.toLocaleString('pt-BR',{style: 'currency', currency:'BRL'}) }}
                 <br>
             </p>
         </div>
@@ -41,8 +43,22 @@
             <p>{{frete}}</p>
         </div>
     </div>
+    <div class="col-md-4">
+        <h5>FORMA DE PAGAMENTO:</h5>
+        <p>
+            Cartão de Crédito
+            <br>
+            Valor total do pedido : <br> R$ {{pedido.price.toLocaleString()}}
+            <br>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h5>FORMA DE ENTREGA:</h5>
+        <p>{{frete}}</p>
+    </div>
 </div>
 <div class="d-flex justify-content-center">
-    <a href="home" routerLink="home"> <button id="botao" (click)="encerrarPedido()" class="btn btn-success"><span style ="color:white">Continue comprando</span></button></a>
+    <a href="home" routerLink="home"> <button id="botao" (click)="encerrarPedido()" class="btn btn-success"><span
+                style="color:white">Continue comprando</span></button></a>
 
 </div>
