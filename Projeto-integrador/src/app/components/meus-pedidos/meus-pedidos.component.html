@@ -19,8 +19,7 @@
                         <th scope="row">{{pedidos.price | currency:"BRL"}}</th>
                         <th scope="row">{{pedidos.payment.status}}</th>
                         <th scope="row">{{pedidos.statusRequest}}</th>
-                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" (click)="details(pedidos.id, pedidos)"
-                                src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
+                        <th scope="row"><img data-toggle="modal" data-target="#detalhe" (click)="details(pedidos.id, pedidos)" src="../../../assets/Imagem/search.png" alt="detalhes" title="detalhes"></th>
                     </tr>
                 </tbody>
             </table>
@@ -46,12 +45,11 @@
         <div class="modal-header">
             <h1 class="modal-title">Meu pedido</h1>
         </div>
-        <div class="container" >
+        <div class="container">
             <h5><strong>Endereço de entrega:.</strong> <br> {{pedido[posicao]?.address.logradouro}}, {{pedido[posicao]?.address.number}}, {{pedido[posicao]?.address.neighborhood}}, {{pedido[posicao]?.address.city}}-{{pedido[posicao]?.address.state}} {{pedido[posicao]?.address.zipCode}}</h5>
             <div class="row m-2" *ngFor="let item of detalhe">
                 <div class="col-md-3">
-                    <h5><strong>Produto:.</strong><img [src]="item.codProduct.image" alt="{{item.codProduct.name}}" title="{{item.codProduct.name}}"
-                        class="card-img" width="50" height="50"></h5>
+                    <h5><strong>Produto:.</strong><img [src]="item.codProduct.image" alt="{{item.codProduct.name}}" title="{{item.codProduct.name}}" class="card-img" width="50" height="50"></h5>
                 </div>
                 <div class="col-md-3">
                     <h5><strong>Frete:.</strong> <br> {{item.request.priceFreight | currency:"BRL"}}</h5>
