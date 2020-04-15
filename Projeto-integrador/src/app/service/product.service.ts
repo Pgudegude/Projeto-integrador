@@ -30,7 +30,9 @@ export class ProductService {
   public getProductsOrderByValue() {
     return this.http.get(`http://localhost:8080/ecommerce/product-orderPrice`)
   }
-  
+  public getProductsMaisVendidos(){
+    return this.http.get(`http://localhost:8080/ecommerce/produtosMaisPedidos`)
+  }
   public getProductsOrderByValueDesc() {
     return this.http.get(`http://localhost:8080/ecommerce/product-orderPriceDesc`)
   }

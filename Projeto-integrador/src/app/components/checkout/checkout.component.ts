@@ -47,7 +47,7 @@ export class CheckoutComponent implements OnInit {
     private stock: StockService,
     private http2: PedidoService,
   ) {
-    // this.formularioCheckout = this.enviarDaDosCompra(new Compra)
+
     this.searchProduct()
     this.carrinho = this.stock.recoverCart()
 
@@ -76,43 +76,11 @@ export class CheckoutComponent implements OnInit {
     this.verificarLogin();
   }
 
-
-  // enviarDaDosCompra(comprador: Compra) {
-  //   return new FormGroup({
-  //     nomeCompleto: new FormControl(comprador.nomeCompleto),
-  //     dataDeNascimento: new FormControl(comprador.dataDeNascimento),
-  //     telefone: new FormControl(comprador.telefone),
-  //     cep: new FormControl(comprador.cep),
-  //     endereco: new FormControl(comprador.endereco),
-  //     cidade: new FormControl(comprador.cidade),
-  //     bairro: new FormControl(comprador.bairro),
-  //     complemento: new FormControl(comprador.complemento),
-  //     estado: new FormControl(comprador.estado),
-  //     nomeTitular: new FormControl(comprador.nomeTitular),
-  //     cpf: new FormControl(comprador.cpfTitular),
-  //     dataValidade: new FormControl(comprador.dataValidade),
-  //     cvv: new FormControl(comprador.CVV),
-  //     numeroCartao: new FormControl(comprador.numeroCartao)
-  //   })
-  // }
   data: Date = new Date()
 
   enviarDadosCompra() {
     let pagamento: Pagamento = new Pagamento("aguardando aprovação")
-    let endereco: Endereco = JSON.parse(sessionStorage.getItem("endereco"))
-    
-    // new Endereco(
-
-    //   // this.formularioCheckout.value.cep,
-    //   // this.formularioCheckout.value.endereco,
-    //   // this.formularioCheckout.value.bairro,
-    //   // this.formularioCheckout.value.numero,
-    //   // this.formularioCheckout.value.estado,
-    //   // this.formularioCheckout.value.cidade,
-    //   // this.formularioCheckout.value.complemento,
-
-    // )
-
+    let endereco: Endereco = JSON.parse(sessionStorage.getItem("endereco"))    
     let pedido: StatusRequest = new StatusRequest(
       null, this.data,"Aguardando Pagamento",new Pedido(
       this.totalComDesconto,
@@ -270,9 +238,7 @@ export class CheckoutComponent implements OnInit {
     this.http2.cadastroEndereco(this.usuario,end).subscribe(data=>{
       end = new Endereco(data.zipCode,data.logradouro, data.neighborhood, data.number, data.state, data.city, data.complemnt, data.idAddress)
       sessionStorage.setItem("endereco",JSON.stringify(end))
-      console.log(end)
-      console.log(JSON.parse(sessionStorage.getItem('endereco')))
-    }
+     }
       )
     this.formularioCheckout.controls['nomeCompleto'].patchValue(this.formularioEndereco.value.nomeCompleto)
     this.formularioCheckout.controls['telefone'].patchValue(this.formularioEndereco.value.telefone)
@@ -336,25 +302,13 @@ export class CheckoutComponent implements OnInit {
       this.login = false
     }
   }
-  resp: Endereco[]
-
-  
+  resp: Endereco[] 
   userExist() {
     this.user = JSON.parse(atob(sessionStorage.getItem("usuario")))
     this.http3.pegarEndereco(this.user).subscribe(data => {
       console.log(data)
       this.resp = data
-      // this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)
-      // this.formularioCheckout.controls['telefone'].patchValue(this.user.phone)
-      // this.formularioCheckout.controls['cep'].patchValue(this.user.cep)
-      // this.formularioCheckout.controls['endereco'].patchValue(this.resp.endereco)
-      // this.formularioCheckout.controls['cep'].patchValue(this.resp.cep)
-      // this.formularioCheckout.controls['numero'].patchValue(this.resp.numero)
-      // this.formularioCheckout.controls['complemento'].patchValue(this.resp.complemento)
-      // this.formularioCheckout.controls['bairro'].patchValue(this.resp.bairro)
-      // this.formularioCheckout.controls['cidade'].patchValue(this.resp.cidade)
-      // this.formularioCheckout.controls['estado'].patchValue(this.resp.estado)
-    })
+        })
   }
   preencherEndereco(endereco:Endereco){
       this.formularioCheckout.controls['nomeCompleto'].patchValue(this.user.name)

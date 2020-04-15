@@ -43,19 +43,7 @@
             <p>{{frete}}</p>
         </div>
     </div>
-    <div class="col-md-4">
-        <h5>FORMA DE PAGAMENTO:</h5>
-        <p>
-            Cartão de Crédito
-            <br>
-            Valor total do pedido : <br> R$ {{pedido.price.toLocaleString()}}
-            <br>
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h5>FORMA DE ENTREGA:</h5>
-        <p>{{frete}}</p>
-    </div>
+   
 </div>
 <div class="d-flex justify-content-center">
     <a href="home" routerLink="home"> <button id="botao" (click)="encerrarPedido()" class="btn btn-success"><span

@@ -77,6 +77,20 @@ alterar(){
         console.error("ERROR", error)
       })
     }
+    else if(this.formularioDeOrdem.value.ordenacao==5){
+      let intermedioProduct:any[]=[]
+      this.productService.getProductsMaisVendidos().subscribe(
+        (data:any[]) => {
+          data.forEach(data=>{
+            intermedioProduct.push(data[1])
+          })
+          this.product=intermedioProduct;
+          this.productDisplay = this.product
+        }, (error: any) => {
+          console.error("ERROR", error)
+        })
+      
+    }
 }
   ngOnInit(){
     for(let i = 0; i < this.product.length; i++){

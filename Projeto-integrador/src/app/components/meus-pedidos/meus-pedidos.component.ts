@@ -88,7 +88,6 @@ export class MeusPedidosComponent implements OnInit {
       this.router.navigate(["/carrinho"])
     })
   }
-
 }
 
 

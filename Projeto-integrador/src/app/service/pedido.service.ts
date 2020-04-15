@@ -117,5 +117,6 @@ details(code: number){
       map(adaptar
       ))
   }
+  
 
 }
