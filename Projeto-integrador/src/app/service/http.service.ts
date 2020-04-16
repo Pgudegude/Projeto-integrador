@@ -34,7 +34,7 @@ export class HttpService {
 
   getCep(endereco: Endereco): Observable<viacep> {
 
-    return this.http.get<viacep>(urlAPI + endereco.cep + "/json/").pipe(retry(2));
+    return this.http.get<viacep>(urlAPI + endereco._cep + "/json/").pipe(retry(2));
 
   }
 

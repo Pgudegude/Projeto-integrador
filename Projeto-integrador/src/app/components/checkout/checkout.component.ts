@@ -179,7 +179,9 @@ export class CheckoutComponent implements OnInit {
   }
   capturarCEP2() {
     this.http.getCep(this.formularioEndereco.value).subscribe((data) => {
+      console.log(data)
       this.endereco.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
+      this.formularioEndereco.controls['cep'].patchValue(this.endereco.cep);
       this.formularioEndereco.controls['endereco'].patchValue(this.endereco.endereco);
       this.formularioEndereco.controls['bairro'].patchValue(this.endereco.bairro);
       this.formularioEndereco.controls['estado'].patchValue(this.endereco.estado);
