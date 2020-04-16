@@ -21,11 +21,22 @@ header {
   background-color: #fefefe;
   margin: 5% auto 15% auto;
   border: 1px solid #888;
-  width: 35%;
+  width: 50%; 
 }
 
 #visualizar:hover {
   cursor: pointer;
   text-decoration: underline;
   color: rgb(114, 240, 221);
+}
+.formModal{
+  margin-left: 15px;
+}
+p{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.mybtn{
+  width: 100%;
 }

@@ -6,12 +6,21 @@ import { retry, catchError, map } from 'rxjs/operators';
 import { Cliente } from '../components/models/cliente';
 import { Endereco } from '../components/models/Endereco';
 
-function adaptar(data: any) {
+function adaptar(data: any[]) {
   console.log(data)
-  return new Endereco(data.zipCode, data.logradouro, data.neighborhood, data.number, data.state,
-    data.city, data.complement, data.idAddress
-  )
+  return data.map(
+    elem=>
+    new Endereco(elem.zipCode,
+     elem.logradouro, 
+     elem.neighborhood,
+      elem.number,
+       elem.state,
+    elem.city, 
+    elem.complement,
+     elem.idAddress
+  ))
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,10 +50,10 @@ export class LoginService {
     return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
       .pipe(
         retry(2),
-
         catchError(this.handleError)
       )
   }
+
   pegarEndereco(cliente: Cliente) {
     return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`, cliente)
       .pipe(
@@ -52,9 +61,11 @@ export class LoginService {
         )
       )
   }
+
   enviarSenha(email:string){
     return this.http.post(`http://localhost:8080/ecommerce/email-send`,email)
   }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

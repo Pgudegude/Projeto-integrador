@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from 'src/app/service/login.service';
 import { Login } from '../models/login.model';
@@ -6,7 +6,6 @@ import { HeaderComponent } from '../header/header.component';
 import { HttpService } from 'src/app/service/http.service';
 import { StockService } from 'src/app/service/stock.service';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
-import { modalConfigDefaults } from 'ngx-bootstrap/modal/modal-options.class';
 
 
 @Component({
@@ -19,14 +18,13 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
   usuario: any
 
-  constructor(private fb: FormBuilder, private http: LoginService,private emissor:EmissorDeEventosService, private http2: HttpService, private logar : HeaderComponent,private stock: StockService) { }
-    
+  constructor(private fb: FormBuilder, private http: LoginService, private emissor: EmissorDeEventosService, private http2: HttpService, private logar: HeaderComponent, private stock: StockService) { }
+
   login: boolean
   verificarLogin() {
     if (sessionStorage.getItem("usuario") != null) {
     this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    console.log(this.usuario)
-    this.login = true
+     this.login = true
     }
     else {
       this.login = false
@@ -63,20 +61,19 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("usuario", btoa(login_json))
       this.emissor.emitirUsuarioLogado()
       this.verificarLogin()
-      
-    },erro=>alert("usuário ou senha errada"))  
+    }, erro => alert("usuário ou senha errada"))
   }
+
 
   deslogar() {
     sessionStorage.removeItem("usuario")
     this.verificarLogin()
     this.stock.removeCart()
-    console.log("desloguei")
     this.emissor.emitirUsuarioLogado()
   }
-  esqueciSenha:FormGroup
-  
-  gerarForm(){
+  esqueciSenha: FormGroup
+
+  gerarForm() {
     {
       this.esqueciSenha = this.fb.group(
         {
@@ -96,7 +93,6 @@ export class LoginComponent implements OnInit {
      this.http.enviarSenha(umMail).subscribe(data=>data)
      console.log(umMail)
    alert("Enviamos um email com sua senha, verifique sua caixa de entrada")
-  
   }
 }
 
