@@ -32,9 +32,16 @@ export class ProdutoComponent implements OnInit {
         this.produtoFiltrado = this.produto.filter((event) => {
           return event.category.id == this.product.category.id
         });
-        
+        // let p = this.produtoFiltrado 
+        // this.produtoFiltrado = p.filter((prod)=>{
+        //   console.log(this.produtoFiltrado)
+        //   console.log(prod)
+        //   return !prod.codProduct == this.produtoFiltrado.codProduct})
       }, (error: any) => {
         console.error("ERROR", error)
+      
+      
+     
       })
     }
 

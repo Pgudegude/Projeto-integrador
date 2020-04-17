@@ -25,15 +25,19 @@ export class HomeComponent implements OnInit {
   produto4=new Produtos();
   produto5=new Produtos();
   constructor(public http: HttpService, private router: Router) {
-    this.categoria1.id = 7;
+    this.categoria1.id =7;
     this.categoria2.id=8;
     this.categoria3.id=10
-    this.produto1.code=59;
+    this.produto1.code=65;
     this.produto2.code=49;
     this.produto3.code=48;
     this.produto4.code=41;
     this.produto5.code=52;
-
+    this.produto1.categoria={};
+    this.produto2.categoria={};
+    this.produto3.categoria={};
+    this.produto4.categoria={};
+    this.produto5.categoria={};
   }
   
   selecionaCategoria(categoria: Category) {

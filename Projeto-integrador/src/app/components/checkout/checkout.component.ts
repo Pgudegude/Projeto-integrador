@@ -74,10 +74,40 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.criarDadosCompra();
     this.verificarLogin();
+    this.verificarCartao()
   }
+  cartao: any
+  naoTem:boolean
+  meio:any
+verificarCartao(){
+  this.http2.verificarCartao(this.usuario).subscribe((data:any)=>{
+    if(data){
+      this.naoTem=false
+      this.cartao=data
+      let n = atob(data.numberCard)
+      let primeiros = n.slice(0,4)
+      this.meio =n.slice(4,12)
+      let ultimos =n.slice(12,16)
+      this.cartao.numberCard = primeiros+"********"+ultimos
+     }
+      else{
+        this.naoTem=true
+      }
+    }
+    ,erro=>{
+      alert("ops ocorreu algo inesperado")}
+    )
 
+}
+preencherPreencher(){
+  this.alterar = true
+  this.formularioCheckout.controls['numeroCartao'].patchValue(this.cartao.numberCard);
+  this.formularioCheckout.controls['cpfTitular'].patchValue(this.cartao.cpfTitular);
+  this.formularioCheckout.controls['nomeTitular'].patchValue(this.cartao.nomeTitular);
+
+}
   data: Date = new Date()
-
+alterar :boolean
   enviarDadosCompra() {
     let pagamento: Pagamento = new Pagamento("aguardando aprovação")
     let endereco: Endereco = JSON.parse(sessionStorage.getItem("endereco"))    
@@ -101,10 +131,32 @@ export class CheckoutComponent implements OnInit {
         return this.router.navigate(['/final'])
       }
     )
+    if(this.formularioCheckout.value.salvarCartao==1){
+      console.log("vou salvar")
+      let cartao = {
+        numberCard:btoa(this.formularioCheckout.value.numeroCartao),
+        cpfTitular:this.formularioCheckout.value.cpfTitular,
+        nomeTitular:this.formularioCheckout.value.nomeTitular,
+        client:this.usuario}
+      this.http2.salvarCartao(cartao).subscribe(data=>data)
+    }
+    
+    else if(this.formularioCheckout.value.alterarCartao){
+      console.log("vou alterar")
+      let cartao = {
+        idIdCreditCard:this.cartao.idIdCreditCard,
+        numberCard:btoa(this.formularioCheckout.value.numeroCartao),
+        cpfTitular:this.formularioCheckout.value.cpfTitular,
+        nomeTitular:this.formularioCheckout.value.nomeTitular,
+        client:this.usuario}
+      this.http2.alterarCartao(cartao).subscribe(data=>data)
+    }
+    else{
+      console.log("não vou salvar")
+    }
   }
 
   salvarItensBanco() {
-      
     let request = JSON.parse(sessionStorage.getItem('pedido'))
     console.log(request)
     console.log(this.carrinho)
@@ -153,7 +205,6 @@ export class CheckoutComponent implements OnInit {
         Validators.compose([
           Validators.maxLength(16),
           Validators.required,
-          Validacoes.ValidaCartao
         ])],
       cvv: ["",
         Validators.compose([
@@ -174,6 +225,8 @@ export class CheckoutComponent implements OnInit {
           Validators.required,
           Validacoes.ValidaCpf
         ])],
+        salvarCartao:[""],
+        alterarCartao:[""]
     })
     this.cadastrarEndereco()
   }

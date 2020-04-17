@@ -29,10 +29,10 @@ apiProduct: apiProduct
 
   constructor(private service: HttpService,private route: ActivatedRoute,private router: Router ) { 
     this.route.params.subscribe(parameters => {
-        console.log(parameters)
       this.service.getCategory(parameters['categoria.id'])
       .subscribe(
         (data) => {
+          console.log(data)
         this.apiProduct = data;
         this.product = this.apiProduct
         this.productDisplay = this.product

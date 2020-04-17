@@ -66,6 +66,10 @@ export class PedidoService {
 
   }
 
+verificarCartao(client){
+  console.log(client)
+  return this.http.post("http://localhost:8080/ecommerce/puxarCartaoCliente",client)
+}
 
   public envPedido(pedido: StatusRequest) {
     let comunicacao = this.adaptador2(pedido)
@@ -73,12 +77,17 @@ export class PedidoService {
     let url = this.http.post('http://localhost:8080/ecommerce/request', comunicacao);
     return url;
   }
-
+  public salvarCartao(cartao:any){
+   return this.http.post('http://localhost:8080/ecommerce/salvarCartao', cartao)
+  }
   public cadastroEndereco(client: Cliente, endereco:Endereco) {
     let address = this.httpAddress.enderecoBanco(endereco)
     let comunicacao = {client,address}
     let url = this.http.post<any>("http://localhost:8080/ecommerce/save-address", comunicacao);
     return url
+  }
+  public alterarCartao(cartao){
+      return this.http.put("/api/alterarCartao", cartao)
   }
  
   public envItemCart(pedido:Pedido, carrinho : Carrinho []){

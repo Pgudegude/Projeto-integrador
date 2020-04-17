@@ -45,7 +45,7 @@
                         <strong>Pagamento</strong>
                     </h4>
                     <hr>
-                    <div>
+                    <div *ngIf="naoTem; else TemCartao">
                         <div class="form-group">
                             <label for="numeroCartao">Numero do cartão:</label>
                             <input class="form-control" maxlength="16" type="text" name="numeroCartao" id="numeroCartao"
@@ -73,7 +73,71 @@
                             <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular"
                                 id="cpfTitular" name="cpfTitular" placeholder="000.000.000-00" required>
                         </div>
+                        <div class="form-group">
+                            <label for="salvarCartao">Salvar cartão para próximas compras </label>
+                            <input type="checkbox" name="salvarCartao" value="1" id="salvarCartao"
+                                formControlName="salvarCartao">
+                        </div>
                     </div>
+                    <ng-template #TemCartao>
+                        <div *ngIf="!alterar; else alterado">
+                            <h2>Usar este cartão</h2>
+                            <button class="btn mybtn" (click)="preencherPreencher()">
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <p>nº {{cartao.numberCard}}</p>
+                                        <p>Titular {{cartao.nomeTitular}}</p>
+                                        <p>Cpf titular {{cartao.cpfTitular}}</p>
+                                    </div>
+                                </div>
+                            </button>
+                            <h2>Usar outro cartão</h2>
+                            <button class="btn mybtn" (click)="alterar=true">
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        Usar outro
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </ng-template>
+                    <ng-template #alterado>
+                        <div>
+                            <div class="form-group">
+                                <label for="numeroCartao">Numero do cartão:</label>
+                                <input class="form-control" maxlength="16" type="text" name="numeroCartao"
+                                    id="numeroCartao" placeholder="0000 0000 0000 0000" formControlName="numeroCartao"
+                                    required>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 form-group">
+                                    <label for="dataValidade">Data de validade:</label>
+                                    <input class="form-control" type="month" name="dataValidade" id="dataValidade"
+                                        placeholder="MM/AA" formControlName="dataValidade" required>
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="codigoSeguranca">CVV:</label>
+                                    <input class="form-control" type="text" maxlength="3" name="codigoSeguranca"
+                                        id="codigoSeguranca" placeholder="CVV" formControlName="cvv" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomeTitular">Nome titular:</label>
+                                <input class="form-control" type="text" name="nomeTitular" id="nomeTitular"
+                                    placeholder="Nome Titular" formControlName="nomeTitular" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpfTitular">CPF titular:</label>
+                                <input class="form-control" type="tel" maxlength="11" formControlName="cpfTitular"
+                                    id="cpfTitular" name="cpfTitular" placeholder="000.000.000-00" required>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="alterarCartao">Alterar Cartão </label>
+                                <input type="checkbox" name="alterarCartao" value="alterar" id="alterarCartao"
+                                    formControlName="alterarCartao">
+                            </div> -->
+                        </div>
+                    </ng-template>
                 </div>
             </div>
             <div class="col-md-4">
